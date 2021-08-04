@@ -1,0 +1,6 @@
+<div class="centeredAbsolute">
+    <center>
+        <img src="./system/images/settings.svg" style="Height:100px">
+        <h3 style="font-weight: 100;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;margin-top:15px">Please select a setting<br>from the left pane.</h3>
+    </center>
+</div>

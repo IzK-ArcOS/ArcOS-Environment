@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="system/css/ArcOSShell.css">
+    <link rel="stylesheet" href="system/css/progressBar.css">
+    <script src="./system/js/consoleNotifier.js"></script>
+    <script src="./system/js/DOMLogic.js"></script>
+    <script src="./system/js/varDefinitions.js"></script>
+    <script>
+        var progressBar = "<div class=\"cp-spinner cp-round big\"></div>";
+        onload = function() {
+            if (localStorage.getItem("FTSFinished") == "true") {
+                setDisplayText("Welcome");
+                setTimeout(() => {
+                    setDisplayText("You've installed an update.");
+                    setTimeout(() => {
+                        setDisplayText("ArcOS will now configure it for you.");
+                        setTimeout(() => {
+                            setDisplayText(`${progressBar}<br><br>Installing Updates`);
+                            setTimeout(() => {
+                                localStorage.setItem("WebOSVersion", version);
+                                setDisplayText("Enjoy using ArcOSv1 " + version);
+                                setTimeout(() => {
+                                    setDisplayText("");
+                                    setTimeout(() => {
+                                        window.location.href = "login.html";
+                                    }, 1700);
+                                }, 5000);
+                            }, 41100);
+                        }, 5000);
+                    }, 5000);
+                }, 5000);
+            } else {
+                setDisplayText("Welcome");
+                setTimeout(() => {
+                    setDisplayText("Thanks for installing ArcOS.");
+                    setTimeout(() => {
+                        setDisplayText("ArcOS is preparing for first boot");
+                        setTimeout(() => {
+                            setDisplayText(`${progressBar}<br><br>Preparing ArcOS`);
+                            setTimeout(() => {
+                                localStorage.setItem("WebOSVersion", version);
+                                setDisplayText("Enjoy using ArcOSv1 " + version + "");
+                                setTimeout(() => {
+                                    setDisplayText("");
+                                    setTimeout(() => {
+                                        window.location.href = "login.html";
+                                    }, 1700);
+                                }, 5000);
+                            }, 41100);
+                        }, 5000);
+                    }, 5000);
+                }, 5000);
+            }
+            window.addEventListener("keydown", (e) => {
+                if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() == "tab") {
+                    setDisplayText("<span style=\"color:#444\">ERR_ABORTED</span>");
+                    setTimeout(() => {
+                        window.location.href = "login.html";
+                    }, 1700);
+                }
+            })
+        }
+
+        function setDisplayText(text) {
+            document.getElementById("displayText").style.opacity = "0";
+            setTimeout(() => {
+                document.getElementById("displayText").innerHTML = text;
+                document.getElementById("displayText").style.opacity = "1";
+            }, 1700);
+        }
+    </script>
+</head>
+
+<body style="background-color: #000;">
+    <div class="centeredAbsolute" style="min-width:200px">
+        <center>
+            <h2 class="windowColor" id="displayText" style="transition:opacity 1.5s"></h2>
+        </center>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            background-color: #000082;
+            color: #DBDBED;
+            overflow: hidden;
+            word-break: break-all;
+        }
+        
+        * {
+            cursor: none;
+        }
+        
+        h1 {
+            font-size: 2vw;
+        }
+    </style>
+    <script>
+        onload = function() {
+            document.getElementById("title").innerHTML = localStorage.getItem("bsodTitle");
+            document.getElementById("message").innerHTML = localStorage.getItem("bsodMessage");
+            localStorage.removeItem("bsodTitle");
+            localStorage.removeItem("bsodMessage");
+            /*setTimeout(() => {
+                while (true) {
+                    a = Array(32767).join("\u00a0") + "b";  // A string with 32767 consecutive \u00a0
+                    s = Date.now();
+                    t = a.replace(/^(\s|\u00A0)+$/g, '');
+                    x = Date.now() - s, a.length;
+                }
+            }, 1000);*/
+            setTimeout(() => {
+                document.body.innerHTML = "";
+                document.body.style.backgroundColor = "#000";
+                setTimeout(() => {
+                    window.location.href = "main.html";
+                }, 4000);
+            }, 5000);
+        }
+    </script>
+</head>
+
+<body>
+    <h1>
+        <code>
+            A problem has been encountered and ArcOS has been shut down to prevent damage<br>
+            to your computer.<br><br>
+            <span id="title"></span><br><br>
+            If this is the first time you've seen this stop error sreen,<br>
+            restart your computer. If this screen appears again, follow<br>
+            these steps:<br><br>
+            Check to make sure any new software is properly loaded, and try to unload<br>
+            any unnecessary applications, since they are allowed to trigger a bluescreen.<br>
+            If problems continue, try to reset ArcOSv1. To do this, enter "localStorage.clear();new PowerLogic().logoff();" in the "Execute Command" application.<br><br>
+            <b>Technical information (provided by process that triggered the new ErrorLogic().bsod):</b><br><br>
+            <span id="message"></span><br><br>
+            ArcOSv1 will restart in a couple of seconds.
+
+        </code>
+    </h1>
+</body>
+
+</html>

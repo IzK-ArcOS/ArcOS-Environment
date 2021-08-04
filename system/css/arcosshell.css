@@ -1,0 +1,1306 @@
+:root {
+    /*Body*/
+    --bodyBackgroundColor: #000;
+    /*Window*/
+    --windowBackground: #111;
+    --windowBorder: #333 1px solid;
+    --windowBorderRadius: 10px;
+    --windowTransition: opacity 0.2s, background-color 0.2s ease, border-radius 0.3s, border-top-left-radius 0.3s, border-top-right-radius 0.3s, border-bottom-left-radius 0.3s, border-bottom-right-radius 0.3s;
+    --windowColor: #fff;
+    --boxShadow: 0px 0px 40px rgba(0, 0, 0, 0.5);
+    /*Window Titlebar*/
+    --titlebarBackground: transparent;
+    --titlebarColor: #fff;
+    --titlebarButtonBackgroundHover: rgba(100, 100, 100, 0.512);
+    --titlebarCloseButtonBackground: rgba(95, 81, 81, 0);
+    --titlebarCloseButtonBackgroundHover: rgb(255, 80, 80);
+    --titlebarButtonBorderRadius: 5px;
+    /*Taskbar*/
+    --taskbarBackground: rgba(0, 0, 0, 0.856);
+    --taskbarTransition: top 0.3s, bottom 0.3s, background 0.3s, position 0.3s;
+    --taskbarButtonBackground: rgba(255, 255, 255, 0.05);
+    --taskbarAppButtonBackgroundColor: rgb(30, 30, 30);
+    /*Global*/
+    --globalTransition: all 0.25s;
+    --globalTransitionTwo: background 0.2;
+    --globalTransitionThree: background-color: 0.2s;
+    --dark2: #000;
+    --dark1: #111;
+    /*start Menu Button*/
+    --startMenuButtonBackgroundColor: rgba(0, 0, 0, 0.123);
+    --startMenuButtonBackgroundColorHover: rgba(255, 255, 255, 0.123);
+    --startMenuButtonBackgroundColorActive: rgba(255, 255, 255, 0.041);
+    --startMenuButtonBorderRadius: 5px;
+    --startMenuBorderRadius: 10px;
+    /*Desktop*/
+    --desktopButtonBackgroundColorHover: rgba(155, 155, 155, 0.616);
+    --desktopButtonBorderColorHover: rgba(182, 182, 182, 1);
+    --desktopButtonBorderColor: rgba(68, 155, 255, 0);
+    --desktopButtonBackgroundColor: transparent;
+    /*Start Menu*/
+    --startMenuBackgroundColor: rgb(30, 30, 30, 0.706);
+    --startMenuLeftPaneBackgroundColr: rgba(0, 0, 0, 0.246);
+    --startMenuAppTileBackgroundColor: rgba(0, 0, 0, 0.11);
+    --startMenuAppTileBackgroundColorHover: rgba(0, 100, 255, 0.22);
+    --startMenuAppTileBackgroundColorActive: rgba(0, 100, 255, 0.40);
+    /*button*/
+    --buttonBackgroundColor: #333;
+    --buttonBackgroundColorHover: #444;
+    --buttonBackgroundColorActive: #222;
+    --buttonTransition: background-color 0.3s, border-radius 0.3s, color 0.1s;
+    --buttonBorderRadius: 5px;
+    /*clockWidget*/
+    --clockWidgetBackgroundColor: rgba(30, 30, 30, 0.856);
+    --clockWidgetBorderRadius: 5px;
+    /*separator*/
+    --separatorBackgroundColor: #fff;
+    --separatorOpacity: 0.125;
+    /*Notification*/
+    --notificationBackgroundColor: rgba(0, 0, 0, 0.8);
+    --notificationCloseButtonBackgroundColor: rgba(0, 0, 0, 0.185);
+    --notificationBorderRadius: 10px;
+    /*Links*/
+    --linkColor: deepskyblue;
+    --linkColorHover: dodgerblue;
+    /*Scrollbar*/
+    --scrollbarHandleBackgroundColor: #444;
+    --scrollbarHandleBackgroundColorHover: #555;
+    /*File Manager*/
+    --folderButtonBackgroundHoverColor: rgba(0, 217, 255, 0.246);
+    --folderButtonBackgroundActiveColor: rgba(0, 132, 155, 0.246);
+    --folderButtonBorderRadius: 7.5px;
+    --bigFolderButtonBackgroundColor: #00000025;
+    --bigFolderButtonBackgroundColorHover: #40404035;
+    --bigFolderButtonBackgroundColorActive: #00000045;
+    --fileExplorerSidebarButtonBackgroundColorHover: #444;
+    --fileExplorerSidebarButtonBackgroundColorActive: #222;
+    --fileExplorerSidebarButtonBorderRadius: 2px;
+    --fileExplorerMainFrameBackgroundColor: #1c1c1c;
+    /*context menu*/
+    --contextMenuBorderRadius: 5px;
+    /*Background*/
+    --backgroundImage: url("../wallpaper/ArcOSv1\ background\ dark.jpg");
+    /*Menu Bar*/
+    --menubarBackgroundColor: var(--titlebarBackground);
+    /*New Start Menu*/
+    --newStartMenuLeftPaneBackgroundColor: transparent;
+    --newSTartMenuRightPaneBackgroundColor: #2222224d;
+    --newSTartMenuBottomPaneBackgroundColor: #2222227c;
+    /*wallpaper*/
+    --wallpaperTransition: var(--globalTransition);
+    /*notification center*/
+    --notificationCenterTransition: right 0.3s;
+    /*slider*/
+    --sliderBackgroundColor: #3333337b;
+    --sliderThumbBackgroundcolor: var(--linkColor);
+    /*Control Panel*/
+    --controlPanelMainBackgroundColor: #00091d9a;
+    --controlPanelSecoBackgroundColor: #00000025;
+    --controlPanelThrdBackgroundColor: #00000044;
+}
+
+.window {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -o-user-select: none;
+    background-color: var(--windowBackground);
+    border: var(--windowBorder);
+    border-radius: var(--windowBorderRadius);
+    padding: 0px;
+    height: fit-content;
+    width: fit-content;
+    left: 60px;
+    top: 60px;
+    transition: var(--windowTransition);
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    resize: both;
+    overflow: hidden;
+    min-width: fit-content;
+    min-height: 380px;
+    max-width: 1300px;
+    max-height: 800px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    left: 50%;
+    color: var(--windowColor);
+    box-shadow: var(--boxShadow);
+}
+
+.window>.body {
+    padding-left: 5px;
+}
+
+.window>.body>p,
+.window>.body>i,
+.window>.body>u,
+.window>.body>input,
+.window>.body>button {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.windowTitle {
+    background-color: var(--titlebarBackground);
+    color: var(--titlebarColor);
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height: 30px;
+    padding-right: 5px;
+}
+
+
+/** {
+    outline: none !important;
+    margin: 2.5px;
+}*/
+
+body {
+    height: 100%;
+    font-family: 'IBM Plex Sans', sans-serif;
+    overflow: hidden;
+    height: 100%;
+    margin: 0px;
+    background-color: var(--bodyBackgroundColor);
+}
+
+button.title {
+    border-radius: var(--titlebarButtonBorderRadius);
+    border: none;
+    width: 20px;
+    height: 20px;
+    word-wrap: break-word;
+    background-color: transparent;
+    color: var(--windowColor);
+    float: right;
+    margin-left: 5px;
+    padding-left: 5px;
+    padding-bottom: 2px;
+    min-width: unset;
+    padding-top: 0px;
+}
+
+div.taskbar {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    max-height: 45px;
+    background: var(--controlPanelMainBackgroundColor);
+    backdrop-filter: blur(20px);
+    transition: var(--taskbarTransition);
+    z-index: 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
+}
+
+.windowTitle>button:hover {
+    background: var(--titlebarButtonBackgroundHover);
+}
+
+.windowTitle>button.close {
+    background: var(--titlebarCloseButtonBackground);
+}
+
+.windowTitle>button.close:hover {
+    background: var(--titlebarCloseButtonBackgroundHover);
+}
+
+.windowTitle>p {
+    margin: 0px;
+    float: left;
+}
+
+html {
+    height: 100%;
+}
+
+* {
+    border: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -o-user-select: none;
+    transition: var(--globalTransition);
+    outline: none !important;
+}
+
+.startMenuButton {
+    border-radius: var(--startMenuButtonBorderRadius);
+    border: none;
+    width: 40px;
+    height: 40px;
+    word-wrap: break-word;
+    background-color: var(--startMenuButtonBackgroundColor);
+    color: var(--windowColor);
+    float: right;
+    min-width: unset;
+    padding: 0px;
+}
+
+.startMenuButton>* {
+    margin: 0px;
+}
+
+.taskbarButton {
+    background-color: var(--taskbarButtonBackground);
+    color: var(--windowColor);
+    border: none;
+    height: 43px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: var(--startMenuButtonBorderRadius);
+    margin-bottom: 0px;
+    vertical-align: top;
+}
+
+.taskbarButton>* {
+    margin: 0px;
+}
+
+.startButton {
+    background-color: transparent;
+    color: var(--windowColor);
+    border: none;
+    height: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: var(--startMenuButtonBorderRadius);
+    MARGIN-bottom: 0px;
+    vertical-align: top;
+    padding: 10px;
+    min-width: unset;
+    width: 40px;
+}
+
+.startButton#notificationCenterButton {
+    width: unset;
+    min-width: unset;
+}
+
+.startButton>p {
+    margin: 0px;
+}
+
+.startButton>img {
+    margin-top: 2.5px;
+}
+
+.startButton:hover {
+    background-color: var(--startMenuButtonBackgroundColorHover);
+}
+
+.startButton:active {
+    background-color: var(--startMenuButtonBackgroundColorActive);
+}
+
+div.desktopicons {
+    left: 0px;
+    top: 0px;
+    position: relative;
+    background-color: transparent;
+    color: var(--windowColor);
+    width: fit-content;
+    width: -moz-fit-content;
+    width: -ms-fit-content;
+    width: -o-fit-content;
+    width: -webkit-fit-content;
+    height: 100%;
+    text-align: center;
+}
+
+button.icon {
+    background-color: var(--desktopButtonBackgroundColor);
+    border: none;
+    color: var(--windowColor);
+    width: 100%;
+    position: relative;
+    padding: 5px;
+    border: 2px solid var(--desktopButtonBorderColor);
+    border-radius: var(--startMenuButtonBorderRadius);
+}
+
+button.icon:hover {
+    border: 2px solid var(--desktopButtonBorderColorHover);
+    background-color: var(--desktopButtonBackgroundColorHover);
+    width: 100%;
+    padding: 5px;
+}
+
+div.startMenu {
+    backdrop-filter: blur(6px);
+    box-sizing: border-box;
+    display: flex;
+    position: fixed;
+    bottom: 40px;
+    left: 0px;
+    width: 300px;
+    height: 400px;
+    background-color: var(--startMenuBackgroundColor);
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--windowTransition);
+    border-radius: var(--startMenuBorderRadius);
+    border-bottom-left-radius: 0px;
+    z-index: 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000001;
+}
+
+div.startMenu>.leftPane {
+    display: flex;
+    justify-content: center;
+    flex: 10%;
+    height: 100%;
+    background-color: var(--startMenuLeftPaneBackgroundColr);
+    border-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: var(--startMenuBorderRadius);
+}
+
+div.startMenu>.rightPane {
+    flex: 90%;
+    height: 100%;
+}
+
+button {
+    background-color: var(--buttonBackgroundColor);
+    color: var(--windowColor);
+    border-radius: var(--buttonBorderRadius);
+    padding: 10px;
+    min-width: 80px;
+    transition: var(--buttonTransition);
+}
+
+button:hover {
+    background-color: var(--buttonBackgroundColorHover);
+}
+
+button:active {
+    background-color: var(--buttonBackgroundColorActive);
+}
+
+.taskbarButtons>button:not(.startButton),
+.taskbar>button:not(.startButton) {
+    border-radius: 0px;
+    min-width: unset;
+    background-color: transparent;
+}
+
+.taskbarButtons>button:hover:not(.startButton),
+.taskbar>button:hover:not(.startButton) {
+    border-radius: 0px;
+    min-width: unset;
+    background-color: var(--taskbarAppButtonBackgroundColor);
+}
+
+.taskbarButtons>button:active:not(.startButton),
+.taskbar>button:hover:not(.startButton) {
+    border-radius: 0px;
+    min-width: unset;
+    background-color: transparent;
+}
+
+.taskbarButtons {
+    max-width: calc(100% - 155px);
+    overflow-wrap: none;
+    overflow-y: scroll;
+    position: absolute;
+    top: 0px;
+    left: 43px;
+    max-height: 100%;
+}
+
+.taskbarButtons>::-webkit-scrollbar {
+    width: 0px;
+    visibility: hidden;
+}
+
+.taskbarButtons>::-webkit-scrollbar-track {
+    background-color: transparent;
+    cursor: default;
+}
+
+
+/* Handle */
+
+.taskbarButtons>::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    transition: none;
+    cursor: default;
+}
+
+
+/* Handle on hover */
+
+.taskbarButtons>::-webkit-scrollbar-thumb:hover {
+    background-color: transparent;
+    cursor: default;
+}
+
+.startMenuAppTile {
+    border-radius: var(--buttonBorderRadius);
+    background-color: var(--startMenuAppTileBackgroundColor);
+    color: var(--windowColor);
+    text-align: bottom left;
+    width: 95%;
+    margin: 5px;
+    padding: 5px;
+}
+
+.startMenuUsername {
+    border-radius: 5px;
+    background-color: transparent;
+    color: var(--windowColor);
+    text-align: center;
+    width: 95%;
+    margin: 5px;
+    margin-right: unset;
+    padding: 10px;
+}
+
+.startMenuAppTile:hover {
+    background-color: var(--startMenuAppTileBackgroundColorHover);
+}
+
+.startMenuAppTile:active {
+    background-color: var(--startMenuAppTileBackgroundColorActive);
+}
+
+div.clockWidget {
+    position: fixed;
+    right: 10px;
+    bottom: 55px;
+    border-radius: var(--clockWidgetBorderRadius);
+    background-color: var(--clockWidgetBackgroundColor);
+    width: 150px;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--windowTransition);
+    z-index: 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000002;
+}
+
+div.clockWidget>h1,
+h2,
+h3,
+h4 {
+    color: var(--windowColor);
+}
+
+input {
+    background-color: var(--buttonBackgroundColor);
+    color: var(--windowColor);
+    border-radius: var(--buttonBorderRadius);
+    padding: 10px;
+    min-width: 80px;
+    transition: var(--buttonTransition);
+}
+
+input:hover {
+    background-color: var(--buttonBackgroundColorHover);
+}
+
+select {
+    background-color: var(--buttonBackgroundColor);
+    color: var(--windowColor);
+    border-radius: var(--buttonBorderRadius);
+    padding: 10px;
+    min-width: 80px;
+    transition: var(--buttonTransition);
+}
+
+select:hover {
+    background-color: var(--buttonBackgroundColorHover);
+}
+
+hr {
+    border: var(--separatorBackgroundColor) 1px solid;
+    opacity: var(--separatorOpacity);
+}
+
+.window[id*="Error Message"] {
+    resize: none;
+}
+
+.context-menu {
+    position: absolute;
+    background: var(--windowBackground);
+    border: none;
+    border-radius: var(--contextMenuBorderRadius);
+    transition: background 0.2s, opacity 0.2s;
+    padding-bottom: 10px;
+    box-shadow: var(--boxShadow);
+    z-index: 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000003;
+}
+
+.context-menu ul {
+    padding: 0px;
+    margin: 0px;
+    min-width: 150px;
+    list-style: none;
+    transition: var(--globalTransitionTwo);
+}
+
+.context-menu ul li {
+    padding-bottom: 3px;
+    padding-top: 3px;
+    border: none;
+    border-radius: var(--contextMenuBorderRadius);
+    background-color: transparent;
+    transition: var(--globalTransitionThree);
+    margin: 0px;
+}
+
+.context-menu ul li a {
+    text-decoration: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: var(--windowColor);
+    transition: var(--globalTransitionTwo);
+}
+
+.context-menu ul li:hover {
+    background: var(--buttonBackgroundColorHover);
+}
+
+.context-menu ul li:active {
+    background: var(--buttonBackgroundColorActive);
+}
+
+label {
+    color: var(--windowColor);
+}
+
+div.block {
+    background-color: var(--bodyBackgroundColor);
+    height: 100%;
+    color: var(--windowColor);
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    visibility: visible;
+    opacity: 1;
+    z-index: 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000003;
+}
+
+div.menuBar {
+    height: 25px;
+    background-color: transparent;
+    color: var(--windowColor);
+}
+
+div.menuBar>button {
+    padding: 2px;
+    height: 25px;
+    /*background-color: #444;*/
+    background-color: transparent;
+    color: var(--windowColor);
+    margin: 0px;
+    min-width: unset;
+    border-radius: 0;
+    min-width: 50px;
+}
+
+div.menuBar>button:hover {
+    background-color: var(--buttonBackgroundColorHover);
+    min-width: 50px;
+    color: var(--windowColor);
+}
+
+div.menuBar>button:active {
+    background-color: var(--buttonBackgroundColorActive);
+    color: var(--windowColor);
+}
+
+div.menuBar>button.right {
+    float: right;
+}
+
+.notification {
+    top: 15px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    -o-transform: translate(-50%, 0);
+    -ms-transform: translate(-50%, 0);
+    -moz-transform: translate(-50%, 0);
+    -webkit-transform: translate(-50%, 0);
+    position: fixed;
+    max-width: 600px;
+    word-wrap: break-word;
+    background: var(--notificationBackgroundColor);
+    color: var(--windowColor);
+    border-radius: var(--notificationBorderRadius);
+    padding: 15px;
+    border: none;
+    visibility: hidden;
+    opacity: 0;
+    transition: var(--windowTransition);
+    font-style: normal;
+    font-weight: unset;
+    z-index: 100000000000000000000000000000000000000000000000000000000000000000000000000000000005;
+}
+
+.notification>h1,
+h2,
+h3,
+h4,
+h5 {
+    margin: 0px;
+}
+
+.notification>h3>button.close {
+    background: transparent;
+}
+
+.notification>h3>button.close:hover {
+    background: var(--notificationCloseButtonBackgroundColor)
+}
+
+p#notificationMessage {
+    margin-bottom: 5px;
+    margin-top: 20px
+}
+
+svg.taskbarSoundControlIcon {
+    width: 20px;
+    height: 20px;
+    fill: var(--windowColor);
+    transition: fill 0.25s;
+}
+
+input.bright {
+    background-color: var(--buttonBackgroundColorHover);
+}
+
+.startMenuAppTile>p {
+    margin: 0px;
+}
+
+.startMenuAppTile>p>img {
+    vertical-align: bottom;
+    margin-right: 5px;
+}
+
+a {
+    text-decoration: none;
+    color: var(--linkColor);
+    transition: color 0.25s;
+}
+
+a:hover,
+a:active {
+    color: var(--linkColorHover);
+}
+
+div.toolbar {
+    padding: 10px;
+    background-color: #0000007c;
+    color: white;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    position: fixed;
+    height: 40px;
+    width: 500px;
+    left: 50%;
+    top: 0px;
+    transform: translate(-50%, 0);
+    -webkit-transform: translate(-50%, 0);
+    transition: top 0.15s;
+    padding-top: 5px;
+    z-index: 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000006;
+    box-shadow: var(--boxShadow);
+}
+
+div.toolbar.retracted {
+    top: -40px;
+}
+
+div.toolbarHoverTrigger {
+    background-color: transparent;
+    color: white;
+    position: fixed;
+    height: 5px;
+    width: 520px;
+    left: 50%;
+    top: 0px;
+    transform: translate(-50%, 0);
+    -webkit-transform: translate(-50%, 0);
+    z-index: 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000007;
+}
+
+button.toolbar {
+    background-color: transparent;
+    color: white;
+    min-width: unset;
+    padding: 0px;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+button.toolbar:hover {
+    background-color: #00000046;
+}
+
+button.toolbar:active {
+    background-color: #00000093;
+}
+
+button.toolbar.right {
+    margin-top: 5px;
+    float: right;
+}
+
+
+/*///////scrollbars for days*/
+
+
+/* width */
+
+::-webkit-scrollbar {
+    width: 5px;
+    cursor: default;
+    height: 5px;
+}
+
+
+/* Track */
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+    cursor: default;
+}
+
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbarHandleBackgroundColor);
+    transition: background-color 0.25s;
+    cursor: default;
+    opacity: 0.5
+}
+
+
+/* Handle on hover */
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--scrollbarHandleBackgroundColorHover);
+    cursor: default;
+}
+
+textarea#notepadTextField {
+    background-color: transparent;
+    color: var(--windowColor);
+    overflow: scroll;
+}
+
+div.wallpaper {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: var(--wallpaperTransition);
+    background-image: var(--backgroundImage);
+}
+
+div.fileExplorerLeftPane {
+    position: absolute;
+    top: 72px;
+    left: 0px;
+    height: calc(100% - 72px);
+    width: 150px;
+    padding: 10px;
+    background-color: transparent;
+}
+
+div.fileExplorerTopPane {
+    position: absolute;
+    display: flex;
+    top: 30px;
+    left: 0px;
+    width: calc(100%);
+    height: 50px;
+    background-color: var(--titlebarBackground);
+    padding: 10px;
+    text-align: right;
+}
+
+div.window[id="File Manager"] {
+    background-color: var(--controlPanelMainBackgroundColor);
+    backdrop-filter: blur(30px);
+}
+
+div.fileExplorerMainFrame {
+    position: absolute;
+    top: 75px;
+    left: 150px;
+    width: calc(100% - 150px);
+    height: calc(100% - 75px);
+    padding: 10px;
+    overflow-y: scroll;
+}
+
+div.fileExplorerLeftPaneDiv {
+    width: 100%;
+    background-color: transparent;
+    min-height: 60px;
+}
+
+button.folder {
+    padding: 5px;
+    border-radius: var(--folderButtonBorderRadius);
+    width: 100%;
+    text-align: left;
+    vertical-align: middle;
+    margin-bottom: 5px;
+    word-wrap: break-word;
+    background-color: transparent;
+}
+
+button.folder:hover {
+    background-color: var(--folderButtonBackgroundHoverColor);
+}
+
+button.folder:active {
+    background-color: var(--folderButtonBackgroundActiveColor);
+}
+
+button.folder.big,
+input.folder.big {
+    width: 150px;
+    height: 50px;
+    max-height: 50px;
+    max-width: 150px;
+    background-color: var(--controlPanelThrdBackgroundColor);
+}
+
+button.folder.big:hover,
+input.folder.big:hover {
+    background-color: var(--controlPanelSecoBackgroundColor);
+}
+
+button.folder.big:active,
+input.folder.big:active {
+    background-color: var(--controlPanelMainBackgroundColor);
+}
+
+input.folder.big {
+    padding: 0 5px;
+}
+
+button.fileExplorerSideBar {
+    width: 100%;
+    margin: 0px;
+    padding: 5px 0px;
+    text-align: left;
+    border-radius: var(--fileExplorerSidebarButtonBorderRadius);
+    background-color: transparent;
+}
+
+button.fileExplorerSideBar:disabled {
+    opacity: 0.5;
+}
+
+button.fileExplorerSideBar:hover {
+    background-color: var(--fileExplorerSidebarButtonBackgroundColorHover);
+}
+
+button.fileExplorerSideBar:active {
+    background-color: var(--fileExplorerSidebarButtonBackgroundColorActive);
+}
+
+.fullWidth {
+    width: 100%;
+}
+
+.noMax {
+    max-width: unset;
+    max-height: unset;
+}
+
+.noFixedWidth {
+    width: unset;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Inter&display=swap');
+div.controlPanelLeftPane {
+    width: 208px;
+    height: 100%;
+    top: 0px;
+    position: absolute;
+    left: 0px;
+    background-color: var(--controlPanelSecoBackgroundColor);
+}
+
+div.controlPanelMainFrame {
+    position: absolute;
+    top: 30px;
+    left: 208px;
+    width: calc(100% - 208px);
+    height: calc(100% - 30px);
+    background-color: transparent;
+    padding: 35px;
+    padding-top: 15px;
+    overflow-y: auto;
+}
+
+div.controlPanelMainFrame>h1 {
+    margin: 0px;
+}
+
+button.controlPanelSidebar {
+    background-color: transparent;
+    color: var(--windowColor);
+    margin: 10px 0;
+    text-align: left;
+    padding: 0 30px;
+    font-size: 17px;
+    font-weight: 100;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+button.controlPanelSidebar:hover {
+    color: deepskyblue;
+}
+
+button.controlPanelSidebar:active {
+    color: rgb(27, 113, 199);
+}
+
+.centeredAbsolute {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+}
+
+button.controlPanelSidebar.active {
+    color: rgb(27, 113, 199);
+}
+
+button.controlPanelSidebar.active:hover {
+    color: deepskyblue;
+}
+
+.window.maximized {
+    top: 0px;
+    left: 0px;
+}
+
+button.titlesettings {
+    border-radius: var(--titlebarButtonBorderRadius);
+    border: none;
+    min-width: 30px;
+    min-height: 30px;
+    word-wrap: break-word;
+    background-color: transparent;
+    color: var(--windowColor);
+    float: right;
+    margin-left: 5px;
+    padding-top: 0px;
+    padding: 5px;
+}
+
+h2.controlPanelAppletHeader {
+    margin: 0px;
+    margin-bottom: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 100;
+    margin: 0px;
+}
+
+div.controlPanelUserSettingsHeader {
+    position: absolute;
+    left: 0px;
+    width: 100%;
+    padding: 30px;
+    padding-top: 0px;
+}
+
+div.controlPanelUserSettingsHeader>h2 {
+    margin: 0px;
+    margin-bottom: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 100;
+    margin: 0px;
+}
+
+h3.controlPanelSubHeader {
+    margin: 0px;
+    margin-bottom: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 100;
+    margin: 0px;
+}
+
+.controlPanelElementWidth {
+    width: 390px;
+    max-width: unset;
+}
+
+hr.controlPanelBody {
+    width: 390px;
+    margin-block-start: unset;
+    margin: 10px 0
+}
+
+button.folder.big.controlPanel,
+input.folder.big.controlPanel {
+    max-width: unset;
+    max-height: unset;
+    width: 390px;
+    padding-left: 10px
+}
+
+button.folder.big.controlPanel>p,
+input.folder.big.controlPanel>p {
+    margin: 10px 0;
+}
+
+button.folder.big.controlPanel span.material-icons.right,
+input.folder.big.controlPanel span.material-icons.right {
+    float: right;
+    font-size: 14px;
+    padding-right: 10px;
+}
+
+.windowColor {
+    color: var(--windowColor)
+}
+
+.newStartMenu {
+    position: fixed;
+    bottom: 55px;
+    left: 10px;
+    border-radius: var(--startMenuBorderRadius);
+    padding: 40px;
+    background-color: var(--controlPanelMainBackgroundColor);
+    backdrop-filter: blur(30px);
+    color: var(--windowColor);
+    border: var(--windowBorder);
+    box-shadow: var(--boxShadow);
+    width: 500px;
+    height: 600px;
+    opacity: 0;
+    z-index: 1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
+}
+
+.newStartMenu>div.bottomPane {
+    position: absolute;
+    background-color: var(--controlPanelSecoBackgroundColor);
+    height: 75px;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    border-bottom-left-radius: var(--startMenuBorderRadius);
+    border-bottom-right-radius: var(--startMenuBorderRadius);
+    padding: 30px;
+}
+
+.newStartMenu>div.leftPane {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 300px;
+    height: calc(100% - 75px);
+    border-top-left-radius: var(--startMenuBorderRadius);
+    padding: 20px;
+    overflow-y: scroll;
+}
+
+.newStartMenu>div.rightPane {
+    background-color: var(--controlPanelSecoBackgroundColor);
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 200px;
+    height: calc(100% - 75px);
+    border-top-right-radius: var(--startMenuBorderRadius);
+    padding: 20px;
+}
+
+button.transparent {
+    background-color: transparent;
+}
+
+button.transparent:hover {
+    background-color: var(--buttonBackgroundColor);
+}
+
+button.transparent:active {
+    background-color: var(--buttonBackgroundColorHover);
+}
+
+.h3 {
+    font-size: 18.72px;
+    color: var(--windowColor);
+    font-family: "IBM Plex Sans" sans-serif;
+    font-weight: bold;
+}
+
+.textAlignLeft {
+    text-align: left;
+}
+
+button.newStartMenuShutDownButton {
+    padding: 0px;
+    min-width: unset;
+    float: right;
+    border-radius: 50%;
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-top: -5px;
+    width: 30px;
+    height: 30px;
+}
+
+.centerBottom {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    -o-transform: translate(-50%, 0);
+    -ms-transform: translate(-50%, 0);
+    -moz-transform: translate(-50%, 0);
+    -webkit-transform: translate(-50%, 0);
+}
+
+div.notificationCenter {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 400px;
+    height: calc(100% - 65px);
+    background-color: var(--controlPanelMainBackgroundColor);
+    border-radius: var(--windowBorderRadius);
+    transition: var(--notificationCenterTransition), var(--windowTransition), var(--globalTransition);
+    border: var(--windowBorder);
+    z-index: 1000000000000000000000000000000000000000;
+    box-shadow: var(--boxShadow);
+    color: var(--windowColor);
+    backdrop-filter: blur(30px);
+}
+
+div.notificationCenter.retracted {
+    right: -420px;
+}
+
+div.notificationCenter>div.notifications {
+    position: absolute;
+    top: 60px;
+    left: 10px;
+    width: calc(100% - 20px);
+    height: calc(100% - 320px);
+    border-radius: var(--windowBorderRadius);
+    background-color: var(--controlPanelSecoBackgroundColor);
+    padding: 20px;
+    overflow-y: auto;
+    color: var(--windowColor);
+}
+
+div.notificationCenter>div.actions {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    border-radius: var(--windowBorderRadius);
+    width: calc(100% - 20px);
+    padding: 10px;
+    height: 240px;
+    background-color: var(--controlPanelSecoBackgroundColor);
+}
+
+div.notificationCenterAction {
+    background-color: var(--controlPanelSecoBackgroundColor);
+    width: 170px;
+    height: 100px;
+    transition: var(--windowTransition);
+    border-radius: var(--windowBorderRadius);
+    padding: 10px;
+    text-align: center;
+    margin: 5px;
+    display: block;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 5px;
+    background: var(--sliderBackgroundColor);
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 10px;
+    height: 10px;
+    background: var(--sliderThumbBackgroundcolor);
+    cursor: pointer;
+    border-radius: var(--windowBorderRadius);
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: var(--sliderThumbBackgroundcolor);
+    cursor: pointer;
+}
+
+div.window#Settings {
+    background-color: var(--controlPanelMainBackgroundColor);
+    backdrop-filter: blur(30px);
+}
+
+div.window#Settings div.controlPanelMainFrame button,
+div.window#Settings div.controlPanelMainFrame select,
+div.window#Settings div.controlPanelMainFrame input.inp {
+    background-color: var(--controlPanelSecoBackgroundColor);
+}
+
+div.window[id="Shut Down ArcOS"] {
+    background-color: var(--controlPanelMainBackgroundColor);
+    backdrop-filter: blur(30px);
+}
+
+div.window[id="Shut Down ArcOS"] button {
+    background-color: var(--controlPanelSecoBackgroundColor);
+}
+
+div.fileExplorerTopPane button {
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    min-width: unset;
+    background-color: var(--controlPanelThrdBackgroundColor);
+}
+
+input#fileExplorerAddressBar {
+    padding: 15px 15px;
+    display: flex;
+    flex: 2;
+    background-color: var(--controlPanelThrdBackgroundColor);
+    margin: 0 5px;
+}

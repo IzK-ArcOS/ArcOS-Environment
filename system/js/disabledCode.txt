@@ -1,0 +1,356 @@
+**** from ArcOS.System.WindowLogic.BringToFront ****
+    console.log(window);
+    activeapps.forEach(element => {
+        if (element == focusedWindow) {
+            document.getElementById(element).children[0].style.backgroundColor = "white";
+        } else {
+            document.getElementById(element).children[0].style.backgroundColor = "yellow";
+        }
+    });
+    
+**** from ArcOS.System.WindowLogic.openWindow ****
+let windowName = window;
+    try {
+        if (window != "Welcome!") {
+            new consoleNotifier().notifyStartService("ArcOS.System.windowLogic.openWindow: " + window);
+            let focused = focusedWindow;
+            window = document.getElementById(window);
+            //bringToFront(window);
+            if (!activeapps.includes(windowName)) {
+                activeapps.push(windowName);
+                try { updateTaskBar(); } catch {}
+                window.style.opacity = '0'
+                window.style.visibility = "visible";
+                window.style.display = "unset";
+                window.style.opacity = '1';
+            } else {
+                if (window.style.opacity == "0") {
+                    window.style.visibility = "visible";
+                    window.style.display = "unset";
+                    window.style.opacity = '1';
+                } else {
+                    if (focused == windowName) {
+                        minimizeWindow(windowName);
+                    }
+                }
+            }
+            try {
+                document.getElementById('startMenu').style.opacity = '0';
+                setTimeout(() => { document.getElementById('startMenu').style.visibility = 'hidden'; }, 200);
+            } catch {}
+        } else {
+            if (localStorage.getItem(args.get("username") + "_dispWelcome") == 0) {
+                if (!activeapps.includes("Welcome!")) {
+                    new NotificationLogic().notificationService("Welcome!", "ArcOS failed to open the \"Welcome!\" program.<br>Reason: Access is denied.");
+                } else {
+                    window = document.getElementById("Welcome!");
+                    if (window.style.opacity == "0") {
+                        window.style.visibility = "visible";
+                        window.style.display = "unset";
+                        window.style.opacity = '1';
+                        focusedWindow = windowName;
+                    } else { minimizeWindow(windowName); }
+                }
+            } else {
+                new consoleNotifier().notifyStartService("ArcOS.System.windowLogic.openWindow: " + window);
+                window = document.getElementById("Welcome!");
+
+                window.style.opacity = '0'
+                window.style.visibility = "visible";
+                window.style.display = "unset";
+                window.style.opacity = '1';
+                if (!activeapps.includes(windowName)) {
+                    activeapps.push(windowName);
+                    try { updateTaskBar(); } catch {}
+                }
+                try {
+                    document.getElementById('startMenu').style.opacity = '0';
+                    setTimeout(() => {
+                        document.getElementById('startMenu').style.visibility = 'hidden';
+                    }, 200);
+                } catch {}
+
+            }
+        }
+        setTimeout(() => {
+            bringToFront(window);
+            updateTitlebar();
+        }, 100);
+    } catch { new NotificationLogic().notificationService("Open Window", "The window you tried to open couldn't be found.<br>Please check the spelling and try again.<br><br>Window: \"" + windowName + "\"") }
+
+*** Backup of OnloadLogic ***
+
+let { globalShortcut } = require("electron");
+
+new consoleNotifier().startModule("ArcOS.System.onloadLogic");
+
+onload = function WebOSOnload() {
+
+    if (!clientInformation.appVersion.includes("Electron")) { window.location.href = "invalidClient.html"; }
+    if (localStorage.getItem(args.get("username") + "_showDesktopIcons") == null) { localStorage.setItem(args.get("username") + "_showDesktopIcons", 1); }
+    for (let i = 0; i < document.getElementsByClassName("window").length; i++) { new DragLogic().dragElement(document.getElementsByClassName("window")[current], document.getElementsByClassName("windowTitle")[current]); }
+    let zargs = new URLSearchParams(window.location.search);
+    if (zargs.get("noShell") === '1') { document.getElementById("shellLoader").href = ""; }
+    if (zargs.get("redirectLogin") === "1") { window.location.href = "./login.html" }
+
+    loadWindow("./system/applications/controlPanel.app", 1);
+    loadWindow("./system/applications/calculator.app", 1);
+    loadWindow("./system/applications/shutdown.app", 1);
+    loadWindow("./system/applications/changeUsername.app", 0);
+    loadWindow("./system/applications/themeSelector.app", 1);
+    loadWindow("./system/applications/addApp.app", 1);
+    loadWindow("./system/applications/runCommand.app", 1);
+    loadWindow("./system/applications/wallpaperSettings.app", 1);
+    loadWindow("./system/applications/systemSettings.app", 1);
+    loadWindow("./system/applications/notepad.app", 1);
+    loadWindow("./system/applications/programData/Notepad/utils/loadFile.app", 1);
+    loadWindow("./system/applications/programData/Notepad/utils/saveFile.app", 1);
+    loadWindow("./system/applications/programData/Notepad/utils/delFile.app", 1);
+    loadWindow("./system/applications/userInterface.app", 1);
+    loadWindow("./system/applications/desktopIcons.app", 1);
+    loadWindow("./system/applications/programData/User Settings/utils/changePassword.app", 1);
+    loadWindow("./system/applications/programData/User Settings/utils/changeUsername.app", 1);
+    loadWindow("./system/applications/programData/User Settings/utils/changeUserPicture.app", 1);
+    loadWindow("./system/applications/programData/User Settings/utils/createUserAccount.app", 1);
+    setTimeout(() => {
+        document.addEventListener("keydown", (e) => {
+            if (e.ctrlKey && e.altKey && e.shiftKey && e.key.toLowerCase() == "x") {
+                openWindow("Execute Command");
+            }
+        })
+        if (localStorage.getItem("safeMode") != 1) {
+            try {
+
+
+
+
+                setTimeout(() => {
+                    try {
+                        document.getElementById("changeUsernameOldUsername").innerHTML = args.get('username');
+                    } catch {}
+                }, 500);
+                startTime();
+
+                if (zargs.get("username") + "_theme" !== "") {
+                    let theme = localStorage.getItem(zargs.get("username") + "_theme");
+                    if (theme === "darkrounded") {
+                        document.getElementById("addonShellLoader").href = "";
+                    } else if (theme === "darksharp") {
+                        document.getElementById("addonShellLoader").href = "./system/css/darkModeSharp.css"
+                    } else if (theme === "lightrounded") {
+                        document.getElementById("addonShellLoader").href = "./system/css/lightModeRounded.css"
+                    } else if (theme === "lightsharp") {
+                        document.getElementById("addonShellLoader").href = "./system/css/lightModeSharp.css"
+                    }
+                } else {
+                    localStorage.setItem(zargs.get("username") + "_theme", "darkrounded");
+                }
+
+                if (localStorage.getItem(zargs.get("username") + "_taskbarpos") !== "") {
+                    let pos = localStorage.getItem(zargs.get("username") + "_taskbarpos");
+                    if (pos === "top") {
+                        document.getElementById("taskbarAddonLoader").href = "./system/css/taskbarOnTop.css";
+                    } else if (pos === "bottom") {
+                        document.getElementById("taskbarAddonLoader").href = "";
+                    }
+                }
+
+                setTimeout(() => {
+
+                    setTimeout(() => {
+                        if (localStorage.getItem(zargs.get("username") + "_dispWelcome") != 0 && localStorage.getItem("safeMode") != 1) {
+                            loadWindow("./system/applications/welcomewindow.app", 1);
+                            setTimeout(() => {
+                                openWindow("Welcome!");
+                                localStorage.setItem(zargs.get("username") + "_dispWelcome", 0)
+                                if (localStorage.getItem("safeMode") == 1) {
+
+                                }
+                            }, 300);
+                        }
+                    }, 500);
+                }, 1000);
+            } catch (e) { new ErrorLogic().bsod("SYSTEM_INIT_FAILED", "ArcOSv1 initialization failed. Details:<br><br>" + e) }
+
+        } else {
+            document.getElementsByClassName("block")[0].style.backgroundImage = "unset";
+            document.getElementById("addonShellLoader").href = "./system/css/darkModeSharp.css";
+            document.getElementById("animationsAddonLoader").href = "system/css/noAnimations.css";
+            document.body.style.backgroundImage = "unset";
+            new ErrorLogic().sendError("Safe Mode", "ArcOS is running in Safe Mode.<br> - If this was not your intention, just restart from the start menu.<br> - If this was your intention, use this mode only to repair ArcOS if it doesn't boot. ", 1)
+        }
+
+        setTimeout(() => {
+            try { document.getElementById("usernameStartMenu").innerHTML = args.get('username'); } catch {}
+            new ContextMenuLogic().hideMenu();
+            onloadSetWindowControls();
+            setToolbarTrigger();
+            startTime();
+
+            startResolutionUpdateCycle(100);
+            setTimeout(() => {
+                document.getElementsByClassName("block")[0].style.visibility = "hidden";
+                document.getElementsByClassName("block")[0].style.opacity = "0";
+                startUserDataUpdateCycle();
+            }, 2000);
+
+
+        }, 100);
+    }, 50);
+}
+
+onbeforeunload = function() {
+    localStorage.setItem("safeMode", 0);
+    localStorage.removeItem("username")
+    deleteUserData("ArcOS Safe Mode");
+}
+
+new consoleNotifier().notifyStartService("ArcOS.System.onloadLogic.startTime service");
+
+function startTime() {
+    try {
+        let today = new Date();
+        let h = today.getHours();
+        let m = today.getMinutes();
+        let s = today.getSeconds();
+        m = checkTime(m);
+        s = checkTime(s);
+        document.getElementById('taskbarClock', 0).innerText =
+            h + ":" + m;
+        document.getElementById("taskbarClockWidgetTime", 0).innerText =
+            h + ":" + m + ":" + s
+        let t = setTimeout(startTime, 500);
+    } catch {}
+}
+
+function checkTime(i) {
+    if (i < 10) { i = "0" + i }; // add zero in front of numbers < 10
+    return i;
+}
+
+new consoleNotifier().notifyStartService("ArcOS.System.startMenuLogic.EventListener.mousedown", "startMenu")
+new consoleNotifier().notifyStartService("ArcOS.System.onloadLogic.EventListener.mousedown", "taskbarClockWidget");
+window.addEventListener('mousedown', function(event) {
+    try {
+        clockWidget = document.getElementById('taskbarClockWidget');
+        clockButton = document.getElementById('taskbarClock');
+        if (!clockWidget.contains(event.target) &&
+            !clockButton.contains(event.target) &&
+            !clockWidget.contains(event.target.parentNode) &&
+            !clockButton.contains(event.target.parentNode)) {
+            if (clockWidget.style.visibility === 'visible') {
+                clockWidget.style.opacity = '0';
+                setTimeout(() => {
+                    clockWidget.style.visibility = 'hidden';
+                }, 200);
+            }
+        }
+    } catch {
+        new ErrorLogic().bsod("CRITICAL_ELEMENT_MISSING", "An element required to run the operating system is missing or corrupt. Please contact the system administrator for further assistance.")
+    }
+});
+
+new consoleNotifier().notifyStartService("ArcOS.System.onloadLogic.EventListener.mousedown", "taskbarVolumeControl");
+window.addEventListener('mousedown', function(event) {
+    try {
+        volumeControl = document.getElementById('taskbarVolumeControl');
+        volumeButton = document.getElementById('taskbarVolumeButton');
+        if (!volumeControl.contains(event.target) &&
+            !volumeButton.contains(event.target) &&
+            !volumeControl.contains(event.target.parentNode) &&
+            !volumeButton.contains(event.target.parentNode)) {
+            if (volumeControl.style.visibility === 'visible') {
+                volumeControl.style.opacity = '0';
+                setTimeout(() => {
+                    volumeControl.style.visibility = 'hidden';
+                }, 200);
+            }
+        }
+    } catch { new ErrorLogic().bsod("CRITICAL_ELEMENT_MISSING", "An element required to run the operating system is missing or corrupt. Please contact the system administrator for further assistance.") }
+
+});
+
+function onloadSetWindowControls() {
+    try {
+        new consoleNotifier().notifyStartService("ArcOS.System.onloadLogic.onloadSetWindowControls");
+        if (localStorage.getItem(args.get("username") + "_enableAnimations") == "false") {
+            document.getElementById("preferencesAnimationsSwitch").checked = false;
+            document.getElementById("animationsAddonLoader").href = "system/css/noAnimations.css";
+        } else {
+            document.getElementById("preferencesAnimationsSwitch").checked = true;
+            document.getElementById("animationsAddonLoader").href = "";
+        }
+        if (localStorage.getItem(args.get("username") + "_titlebarButtonsLeft") == "true") {
+            document.getElementById("preferencesTitlebarButtonsSwitch").checked = true;
+            document.getElementById("titlebarAddonLoader").href = "system/css/titleBarButtonsLeft.css";
+
+        } else {
+            document.getElementById("preferencesTitlebarButtonsSwitch").checked = false;
+            document.getElementById("titlebarAddonLoader").href = "";
+        }
+        if (localStorage.getItem(args.get("username") + "_muted") == 1) {
+            document.getElementById("volumeControlEnableSoundSwitch").checked = true;
+        } else {
+            localStorage.setItem(args.get("username") + "_muted", 0);
+        }
+    } catch (e) {
+        new NotificationLogic().notificationService("Startup tasks", "Some tasks in the onloadLogic couldn't be completed.<br>If you experience issues with preferences, restart ArcOS and try again.<br><br>" + e)
+    }
+}
+
+function onloadSetDesktopIcons() {
+    new consoleNotifier().notifyStartService("ArcOS.System.onloadLogic.onloadDesktopIcons");
+    let show = localStorage.getItem(args.get("username") + "_showDesktopIcons");
+    if (show == 0) {
+        document.getElementById("desktopIcons").style.visibility = 'hidden';
+        localStorage.setItem(args.get("username") + "_showDesktopIcons", 0);
+    } else if (show == 1) {
+        document.getElementById("showDesktopIconsSwitch").setAttribute('checked', 'true');
+        document.getElementById("desktopIcons").style.visibility = 'visible';
+        localStorage.setItem(args.get("username") + "_showDesktopIcons", 1);
+    } else if (show == null) {
+        document.getElementById("showDesktopIconsSwitch").setAttribute('checked', 'true');
+        document.getElementById("desktopIcons").style.visibility = 'visible';
+        localStorage.setItem(args.get("username") + "_showDesktopIcons", 1);
+    }
+}
+
+window.addEventListener('keydown', (e) => {
+    let { key, altKey } = e;
+    if (key === 'F4' && altKey) {
+        e.preventDefault();
+        if (activeapps.length == 0) {
+            openWindow("Shut Down ArcOS");
+        } else {
+            closewindow(document.getElementById(focusedWindow));
+        }
+        e.stopImmediatePropagation();
+        e.stopPropagation();
+
+    }
+});
+
+setInterval(() => {
+    try {
+        let passwordStatus;
+        if (localStorage.getItem(username + "_pswd") != null) {
+            passwordStatus = "Password Protected";
+        } else {
+            passwordStatus = "No Password";
+        }
+        document.getElementById("usernameDisplay").innerHTML = args.get("username");
+        document.getElementById("userSettingsPasswordStatusDisplay").innerHTML = passwordStatus;
+        document.getElementById("userSettingsProfilePicture").src = "./system/images/profilePictures/" + localStorage.getItem(username + "_picture") + ".png";
+    } catch {}
+}, 100);
+
+*** DISPLAYLOGIC.JS ***
+
+new consoleNotifier().startModule("ArcOS.System.displayLogic");
+
+function startResolutionUpdateCycle(interval) {
+    setInterval(() => {
+        screenWidth = screen.width;
+        screenHeight = screen.height;
+    }, interval);
+}

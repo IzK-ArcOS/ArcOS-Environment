@@ -1,0 +1,32 @@
+<div class="controlPanelUserSettingsHeader">
+    <h2 style="margin:0px;margin-bottom:10px;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-weight: 100;margin:0px;">
+        User Settings</h2><br>
+    <img src="./system/images/user.png" height="100px" style="border-radius: 13px;" onclick="openWindow('Change Profile Picture');" id="userSettingsProfilePicture"><br>
+
+</div>
+<div style="position: absolute;left:140px;padding:30px;padding:5px;margin-top:20px;">
+    <h1 style="vertical-align: middle;margin-bottom:5px;"><span id="usernameDisplay" style="vertical-align: bottom;"></span></h1>
+    <p style="margin:0px;">Local Account</p>
+    <p style="margin:0px;" id="userSettingsPasswordStatusDisplay">Retrieving...</p>
+</div>
+<div style="margin-top:170px">
+    <button class="folder big controlPanel" onclick="openSettingsPane('profpicsel',null)">
+        <p>
+            Change Profile Picture
+            <span class="material-icons right">chevron_right</span>
+        </p>
+    </button><br>
+    <button class="folder big controlPanel" onclick="openSettingsPane('manacc',null)">
+        <p>
+            Manage Profile
+            <span class="material-icons right">chevron_right</span>
+        </p>
+    </button><br>
+    <hr class="controlPanelBody">
+    <button class="folder big controlPanel" onclick="openSettingsPane('manusers',null)">
+        <p>
+            Create or Delete User Accounts
+            <span class="material-icons right">chevron_right</span>
+        </p>
+    </button>
+</div>

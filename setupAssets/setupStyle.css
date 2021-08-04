@@ -1,0 +1,351 @@
+html,
+body {
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    background-color: black;
+    overflow: hidden;
+    height: 100%;
+    user-select: none;
+    padding: 0px;
+    margin: 0px;
+    transition: opacity 0.5s;
+}
+
+body {
+    background-image: url("../system/wallpaper/img06.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0;
+}
+
+div.content {
+    padding: 30px;
+    background-color: #1b1b1b85;
+    color: white;
+    border: none;
+    border-radius: 13px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    width: 370px;
+    height: 370px;
+    box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+}
+
+* {
+    outline: none !important;
+    /*transition: all 0.25s;*/
+    transition: all 0.25s, transform 0s;
+    /*cursor: url("../system/images/cursor.png"), default!important;*/
+}
+
+html {
+    height: 100%;
+}
+
+button {
+    background-color: rgba(0, 0, 0, 0.1);
+    border: none;
+    color: white;
+    vertical-align: middle;
+    border-bottom: rgba(0, 0, 0, 0.055) 2px solid;
+    font-size: unset;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 0px;
+    margin-top: 5px;
+    position: inherit;
+    bottom: 30px;
+    right: 30px;
+}
+
+button:hover {
+    border-bottom: dodgerblue 2px solid;
+}
+
+button:active {
+    border-bottom: dodgerblue 2px solid;
+}
+
+input {
+    background-color: rgba(0, 0, 0, 0.055);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    font-size: x-large;
+    width: calc(100% - 17px);
+    padding: 10px;
+    margin-bottom: 0px;
+    margin: 0px;
+    border-bottom: rgba(0, 0, 0, 0.055) 2px solid;
+}
+
+input:hover {
+    background-color: rgba(0, 0, 0, 0.100);
+    border-bottom: dodgerblue 2px solid;
+    margin-bottom: 0px;
+}
+
+input:focus {
+    background-color: rgba(0, 0, 0, 0.200);
+    border-bottom: dodgerblue 2px solid;
+    margin-bottom: 0px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-weight: 500;
+}
+
+div.content>div.frameLeft {
+    position: fixed;
+    left: 30px;
+    top: 30px;
+    width: 40%;
+}
+
+div.content>div.frameRight {
+    position: fixed;
+    right: 30px;
+    top: 30px;
+    width: 55%;
+}
+
+div.content>div.frameBottom {
+    position: fixed;
+    left: 30px;
+    bottom: 30px;
+    height: 56%;
+    width: calc(100% - 60px);
+}
+
+div.userSelector {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+}
+
+button.user {
+    widtH: 100px;
+    height: 100px;
+    padding: 0px;
+    background-color: transparent;
+    border: none;
+    margin: 0px;
+    border-radius: 13px;
+    margin-left: 5px;
+    margin-right: 5px;
+    FONT-SIZE: UNSET;
+}
+
+button.user:hover,
+button.user:focus {
+    background-color: #1b1b1b3a;
+}
+
+button.user:active {
+    background-color: #00000077;
+}
+
+button.user>img {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.5);
+    margin-bottom: 10px;
+}
+
+a {
+    color: rgb(0, 128, 255);
+}
+
+a:hover {
+    color: lightskyblue;
+}
+
+a:active {
+    color: dodgerblue;
+}
+
+button.suggested {
+    background-color: rgb(0, 89, 179);
+    color: white;
+}
+
+button.suggested:hover {
+    background-color: dodgerblue;
+}
+
+button.suggested:active {
+    background-color: rgb(0, 60, 119);
+}
+
+div.toolbar {
+    padding: 10px;
+    background-color: #0000007c;
+    color: white;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    position: fixed;
+    height: 40px;
+    width: 500px;
+    left: 50%;
+    top: 0px;
+    transform: translate(-50%, 0);
+    -webkit-transform: translate(-50%, 0);
+    transition: top 0.15s;
+    box-sizing: inherit;
+    box-sizing: border-box;
+    padding-top: 5px;
+    z-index: 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000006;
+}
+
+div.toolbar.retracted {
+    top: -40px;
+}
+
+div.toolbarHoverTrigger {
+    background-color: transparent;
+    color: white;
+    position: fixed;
+    height: 5px;
+    width: 520px;
+    left: 50%;
+    top: 0px;
+    transform: translate(-50%, 0);
+    -webkit-transform: translate(-50%, 0);
+    z-index: 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000007;
+}
+
+button.toolbar {
+    background-color: unset;
+    border: unset;
+    color: unset;
+    vertical-align: unset;
+    border-bottom: unset;
+    font-size: unset;
+    border-radius: unset;
+    padding: unset;
+    margin: unset;
+    margin-top: unset;
+    position: unset;
+    bottom: unset;
+    right: unset;
+    background-color: #444;
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+    min-width: 80px;
+    transition: background-color 0.3s, border-radius 0.3s;
+    background-color: transparent;
+    color: white;
+    min-width: unset;
+    padding: 0px;
+    padding-left: 4px;
+    padding-right: 4px;
+    border: none;
+}
+
+button.toolbar:hover {
+    background-color: #555;
+    background-color: #00000046;
+}
+
+button.toolbar:active {
+    background-color: #444;
+    background-color: #00000093;
+}
+
+button.toolbar.right {
+    margin-top: 5px;
+    float: right;
+}
+
+button.bottomRightOfScreen {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+}
+
+button.shutdown {
+    border-bottom: none;
+    border-radius: 25px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: end;
+    background-color: rgba(0, 0, 0, 0.425);
+}
+
+div.lockScreen {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    background-color: #000;
+    transition: top 0.4s;
+    background-image: url("../system/wallpaper/img07.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+div.lockScreen.revealed {
+    top: -100%;
+}
+
+.centeredAbsolute {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+}
+
+.heightCenteredAbsolute {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    -o-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    -moz-transform: translate(0, -50%);
+    -webkit-transform: translate(0, -50%);
+}
+
+h1.big {
+    font-size: 72px;
+    font-weight: bolder;
+}
+
+h1.lockScreenClock {
+    margin-left: 200px;
+}
+
+.centerBottom {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    -o-transform: translate(-50%, 0);
+    -ms-transform: translate(-50%, 0);
+    -moz-transform: translate(-50%, 0);
+    -webkit-transform: translate(-50%, 0);
+    text-align: center;
+}

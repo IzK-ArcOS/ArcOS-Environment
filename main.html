@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="./system/css/boot/style.css">
+    <link rel="stylesheet" href="./system/css/progressBar.css">
+    <script src="./system/js/consoleNotifier.js"></script>
+    <script src="./system/js/DOMLogic.js"></script>
+    <script src="./system/js/varDefinitions.js"></script>
+    <script>
+        onload = function() {
+            document.body.style.opacity = "1"
+            if (localStorage.getItem("WebOSVersion") && localStorage.getItem("FTSFinished") && localStorage.length) {
+                localStorage.setItem("FTSFinished", "true");
+            }
+            setTimeout(() => {
+                document.body.style.opacity = "0"
+
+                setTimeout(() => {
+                    document.body.innerHTML = "";
+                    if (localStorage.getItem("WebOSVersion") !== version && localStorage.getItem("safeMode") !== "1") {
+                        setTimeout(() => {
+                            window.location.href = "updateScreen.html";
+                        }, 1000);
+                    } else {
+                        setTimeout(() => {
+                            window.location.href = "login.html";
+                        }, 1000);
+                    }
+                }, 2000);
+            }, 8000);
+
+            document.addEventListener("keydown", (e) => {
+                if (e.key.toLocaleLowerCase() == "f8") {
+                    document.getElementById("statusText").innerHTML = "Please Wait";
+                    localStorage.setItem("safeMode", "1");
+                }
+            })
+
+            window.addEventListener("keydown", (e) => {
+                if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'e') {
+                    localStorage.clear();
+                    document.getElementById("statusText").innerHTML = "Reset triggered"
+                }
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <div class="centered">
+        <center>
+            <img class="bootlogo" style="transition: opacity 2s linear;" src="./system/images/systemIcon.svg" height="150px">
+            <br>
+            <br>
+            <div class="slider userdefined" style="width:150px;border-radius: 3.5px;background-color:#333;height:7px;">
+                <div class="line dark" style="background-color: transparent;border-radius: 3.5px;height:7px;"></div>
+                <div class="subline dark inc" style="background-color: #ccc;border-radius: 3.5px;height:7px;"></div>
+                <div class="subline dark dec" style="background-color: #ccc;border-radius: 3.5px;height:7px;"></div>
+            </div>
+        </center>
+    </div>
+
+    <div class="centered">
+        <h4 style="margin-top:300px" id="statusText">
+        </h4>
+    </div>
+
+    <div class="status">
+
+    </div>
+</body>
+
+</html>

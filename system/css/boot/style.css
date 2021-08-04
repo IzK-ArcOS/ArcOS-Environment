@@ -1,0 +1,54 @@
+:root {
+    --fade-in-opacity: 1;
+    --fade-out-opacity: 0.65;
+    --background-color: #000;
+    --foreground-color: #fff;
+    --global-font-weight: 100;
+    --bootlogo-animation-delay: 4s;
+    --font-family: 'IBM Plex Sans', sans-serif;
+    --bootlogo-size: 150px;
+}
+
+body {
+    background-color: let(--background-color);
+    color: let(--foreground-color);
+    font-family: let(--font-family);
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+* {
+    font-weight: let(--global-font-weight);
+}
+
+img.bootlogo {
+    height: let(--bootlogo-size);
+    width: let(--bootlogo-size);
+}
+
+div.centered {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+}
+
+div.status {
+    position: fixed;
+    bottom: 100px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    -o-transform: translate(-50%, 0);
+    -ms-transform: translate(-50%, 0);
+    -moz-transform: translate(-50%, 0);
+    -webkit-transform: translate(-50%, 0);
+    font-family: let(--font-family);
+    color: white;
+    font-weight: 100;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Inter&display=swap');

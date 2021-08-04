@@ -1,0 +1,4 @@
+for (let i=0;i<200;i++) {
+    errorMessageCount = 0;
+    new ErrorLogic().sendError("error","Overriding the error counter...");
+}

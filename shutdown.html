@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="./setupAssets/setupStyle.css">
+    <link rel="stylesheet" href="./system/css/progressBar.css">
+    <link rel="preload" href="./system/wallpaper/img05.jpg" as="image">
+    <script src="system/js/consoleNotifier.js"></script>
+    <script src="system/js/DOMLogic.js"></script>
+
+    <script src="system/js/toolbarLogic.js"></script>
+    <script src="system/js/varDefinitions.js"></script>
+
+    <script>
+        var params = new URLSearchParams(window.location.search);
+        onload = function() {
+            setTimeout(() => {
+                document.body.style.opacity = "1";
+                setTimeout(() => {
+                    document.getElementsByTagName("body")[0].innerHTML = "";
+                    document.getElementsByTagName("body")[0].style.background = "#000";
+
+                    setTimeout(() => {
+                        close();
+                    }, 4000);
+                    clearInterval(x);
+                }, 6000);
+                setToolbarTrigger();
+                document.body.style.opacity = "1";
+            }, 1000);
+        }
+
+        var x = setInterval(() => {
+            document.getElementById("username").innerHTML = params.get("username") || localStorage.getItem("username");
+            if (document.getElementById("profilePicture").src != "./system/images/profilePictures/" + localStorage.getItem(params.get("username") + "_picture") + ".png") {
+                if (localStorage.getItem(params.get("username") + "_picture") != null) {
+                    document.getElementById("profilePicture").src = "./system/images/profilePictures/" + localStorage.getItem(params.get("username") + "_picture") + ".png";
+                }
+            }
+        }, 10);
+    </script>
+</head>
+
+<body>
+    <div class="toolbar retracted" id="toolbar">
+        <button class="toolbar" style="margin-top:3px;padding-top:3px;padding-bottom:3px;" onclick="require('electron').remote.getCurrentWindow().toggleDevTools()">Developer Tools</button>
+        <span style="position:inherit;left:50%;top:10px;transform:translate(-50%,0);-webkit-transform: translate(-50%,0);">ArcOSv1</span>
+        <button class="toolbar right" onclick="require('electron').remote.getCurrentWindow().close();">✖</button>
+        <button class="toolbar right" onclick="require('electron').remote.getCurrentWindow().maximize();toggleFullscreenMode();">🗖</button>
+        <button class="toolbar right" onclick="require('electron').remote.getCurrentWindow().minimize();">🗕</button>
+    </div>
+    <div class="toolbarHoverTrigger" id="toolbarHoverTrigger"></div>
+    <div class="content" id="main" style="visibility: visible;display: unset;">
+        <div class="content" id="main" style="visibility: visible;display: unset;">
+            <div class="frameLeft">
+                <img src="./system/images/user.png" height="115px" style="border-radius: 10px;" id="profilePicture">
+            </div>
+            <div class="frameRight">
+                <h2 style="margin:0px;">Goodbye, <span id="username"></span></h2>
+                <p style="margin:0px;">Saving your personal settings...</p>
+            </div>
+            <div class="frameBottom">
+                <br>
+                <br>
+                <div class="slider userdefined" style="width:100%;">
+                    <div class="line dark"></div>
+                    <div class="subline dark inc" style="background: white;"></div>
+                    <div class="subline dark dec" style="background: white;"></div>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+<div class="controlPanelUserSettingsHeader">
+    <h2 class="controlPanelAppletHeader">
+        <a style="padding-left:-10px;" onclick="openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);">
+            User Settings
+        </a><span class="material-icons" style="vertical-align: bottom;">chevron_right</span>Manage Users
+    </h2>
+    <br>
+</div>
+<h3 class="controlPanelSubHeader" style="margin-top:50px;">Delete User Account</h3>
+<p>Enter the username of a account to delete:</p>
+<input id="createUserAccountInputField" class="controlPanelElementWidth inp">
+<br><br>
+<button onclick="deleteUserData(document.getElementById('createUserAccountInputField').value);" class="folder big controlPanel">
+    <p>Delete<span class="material-icons right">chevron_right</span></p>
+</button>
+<h3 class="controlPanelSubHeader" style="margin-top:20px;">Create User Account</h3>
+<p>To create a user account, click the button below to launch the first-time-setup.</p>
+<button class="folder big controlPanel" onclick="new PowerLogic().fts();">
+    <p>
+        First Time Setup (will log off)
+        <span class="material-icons right">chevron_right</span>
+    </p>
+</button>

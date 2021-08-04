@@ -1,0 +1,47 @@
+<div class="controlPanelUserSettingsHeader">
+    <h2 class="controlPanelAppletHeader">
+        <a style="padding-left:-10px;" onclick="openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);">
+            User Settings
+        </a><span class="material-icons" style="vertical-align: bottom;">chevron_right</span>Manage Profile
+    </h2>
+    <br>
+</div>
+<h3 class="controlPanelSubHeader" style="margin-top:50px;">Change Username</h3>
+<p>Enter a new name for your account:</p>
+<input id="changeUsernameInputField" class="controlPanelElementWidth inp">
+<br><br>
+<button onclick="changeUserDataName(username,document.getElementById('changeUsernameInputField').value);" class="folder big controlPanel">
+    <p>Change Username<span class="material-icons right">chevron_right</span></p>
+</button>
+<h3 class="controlPanelSubHeader" style="margin-top:20px;">Change Password</h3><br>
+<i style="color:yellow">NOTE: Passwords at this stage in development are NOT secure. Keep that in mind.</i>
+<p>Fill out the form below to change your password:</p>
+<table>
+    <tr>
+        <td>Old Password</td>
+        <td>
+            <input type="password" id="changePasswordCurrentPasswordInputField" class="controlPanelElementWidth inp" style="width:215px;">
+        </td>
+    </tr>
+    <tr>
+        <td>New Password</td>
+        <td>
+            <input type="password" id="changePasswordNewPasswordInputField" class="controlPanelElementWidth inp" style="width:215px;">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Confirm New Password
+        </td>
+        <td><input type="password" id="changePasswordConfirmPasswordInputField" class="controlPanelElementWidth inp" style="width:215px;"></td>
+    </tr>
+</table>
+<Br>
+<button onclick="changePassword(
+            args.get('username'),
+            document.getElementById('changePasswordCurrentPasswordInputField').value,
+            document.getElementById('changePasswordNewPasswordInputField').value,
+            document.getElementById('changePasswordConfirmPasswordInputField').value
+            )" class="folder big controlPanel">
+    <p>Change Password&nbsp;&nbsp;<span class="material-icons right">chevron_right</span></p>
+</button>

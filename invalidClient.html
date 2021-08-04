@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="./system/js/errorLogic.js"></script>
+    <style>
+        body {
+            background-color: #000;
+            color: white;
+            font-family: monospace;
+        }
+        
+        div.content {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            -o-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%);
+        }
+    </style>
+    <script>
+        onload = function() {
+            new ErrorLogic().bsod("invalidClient.html: onload: ERR_INVALID_CLIENT", "In order for ArcOS to function correctly, you need to run it from the Windows Start Menu.<br>Otherwise ArcOS won't be able to process some system components.")
+        }
+    </script>
+</head>
+
+<body>
+    <div class="content">
+        <center>
+            <img src="./system/images/systemIcon.svg" height="180PX">
+            <h1>
+                Bad Entry
+            </h1>
+            <h2>ArcOS can't be ran like that.</h2>
+            <code><i style="color:#444">Details: ArcOS needs the Electron framework to function correctly.</i></code>
+        </center>
+    </div>
+</body>
+
+</html>
