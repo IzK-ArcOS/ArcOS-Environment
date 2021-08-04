@@ -1,3 +1,4 @@
 node_modules/
-package-lock.json
-package.json
+system/applications/programdata/notepad/save/
+system/tests/
+system/applications/prototype game.ecs

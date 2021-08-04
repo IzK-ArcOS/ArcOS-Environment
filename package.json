@@ -1,0 +1,19 @@
+{
+    "name": "ArcOSv1",
+    "version": "1.0.0",
+    "description": "",
+    "main": "./system/kernel.js",
+    "scripts": {
+        "start": "electron ."
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "electron": "^11.4.1"
+    },
+    "dependencies": {
+        "electron-packager": "^15.2.0",
+        "python": "0.0.4"
+    }
+}
