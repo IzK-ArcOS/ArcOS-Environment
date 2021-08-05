@@ -5,14 +5,14 @@
 // 1 - Start at the login (login.html)                            //
 // 2 - Start at the arcos Desktop (arcos.html)                   //
 //////////////////////////////////////////////////////////////////
-let start = 0; //
-////////////////////////////////////////////////////////////////
-// Please don't modify any of the below code, if you do you  //
-// can damage the runtime of arcos.                         //
-/////////////////////////////////////////////////////////////
+let start = 0;
 
 let win;
 let { app, BrowserWindow } = require('electron')
+
+if (!app.requestSingleInstanceLock()) {
+    app.quit();
+}
 
 app.on("ready", () => {
     let { app, globalShortcut } = require('electron')
@@ -61,7 +61,8 @@ app.on("ready", () => {
             win.fullScreen = true;
         }, 50);
     })
-})
+});
+
 
 function loadStartPage() {
     switch (start) {

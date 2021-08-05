@@ -86,14 +86,38 @@ function evauluateFileType(file) {
 
 async function getDriveLetters() {
     const drivelist = require('drivelist');
-
     const drives = await drivelist.list();
-    for (let i=0;i<drives.length;i++) {
-        for (let j=0;j<drives[i].mountpoints.length;j++) {
+
+    document.getElementById("fileExplorerMainFrameOut").innerHTML = ""
+    for (let i = 0; i < drives.length; i++) {
+
+        console.log(drives[i]);
+
+        for (let j = 0; j < drives[i].mountpoints.length; j++) {
+
             console.log(drives[i].mountpoints[j]);
+
+            let button = document.createElement("button"),
+                buttonText = document.createTextNode("  " + drives[i].mountpoints[j].path),
+                image = document.createElement("img");
+
+            image.src = "./system/images/hdd.svg";
+            image.style.height = "30px";
+            image.style.verticalAlign = "middle";
+
+            button.className = "folder big";
+            button.id = drives[i].mountpoints[j].path;
+            button.setAttribute("onclick", `fileExplorerOpenDir("${drives[i].mountpoints[j].path}/");`);
+
+            button.append(image);
+            button.append(buttonText);
+
+            document.getElementById("fileExplorerMainFrameOut").append(button);
+
         }
-        
+
     }
+
 }
 
 function fileExplorerParentDir() {
