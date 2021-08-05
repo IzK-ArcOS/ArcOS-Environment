@@ -29,7 +29,7 @@
             <br>
             <h4>Locations</h4>
             <div class="fileExplorerLeftPaneDiv" id="fileExplorerRecentLocations">
-                <button class="fileExplorerSideBar" onclick="fileExplorerOpenDir('./resources/app')">Root
+                <button class="fileExplorerSideBar" onclick="fileExplorerOpenDir(__dirname)">Root
                     Folder</button><br>
                 <button class="fileExplorerSideBar" onclick="getDriveLetters()">Drives</button>
             </div>
