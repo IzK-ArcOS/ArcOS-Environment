@@ -878,11 +878,7 @@ button.folder:active {
 
 button.folder.big,
 input.folder.big {
-    width: 150px;
-    height: 50px;
-    max-height: 50px;
-    max-width: 150px;
-    background-color: var(--controlPanelThrdBackgroundColor);
+    padding:20px;
 }
 
 button.folder.big:hover,
@@ -1280,12 +1276,12 @@ div.window#Settings div.controlPanelMainFrame input.inp {
     background-color: var(--controlPanelSecoBackgroundColor);
 }
 
-div.window[id="Shut Down arcos"] {
+div.window[id="Shut Down ArcOS"] {
     background-color: var(--controlPanelMainBackgroundColor);
     backdrop-filter: blur(30px);
 }
 
-div.window[id="Shut Down arcos"] button {
+div.window[id="Shut Down ArcOS"] button {
     background-color: var(--controlPanelSecoBackgroundColor);
 }
 

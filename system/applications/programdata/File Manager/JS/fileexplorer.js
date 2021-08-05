@@ -1,37 +1,51 @@
 const { platform } = require("os");
 
 function fileExplorerOpenDir(dirName) {
-    let newDirName = new GeneralLogic().replaceAllCharsInStr(dirName, "%27", "'");
-    dirName = newDirName;
-    let dirsstr = "<button class=\"folder\" onclick=\"fileExplorerParentDir()\"><img src=\"./system/images/folder.svg\" style=\"height:15px;vertical-align:top;\">&nbsp;&nbsp;Parent Directory</button>";
-    let filestr = "";
-    let compile = "";
+
     fs.readdir(dirName, { encoding: "ascii" }, function (err, files) {
+
         if (files == undefined || err) {
             new ErrorLogic().sendError("File Manager", "File Manager failed to open the folder. Please check the path and try again.<br><br>Path: " + dirName);
             return false;
         }
 
+        document.getElementById("fileExplorerMainFrameOut").innerHTML = "";
+
+        let filespan = document.createElement("span"),
+            foldspan = document.createElement("span");
+
         for (let i = 0; i < files.length; i++) {
-            if (isDir(dirName + "/" + files[i])) {
-                files[i] = new GeneralLogic().replaceAllCharsInStr(files[i], "%27", "'");
-                //if (!new GeneralLogic().countOccurrences(files[i], "'") >= 1) {
-                dirsstr += `<button class=\"folder\" onclick=\"fileExplorerOpenDir(new GeneralLogic().replaceAllCharsInStr(\`` + dirName + "/" + files[i] + `\`,\`%27\`,\`1\`));\"><img src=\"./system/images/folder.svg\" style=\"height:15px;vertical-align:top;\">&nbsp;&nbsp;` + files[i] + `</button>`
-                //}
+
+            let button = document.createElement("button"),
+                image = document.createElement("img"),
+                text = document.createTextNode(files[i]);
+
+            
+            image.style.height = "15px";
+            image.style.verticalAlign = "top";
+
+            button.className = "folder";
+            
+            button.append(image);
+            button.append(text);
+
+            if (isDir(path.join(dirName, files[i]))) {
+                image.src = "./system/images/folder.svg";
+                foldspan.append(button);
+                button.setAttribute(`onclick`, `fileExplorerOpenDir("${path.join(dirName, files[i])}")`);
             } else {
-                files[i] = new GeneralLogic().replaceAllCharsInStr(files[i], "%27", "'");
-                //if (!files[i].includes("%27")) {
-                filestr += `<button class=\"folder\" onclick=\"fileExplorerOpenFile(new GeneralLogic().replaceAllCharsInStr(\`` + dirName + "/" + files[i] + `\`,\`%27\`,\`1\`));\"><img src=\"./system/images/file.svg\" style=\"height:15px;vertical-align:top;\">&nbsp;&nbsp;` + files[i] + `</button>`;
-                //}
+                image.src = "./system/images/file.svg";
+                filespan.append(button);
+                button.setAttribute(`onclick`, `fileExplorerOpenFile("${path.join(dirName, files[i])}")`);
             }
         }
-        compile = (dirsstr + filestr);
-        fileExplorerCurrentDir = dirName + "/"
-        document.getElementById("fileExplorerMainFrameOut").innerHTML = compile;
-        document.getElementById("fileExplorerMainFrameOut").scrollIntoView();
-        document.getElementById("fileExplorerAddressBar").value = dirName;
-    });
 
+        document.getElementById("fileExplorerMainFrameOut").append(foldspan);
+        document.getElementById("fileExplorerMainFrameOut").append(filespan);
+
+        fileExplorerCurrentDir = dirName;
+
+    });
 
 }
 
@@ -85,17 +99,14 @@ function evauluateFileType(file) {
 }
 
 async function getDriveLetters() {
+
     const drivelist = require('drivelist');
     const drives = await drivelist.list();
 
-    document.getElementById("fileExplorerMainFrameOut").innerHTML = ""
+    document.getElementById("fileExplorerMainFrameOut").innerHTML = "";
     for (let i = 0; i < drives.length; i++) {
 
-        console.log(drives[i]);
-
         for (let j = 0; j < drives[i].mountpoints.length; j++) {
-
-            console.log(drives[i].mountpoints[j]);
 
             let button = document.createElement("button"),
                 buttonText = document.createTextNode("  " + drives[i].mountpoints[j].path),
@@ -107,7 +118,7 @@ async function getDriveLetters() {
 
             button.className = "folder big";
             button.id = drives[i].mountpoints[j].path;
-            button.setAttribute("onclick", `fileExplorerOpenDir("${drives[i].mountpoints[j].path}/");`);
+            button.setAttribute("onclick", `fileExplorerOpenDir("${drives[i].mountpoints[j].path}");`);
 
             button.append(image);
             button.append(buttonText);
@@ -115,21 +126,12 @@ async function getDriveLetters() {
             document.getElementById("fileExplorerMainFrameOut").append(button);
 
         }
-
     }
-
 }
 
 function fileExplorerParentDir() {
-    let prevPath = fileExplorerCurrentDir;
-    let newPath = path.dirname(prevPath).split(path.sep).pop();
-    if (prevPath == newPath) {
-        getDriveLetters();
-        document.getElementById("fileExplorerAddressBar").value = "";
-    } else {
-        fileExplorerOpenDir(newPath);
-
-    }
+    fileExplorerCurrentDir = path.resolve(fileExplorerCurrentDir, '..');
+    fileExplorerOpenDir(fileExplorerCurrentDir);
 }
 
 function createFile(filePath) {
@@ -230,11 +232,11 @@ function openWithNotepad(file) {
 
     fs.readFile(path, 'utf8', function (err, data) {
         if (err) {
-            new NotificationLogic().notificationService("arcos Notepad", "There was an error loading \"" + document.getElementById("notepadLoadFileInput").value + "\". The file might not exist or you don't have the permission to access it. Please verify the name and try again.");
+            new NotificationLogic().notificationService("ArcOS Notepad", "There was an error loading \"" + document.getElementById("notepadLoadFileInput").value + "\". The file might not exist or you don't have the permission to access it. Please verify the name and try again.");
             document.getElementById("notepadTextField").value = "";
         } else {
 
-            new consoleNotifier().notifyStartService("arcos.System.programdata.notepad.notepadFileLogic.loadNotepad: " + document.getElementById("notepadLoadFileInput").value)
+            new consoleNotifier().notifyStartService("ArcOS.System.programdata.notepad.notepadFileLogic.loadNotepad: " + document.getElementById("notepadLoadFileInput").value)
             for (let i = 0; i < 200; i++) {
 
                 document.getElementById("notepadTextField").value = data;
@@ -246,7 +248,7 @@ function openWithNotepad(file) {
         }
     });
     setTimeout(() => {
-        openWindow("arcos Notepad");
+        openWindow("ArcOS Notepad");
     }, 100);
 }
 

@@ -1,4 +1,4 @@
-new consoleNotifier().startModule("arcos.System.userLogic");
+new consoleNotifier().startModule("ArcOS.System.userLogic");
 
 function createUserData(user) {
     try {

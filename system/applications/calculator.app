@@ -8,7 +8,7 @@
     <div class="body" onclick="bringToFront(parentNode);" style="padding:10px;">
         <table>
             <tr>
-                <td colspan="3"><input readonly="true" id="calculatorOutput" style="width:100%;font-family: monospace;"
+                <td colspan="3"><input readonly="true" id="calculatorOutput" style="width:100%;font-family: 'Ubuntu Mono', monospace;"
                         class="bright" /></td>
                 <td><button id="calculatorc" onclick="calculatorClear()">C</button> </td>
             </tr>

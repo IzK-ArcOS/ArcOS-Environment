@@ -1,9 +1,9 @@
 ////////////////////////////////////////////////////////////////////////
-// The below variable, "start", specifies at what page arcos starts. //
+// The below variable, "start", specifies at what page ArcOS starts. //
 // This variable can have one of the following values:              //
 // 0 - Start at the bootscreen (main.html)                         //
 // 1 - Start at the login (login.html)                            //
-// 2 - Start at the arcos Desktop (arcos.html)                   //
+// 2 - Start at the ArcOS Desktop (ArcOS.html)                   //
 //////////////////////////////////////////////////////////////////
 let start = 0;
 

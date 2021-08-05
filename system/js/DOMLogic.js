@@ -1,8 +1,8 @@
-new consoleNotifier().startModule("arcos.System.DOMLogic");
+new consoleNotifier().startModule("ArcOS.System.DOMLogic");
 
 class DOMLogic {
     getElemId(id, notify = 0) {
-        if (notify == 1) { new consoleNotifier().notifyStartService("arcos.System.DOMLogic.document.getElementById: " + id); }
+        if (notify == 1) { new consoleNotifier().notifyStartService("ArcOS.System.DOMLogic.document.getElementById: " + id); }
         let x = document.getElementById(id);
         return x;
     }

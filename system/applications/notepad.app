@@ -1,6 +1,6 @@
-<div class="window" id="arcos Notepad" onclick="bringToFront(this);" style="/*resize:none;*/width:fit-content;height:fit-content;min-width:unset;min-height:unset;min-width:794px;min-height:537px;">
+<div class="window" id="ArcOS Notepad" onclick="bringToFront(this);" style="/*resize:none;*/width:fit-content;height:fit-content;min-width:unset;min-height:unset;min-width:794px;min-height:537px;">
     <div class="windowTitle" onclick="bringToFront(parentNode);">
-        <p>arcos Notepad</p>
+        <p>ArcOS Notepad</p>
         <button onclick="closewindow(this.parentNode.parentNode);notepadNewFile();" class="title close">✖</button>
         <button onclick="minimizeWindow(this.parentNode.parentNode.id);" class="title">🗕</button>
     </div>

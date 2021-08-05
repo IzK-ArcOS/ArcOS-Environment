@@ -1,4 +1,4 @@
-new consoleNotifier().startModule("arcos.System.soundLogic");
+new consoleNotifier().startModule("ArcOS.System.soundLogic");
 
 function playSystemSound(sound) {
     if (localStorage.getItem("safeMode") != 1) {

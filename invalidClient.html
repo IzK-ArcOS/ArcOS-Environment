@@ -2,12 +2,15 @@
 <html>
 
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
     <script src="./system/js/errorLogic.js"></script>
     <style>
         body {
             background-color: #000;
             color: white;
-            font-family: monospace;
+            font-family: 'Ubuntu Mono', monospace;
         }
         
         div.content {
@@ -23,7 +26,7 @@
     </style>
     <script>
         onload = function() {
-            new ErrorLogic().bsod("invalidClient.html: onload: ERR_INVALID_CLIENT", "In order for arcos to function correctly, you need to run it from the Windows Start Menu.<br>Otherwise arcos won't be able to process some system components.")
+            new ErrorLogic().bsod("invalidClient.html: onload: ERR_INVALID_CLIENT", "Node or electron wasn't found!")
         }
     </script>
 </head>
@@ -35,8 +38,8 @@
             <h1>
                 Bad Entry
             </h1>
-            <h2>arcos can't be ran like that.</h2>
-            <code><i style="color:#444">Details: arcos needs the Electron framework to function correctly.</i></code>
+            <h2>font-family: 'Ubuntu Mono', monospace; can't be ran like that.</h2>
+            <code><i style="color:#444">Details: font-family: 'Ubuntu Mono', monospace; needs the Electron framework to function correctly.</i></code>
         </center>
     </div>
 </body>

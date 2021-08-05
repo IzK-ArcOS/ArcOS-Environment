@@ -3,8 +3,8 @@
         <img src="./system/images/File Manager.svg" height="50px" />
         <br>File Manager</button>
     <br>
-    <button class="icon" onclick="openWindow('arcos Notepad');">
+    <button class="icon" onclick="openWindow('ArcOS Notepad');">
         <img src="./system/images/notepad.svg" height="50px" />
-        <br>arcos Notepad</button>
+        <br>ArcOS Notepad</button>
     <br>
 </div>

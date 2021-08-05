@@ -41,11 +41,11 @@ function loadNotepad() {
         let fs = require('fs');
         fs.readFile(path, 'utf8', function(err, data) {
             if (err) {
-                new NotificationLogic().notificationService("arcos Notepad", "There was an error loading \"" + document.getElementById("notepadLoadFileInput").value + "\". The file might not exist or you don't have the permission to access it. Please verify the name and try again.");
+                new NotificationLogic().notificationService("ArcOS Notepad", "There was an error loading \"" + document.getElementById("notepadLoadFileInput").value + "\". The file might not exist or you don't have the permission to access it. Please verify the name and try again.");
                 document.getElementById("notepadTextField").value = "";
             } else {
 
-                new consoleNotifier().notifyStartService("arcos.System.programdata.notepad.notepadFileLogic.loadNotepad: " + document.getElementById("notepadLoadFileInput").value)
+                new consoleNotifier().notifyStartService("ArcOS.System.programdata.notepad.notepadFileLogic.loadNotepad: " + document.getElementById("notepadLoadFileInput").value)
                 for (let i = 0; i < 200; i++) {
 
                     document.getElementById("notepadTextField").value = data;
@@ -66,7 +66,7 @@ function saveNotepad() {
     let fs = require("fs");
     fs.writeFile(path, document.getElementById("notepadTextField").value, function(err) {
         if (err) {
-            new NotificationLogic().notificationService("arcos Notepad", "There was an error writing \"" + document.getElementById("notepadLoadFileInput").value + "\". You might not have permission. Please verify the name and try again.");
+            new NotificationLogic().notificationService("ArcOS Notepad", "There was an error writing \"" + document.getElementById("notepadLoadFileInput").value + "\". You might not have permission. Please verify the name and try again.");
         } else {
             setTimeout(() => {
                 closewindow(document.getElementById("Save Notepad"));
@@ -86,7 +86,7 @@ function deleteNotepad() {
     let fs = require("fs");
     fs.unlink(path, function(err) {
         if (err) {
-            new NotificationLogic().notificationService("arcos Notepad", "There was an error deleting \"" + document.getElementById("notepadDeleteFileInput").value + "\". You might not have permission. Please verify the name and try again.");
+            new NotificationLogic().notificationService("ArcOS Notepad", "There was an error deleting \"" + document.getElementById("notepadDeleteFileInput").value + "\". You might not have permission. Please verify the name and try again.");
         }
     })
     notepadNewFile();

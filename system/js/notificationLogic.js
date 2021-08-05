@@ -1,4 +1,4 @@
-new consoleNotifier().startModule("arcos.System.notificationLogic");
+new consoleNotifier().startModule("ArcOS.System.notificationLogic");
 
 class NotificationLogic {
     notificationService(title, message, closeDelay) {

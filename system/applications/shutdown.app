@@ -1,7 +1,7 @@
-<div class="window" id="Shut Down arcos" onclick="bringToFront(this);">
+<div class="window" id="Shut Down ArcOS" onclick="bringToFront(this);">
     <div class="windowTitle" style="background-color: transparent;">
         <center>
-            <h3 style="margin:30px 0;">Shutdown arcos</h3>
+            <h3 style="margin:30px 0;">Shutdown ArcOS</h3>
         </center>
     </div>
     <div class="body" onclick="bringToFront(parentNode);">
@@ -25,28 +25,28 @@
     </div>
 </div>
 <style>
-    .window[id*='Shut Down arcos'] {
+    .window[id*='Shut Down ArcOS'] {
         min-width: 320px;
         max-width: 320px;
         min-height: 245px;
         max-height: 245px;
     }
     
-    .window[id*='Shut Down arcos']>.body>center>h3 {
+    .window[id*='Shut Down ArcOS']>.body>center>h3 {
         padding: 0px;
         margin: 10px;
     }
     
-    .window[id*='Shut Down arcos']>.windowTitle>center>h3 {
+    .window[id*='Shut Down ArcOS']>.windowTitle>center>h3 {
         padding: 0px;
         margin: 10px;
     }
     
-    .window[id*='Shut Down arcos']>.body {
+    .window[id*='Shut Down ArcOS']>.body {
         padding: 0px;
     }
     
-    .window[id*='Shut Down arcos']>.windowTitle {
+    .window[id*='Shut Down ArcOS']>.windowTitle {
         padding: 0px;
     }
 </style>

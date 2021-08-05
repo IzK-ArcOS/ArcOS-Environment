@@ -1,4 +1,4 @@
-new consoleNotifier().startModule("arcos.System.powerLogic");
+new consoleNotifier().startModule("ArcOS.System.powerLogic");
 
 class PowerLogic {
 

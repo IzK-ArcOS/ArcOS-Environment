@@ -1,7 +1,7 @@
-new consoleNotifier().startModule("arcos.System.windowLogic");
+new consoleNotifier().startModule("ArcOS.System.windowLogic");
 
 function closewindow(window) {
-    new consoleNotifier().notifyStartService("arcos.System.windowLogic.closewindow: " + window.id);
+    new consoleNotifier().notifyStartService("ArcOS.System.windowLogic.closewindow: " + window.id);
     try {
 
         try {
@@ -26,7 +26,7 @@ function closewindow(window) {
         try {
             try {
                 window = document.getElementById(window)
-                new consoleNotifier().notifyStartService("arcos.System.windowLogic.closewindow: " + window.id + " * ALT *");
+                new consoleNotifier().notifyStartService("ArcOS.System.windowLogic.closewindow: " + window.id + " * ALT *");
 
                 window.style.opacity = '0';
                 setTimeout(() => {
@@ -47,7 +47,7 @@ function closewindow(window) {
             updateTaskBar();
 
         } catch {
-            new NotificationLogic().notificationService('Error closing window', "arcos was unable to close the window.<br><br>Please check the name and try again.");
+            new NotificationLogic().notificationService('Error closing window', "ArcOS was unable to close the window.<br><br>Please check the name and try again.");
         }
     }
 }
@@ -95,13 +95,13 @@ function openWindow(win) {
                 }, 200);
             } catch {}
         } else {
-            new ErrorLogic().sendError("arcos Program Manager", "The requested applcation couldn't be opened: Cannot read propoerty 'id' of null.");
+            new ErrorLogic().sendError("ArcOS Program Manager", "The requested applcation couldn't be opened: Cannot read propoerty 'id' of null.");
         }
     }
 }
 
 function minimizeWindow(window) {
-    new consoleNotifier().notifyStartService("arcos.System.windowLogic.minimizeWindow: " + window);
+    new consoleNotifier().notifyStartService("ArcOS.System.windowLogic.minimizeWindow: " + window);
     window = document.getElementById(window);
     window.style.opacity = '0';
     setTimeout(() => {
@@ -112,7 +112,7 @@ function minimizeWindow(window) {
 
 function updateTaskBar() {
     try {
-        new consoleNotifier().notifyStartService("arcos.System.windowLogic.updateTaskbar");
+        new consoleNotifier().notifyStartService("ArcOS.System.windowLogic.updateTaskbar");
         let str = "";
 
         if (localStorage.getItem(args.get("username") + "_noTaskbarButtonLabels") != "true") {
@@ -183,9 +183,9 @@ function updateTitlebar() {
         let x = activeapps;
         for (let i = 0; i < x.length; i++) {
             setTimeout(() => {
-                if (focusedWindow != "Shut Down arcos") {
-                    if (activeapps.includes("Shut Down arcos")) {
-                        closewindow(document.getElementById("Shut Down arcos"));
+                if (focusedWindow != "Shut Down ArcOS") {
+                    if (activeapps.includes("Shut Down ArcOS")) {
+                        closewindow(document.getElementById("Shut Down ArcOS"));
                     }
                 }
             }, 250);
@@ -218,7 +218,7 @@ function closeAllWindows() {
 }
 
 function maximizeWindow(win) {
-    new consoleNotifier().notifyStartService("arcos.System.windowLogic.maximizeWindow: " + win.id)
+    new consoleNotifier().notifyStartService("ArcOS.System.windowLogic.maximizeWindow: " + win.id)
     setTimeout(() => {
         bringToFront(win);
     }, 100);
@@ -242,7 +242,7 @@ function maximizeWindow(win) {
 }
 
 function unMaximizeWindow(win) {
-    new consoleNotifier().notifyStartService("arcos.System.windowLogic.unMaximizeWindow: " + win.id)
+    new consoleNotifier().notifyStartService("ArcOS.System.windowLogic.unMaximizeWindow: " + win.id)
     setTimeout(() => {
         bringToFront(win);
     }, 100);
@@ -264,7 +264,7 @@ function unMaximizeWindow(win) {
 }
 
 function toggleMaximizedState(win) {
-    new consoleNotifier().notifyStartService("arcos.System.windowLogic.toggleMaximizedState: " + win.id)
+    new consoleNotifier().notifyStartService("ArcOS.System.windowLogic.toggleMaximizedState: " + win.id)
     if (localStorage.getItem(win.id + "_windowData") != null) {
         unMaximizeWindow(win);
     } else {

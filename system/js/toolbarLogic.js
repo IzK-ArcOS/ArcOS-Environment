@@ -1,4 +1,4 @@
-try { new consoleNotifier().startModule("arcos.System.toolbarLogic"); } catch (e) {};
+try { new consoleNotifier().startModule("ArcOS.System.toolbarLogic"); } catch (e) {};
 
 function setToolbarTrigger() {
     document.getElementById("toolbarHoverTrigger").addEventListener("mouseover", () => {

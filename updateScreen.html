@@ -3,7 +3,7 @@
 
 <head>
     <link rel="stylesheet" href="system/css/arcosshell.css">
-    <link rel="stylesheet" href="system/css/progressBar.css">
+    <link rel="stylesheet" href="system/css/progressbar.css">
     <script src="./system/js/consoleNotifier.js"></script>
     <script src="./system/js/DOMLogic.js"></script>
     <script src="./system/js/varDefinitions.js"></script>
@@ -15,12 +15,12 @@
                 setTimeout(() => {
                     setDisplayText("You've installed an update.");
                     setTimeout(() => {
-                        setDisplayText("arcos will now configure it for you.");
+                        setDisplayText("ArcOS will now configure it for you.");
                         setTimeout(() => {
                             setDisplayText(`${progressBar}<br><br>Installing Updates`);
                             setTimeout(() => {
                                 localStorage.setItem("WebOSVersion", version);
-                                setDisplayText("Enjoy using arcosv2 " + version);
+                                setDisplayText("Enjoy using ArcOSv2 " + version);
                                 setTimeout(() => {
                                     setDisplayText("");
                                     setTimeout(() => {
@@ -34,14 +34,14 @@
             } else {
                 setDisplayText("Welcome");
                 setTimeout(() => {
-                    setDisplayText("Thanks for installing arcos.");
+                    setDisplayText("Thanks for installing ArcOS.");
                     setTimeout(() => {
-                        setDisplayText("arcos is preparing for first boot");
+                        setDisplayText("ArcOS is preparing for first boot");
                         setTimeout(() => {
-                            setDisplayText(`${progressBar}<br><br>Preparing arcos`);
+                            setDisplayText(`${progressBar}<br><br>Preparing ArcOS`);
                             setTimeout(() => {
                                 localStorage.setItem("WebOSVersion", version);
-                                setDisplayText("Enjoy using arcosv2 " + version + "");
+                                setDisplayText("Enjoy using ArcOSv2 " + version + "");
                                 setTimeout(() => {
                                     setDisplayText("");
                                     setTimeout(() => {

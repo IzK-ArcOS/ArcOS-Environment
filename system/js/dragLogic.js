@@ -1,4 +1,4 @@
-new consoleNotifier().startModule("arcos.System.dragLogic");
+new consoleNotifier().startModule("ArcOS.System.dragLogic");
 
 class DragLogic {
     dragElement(elmnt, titlebar) {

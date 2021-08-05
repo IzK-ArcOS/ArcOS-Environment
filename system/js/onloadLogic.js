@@ -1,4 +1,4 @@
-new consoleNotifier().startModule("arcos.System.onloadLogic");
+new consoleNotifier().startModule("ArcOS.System.onloadLogic");
 
 onload = function() {
     if (!clientInformation.appVersion.includes("Electron")) { window.location.href = "invalidClient.html"; }
@@ -34,12 +34,12 @@ onbeforeunload = function() {
     } else {
         localStorage.setItem("safeMode", 0);
         localStorage.removeItem("username");
-        deleteUserData("arcos Safe Mode", false);
+        deleteUserData("ArcOS Safe Mode", false);
         deleteWindowData();
     }
 }
 
-new consoleNotifier().notifyStartService("arcos.System.onloadLogic.startTime service");
+new consoleNotifier().notifyStartService("ArcOS.System.onloadLogic.startTime service");
 
 class OnloadLogic {
     startTime() {
@@ -118,17 +118,17 @@ class OnloadLogic {
                     }
                 } catch {}
             }, 100);
-            new consoleNotifier().notifyStartService("arcos.System.onloadLogic.onloadSetWindowControls");
+            new consoleNotifier().notifyStartService("ArcOS.System.onloadLogic.onloadSetWindowControls");
     
         } catch (e) {
-            new consoleNotifier().notifyStopService("arcos.System.onloadLogic.onloadSetWindowControls:" + e);
+            new consoleNotifier().notifyStopService("ArcOS.System.onloadLogic.onloadSetWindowControls:" + e);
             onloadSetWindowControls();
         }
     }
 
     onloadSetDesktopIcons() {
         try {
-            new consoleNotifier().notifyStartService("arcos.System.onloadLogic.onloadDesktopIcons");
+            new consoleNotifier().notifyStartService("ArcOS.System.onloadLogic.onloadDesktopIcons");
             let show = localStorage.getItem(args.get("username") + "_showDesktopIcons");
             switch (show) {
                 case 0:
@@ -150,7 +150,7 @@ class OnloadLogic {
             if (onloadDesktopIconsRetryCount >= 3) {
                 new ErrorLogic().bsod("OnloadLogic.onloadSetDesktopIcons: OSDIRC_OVERFLOW", "process couldn't be started.")
             } else {
-                new consoleNotifier().notifyStopService("arcos.System.onloadLogic.onloadDesktopIcons");
+                new consoleNotifier().notifyStopService("ArcOS.System.onloadLogic.onloadDesktopIcons");
                 onloadSetDesktopIcons();
             }
         }
@@ -196,7 +196,7 @@ class OnloadLogic {
             if (key === 'F4' && altKey) {
                 e.preventDefault();
                 if (activeapps.length == 0) {
-                    openWindow("Shut Down arcos");
+                    openWindow("Shut Down ArcOS");
                 } else {
                     closewindow(document.getElementById(focusedWindow));
                 }
@@ -211,7 +211,7 @@ class OnloadLogic {
             }
         });
     
-        new consoleNotifier().notifyStartService("arcos.System.onloadLogic.EventListener.mousedown", "taskbarVolumeControl");
+        new consoleNotifier().notifyStartService("ArcOS.System.onloadLogic.EventListener.mousedown", "taskbarVolumeControl");
         window.addEventListener('mousedown', function(event) {
             try {
                 let center = document.getElementById('notificationCenter', 0);
@@ -345,7 +345,7 @@ class OnloadLogic {
             document.getElementById("addonShellLoader").href = "./system/css/darkModeSharp.css";
             document.getElementById("animationsAddonLoader").href = "system/css/noanimations.css";
             document.getElementById("wallpaper").style.backgroundImage = "unset";
-            new ErrorLogic().sendError("Safe Mode", "arcos is running in Safe Mode.<br> - If this was not your intention, just restart from the start menu.<br> - If this was your intention, use this mode only to repair arcos if it doesn't boot. ", 1)
+            new ErrorLogic().sendError("Safe Mode", "ArcOS is running in Safe Mode.<br> - If this was not your intention, just restart from the start menu.<br> - If this was your intention, use this mode only to repair ArcOS if it doesn't boot. ", 1)
         }
     }
 }

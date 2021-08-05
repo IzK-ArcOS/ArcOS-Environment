@@ -1,4 +1,4 @@
-**** from arcos.System.WindowLogic.BringToFront ****
+**** from ArcOS.System.WindowLogic.BringToFront ****
     console.log(window);
     activeapps.forEach(element => {
         if (element == focusedWindow) {
@@ -8,11 +8,11 @@
         }
     });
     
-**** from arcos.System.WindowLogic.openWindow ****
+**** from ArcOS.System.WindowLogic.openWindow ****
 let windowName = window;
     try {
         if (window != "Welcome!") {
-            new consoleNotifier().notifyStartService("arcos.System.windowLogic.openWindow: " + window);
+            new consoleNotifier().notifyStartService("ArcOS.System.windowLogic.openWindow: " + window);
             let focused = focusedWindow;
             window = document.getElementById(window);
             //bringToFront(window);
@@ -41,7 +41,7 @@ let windowName = window;
         } else {
             if (localStorage.getItem(args.get("username") + "_dispWelcome") == 0) {
                 if (!activeapps.includes("Welcome!")) {
-                    new NotificationLogic().notificationService("Welcome!", "arcos failed to open the \"Welcome!\" program.<br>Reason: Access is denied.");
+                    new NotificationLogic().notificationService("Welcome!", "ArcOS failed to open the \"Welcome!\" program.<br>Reason: Access is denied.");
                 } else {
                     window = document.getElementById("Welcome!");
                     if (window.style.opacity == "0") {
@@ -52,7 +52,7 @@ let windowName = window;
                     } else { minimizeWindow(windowName); }
                 }
             } else {
-                new consoleNotifier().notifyStartService("arcos.System.windowLogic.openWindow: " + window);
+                new consoleNotifier().notifyStartService("ArcOS.System.windowLogic.openWindow: " + window);
                 window = document.getElementById("Welcome!");
 
                 window.style.opacity = '0'
@@ -82,7 +82,7 @@ let windowName = window;
 
 let { globalShortcut } = require("electron");
 
-new consoleNotifier().startModule("arcos.System.onloadLogic");
+new consoleNotifier().startModule("ArcOS.System.onloadLogic");
 
 onload = function WebOSOnload() {
 
@@ -170,14 +170,14 @@ onload = function WebOSOnload() {
                         }
                     }, 500);
                 }, 1000);
-            } catch (e) { new ErrorLogic().bsod("SYSTEM_INIT_FAILED", "arcosv2 initialization failed. Details:<br><br>" + e) }
+            } catch (e) { new ErrorLogic().bsod("SYSTEM_INIT_FAILED", "ArcOSv2 initialization failed. Details:<br><br>" + e) }
 
         } else {
             document.getElementsByClassName("block")[0].style.backgroundImage = "unset";
             document.getElementById("addonShellLoader").href = "./system/css/darkModeSharp.css";
             document.getElementById("animationsAddonLoader").href = "system/css/noanimations.css";
             document.body.style.backgroundImage = "unset";
-            new ErrorLogic().sendError("Safe Mode", "arcos is running in Safe Mode.<br> - If this was not your intention, just restart from the start menu.<br> - If this was your intention, use this mode only to repair arcos if it doesn't boot. ", 1)
+            new ErrorLogic().sendError("Safe Mode", "ArcOS is running in Safe Mode.<br> - If this was not your intention, just restart from the start menu.<br> - If this was your intention, use this mode only to repair ArcOS if it doesn't boot. ", 1)
         }
 
         setTimeout(() => {
@@ -202,10 +202,10 @@ onload = function WebOSOnload() {
 onbeforeunload = function() {
     localStorage.setItem("safeMode", 0);
     localStorage.removeItem("username")
-    deleteUserData("arcos Safe Mode");
+    deleteUserData("ArcOS Safe Mode");
 }
 
-new consoleNotifier().notifyStartService("arcos.System.onloadLogic.startTime service");
+new consoleNotifier().notifyStartService("ArcOS.System.onloadLogic.startTime service");
 
 function startTime() {
     try {
@@ -228,8 +228,8 @@ function checkTime(i) {
     return i;
 }
 
-new consoleNotifier().notifyStartService("arcos.System.startMenuLogic.EventListener.mousedown", "startMenu")
-new consoleNotifier().notifyStartService("arcos.System.onloadLogic.EventListener.mousedown", "taskbarClockWidget");
+new consoleNotifier().notifyStartService("ArcOS.System.startMenuLogic.EventListener.mousedown", "startMenu")
+new consoleNotifier().notifyStartService("ArcOS.System.onloadLogic.EventListener.mousedown", "taskbarClockWidget");
 window.addEventListener('mousedown', function(event) {
     try {
         clockWidget = document.getElementById('taskbarClockWidget');
@@ -250,7 +250,7 @@ window.addEventListener('mousedown', function(event) {
     }
 });
 
-new consoleNotifier().notifyStartService("arcos.System.onloadLogic.EventListener.mousedown", "taskbarVolumeControl");
+new consoleNotifier().notifyStartService("ArcOS.System.onloadLogic.EventListener.mousedown", "taskbarVolumeControl");
 window.addEventListener('mousedown', function(event) {
     try {
         volumeControl = document.getElementById('taskbarVolumeControl');
@@ -272,7 +272,7 @@ window.addEventListener('mousedown', function(event) {
 
 function onloadSetWindowControls() {
     try {
-        new consoleNotifier().notifyStartService("arcos.System.onloadLogic.onloadSetWindowControls");
+        new consoleNotifier().notifyStartService("ArcOS.System.onloadLogic.onloadSetWindowControls");
         if (localStorage.getItem(args.get("username") + "_enableAnimations") == "false") {
             document.getElementById("preferencesAnimationsSwitch").checked = false;
             document.getElementById("animationsAddonLoader").href = "system/css/noanimations.css";
@@ -294,12 +294,12 @@ function onloadSetWindowControls() {
             localStorage.setItem(args.get("username") + "_muted", 0);
         }
     } catch (e) {
-        new NotificationLogic().notificationService("Startup tasks", "Some tasks in the onloadLogic couldn't be completed.<br>If you experience issues with preferences, restart arcos and try again.<br><br>" + e)
+        new NotificationLogic().notificationService("Startup tasks", "Some tasks in the onloadLogic couldn't be completed.<br>If you experience issues with preferences, restart ArcOS and try again.<br><br>" + e)
     }
 }
 
 function onloadSetDesktopIcons() {
-    new consoleNotifier().notifyStartService("arcos.System.onloadLogic.onloadDesktopIcons");
+    new consoleNotifier().notifyStartService("ArcOS.System.onloadLogic.onloadDesktopIcons");
     let show = localStorage.getItem(args.get("username") + "_showDesktopIcons");
     if (show == 0) {
         document.getElementById("desktopIcons").style.visibility = 'hidden';
@@ -320,7 +320,7 @@ window.addEventListener('keydown', (e) => {
     if (key === 'F4' && altKey) {
         e.preventDefault();
         if (activeapps.length == 0) {
-            openWindow("Shut Down arcos");
+            openWindow("Shut Down ArcOS");
         } else {
             closewindow(document.getElementById(focusedWindow));
         }
@@ -346,7 +346,7 @@ setInterval(() => {
 
 *** DISPLAYLOGIC.JS ***
 
-new consoleNotifier().startModule("arcos.System.displayLogic");
+new consoleNotifier().startModule("ArcOS.System.displayLogic");
 
 function startResolutionUpdateCycle(interval) {
     setInterval(() => {

@@ -1,7 +1,7 @@
 <div class="newStartMenu" id="startMenu">
     <div class="bottomPane">
         <span class="h3" id="usernameStartMenu"></span>
-        <button class="transparent newStartMenuShutDownButton" onclick="openWindow('Shut Down arcos');"><span
+        <button class="transparent newStartMenuShutDownButton" onclick="openWindow('Shut Down ArcOS');"><span
                 class="material-icons" style="font-size:20px;">power_settings_new</span></button>
     </div>
     <div class="leftPane" id="startMenuAppList"></div>
