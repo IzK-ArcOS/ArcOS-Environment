@@ -2,8 +2,8 @@
 <html>
 
 <head>
-    <link rel="preload" href="./system/wallpaper/ArcOSv1 background dark.jpg" as="image">
-    <link rel="preload" href="./system/wallpaper/ArcOSv1 background light.jpg" as="image">
+    <link rel="preload" href="./system/wallpaper/arcosv1 background dark.jpg" as="image">
+    <link rel="preload" href="./system/wallpaper/arcosv1 background light.jpg" as="image">
     <config id="javascriptLoader">
         <script src="system/js/consoleNotifier.js"></script>
         <Script src="system/js/userLogic.js"></Script>
@@ -21,18 +21,18 @@
         <script src="system/js/toolbarLogic.js"></script>
         <script src="system/js/onloadLogic.js"></script>
         <script src="system/js/windowLogic.js"></script>
-        <script src="system/applications/programData/Open With/JS/openWith.js"></script>
-        <script src="system/applications/programData/File Manager/JS/fileexplorer.js"></script>
-        <script src="system/applications/programData/Calculator/js/calculator.js"></script>
-        <script src="system/applications/programData/Notepad/js/notepadFileLogic.js"></script>
-        <script src="system/applications/programData/User Settings/js/userSettings.js"></script>
-        <script src="system/applications/programData/Image Viewer/JS/imageViewer.js"></script>
-        <script src="system/applications/programData/App Manager/JS/appManager.js"></script>
-        <script src="system/applications/programData/settings/js/settings.js"></script>
+        <script src="system/applications/programdata/Open With/JS/openWith.js"></script>
+        <script src="system/applications/programdata/File Manager/JS/fileexplorer.js"></script>
+        <script src="system/applications/programdata/Calculator/js/calculator.js"></script>
+        <script src="system/applications/programdata/Notepad/js/notepadFileLogic.js"></script>
+        <script src="system/applications/programdata/User Settings/js/userSettings.js"></script>
+        <script src="system/applications/programdata/Image Viewer/JS/imageViewer.js"></script>
+        <script src="system/applications/programdata/App Manager/JS/appManager.js"></script>
+        <script src="system/applications/programdata/settings/js/settings.js"></script>
     </config>
 
     <link rel="stylesheet" href="./system/css/checkboxes.css">
-    <link rel="stylesheet" href="./system/css/ArcOSShell.css" id="shellLoader">
+    <link rel="stylesheet" href="./system/css/arcosshell.css" id="shellLoader">
     <link rel="stylesheet" href="" id="titlebarAddonLoader">
     <link rel="stylesheet" href="" id="addonShellLoader">
     <link rel="stylesheet" href="" id="animationsAddonLoader">
@@ -44,7 +44,7 @@
     <div class="wallpaper" id="wallpaper"></div>
     <div class="toolbar retracted" id="toolbar">
         <button class="toolbar" style="margin-top:3px;padding-top:3px;padding-bottom:3px;" onclick="require('electron').remote.getCurrentWindow().toggleDevTools()">Developer Tools</button>
-        <span style="position:inherit;left:50%;top:10px;transform:translate(-50%,0);-webkit-transform: translate(-50%,0);">ArcOSv1</span>
+        <span style="position:inherit;left:50%;top:10px;transform:translate(-50%,0);-webkit-transform: translate(-50%,0);">arcosv1</span>
         <button class="toolbar right" onclick="require('electron').remote.getCurrentWindow().close();">✖</button>
         <button class="toolbar right" onclick="require('electron').remote.getCurrentWindow().maximize();toggleFullscreenMode();">🗖</button>
         <button class="toolbar right" onclick="require('electron').remote.getCurrentWindow().minimize();">🗕</button>
@@ -58,7 +58,7 @@
                     <p style="margin:0px;">Show Desktop Icons</p>
                 </label></li>
             <hr>
-            <li onclick="openWindow('Shut Down ArcOS')"><a>Shut Down</a></li>
+            <li onclick="openWindow('Shut Down arcos')"><a>Shut Down</a></li>
             <hr>
             <li onclick="openWindow('Settings');"><a>Settings</a></li>
             <li onclick="openSettingsPane('personalize',document.getElementsByClassName('controlPanelSidebar')[1]);openWindow('Settings');"><a>Preferences</a></li>
@@ -67,10 +67,10 @@
     <div class="block"></div>
     <div class="notification" id="notificationService">
         <h3>
-            <span id="notificationTitle">ArcOS.System.notificationLogic.notificationTitle</span>
+            <span id="notificationTitle">arcos.System.notificationLogic.notificationTitle</span>
             <button onclick="new NotificationLogic().closeNotification();" class="title close">✖</button>
         </h3>
-        <p id="notificationMessage">ArcOS.System.notificationLogic.notificationMessage</p>
+        <p id="notificationMessage">arcos.System.notificationLogic.notificationMessage</p>
     </div>
 
     <noscript id="errorMessageTemplate">

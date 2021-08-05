@@ -1,4 +1,4 @@
-new consoleNotifier().startModule("ArcOS.System.generalLogic");
+new consoleNotifier().startModule("arcos.System.generalLogic");
 
 class GeneralLogic {
     changeUsername() {

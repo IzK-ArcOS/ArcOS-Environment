@@ -1,4 +1,4 @@
-new consoleNotifier().startModule("ArcOS.System.errorLogic");
+new consoleNotifier().startModule("arcos.System.errorLogic");
 
 class ErrorLogic {
     bsod(title, message) {
@@ -47,5 +47,5 @@ class ErrorLogic {
 }
 
 window.onerror = function errorVisualizer(errorMsg, url, lineNumber) {
-    new NotificationLogic().notificationService("ArcOS Exception", "ArcOS has encountered an internal exception:<br><br>" + errorMsg, 3000);
+    new NotificationLogic().notificationService("arcos Exception", "arcos has encountered an internal exception:<br><br>" + errorMsg, 3000);
 }

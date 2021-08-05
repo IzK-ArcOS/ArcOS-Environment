@@ -1,14 +1,14 @@
 ////////////////////////////////////////////////////////////////////////
-// The below variable, "start", specifies at what page ArcOS starts. //
+// The below variable, "start", specifies at what page arcos starts. //
 // This variable can have one of the following values:              //
 // 0 - Start at the bootscreen (main.html)                         //
 // 1 - Start at the login (login.html)                            //
-// 2 - Start at the ArcOS Desktop (ArcOS.html)                   //
+// 2 - Start at the arcos Desktop (arcos.html)                   //
 //////////////////////////////////////////////////////////////////
 let start = 0; //
 ////////////////////////////////////////////////////////////////
 // Please don't modify any of the below code, if you do you  //
-// can damage the runtime of ArcOS.                         //
+// can damage the runtime of arcos.                         //
 /////////////////////////////////////////////////////////////
 
 let win;
@@ -72,7 +72,7 @@ function loadStartPage() {
             win.loadFile("login.html");
             break;
         case 2:
-            win.loadFile("ArcOS.html");
+            win.loadFile("arcos.html");
             break;
     }
 }

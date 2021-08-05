@@ -1,7 +1,7 @@
 <div class="startMenu" id="startMenu">
     <div class="leftPane" id="startMenuLeftPane">
         <center>
-            <button onclick="openWindow('Shut Down ArcOS');" class="startMenuButton"><img
+            <button onclick="openWindow('Shut Down arcos');" class="startMenuButton"><img
                     src="./system/images/shutdown.svg" height="20px"></button>
             <button onclick="openWindow('settings');" class="startMenuButton"><img
                     src="./system/images/controlPanel.svg" height="20px"></button>
@@ -14,8 +14,8 @@
         <div class="startMenuAppTile" onclick="openWindow('Calculator');">
             <p style="margin:0px;"><img src="./system/images/calculator.svg" height="20px" />Calculator</p>
         </div>
-        <div class="startMenuAppTile" onclick="openWindow('ArcOS Notepad');">
-            <p style="margin:0px;"><img src="./system/images/notepad.svg" height="20px" />ArcOS Notepad
+        <div class="startMenuAppTile" onclick="openWindow('arcos Notepad');">
+            <p style="margin:0px;"><img src="./system/images/notepad.svg" height="20px" />arcos Notepad
             </p>
         </div>
         <hr>

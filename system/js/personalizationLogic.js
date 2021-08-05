@@ -1,4 +1,4 @@
-new consoleNotifier().startModule("ArcOS.System.personalizationLogic");
+new consoleNotifier().startModule("arcos.System.personalizationLogic");
 
 class PersonalizationLogic {
     applyTheme() {
@@ -9,9 +9,9 @@ class PersonalizationLogic {
         } else if (theme === "darksharp") {
             document.getElementById("addonShellLoader").href = "./system/css/darkModeSharp.css"
         } else if (theme === "lightrounded") {
-            document.getElementById("addonShellLoader").href = "./system/css/lightModeRounded.css"
+            document.getElementById("addonShellLoader").href = "./system/css/lightmoderounded.css"
         } else if (theme === "lightsharp") {
-            document.getElementById("addonShellLoader").href = "./system/css/lightModeSharp.css"
+            document.getElementById("addonShellLoader").href = "./system/css/lightmodesharp.css"
         }
     }
     
@@ -19,7 +19,7 @@ class PersonalizationLogic {
         localStorage.setItem(args.get("username") + "_taskbarpos", document.getElementById("taskbarPosSelect").value);
         let pos = document.getElementById("taskbarPosSelect").value;
         if (pos === "top") {
-            document.getElementById("taskbarAddonLoader").href = "./system/css/taskbarOnTop.css";
+            document.getElementById("taskbarAddonLoader").href = "./system/css/taskbarontop.css";
         } else if (pos === "bottom") {
             document.getElementById("taskbarAddonLoader").href = "";
         }
@@ -32,7 +32,7 @@ class PersonalizationLogic {
             document.getElementById("animationsAddonLoader").href = "";
         } else {
             localStorage.setItem(args.get("username") + "_enableAnimations", false);
-            document.getElementById("animationsAddonLoader").href = "system/css/noAnimations.css";
+            document.getElementById("animationsAddonLoader").href = "system/css/noanimations.css";
         }
     }
     

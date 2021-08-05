@@ -79,7 +79,7 @@
     /*context menu*/
     --contextMenuBorderRadius: 5px;
     /*Background*/
-    --backgroundImage: url("../wallpaper/ArcOSv1\ background\ dark.jpg");
+    --backgroundImage: url("../wallpaper/arcosv1\ background\ dark.jpg");
     /*Menu Bar*/
     --menubarBackgroundColor: var(--titlebarBackground);
     /*New Start Menu*/
@@ -1280,12 +1280,12 @@ div.window#Settings div.controlPanelMainFrame input.inp {
     background-color: var(--controlPanelSecoBackgroundColor);
 }
 
-div.window[id="Shut Down ArcOS"] {
+div.window[id="Shut Down arcos"] {
     background-color: var(--controlPanelMainBackgroundColor);
     backdrop-filter: blur(30px);
 }
 
-div.window[id="Shut Down ArcOS"] button {
+div.window[id="Shut Down arcos"] button {
     background-color: var(--controlPanelSecoBackgroundColor);
 }
 

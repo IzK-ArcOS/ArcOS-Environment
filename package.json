@@ -1,5 +1,5 @@
 {
-    "name": "ArcOSv1",
+    "name": "arcosv1",
     "version": "1.0.0",
     "description": "",
     "main": "./system/kernel.js",

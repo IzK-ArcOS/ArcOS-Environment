@@ -40,7 +40,7 @@ onload = function () {
         document.body.style.opacity = "1";
         switchPage(6);
         document.getElementById("content").className = "content";
-        document.getElementById("username").innerHTML = "ArcOS Safe Mode";
+        document.getElementById("username").innerHTML = "arcos Safe Mode";
         let userPicPath = "";
         if (localStorage.getItem(username + "_picture") == null) {
             userPicPath = "./system/images/user.png";
@@ -54,7 +54,7 @@ onload = function () {
             localStorage.setItem("username", "Web");
             document.body.style.opacity = "0";
             setTimeout(() => {
-                window.location.href = "ArcOS.html?username=ArcOS Safe Mode";
+                window.location.href = "arcos.html?username=arcos Safe Mode";
             }, 1000);
         }, 6000);
     }
@@ -139,7 +139,7 @@ function loginAs(user) {
 
                     document.body.style.opacity = "0";
                     setTimeout(() => {
-                        window.location.href = "ArcOS.html?username=" + username;
+                        window.location.href = "arcos.html?username=" + username;
                     }, 1000);
                 }, 6000);
             }
@@ -165,7 +165,7 @@ function continueLoginAs(pswd) {
             localStorage.setItem("username", username);
             document.body.style.opacity = "0";
             setTimeout(() => {
-                window.location.href = "ArcOS.html?username=" + username;
+                window.location.href = "arcos.html?username=" + username;
             }, 1000);
         }, 6000);
     } else {

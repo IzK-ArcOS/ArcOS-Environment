@@ -86,7 +86,7 @@ function getDriveLetters() {
     let folderstr = "";
     let spawn = require("child_process").spawn
 
-    function listDrives() {
+    function listWinDrives() {
         let list = spawn('cmd');
 
         return new Promise((resolve, reject) => {
@@ -115,14 +115,59 @@ function getDriveLetters() {
         })
     }
 
-    listDrives().then((data) => {
-        for (let i = 0; i < data.length; i++) {
-            folderstr += " <button class=\"folder big\" id=\"" + data[i] + "\" onclick='fileExplorerOpenDir(\"" + data[i].replace("'", "%27") + "/\");'><img src=\"./system/images/hdd.svg\" style=\"height:30px;vertical-align:middle;\">&nbsp;&nbsp;" + data[i] + "</button>";
-            document.getElementById("fileExplorerMainFrameOut").innerHTML = folderstr;
-            document.getElementById("fileExplorerMainFrameOut").scrollIntoView();
-        }
 
-    })
+    if (process.platform == "win32") {
+        listWinDrives().then((data) => {
+            for (let i = 0; i < data.length; i++) {
+                folderstr += " <button class=\"folder big\" id=\"" + data[i] + "\" onclick='fileExplorerOpenDir(\"" + data[i].replace("'", "%27") + "/\");'><img src=\"./system/images/hdd.svg\" style=\"height:30px;vertical-align:middle;\">&nbsp;&nbsp;" + data[i] + "</button>";
+                document.getElementById("fileExplorerMainFrameOut").innerHTML = folderstr;
+                document.getElementById("fileExplorerMainFrameOut").scrollIntoView();
+            }
+    
+        });
+    
+    } else {
+        listLinuxDrives().then((data) => {
+            for (let i = 0; i < data.length; i++) {
+                folderstr += " <button class=\"folder big\" id=\"" + data[i] + "\" onclick='fileExplorerOpenDir(\"" + data[i].replace("'", "%27") + "/\");'><img src=\"./system/images/hdd.svg\" style=\"height:30px;vertical-align:middle;\">&nbsp;&nbsp;" + data[i] + "</button>";
+                document.getElementById("fileExplorerMainFrameOut").innerHTML = folderstr;
+                document.getElementById("fileExplorerMainFrameOut").scrollIntoView();
+            }
+    
+        });
+    
+    }
+    
+    function listLinuxDrives() {
+        let list = spawn('bash');
+
+        return new Promise((resolve, reject) => {
+            list.stdout.on('data', function(data) {
+                // console.log('stdout: ' + String(data));
+                let output = String(data)
+                let out = output.split("\r\n").map(e => e.trim()).filter(e => e != "")
+                if (out[0] === "Name") {
+                    resolve(out.slice(1))
+                }
+                // console.log("stdoutput:", out)
+            });
+
+            list.stderr.on('data', function(data) {
+                // console.log('stderr: ' + data);
+            });
+
+            list.on('exit', function(code) {
+                if (code !== 0) {
+                    reject(code)
+                }
+            });
+
+            list.stdin.write('findmnt -lo target -t ext4,ntfs | tail -n +2');
+            list.stdin.end();
+        })
+    }
+
+
 }
 
 function fileExplorerParentDir() {
@@ -235,11 +280,11 @@ function openWithNotepad(file) {
 
     fs.readFile(path, 'utf8', function(err, data) {
         if (err) {
-            new NotificationLogic().notificationService("ArcOS Notepad", "There was an error loading \"" + document.getElementById("notepadLoadFileInput").value + "\". The file might not exist or you don't have the permission to access it. Please verify the name and try again.");
+            new NotificationLogic().notificationService("arcos Notepad", "There was an error loading \"" + document.getElementById("notepadLoadFileInput").value + "\". The file might not exist or you don't have the permission to access it. Please verify the name and try again.");
             document.getElementById("notepadTextField").value = "";
         } else {
 
-            new consoleNotifier().notifyStartService("ArcOS.System.programData.notepad.notepadFileLogic.loadNotepad: " + document.getElementById("notepadLoadFileInput").value)
+            new consoleNotifier().notifyStartService("arcos.System.programdata.notepad.notepadFileLogic.loadNotepad: " + document.getElementById("notepadLoadFileInput").value)
             for (let i = 0; i < 200; i++) {
 
                 document.getElementById("notepadTextField").value = data;
@@ -251,7 +296,7 @@ function openWithNotepad(file) {
         }
     });
     setTimeout(() => {
-        openWindow("ArcOS Notepad");
+        openWindow("arcos Notepad");
     }, 100);
 }
 

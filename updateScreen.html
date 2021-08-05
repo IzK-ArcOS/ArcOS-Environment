@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="system/css/ArcOSShell.css">
+    <link rel="stylesheet" href="system/css/arcosshell.css">
     <link rel="stylesheet" href="system/css/progressBar.css">
     <script src="./system/js/consoleNotifier.js"></script>
     <script src="./system/js/DOMLogic.js"></script>
@@ -15,12 +15,12 @@
                 setTimeout(() => {
                     setDisplayText("You've installed an update.");
                     setTimeout(() => {
-                        setDisplayText("ArcOS will now configure it for you.");
+                        setDisplayText("arcos will now configure it for you.");
                         setTimeout(() => {
                             setDisplayText(`${progressBar}<br><br>Installing Updates`);
                             setTimeout(() => {
                                 localStorage.setItem("WebOSVersion", version);
-                                setDisplayText("Enjoy using ArcOSv1 " + version);
+                                setDisplayText("Enjoy using arcosv1 " + version);
                                 setTimeout(() => {
                                     setDisplayText("");
                                     setTimeout(() => {
@@ -34,14 +34,14 @@
             } else {
                 setDisplayText("Welcome");
                 setTimeout(() => {
-                    setDisplayText("Thanks for installing ArcOS.");
+                    setDisplayText("Thanks for installing arcos.");
                     setTimeout(() => {
-                        setDisplayText("ArcOS is preparing for first boot");
+                        setDisplayText("arcos is preparing for first boot");
                         setTimeout(() => {
-                            setDisplayText(`${progressBar}<br><br>Preparing ArcOS`);
+                            setDisplayText(`${progressBar}<br><br>Preparing arcos`);
                             setTimeout(() => {
                                 localStorage.setItem("WebOSVersion", version);
-                                setDisplayText("Enjoy using ArcOSv1 " + version + "");
+                                setDisplayText("Enjoy using arcosv1 " + version + "");
                                 setTimeout(() => {
                                     setDisplayText("");
                                     setTimeout(() => {

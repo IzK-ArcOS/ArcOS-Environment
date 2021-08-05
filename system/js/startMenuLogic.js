@@ -1,4 +1,4 @@
-new consoleNotifier().startModule("ArcOS.System.startMenuLogic");
+new consoleNotifier().startModule("arcos.System.startMenuLogic");
 
 function toggleStart() {
     try {

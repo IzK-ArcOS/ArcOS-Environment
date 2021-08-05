@@ -1,4 +1,4 @@
-new consoleNotifier().startModule("ArcOS.System.contextMenuLogic");
+new consoleNotifier().startModule("arcos.System.contextMenuLogic");
 
 class ContextMenuLogic {
 
@@ -14,7 +14,7 @@ class ContextMenuLogic {
 
         } catch (e) {
 
-            new ErrorLogic().bsod("ContextMenuLogic.hideMenu: CONTEXT_MENU_INVALID", "The ArcOS context menu module or one of the modules inheriting it couldn't be found.");
+            new ErrorLogic().bsod("ContextMenuLogic.hideMenu: CONTEXT_MENU_INVALID", "The arcos context menu module or one of the modules inheriting it couldn't be found.");
 
         }
     }
@@ -38,7 +38,7 @@ class ContextMenuLogic {
 
         } catch (e) {
 
-            new ErrorLogic().bsod("ContextMenuLogic.rightClick: CONTEXT_MENU_INVALID", "The ArcOS context menu module or one of the modules inheriting it couldn't be found.");
+            new ErrorLogic().bsod("ContextMenuLogic.rightClick: CONTEXT_MENU_INVALID", "The arcos context menu module or one of the modules inheriting it couldn't be found.");
             
         }
     }

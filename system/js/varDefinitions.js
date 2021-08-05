@@ -1,5 +1,5 @@
-new consoleNotifier().startModule("ArcOS.System.varDefinitions");
-//Define global variables used by the rest of ArcOS.System//
+new consoleNotifier().startModule("arcos.System.varDefinitions");
+//Define global variables used by the rest of arcos.System//
 let args = new URLSearchParams(window.location.search),
     screenWidth = screen.width,
     screenHeight = screen.height,

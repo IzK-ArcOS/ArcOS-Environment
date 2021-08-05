@@ -1,4 +1,4 @@
-new consoleNotifier().startModule("ArcOS.System.onloadLogic");
+new consoleNotifier().startModule("arcos.System.onloadLogic");
 
 onload = function() {
     if (!clientInformation.appVersion.includes("Electron")) { window.location.href = "invalidClient.html"; }
@@ -34,12 +34,12 @@ onbeforeunload = function() {
     } else {
         localStorage.setItem("safeMode", 0);
         localStorage.removeItem("username");
-        deleteUserData("ArcOS Safe Mode", false);
+        deleteUserData("arcos Safe Mode", false);
         deleteWindowData();
     }
 }
 
-new consoleNotifier().notifyStartService("ArcOS.System.onloadLogic.startTime service");
+new consoleNotifier().notifyStartService("arcos.System.onloadLogic.startTime service");
 
 class OnloadLogic {
     startTime() {
@@ -80,7 +80,7 @@ class OnloadLogic {
                                 break;
                             default:
                                 document.getElementById("preferencesAnimationsSwitch").checked = false;
-                                document.getElementById("animationsAddonLoader").href = "system/css/noAnimations.css";
+                                document.getElementById("animationsAddonLoader").href = "system/css/noanimations.css";
                                 break;
                         }
                     }
@@ -118,17 +118,17 @@ class OnloadLogic {
                     }
                 } catch {}
             }, 100);
-            new consoleNotifier().notifyStartService("ArcOS.System.onloadLogic.onloadSetWindowControls");
+            new consoleNotifier().notifyStartService("arcos.System.onloadLogic.onloadSetWindowControls");
     
         } catch (e) {
-            new consoleNotifier().notifyStopService("ArcOS.System.onloadLogic.onloadSetWindowControls:" + e);
+            new consoleNotifier().notifyStopService("arcos.System.onloadLogic.onloadSetWindowControls:" + e);
             onloadSetWindowControls();
         }
     }
 
     onloadSetDesktopIcons() {
         try {
-            new consoleNotifier().notifyStartService("ArcOS.System.onloadLogic.onloadDesktopIcons");
+            new consoleNotifier().notifyStartService("arcos.System.onloadLogic.onloadDesktopIcons");
             let show = localStorage.getItem(args.get("username") + "_showDesktopIcons");
             switch (show) {
                 case 0:
@@ -150,7 +150,7 @@ class OnloadLogic {
             if (onloadDesktopIconsRetryCount >= 3) {
                 new ErrorLogic().bsod("OnloadLogic.onloadSetDesktopIcons: OSDIRC_OVERFLOW", "process couldn't be started.")
             } else {
-                new consoleNotifier().notifyStopService("ArcOS.System.onloadLogic.onloadDesktopIcons");
+                new consoleNotifier().notifyStopService("arcos.System.onloadLogic.onloadDesktopIcons");
                 onloadSetDesktopIcons();
             }
         }
@@ -196,7 +196,7 @@ class OnloadLogic {
             if (key === 'F4' && altKey) {
                 e.preventDefault();
                 if (activeapps.length == 0) {
-                    openWindow("Shut Down ArcOS");
+                    openWindow("Shut Down arcos");
                 } else {
                     closewindow(document.getElementById(focusedWindow));
                 }
@@ -211,7 +211,7 @@ class OnloadLogic {
             }
         });
     
-        new consoleNotifier().notifyStartService("ArcOS.System.onloadLogic.EventListener.mousedown", "taskbarVolumeControl");
+        new consoleNotifier().notifyStartService("arcos.System.onloadLogic.EventListener.mousedown", "taskbarVolumeControl");
         window.addEventListener('mousedown', function(event) {
             try {
                 let center = document.getElementById('notificationCenter', 0);
@@ -235,7 +235,7 @@ class OnloadLogic {
             let pos = localStorage.getItem(args.get("username") + "_taskbarpos");
             switch (pos) {
                 case "top":
-                    document.getElementById("taskbarAddonLoader").href = "./system/css/taskbarOnTop.css";
+                    document.getElementById("taskbarAddonLoader").href = "./system/css/taskbarontop.css";
                 case "bottom":
                     document.getElementById("taskbarAddonLoader").href = "";
             }
@@ -256,10 +256,10 @@ class OnloadLogic {
                         document.getElementById("addonShellLoader").href = "./system/css/darkModeSharp.css";
                         break;
                     case "lightrounded":
-                        document.getElementById("addonShellLoader").href = "./system/css/lightModeRounded.css";
+                        document.getElementById("addonShellLoader").href = "./system/css/lightmoderounded.css";
                         break;
                     case "lightsharp":
-                        document.getElementById("addonShellLoader").href = "./system/css/lightModeSharp.css";
+                        document.getElementById("addonShellLoader").href = "./system/css/lightmodesharp.css";
                         break;
                 }
             } else {
@@ -300,22 +300,22 @@ class OnloadLogic {
             //loadWindow("./system/applications/wallpaperSettings.app", 1);
             //loadWindow("./system/applications/systemSettings.app", 1);
             loadWindow("./system/applications/notepad.app", 1);
-            loadWindow("./system/applications/programData/Notepad/utils/loadFile.app", 1, 0);
-            loadWindow("./system/applications/programData/Notepad/utils/saveFile.app", 1, 0);
-            loadWindow("./system/applications/programData/Notepad/utils/delFile.app", 1, 0);
+            loadWindow("./system/applications/programdata/Notepad/utils/loadFile.app", 1, 0);
+            loadWindow("./system/applications/programdata/Notepad/utils/saveFile.app", 1, 0);
+            loadWindow("./system/applications/programdata/Notepad/utils/delFile.app", 1, 0);
             loadWindow("./system/applications/desktopIcons.app", 1, 0);
-            //loadWindow("./system/applications/programData/User Settings/utils/changePassword.app", 1);
-            //loadWindow("./system/applications/programData/User Settings/utils/changeUsername.app", 1);
-            //loadWindow("./system/applications/programData/User Settings/utils/changeUserPicture.app", 1);
-            //loadWindow("./system/applications/programData/User Settings/utils/createUserAccount.app", 1);
-            //loadWindow("./system/applications/programData/User Settings/utils/deleteUserAccount.app", 1);
+            //loadWindow("./system/applications/programdata/User Settings/utils/changePassword.app", 1);
+            //loadWindow("./system/applications/programdata/User Settings/utils/changeUsername.app", 1);
+            //loadWindow("./system/applications/programdata/User Settings/utils/changeUserPicture.app", 1);
+            //loadWindow("./system/applications/programdata/User Settings/utils/createUserAccount.app", 1);
+            //loadWindow("./system/applications/programdata/User Settings/utils/deleteUserAccount.app", 1);
             loadWindow("./system/applications/fileExplorer.app", 1);
-            loadWindow("./system/applications/programData/File Manager/utils/createFile.app", 1, 0);
-            loadWindow("./system/applications/programData/File Manager/utils/deleteFile.app", 1, 0);
-            loadWindow("./system/applications/programData/File Manager/utils/renameFile.app", 1, 0);
-            loadWindow("./system/applications/programData/File Manager/utils/renameFolder.app", 1, 0);
-            loadWindow("./system/applications/programData/File Manager/utils/deleteFolder.app", 1, 0);
-            loadWindow("./system/applications/programData/File Manager/utils/createFolder.app", 1, 0);
+            loadWindow("./system/applications/programdata/File Manager/utils/createFile.app", 1, 0);
+            loadWindow("./system/applications/programdata/File Manager/utils/deleteFile.app", 1, 0);
+            loadWindow("./system/applications/programdata/File Manager/utils/renameFile.app", 1, 0);
+            loadWindow("./system/applications/programdata/File Manager/utils/renameFolder.app", 1, 0);
+            loadWindow("./system/applications/programdata/File Manager/utils/deleteFolder.app", 1, 0);
+            loadWindow("./system/applications/programdata/File Manager/utils/createFolder.app", 1, 0);
             loadWindow("./system/applications/imageViewer.app", 1, 0);
             loadWindow("./system/applications/appManager.app", 1);
             loadWindow("./system/applications/openWith.app", 1);
@@ -343,9 +343,9 @@ class OnloadLogic {
         } else {
             document.getElementsByClassName("block")[0].style.backgroundImage = "unset";
             document.getElementById("addonShellLoader").href = "./system/css/darkModeSharp.css";
-            document.getElementById("animationsAddonLoader").href = "system/css/noAnimations.css";
+            document.getElementById("animationsAddonLoader").href = "system/css/noanimations.css";
             document.getElementById("wallpaper").style.backgroundImage = "unset";
-            new ErrorLogic().sendError("Safe Mode", "ArcOS is running in Safe Mode.<br> - If this was not your intention, just restart from the start menu.<br> - If this was your intention, use this mode only to repair ArcOS if it doesn't boot. ", 1)
+            new ErrorLogic().sendError("Safe Mode", "arcos is running in Safe Mode.<br> - If this was not your intention, just restart from the start menu.<br> - If this was your intention, use this mode only to repair arcos if it doesn't boot. ", 1)
         }
     }
 }
