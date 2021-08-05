@@ -1,5 +1,18 @@
-console.info("%ArcOSv2", "color:dodgerblue;font-size:36px")
-console.info("%cWelcome to the ArcOSv2 console! Be careful, if you modify the wrong things you can (temporarily) break the OS.", "font-size:16px")
+console.warn = (e, c) => {
+    if (e != "%cElectron Security Warning (Insecure Content-Security-Policy)") {
+        console.info(`%c${e}`, 'color:orange')
+    }
+        
+}
+
+console.info(
+    "%c                     ____   _____\n" +
+    "    /\\             / __ \\ / ____|\n" +
+    "   /  \\   _ __ ___| |  | | (___  \n" +
+    "  / /\\ \\ | '__/ __| |  | |\\___ \\\n " +
+    "/ /  \\ \\| | | (__| |__| |____) |\n" +
+    "/_/    \\_\\_|  \\___|\\____/|_____/\n" +
+    "                                    ", "color:deepskyblue;");
 
 
 class consoleNotifier {
