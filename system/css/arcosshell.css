@@ -931,7 +931,7 @@ button.fileExplorerSideBar:active {
 
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Inter&display=swap');
 div.controlPanelLeftPane {
-    width: 208px;
+    width: 220px;
     height: 100%;
     top: 0px;
     position: absolute;
@@ -942,8 +942,8 @@ div.controlPanelLeftPane {
 div.controlPanelMainFrame {
     position: absolute;
     top: 30px;
-    left: 208px;
-    width: calc(100% - 208px);
+    left: 220px;
+    width: calc(100% - 220px);
     height: calc(100% - 30px);
     background-color: transparent;
     padding: 35px;
