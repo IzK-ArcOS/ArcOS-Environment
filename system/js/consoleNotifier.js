@@ -1,5 +1,5 @@
 console.info("%cWebOSv3", "color:dodgerblue;font-size:36px;text-align:middle")
-console.info("%cWelcome to the arcosv1 console! Be careful, if you modify the wrong things you can (temporarily) break the OS.", "font-size:16px")
+console.info("%cWelcome to the arcosv2 console! Be careful, if you modify the wrong things you can (temporarily) break the OS.", "font-size:16px")
 
 
 class consoleNotifier {

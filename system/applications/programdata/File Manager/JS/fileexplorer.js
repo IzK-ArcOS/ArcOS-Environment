@@ -1,10 +1,12 @@
+const { platform } = require("os");
+
 function fileExplorerOpenDir(dirName) {
     let newDirName = new GeneralLogic().replaceAllCharsInStr(dirName, "%27", "'");
     dirName = newDirName;
     let dirsstr = "<button class=\"folder\" onclick=\"fileExplorerParentDir()\"><img src=\"./system/images/folder.svg\" style=\"height:15px;vertical-align:top;\">&nbsp;&nbsp;Parent Directory</button>";
     let filestr = "";
     let compile = "";
-    fs.readdir(dirName, { encoding: "ascii" }, function(err, files) {
+    fs.readdir(dirName, { encoding: "ascii" }, function (err, files) {
         if (files == undefined || err) {
             new ErrorLogic().sendError("File Manager", "File Manager failed to open the folder. Please check the path and try again.<br><br>Path: " + dirName);
             return false;
@@ -15,7 +17,7 @@ function fileExplorerOpenDir(dirName) {
                 files[i] = new GeneralLogic().replaceAllCharsInStr(files[i], "%27", "'");
                 //if (!new GeneralLogic().countOccurrences(files[i], "'") >= 1) {
                 dirsstr += `<button class=\"folder\" onclick=\"fileExplorerOpenDir(new GeneralLogic().replaceAllCharsInStr(\`` + dirName + "/" + files[i] + `\`,\`%27\`,\`1\`));\"><img src=\"./system/images/folder.svg\" style=\"height:15px;vertical-align:top;\">&nbsp;&nbsp;` + files[i] + `</button>`
-                    //}
+                //}
             } else {
                 files[i] = new GeneralLogic().replaceAllCharsInStr(files[i], "%27", "'");
                 //if (!files[i].includes("%27")) {
@@ -82,92 +84,16 @@ function evauluateFileType(file) {
     }
 }
 
-function getDriveLetters() {
-    let folderstr = "";
-    let spawn = require("child_process").spawn
+async function getDriveLetters() {
+    const drivelist = require('drivelist');
 
-    function listWinDrives() {
-        let list = spawn('cmd');
-
-        return new Promise((resolve, reject) => {
-            list.stdout.on('data', function(data) {
-                // console.log('stdout: ' + String(data));
-                let output = String(data)
-                let out = output.split("\r\n").map(e => e.trim()).filter(e => e != "")
-                if (out[0] === "Name") {
-                    resolve(out.slice(1))
-                }
-                // console.log("stdoutput:", out)
-            });
-
-            list.stderr.on('data', function(data) {
-                // console.log('stderr: ' + data);
-            });
-
-            list.on('exit', function(code) {
-                if (code !== 0) {
-                    reject(code)
-                }
-            });
-
-            list.stdin.write('@echo off && wmic logicaldisk get name\n');
-            list.stdin.end();
-        })
+    const drives = await drivelist.list();
+    for (let i=0;i<drives.length;i++) {
+        for (let j=0;j<drives[i].mountpoints.length;j++) {
+            console.log(drives[i].mountpoints[j]);
+        }
+        
     }
-
-
-    if (process.platform == "win32") {
-        listWinDrives().then((data) => {
-            for (let i = 0; i < data.length; i++) {
-                folderstr += " <button class=\"folder big\" id=\"" + data[i] + "\" onclick='fileExplorerOpenDir(\"" + data[i].replace("'", "%27") + "/\");'><img src=\"./system/images/hdd.svg\" style=\"height:30px;vertical-align:middle;\">&nbsp;&nbsp;" + data[i] + "</button>";
-                document.getElementById("fileExplorerMainFrameOut").innerHTML = folderstr;
-                document.getElementById("fileExplorerMainFrameOut").scrollIntoView();
-            }
-    
-        });
-    
-    } else {
-        listLinuxDrives().then((data) => {
-            for (let i = 0; i < data.length; i++) {
-                folderstr += " <button class=\"folder big\" id=\"" + data[i] + "\" onclick='fileExplorerOpenDir(\"" + data[i].replace("'", "%27") + "/\");'><img src=\"./system/images/hdd.svg\" style=\"height:30px;vertical-align:middle;\">&nbsp;&nbsp;" + data[i] + "</button>";
-                document.getElementById("fileExplorerMainFrameOut").innerHTML = folderstr;
-                document.getElementById("fileExplorerMainFrameOut").scrollIntoView();
-            }
-    
-        });
-    
-    }
-    
-    function listLinuxDrives() {
-        let list = spawn('bash');
-
-        return new Promise((resolve, reject) => {
-            list.stdout.on('data', function(data) {
-                // console.log('stdout: ' + String(data));
-                let output = String(data)
-                let out = output.split("\r\n").map(e => e.trim()).filter(e => e != "")
-                if (out[0] === "Name") {
-                    resolve(out.slice(1))
-                }
-                // console.log("stdoutput:", out)
-            });
-
-            list.stderr.on('data', function(data) {
-                // console.log('stderr: ' + data);
-            });
-
-            list.on('exit', function(code) {
-                if (code !== 0) {
-                    reject(code)
-                }
-            });
-
-            list.stdin.write('findmnt -lo target -t ext4,ntfs | tail -n +2');
-            list.stdin.end();
-        })
-    }
-
-
 }
 
 function fileExplorerParentDir() {
@@ -184,7 +110,7 @@ function fileExplorerParentDir() {
 
 function createFile(filePath) {
 
-    fs.writeFile(filePath, "", function(err) {
+    fs.writeFile(filePath, "", function (err) {
         if (err) {
             new ErrorLogic().sendError("File Manager - unable to create file", "File Manager was unable to save the requested file. You might not have permission to do so. Please check that the name is valid and try again.");
         }
@@ -198,7 +124,7 @@ function createFile(filePath) {
 
 function deleteFile(filePath) {
 
-    fs.unlink(filePath, function(err) {
+    fs.unlink(filePath, function (err) {
         if (err) {
             new ErrorLogic().sendError("File Manager - unable to delete file", "File Manager was unable to delete the requested file. You might not have permission to do so. Please check that the name is valid and try again.");
         }
@@ -211,7 +137,7 @@ function deleteFile(filePath) {
 
 function renameFile(path, file, name) {
 
-    fs.rename(path + "/" + file, path + "/" + name, function(err) {
+    fs.rename(path + "/" + file, path + "/" + name, function (err) {
         if (err) {
             new ErrorLogic().sendError("File Manager - unable to rename file", "File Manager was unable to rename the requested file. You might not have permission to do so. Please check that the name is valid and try again.");
         } else {
@@ -244,7 +170,7 @@ function renameFolder(folderPath, newName) {
     const currPath = folderPath
     const newPath = newName
 
-    fs.rename(currPath, newPath, function(err) {
+    fs.rename(currPath, newPath, function (err) {
         if (err) {
             new ErrorLogic().sendError("File Manager - unable to rename folder", "File Manager was unable to rename the requested folder. You might not have permission to do so. Please check that the name is valid and try again.");
         } else {
@@ -278,7 +204,7 @@ function openWithNotepad(file) {
     let path = file;
     notepadLoadedFile = path;
 
-    fs.readFile(path, 'utf8', function(err, data) {
+    fs.readFile(path, 'utf8', function (err, data) {
         if (err) {
             new NotificationLogic().notificationService("arcos Notepad", "There was an error loading \"" + document.getElementById("notepadLoadFileInput").value + "\". The file might not exist or you don't have the permission to access it. Please verify the name and try again.");
             document.getElementById("notepadTextField").value = "";
@@ -301,7 +227,7 @@ function openWithNotepad(file) {
 }
 
 function executeECS(filepath) {
-    fs.readFile(filepath, 'utf8', function(err, data) {
+    fs.readFile(filepath, 'utf8', function (err, data) {
         if (err) {
             new NotificationLogic().notificationService("Execute Command Shortcut", "The ECS file is invalid. No commands were executed.");
         } else {

@@ -1,5 +1,5 @@
 {
-    "name": "arcosv1",
+    "name": "arcosv2",
     "version": "1.0.0",
     "description": "",
     "main": "./system/kernel.js",
@@ -13,7 +13,10 @@
         "electron": "^11.4.11"
     },
     "dependencies": {
+        "drivelist": "^9.2.4",
         "electron-packager": "^15.2.0",
+        "electron-rebuild": "^2.3.5",
+        "node-gyp": "^8.1.0",
         "python": "0.0.4"
     }
 }

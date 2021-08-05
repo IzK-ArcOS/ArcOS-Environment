@@ -170,7 +170,7 @@ onload = function WebOSOnload() {
                         }
                     }, 500);
                 }, 1000);
-            } catch (e) { new ErrorLogic().bsod("SYSTEM_INIT_FAILED", "arcosv1 initialization failed. Details:<br><br>" + e) }
+            } catch (e) { new ErrorLogic().bsod("SYSTEM_INIT_FAILED", "arcosv2 initialization failed. Details:<br><br>" + e) }
 
         } else {
             document.getElementsByClassName("block")[0].style.backgroundImage = "unset";

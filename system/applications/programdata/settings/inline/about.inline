@@ -1,9 +1,9 @@
 <h2 style="margin:0px;margin-bottom:10px;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-weight: 100;margin:0px;">
     About</h2><br><br>
 
-<p style="margin-top:0px;">You are currently running arcosv1.
-    <br><br>Thanks for installing and using arcosv1, an OSE built entirely in Electron. arcosv1 has been in development since March 14th, 2021, and has come a far way since. In order to use this software, you must read the license agreement:<br><br>
-    <span style="font-family: monospace;">===arcosv1<span id="aboutScreenVersionNumber"></span>===
+<p style="margin-top:0px;">You are currently running ArcOSv2.
+    <br><br>Thanks for installing and using arcosv2, an OSE built entirely in Electron. arcosv2 has been in development since March 14th, 2021, and has come a far way since. In order to use this software, you must read the license agreement:<br><br>
+    <span style="font-family: monospace;">===arcosv2<span id="aboutScreenVersionNumber"></span>===
     <BR>
     <bR>MIT License<br><br>Copyright (c) 2021 TechWorldInc<br><br>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction,
     including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:<br><br>The
