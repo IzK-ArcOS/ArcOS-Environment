@@ -29,14 +29,14 @@ function fileExplorerOpenDir(dirName) {
             button.append(image);
             button.append(text);
 
-            if (isDir(path.join(dirName, files[i]))) {
+            if (isDir(dirName + "/" + files[i])) {
                 image.src = "./system/images/folder.svg";
                 foldspan.append(button);
-                button.setAttribute(`onclick`, `fileExplorerOpenDir("${path.join(dirName, files[i])}")`);
+                button.setAttribute(`onclick`, `fileExplorerOpenDir("${dirName + "/" + files[i]}")`);
             } else {
                 image.src = "./system/images/file.svg";
                 filespan.append(button);
-                button.setAttribute(`onclick`, `fileExplorerOpenFile("${path.join(dirName, files[i])}")`);
+                button.setAttribute(`onclick`, `fileExplorerOpenFile("${dirName + "/" + files[i]}")`);
             }
         }
 
@@ -118,7 +118,7 @@ async function getDriveLetters() {
 
             button.className = "folder big";
             button.id = drives[i].mountpoints[j].path;
-            button.setAttribute("onclick", `fileExplorerOpenDir("${drives[i].mountpoints[j].path}");`);
+            button.setAttribute("onclick", `fileExplorerOpenDir("${drives[i].mountpoints[j].path.replace("\\","\\\\")}");`);
 
             button.append(image);
             button.append(buttonText);
