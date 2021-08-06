@@ -878,7 +878,7 @@ button.folder:active {
 
 button.folder.big,
 input.folder.big {
-    padding:20px;
+    padding: 20px;
 }
 
 button.folder.big:hover,
@@ -1299,4 +1299,19 @@ input#fileExplorerAddressBar {
     flex: 2;
     background-color: var(--controlPanelThrdBackgroundColor);
     margin: 0 5px;
+}
+
+div.window>div.windowTitle span.material-icons {
+    font-size: 16px;
+}
+
+div#ArcOSTerminalBody {
+    position: absolute;
+    top: 30px;
+    left: 0px;
+    width: 100%;
+    height: calc(100% - 30px);
+    padding: 1em;
+    overflow-y: scroll;
+    font-family: 'Ubuntu Mono',monospace;
 }

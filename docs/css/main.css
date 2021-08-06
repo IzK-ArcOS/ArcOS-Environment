@@ -75,6 +75,10 @@ button {
     transition:background-color 0.3s,opacity 2s;
 }
 
+button * {
+    vertical-align: middle;
+}
+
 button:hover {
     background-color:#66666644;
 }
@@ -188,4 +192,9 @@ div#downloadsSection button * {
     h1.big {
         font-size:30px;
     }
+}
+
+* {
+    user-select: none;
+    outline: none !important;
 }

@@ -45,6 +45,8 @@ function fileExplorerOpenDir(dirName) {
 
         fileExplorerCurrentDir = dirName;
 
+        document.getElementById("fileExplorerAddressBar").value = fileExplorerCurrentDir;
+
     });
 
 }

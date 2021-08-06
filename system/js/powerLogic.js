@@ -2,7 +2,7 @@ new consoleNotifier().startModule("ArcOS.System.powerLogic");
 
 class PowerLogic {
 
-    shutDown() {
+    shutdown() {
         document.getElementsByClassName("block")[0].style.visibility = "visible";
         document.getElementsByClassName("block")[0].style.opacity = "1";
         setTimeout(() => { window.location.href = 'shutdown.html?username=' + args.get("username"); }, 1000);
