@@ -33,7 +33,7 @@ function createUserAccount() {
 function gotoLogin(setupFinished = false) {
     console.log(`[FTS] Restarting, Setup Finished: ${setupFinished}`);
     if (setupFinished) {
-        new DOMLogic().setLSItem("FTSFinished", "true");
+        localStorage.setItem("FTSFinished", "true");
     }
     document.body.style.opacity = "0";
     setTimeout(() => {

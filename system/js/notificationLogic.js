@@ -11,7 +11,7 @@ class NotificationLogic {
                 document.getElementById('notificationService').style.opacity = '1';
                 document.getElementById('notificationTitle').innerHTML = title;
                 playSystemSound("./system/sounds/notification.mp3");
-                notificationList.push({ title: title, message: message })
+                notificationList.push({ title, message })
             } else {
                 new ErrorLogic().sendError('Notification Error', "The notification message is invalid and the notification can't start.<br>Please check the command and try again.")
             }
