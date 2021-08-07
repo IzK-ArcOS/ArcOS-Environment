@@ -1,11 +1,10 @@
 :root {
     /*ArcTerm*/
     --fontSize: 18px;
-    --cursor: none;
+    --cursor: initial;
     --backgroundColor: transparent;
     --color: #ebdbb2;
     --bodyPadding: 1em;
-    --cursor: none;
     --red: #fb4934;
     --green: #98971a;
     --yellow: #fabd2f;
@@ -1341,6 +1340,7 @@ div#ArcTermBody {
     background-color: var(--backgroundColor);
     color: var(--color);
     padding: var(--bodyPadding);
+    cursor:text
 }
 
 div.ArcTermBody * {

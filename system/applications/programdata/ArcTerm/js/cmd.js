@@ -198,11 +198,11 @@ class ArcTermCommands {
     }
 
     intro() {
-        new ArcTermUserInterface().outputColor("[█] Welcome to [ArcTerm]!", "", 'var(--purple)');
-        new ArcTermUserInterface().outputColor("[█]", "", 'var(--blue)');
-        new ArcTermUserInterface().outputColor(`[█] You are currently running ArcOS [${version}].`, "", 'var(--aqua)');
-        new ArcTermUserInterface().outputColor("[█]", "", 'var(--green)');
-        new ArcTermUserInterface().outputColor("[█] You can type [help] for a list of commands.", "", 'var(--yellow)');
+        new ArcTermUserInterface().outputColor(`ArcOS version 2.0 [${version}]`, "", 'var(--purple)');
+        new ArcTermUserInterface().outputColor(`Copyright © [TechWorldInc] ${new Date().getFullYear()}.`, "", 'var(--blue)');
+        new ArcTermUserInterface().outputColor("<br>");
+        new ArcTermUserInterface().outputColor("Welcome to [ArcTerm], the terminal of [ArcOS].", "", 'var(--green)');
+        new ArcTermUserInterface().outputColor("You can type [help] for a list of commands.","","var(--yellow)");
         new ArcTermUserInterface().prompt();
     }
 
