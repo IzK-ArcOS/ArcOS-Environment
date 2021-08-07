@@ -73,6 +73,14 @@ class ArcTermCommands {
         new PowerLogic().restart();
     }
 
+    shutdown() {
+        new PowerLogic().shutdown();
+    }
+
+    logoff() {
+        new PowerLogic().logoff();
+    }
+
     dir() {
         let fileList = "";
         let foldList = "";
@@ -196,27 +204,6 @@ class ArcTermCommands {
         new ArcTermUserInterface().outputColor("[█]", "", 'var(--green)');
         new ArcTermUserInterface().outputColor("[█] You can type [help] for a list of commands.", "", 'var(--yellow)');
         new ArcTermUserInterface().prompt();
-    }
-
-    theme() {
-        let theme = "css/";
-        for (let i = 1; i < globalCommandList.length; i++) {
-            theme += `${globalCommandList[i]} `;
-        }
-        theme = theme.trim();
-        theme += ".css";
-        fs.exists(path.join(__dirname, theme), (exists) => {
-            if (exists) {
-                new ArcTermUserInterface().outputColor(`[ SUCCESS]: <span style="color:var(--blue)">${theme}</span> has been found!`, ``, `var(--green)`);
-                new ArcTermUserInterface().applyTheme(theme);
-            } else {
-                new ArcTermUserInterface().outputColor(`[ ERROR&nbsp; ]: <span style="color:var(--blue)">${theme}</span> doesn't exist!`, ``, `var(--red)`);
-                new ArcTermUserInterface().applyTheme("");
-            }
-            new ArcTermUserInterface().prompt();
-        })
-
-
     }
 
     ls() {

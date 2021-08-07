@@ -70,6 +70,12 @@ class ArcTermUserInterface {
             case "restart":
                 cmd.restart();
                 break;
+            case "shutdown":
+                cmd.shutdown();
+                break;
+            case "logoff":
+                cmd.logoff();
+                break;
             case "dir":
                 cmd.dir();
                 break;
@@ -264,7 +270,7 @@ function initiateArcTerm() {
             new ArcTermUserInterface().focusToInput();
 
         }
-    },100)
+    }, 100)
 
     document.addEventListener("keydown", (e) => {
         let key = e.key.toLowerCase();
@@ -277,5 +283,5 @@ function initiateArcTerm() {
             }
         }
     })
-    
+
 };
