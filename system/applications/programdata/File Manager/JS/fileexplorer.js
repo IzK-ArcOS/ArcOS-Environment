@@ -120,7 +120,7 @@ async function getDriveLetters() {
 
             button.className = "folder big";
             button.id = drives[i].mountpoints[j].path;
-            button.setAttribute("onclick", `fileExplorerOpenDir("${drives[i].mountpoints[j].path.replace("\\","\\\\")}");`);
+            button.setAttribute("onclick", `fileExplorerOpenDir("${drives[i].mountpoints[j].path.replace("\\","/")}");`);
 
             button.append(image);
             button.append(buttonText);
@@ -132,7 +132,7 @@ async function getDriveLetters() {
 }
 
 function fileExplorerParentDir() {
-    fileExplorerCurrentDir = path.resolve(fileExplorerCurrentDir, '..');
+    fileExplorerCurrentDir = new GeneralLogic().replaceAllCharsInStr(path.resolve(fileExplorerCurrentDir, '..'),"\\","/");
     fileExplorerOpenDir(fileExplorerCurrentDir);
 }
 

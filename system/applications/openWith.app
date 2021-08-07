@@ -1,4 +1,4 @@
-<div class="window" id="Open With" onclick="bringToFront(this);" style="min-height:430px;max-height:430px;min-width:482px;max-width: 482px;">
+<div class="window" id="Open With" onclick="bringToFront(this);" style="min-height:480px;max-height:480px;min-width:482px;max-width: 482px;">
     <div class="windowTitle" onclick="bringToFront(parentNode);">
         <p>Open With</p>
         <button onclick="closewindow(this.parentNode.parentNode);" class="title close">✖</button>
