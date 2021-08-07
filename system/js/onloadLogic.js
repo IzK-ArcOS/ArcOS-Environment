@@ -320,7 +320,8 @@ class OnloadLogic {
             loadWindow("./system/applications/appManager.app", 1);
             loadWindow("./system/applications/openWith.app", 1);
             loadWindow("./system/applications/newsettings.app", 1);
-            loadWindow("./system/applications/ArcTerm.app",0,1);
+            loadWindow("./system/applications/ArcTerm.app",1);
+            loadWindow("./system/applications/musicPlayer.app",0,1);
             setTimeout(() => {
                 initiateArcTerm();
             }, 100);

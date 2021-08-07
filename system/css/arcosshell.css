@@ -1383,3 +1383,7 @@ div.ArcTermBody span.material-icons {
 div.ArcTermBody span.material-icons.folder {
     color: var(--yellow)
 }
+
+audio#ArcOSMediaPlayerAudioObj {
+    display:none;
+}

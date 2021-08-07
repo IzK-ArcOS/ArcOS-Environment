@@ -2,6 +2,8 @@ const { platform } = require("os");
 
 function fileExplorerOpenDir(dirName) {
 
+    dirName = new GeneralLogic().replaceAllCharsInStr(dirName,"\\","/");
+
     fs.readdir(dirName, { encoding: "ascii" }, function (err, files) {
 
         if (files == undefined || err) {
