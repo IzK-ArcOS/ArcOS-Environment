@@ -21,14 +21,11 @@ function mediaPlayerStop() {
     mediaPlayer.pause();
     mediaPlayer.src = "";
     mediaPlayer.currentTime = 0;
-    for (let i=0;i<100;i++) {
-        clearInterval(mediaPlayerInterval)
-    }
     document.getElementById("musicPlayerProgressBarIndicator").style.width = "";
     document.getElementById("musicPlayerCurrentTimeDisplay").innerText = `00:00 / 00:00`;
     setTimeout(() => {
         document.getElementById("mediaPlayerTitle").innerHTML = "Stopped";        
-    }, 50);
+    }, 100);
 }
 
 function setProgress(target = "musicPlayerProgressBarIndicator", multiplier = 4) {

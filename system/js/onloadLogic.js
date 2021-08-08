@@ -293,25 +293,25 @@ class OnloadLogic {
     loadDefaultApps() {
         loadWindow("./system/applications/newUserInterface.app", 1, 0);
         setTimeout(() => {
-            //loadWindow("./system/applications/controlPanel.app", 1);
+            loadWindow("./system/applications/controlPanel.app", 1);
             loadWindow("./system/applications/calculator.app", 1);
             loadWindow("./system/applications/shutdown.app", 1);
-            //loadWindow("./system/applications/changeUsername.app", 1);
-            //loadWindow("./system/applications/themeSelector.app", 1);
-            //loadWindow("./system/applications/addApp.app", 1);
+            loadWindow("./system/applications/changeUsername.app", 1);
+            loadWindow("./system/applications/themeSelector.app", 1);
+            loadWindow("./system/applications/addApp.app", 1);
             loadWindow("./system/applications/runCommand.app", 1);
-            //loadWindow("./system/applications/wallpaperSettings.app", 1);
-            //loadWindow("./system/applications/systemSettings.app", 1);
+            loadWindow("./system/applications/wallpaperSettings.app", 1);
+            loadWindow("./system/applications/systemSettings.app", 1);
             loadWindow("./system/applications/notepad.app", 1);
             loadWindow("./system/applications/programdata/Notepad/utils/loadFile.app", 1, 0);
             loadWindow("./system/applications/programdata/Notepad/utils/saveFile.app", 1, 0);
             loadWindow("./system/applications/programdata/Notepad/utils/delFile.app", 1, 0);
             loadWindow("./system/applications/desktopIcons.app", 1, 0);
-            //loadWindow("./system/applications/programdata/User Settings/utils/changePassword.app", 1);
-            //loadWindow("./system/applications/programdata/User Settings/utils/changeUsername.app", 1);
-            //loadWindow("./system/applications/programdata/User Settings/utils/changeUserPicture.app", 1);
-            //loadWindow("./system/applications/programdata/User Settings/utils/createUserAccount.app", 1);
-            //loadWindow("./system/applications/programdata/User Settings/utils/deleteUserAccount.app", 1);
+            loadWindow("./system/applications/programdata/User Settings/utils/changePassword.app", 1);
+            loadWindow("./system/applications/programdata/User Settings/utils/changeUsername.app", 1);
+            loadWindow("./system/applications/programdata/User Settings/utils/changeUserPicture.app", 1);
+            loadWindow("./system/applications/programdata/User Settings/utils/createUserAccount.app", 1);
+            loadWindow("./system/applications/programdata/User Settings/utils/deleteUserAccount.app", 1);
             loadWindow("./system/applications/fileExplorer.app", 1);
             loadWindow("./system/applications/programdata/File Manager/utils/createFile.app", 1, 0);
             loadWindow("./system/applications/programdata/File Manager/utils/deleteFile.app", 1, 0);
