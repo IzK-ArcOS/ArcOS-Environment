@@ -1467,3 +1467,8 @@ p#musicPlayerCurrentTimeDisplay {
     right:30px;
     bottom:15px;
 }
+
+textarea#notepadTextField {
+    font-family: 'Ubuntu Mono', monospace;
+    font-size:16px;
+}

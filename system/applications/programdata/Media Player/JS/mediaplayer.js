@@ -18,11 +18,14 @@ function mediaPlayerToggle() {
 
 function mediaPlayerStop() {
     let mediaPlayer = document.getElementById("ArcOSMediaPlayerAudioObj");
+
     mediaPlayer.pause();
     mediaPlayer.src = "";
     mediaPlayer.currentTime = 0;
+
     document.getElementById("musicPlayerProgressBarIndicator").style.width = "";
     document.getElementById("musicPlayerCurrentTimeDisplay").innerText = `00:00 / 00:00`;
+
     setTimeout(() => {
         document.getElementById("mediaPlayerTitle").innerHTML = "Stopped";        
     }, 100);
@@ -36,24 +39,34 @@ function setProgress(target = "musicPlayerProgressBarIndicator", multiplier = 4)
 
 function startMediaPlayerStatusInterval() {
     mediaPlayerInterval = setInterval(() => {
+
         setProgress();
+
         let mediaPlayer = document.getElementById("ArcOSMediaPlayerAudioObj");
+
         if (mediaPlayer.paused) {
             document.getElementById("mediaPlayerPauseButton").classList.add("selected");
             document.getElementById("mediaPlayerPlayButton").classList.remove("selected");
+
             if (mediaPlayer.src != "") {
                 document.getElementById("mediaPlayerTitle").innerHTML = "Paused";
             } else {
                 document.getElementById("mediaPlayerTitle").innerHTML = "Stopped";
             }
+
         } else {
+
             document.getElementById("mediaPlayerPauseButton").classList.remove("selected");
             document.getElementById("mediaPlayerPlayButton").classList.add("selected");
+
             let file = mediaPlayer.src;
             var filename = path.parse(file).base;
+
             document.getElementById("mediaPlayerTitle").innerHTML = "Playing";
+
         }
         if (mediaPlayer.duration > 0 && mediaPlayer.currentTime > 0) {
+
             function convertToMinutes(seconds) {
                 var hr = Math.floor(seconds / 3600);
                 var min = Math.floor((seconds - (hr * 3600)) / 60);
@@ -63,13 +76,16 @@ function startMediaPlayerStatusInterval() {
                 }
                 return min + ':' + sec;
             }
-            document.getElementById("musicPlayerCurrentTimeDisplay").innerText = `${convertToMinutes(mediaPlayer.currentTime)} / ${convertToMinutes(mediaPlayer.duration)}`
+
+            document.getElementById("musicPlayerCurrentTimeDisplay").innerText =
+            `${convertToMinutes(mediaPlayer.currentTime)} / ${convertToMinutes(mediaPlayer.duration)}`;
         }
     }, 50);
 }
 
 function openAudioFile(file) {
     let mediaPlayer = document.getElementById("ArcOSMediaPlayerAudioObj");
+    
     mediaPlayer.src = file;
     openWindow("Music Player")
     mediaPlayer.play();

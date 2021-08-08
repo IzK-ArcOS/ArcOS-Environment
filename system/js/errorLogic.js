@@ -37,12 +37,42 @@ class ErrorLogic {
             }, 50);
             errorMessageCount += 1;
             if (errorMessageCount >= 200) {
-                bsod("ErrorLogic.createNewError: ERRMSG_OVERFLOW", "The system error counter overflowed.");
+                this.bsod("ErrorLogic.createNewError: ERRMSG_OVERFLOW", "The system error counter overflowed.");
             }
         } else {
             new NotificationLogic().notificationService(title, message);
         }
 
+    }
+
+    createNewConfirmation(title, message, action) {
+        document.getElementById("windowStore").insertAdjacentHTML('beforeend', document.getElementById("confirmationTemplate").innerHTML);
+        setTimeout(() => {
+            let confirmationId = Math.floor(Math.random() * 3276700);
+            let windowId = `${title} (${confirmationId})`;
+            let titleTextId = `${confirmationId}confirmationTitle ${title}`;
+            let titleBarId = `${confirmationId}confirmationWindowTitle ${title}`;
+            let messageId = `${confirmationId} ${title} confirmationMessageMsg`;
+            let buttonId = `${confirmationId} ${title} confirmationMessageButton`
+            document.getElementById("confirmationMessageBox").id = windowId;
+            document.getElementById("confirmationMessageBoxTitle").id = titleTextId;
+            document.getElementById(titleTextId).innerHTML = title;
+            document.getElementById("confirmationMessageBoxWindowTitle").id = titleBarId;
+            document.getElementById("confirmationMessageMsg").id = messageId;
+            document.getElementById(messageId).innerHTML = message;
+            document.getElementById("confirmationMessageButton").id = buttonId;
+            document.getElementById(buttonId).setAttribute("onclick",action.toString() + `;closewindow(document.getElementById("${windowId}"))`);
+            new DragLogic().dragElement(document.getElementById(windowId), document.getElementById(titleBarId));
+            openWindow(windowId);
+            playSystemSound("./system/sounds/error.mp3");
+            setTimeout(() => {
+                bringToFront(document.getElementById(windowId));
+            }, 50);
+            errorMessageCount += 1;
+            if (errorMessageCount >= 200) {
+                this.bsod("ErrorLogic.createNewConfirmation: ERRMSG_OVERFLOW", "The system error counter overflowed.")
+            }    
+        }, 100);
     }
 }
 
