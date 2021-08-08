@@ -8,7 +8,8 @@
         </center>
     </div>
     <div class="rightPane" id="startMenuRightPane">
-        <div class="startMenuUsername" onclick="openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);openWindow('Settings');">
+        <div class="startMenuUsername"
+            onclick="openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);openWindow('Settings');">
             <span id="usernameStartMenu"></span>
         </div>
         <div class="startMenuAppTile" onclick="openWindow('Calculator');">
@@ -49,7 +50,8 @@
                 </g>
             </svg>
         </button>
-        <button class="startButton" style="height:100%;margin-right:10px;padding-top:14px;" onclick="toggleClockWidget();" id="taskbarClock">
+        <button class="startButton" style="height:100%;margin-right:10px;padding-top:14px;"
+            onclick="toggleClockWidget();" id="taskbarClock">
             <h3 id="taskbarClock">--:--</h3>
         </button>
     </span>
@@ -62,6 +64,7 @@
 <div class="clockWidget" id="taskbarVolumeControl" style="right:80px;">
     <center style="margin:10px;padding-top: 20px;padding-bottom:20px;">
         <label for="volumeControlEnableSoundSwitch">Mute Sound</label>
-        <input type="checkbox" id="volumeControlEnableSoundSwitch" style="min-width: unset;" onclick="changeVolumeState();">
+        <input type="checkbox" id="volumeControlEnableSoundSwitch" style="min-width: unset;"
+            onclick="changeVolumeState();">
     </center>
 </div>

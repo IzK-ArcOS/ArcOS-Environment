@@ -13,7 +13,7 @@ function toggleStart() {
 
 }
 
-window.addEventListener('mousedown', function(event) {
+window.addEventListener('mousedown', function (event) {
     try {
         strt = document.getElementById('startMenu');
         startbutton = document.getElementById('startButton');

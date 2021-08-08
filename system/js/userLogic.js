@@ -4,7 +4,7 @@ function createUserData(user) {
     try {
         if (!localStorage.getItem("userList").split(",").includes(user)) {
             if (user == "null" || user == "undefined" || user == null || user == undefined) {
-                try { new NotificationLogic().notificationService("User Accounts", "The specified name is invalid. Please change the name and try again.") } catch {}
+                try { new NotificationLogic().notificationService("User Accounts", "The specified name is invalid. Please change the name and try again.") } catch { }
             } else {
                 localStorage.setItem(user, 1);
                 localStorage.setItem(user + "_dispWelcome", "1");
@@ -28,7 +28,7 @@ function createUserData(user) {
         }
     } catch (e) {
         if (user == "null" || user == "undefined" || user == null || user == undefined) {
-            try { new NotificationLogic().notificationService("User Accounts", "The specified name is invalid. Please change the name and try again.") } catch {}
+            try { new NotificationLogic().notificationService("User Accounts", "The specified name is invalid. Please change the name and try again.") } catch { }
         } else {
             localStorage.setItem(user, 1);
             localStorage.setItem(user + "_dispWelcome", "1");
@@ -63,7 +63,7 @@ function deleteUserData(user, notify = 1) {
         if (notify == 1) {
             try {
                 new NotificationLogic().notificationService("User Accounts", "The requested user account has been deleted.", 3000);
-            } catch {}
+            } catch { }
         }
     } else {
         new ErrorLogic().sendError("User Accounts", "Please enter a valid username to delete.");
@@ -88,7 +88,7 @@ function resetUserData(user) {
             new PowerLogic().logoff();
         }, 5000);
 
-    } catch {}
+    } catch { }
     return `Userdata of "${user}" has been reset.`;
 }
 
@@ -140,7 +140,7 @@ function changeUserDataName(oldname, newname) {
                 closewindow(document.getElementById("windowStore").childNodes[i]);
             }
             new NotificationLogic().notificationService("User Accounts", "Your username has been updated, but you have to log in before the changes will take effect.<br><br><button onclick=\"new PowerLogic().logoff()\">Logoff</button>")
-        } catch {}
+        } catch { }
     } else {
         new ErrorLogic().sendError("User Accounts", "Please enter a valid replacement username, the entered one is incorrect.");
     }
@@ -150,14 +150,14 @@ function changeUserDataName(oldname, newname) {
 function toggleUserData(user) {
     if (localStorage.getItem(user) == 1) {
         if (localStorage.getItem("userAmount") <= 1 || localStorage.getItem("username") == user) {
-            try { new NotificationLogic().notificationService("User Accounts", "You cannot disable the user account that is logged on or that is the only user."); } catch {}
+            try { new NotificationLogic().notificationService("User Accounts", "You cannot disable the user account that is logged on or that is the only user."); } catch { }
         } else {
             localStorage.setItem(user, 0);
-            try { new NotificationLogic().notificationService("User Accounts", "The user account \"" + user + "\" has been disabled."); } catch {}
+            try { new NotificationLogic().notificationService("User Accounts", "The user account \"" + user + "\" has been disabled."); } catch { }
         }
     } else {
         localStorage.setItem(user, 1);
-        try { new NotificationLogic().notificationService("User Accounts", "The user account \"" + user + "\" has been enabled."); } catch {}
+        try { new NotificationLogic().notificationService("User Accounts", "The user account \"" + user + "\" has been enabled."); } catch { }
     }
     return `Userdata access of "${user}" has been toggled to "${localStorage.getItem(user)}".`;
 }

@@ -87,6 +87,10 @@ function fileExplorerOpenFile(file) {
         case "ecs":
             executeECS(file);
             break;
+        case "mp3":
+        case "wav":
+            openAudioFile(file);
+            break;
         default:
             openWith(file);
     }

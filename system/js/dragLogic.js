@@ -13,7 +13,7 @@ class DragLogic {
             elmnt.onmousedown = dragMouseDown;
             elmnt.ontouchstart = dragMouseDown;
         }
-    
+
         function dragMouseDown(e) {
             bringToFront(elmnt);
             e = e || window.event;
@@ -25,7 +25,7 @@ class DragLogic {
             document.ontouchmove = elementDrag;
             document.ontouchend = closeDragElement;
         }
-    
+
         function elementDrag(e) {
             e = e || window.event;
             e.preventDefault();
@@ -36,7 +36,7 @@ class DragLogic {
             elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
             elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
         }
-    
+
         function closeDragElement() {
             document.onmouseup = null;
             document.onmousemove = null;

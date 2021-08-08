@@ -1,4 +1,5 @@
-<div class="window" id="App Manager" onclick="bringToFront(this);" style="min-width:320px;min-height:180px;resize: none;">
+<div class="window" id="App Manager" onclick="bringToFront(this);"
+    style="min-width:320px;min-height:180px;resize: none;">
     <div class="windowTitle" onclick="bringToFront(parentNode);">
         <p>App Manager</p>
         <button onclick="closewindow(this.parentNode.parentNode);" class="title close">✖</button>

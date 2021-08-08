@@ -10,11 +10,11 @@ class ErrorLogic {
             this.sendError(title || "undefined", message || "undefined");
         }
     }
-    
+
     sendError(title, message, safemodeOverride = 0) {
         this.createNewError(title, message, safemodeOverride);
     }
-    
+
     createNewError(title, message, safemodeOverride = 0) {
         if (localStorage.getItem("safeMode") != 1 || safemodeOverride == 1) {
             document.getElementById("windowStore").insertAdjacentHTML('beforeend', document.getElementById("errorMessageTemplate").innerHTML);
@@ -42,7 +42,7 @@ class ErrorLogic {
         } else {
             new NotificationLogic().notificationService(title, message);
         }
-    
+
     }
 }
 

@@ -110,6 +110,34 @@ class GeneralLogic {
         }
         return myfunctions;
     }
+
+    reloadShell() {
+        document.getElementById("shellLoader").href = "";
+        setTimeout(() => {
+            document.getElementById("shellLoader").href = "./system/css/arcosshell.css";
+        }, 100);
+    }
+
+    reloadApplications() {
+        let tempList = activeapps;
+        let tempFocusedWindow = focusedWindow;
+        loadedApps = [];
+        applications = [];
+        activeapps = [];
+        focusedWindow = "";
+        document.getElementById("windowStore").innerHTML = "";
+        setTimeout(() => {
+            new OnloadLogic().loadDefaultApps();
+            setTimeout(() => {
+                for (let i = 0; i < tempList.length; i++) {
+                    openWindow(tempList[i]);
+                }
+                setTimeout(() => {
+                    bringToFront(document.getElementById(tempFocusedWindow));
+                }, 1000);
+            }, 1000);
+        }, 100);
+    }
 }
 
 

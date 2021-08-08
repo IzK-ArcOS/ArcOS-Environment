@@ -1,6 +1,6 @@
 new consoleNotifier().startModule("ArcOS.System.onloadLogic");
 
-onload = function() {
+onload = function () {
     if (!clientInformation.appVersion.includes("Electron")) { window.location.href = "invalidClient.html"; }
     let ol = new OnloadLogic();
     ol.startTime();
@@ -27,7 +27,7 @@ onload = function() {
     }, 1000);
 }
 
-onbeforeunload = function() {
+onbeforeunload = function () {
     if (!allowExit) {
         new ErrorLogic().sendError("Access Denied", "The global variable <code>allowExit</code> is set to <code>false</code>, so you can't log off or shutdown.");
         return allowExit;
@@ -55,15 +55,15 @@ class OnloadLogic {
                     h + ":" + m;
                 document.getElementById("taskbarClockWidgetTime", 0).innerText =
                     h + ":" + m + ":" + s;
-            } catch {}
+            } catch { }
         }, 500);
     }
-    
+
     checkTime(i) {
         if (i < 10) { i = "0" + i }; // add zero in front of numbers < 10
         return i;
     }
-    
+
     onloadSetWindowControls() {
         try {
             setInterval(() => {
@@ -116,10 +116,10 @@ class OnloadLogic {
                             localStorage.setItem(args.get("username") + "_muted", 0);
                             break;
                     }
-                } catch {}
+                } catch { }
             }, 100);
             new consoleNotifier().notifyStartService("ArcOS.System.onloadLogic.onloadSetWindowControls");
-    
+
         } catch (e) {
             new consoleNotifier().notifyStopService("ArcOS.System.onloadLogic.onloadSetWindowControls:" + e);
             onloadSetWindowControls();
@@ -155,7 +155,7 @@ class OnloadLogic {
             }
         }
     }
-    
+
     onloadSetIntervals() {
         setInterval(() => {
             try {
@@ -169,27 +169,30 @@ class OnloadLogic {
                 document.getElementById("usernameDisplay", 0).innerHTML = args.get("username");
                 let newPicture = "./system/images/profilePictures/" + localStorage.getItem(args.get("username") + "_picture") + ".png";
                 document.getElementById("userSettingsProfilePicture", 0).src = newPicture
-            } catch {}
-            document.getElementById("usernameStartMenu").innerHTML = args.get('username');
+                document.getElementById("usernameStartMenu").innerHTML = args.get('username');
+            } catch { }
         }, 5);
         setInterval(() => {
-            if (localStorage.getItem(args.get("username")) != "1") {
-                new ErrorLogic().bsod("OnloadLogic.onloadSetIntervals: USR_DATA_MISSING", "The user data corrupted while the session was running.");
-            }
+            try {
+                if (localStorage.getItem(args.get("username")) != "1") {
+                    new ErrorLogic().bsod("OnloadLogic.onloadSetIntervals: USR_DATA_MISSING", "The user data corrupted while the session was running.");
+                }
+            } catch { }
         }, 5);
         setInterval(() => {
             try {
                 new DOMLogic().getElemId("aboutScreenVersionNumber").innerText = version;
-            } catch {}
+            } catch { }
         }, 5);
         setInterval(() => {
-            let newVolume = parseInt(document.getElementById("systemVolumeSlider").value) / 10;
-            localStorage.setItem(args.get("username") + "_volume", newVolume)
-            globalVolume = newVolume;
-    
+            try {
+                let newVolume = parseInt(document.getElementById("systemVolumeSlider").value) / 10;
+                localStorage.setItem(args.get("username") + "_volume", newVolume)
+                globalVolume = newVolume;
+            } catch { }
         }, 50)
     }
-    
+
     onloadSetEventListeners() {
         window.addEventListener('keydown', (e) => {
             let { key, altKey } = e;
@@ -204,15 +207,15 @@ class OnloadLogic {
                 e.stopPropagation();
             }
         });
-    
+
         window.addEventListener("keydown", (e) => {
             if (e.ctrlKey && e.altKey && e.shiftKey && e.key.toLowerCase() === 'x') {
                 openWindow("Execute Command");
             }
         });
-    
+
         new consoleNotifier().notifyStartService("ArcOS.System.onloadLogic.EventListener.mousedown", "taskbarVolumeControl");
-        window.addEventListener('mousedown', function(event) {
+        window.addEventListener('mousedown', function (event) {
             try {
                 let center = document.getElementById('notificationCenter', 0);
                 let button = document.getElementById('notificationCenterButton', 0);
@@ -226,10 +229,10 @@ class OnloadLogic {
                 throw e;
                 //new ErrorLogic().bsod("OnloadLogic.onloadSetEventListeners: TVC_MISSING", "The taskbarVolumeControl couldn't be found.")
             }
-    
+
         });
     }
-    
+
     loadTaskbarPos() {
         try {
             let pos = localStorage.getItem(args.get("username") + "_taskbarpos");
@@ -243,7 +246,7 @@ class OnloadLogic {
             loadTaskbarPos();
         }
     }
-    
+
     loadTheme() {
         try {
             if (args.get("username") + "_theme" !== "") {
@@ -267,17 +270,17 @@ class OnloadLogic {
             }
         } catch { loadTheme(); }
     }
-    
+
     showBlock() {
         document.getElementsByClassName("block")[0].style.visibility = "visible";
         document.getElementsByClassName("block")[0].style.opacity = "1";
     }
-    
+
     hideBlock() {
         document.getElementsByClassName("block")[0].style.visibility = "hidden";
         document.getElementsByClassName("block")[0].style.opacity = "0";
     }
-    
+
     loadTitlebarButtonPos() {
         let tbp = localStorage.getItem(args.get("username") + "_titlebarButtonsLeft");
         if (tbp == "true") {
@@ -286,7 +289,7 @@ class OnloadLogic {
             document.getElementById("titlebarAddonLoader").href = "";
         }
     }
-    
+
     loadDefaultApps() {
         loadWindow("./system/applications/newUserInterface.app", 1, 0);
         setTimeout(() => {
@@ -320,14 +323,14 @@ class OnloadLogic {
             loadWindow("./system/applications/appManager.app", 1);
             loadWindow("./system/applications/openWith.app", 1);
             loadWindow("./system/applications/newsettings.app", 1);
-            loadWindow("./system/applications/ArcTerm.app",1);
-            loadWindow("./system/applications/musicPlayer.app",0,1);
+            loadWindow("./system/applications/ArcTerm.app", 1);
+            loadWindow("./system/applications/musicPlayer.app", 0, 1);
             setTimeout(() => {
                 initiateArcTerm();
             }, 100);
         }, 100);
     }
-    
+
     noShell() {
         try {
             document.getElementById("shellLoader").href = "";
@@ -336,10 +339,10 @@ class OnloadLogic {
             for (let i = 0; i < windows.length; i++) {
                 windows[i].style.position = "absolute";
             }
-        } catch {}
+        } catch { }
         //try { closeAllWindows(); } catch {}
     }
-    
+
     loadSafemodeDependingFunctions() {
         if (localStorage.getItem("safeMode") != 1) {
             this.onloadSetDesktopIcons();
@@ -355,5 +358,5 @@ class OnloadLogic {
     }
 }
 
-    
+
 let onloadDesktopIconsRetryCount = 0;

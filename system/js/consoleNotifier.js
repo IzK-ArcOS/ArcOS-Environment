@@ -2,14 +2,14 @@ console.warn = (e, c) => {
     if (e != "%cElectron Security Warning (Insecure Content-Security-Policy)") {
         console.info(`%c${e}`, 'color:#fe8019;');
     }
-        
+
 }
 
-window.onerror = function (e,c) {
+window.onerror = function (e, c) {
     console.info(`%c${e}`, 'color:#fb4934;');
 }
 
-console.error = (e,c) => {
+console.error = (e, c) => {
     console.info(`%c${e}`, 'color:#fb4934;');
 }
 

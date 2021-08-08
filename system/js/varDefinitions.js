@@ -48,7 +48,9 @@ let args = new URLSearchParams(window.location.search),
         { ext: "vbs", description: "VBS File" },
         { ext: "md", description: "Markdown File" },
         { ext: "htm", description: "HTML Page File" },
-        { ext: "ecs", description: "Execute Command Shortcut" }
+        { ext: "ecs", description: "Execute Command Shortcut" },
+        { ext: "mp3", description: "MPEG Audio File" },
+        { ext: "wav", description: "WAV Audio File" },
     ],
     fileExplorerCurrentDir = "",
     fileExplorerIsDir = false,
@@ -61,4 +63,5 @@ let args = new URLSearchParams(window.location.search),
     loadedApps = [],
     globalVolume = 0.1,
     notificationList = [],
-    oldNotificationList = [];
+    oldNotificationList = [],
+    mediaPlayerInterval = null;

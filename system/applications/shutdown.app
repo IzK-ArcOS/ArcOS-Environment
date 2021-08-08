@@ -31,21 +31,21 @@
         min-height: 245px;
         max-height: 245px;
     }
-    
+
     .window[id*='Shut Down ArcOS']>.body>center>h3 {
         padding: 0px;
         margin: 10px;
     }
-    
+
     .window[id*='Shut Down ArcOS']>.windowTitle>center>h3 {
         padding: 0px;
         margin: 10px;
     }
-    
+
     .window[id*='Shut Down ArcOS']>.body {
         padding: 0px;
     }
-    
+
     .window[id*='Shut Down ArcOS']>.windowTitle {
         padding: 0px;
     }

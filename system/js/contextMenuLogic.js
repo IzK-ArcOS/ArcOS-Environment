@@ -39,7 +39,7 @@ class ContextMenuLogic {
         } catch (e) {
 
             new ErrorLogic().bsod("ContextMenuLogic.rightClick: CONTEXT_MENU_INVALID", "The ArcOS context menu module or one of the modules inheriting it couldn't be found.");
-            
+
         }
     }
 

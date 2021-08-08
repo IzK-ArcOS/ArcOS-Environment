@@ -19,7 +19,7 @@ function closewindow(window) {
                 window.style.left = '50%';
                 unMaximizeWindow(window);
             }, 300);
-        } catch (e) {}
+        } catch (e) { }
         for (let i = 0; i < activeapps.length; i++) { if (window.id == activeapps[i]) { activeapps.splice(i, 1); } }
         updateTaskBar();
     } catch {
@@ -42,7 +42,7 @@ function closewindow(window) {
                     window.style.left = '50%';
                     unMaximizeWindow(window);
                 }, 300);
-            } catch (e) {}
+            } catch (e) { }
             for (let i = 0; i < activeapps.length; i++) { if (window.id == activeapps[i]) { activeapps.splice(i, 1); } }
             updateTaskBar();
 
@@ -56,7 +56,7 @@ function closewindow(window) {
 function openWindow(win) {
     win = document.getElementById(win);
     if (win != null || win != undefined) {
-        //new consoleNotifier().notifyStartService("windowLogic.openWindow", win.attributes['name'].value)
+        // new consoleNotifier().notifyStartService("windowLogic.openWindow", win.id)
         if (win != null) {
             if (!activeapps.includes(win.id)) {
                 win.style.visibility = "visible";
@@ -93,7 +93,7 @@ function openWindow(win) {
                         document.getElementById('startMenu').style.display = 'none';
                     }, 200);
                 }, 200);
-            } catch {}
+            } catch { }
         } else {
             new ErrorLogic().sendError("ArcOS Program Manager", "The requested applcation couldn't be opened: Cannot read propoerty 'id' of null.");
         }
@@ -145,7 +145,7 @@ function bringToFront(window) {
         maxamount += 1;
         window.style.zIndex = maxamount;
         focusedWindow = window.id;
-    } catch (e) {}
+    } catch (e) { }
 }
 
 function loadWindow(appFile, fromKernel = 0, register = 1, fromAddApp = 0) {
@@ -175,7 +175,7 @@ function loadWindow(appFile, fromKernel = 0, register = 1, fromAddApp = 0) {
             new ErrorLogic().sendError("System Error", "The app file specified does not contain a valid application. Please check the name and try again.<br>File: " + appFile);
         }
 
-    }).catch(function(e) { new ErrorLogic().sendError("System Error", "The system cannot find the application specified.<br>Please check the name and try again<br><br>File: " + appFile + "<br><br>" + e); });
+    }).catch(function (e) { new ErrorLogic().sendError("System Error", "The system cannot find the application specified.<br>Please check the name and try again<br><br>File: " + appFile + "<br><br>" + e); });
 }
 
 function updateTitlebar() {
@@ -190,20 +190,20 @@ function updateTitlebar() {
                 }
             }, 250);
             if (focusedWindow == x[i] && !excludeTitlebarChange.includes(x[i])) {
-                try { document.getElementById(x[i]).children[0].style.backgroundColor = "transparent"; } catch {}
-                try { document.getElementById(x[i]).children[0].style.opacity = "1"; } catch {}
+                try { document.getElementById(x[i]).children[0].style.backgroundColor = "transparent"; } catch { }
+                try { document.getElementById(x[i]).children[0].style.opacity = "1"; } catch { }
             } else {
                 if (excludeTitlebarChange.includes(x[i])) {
-                    try { document.getElementById(x[i]).children[0].style.backgroundColor = "transparent"; } catch {}
-                    try { document.getElementById(x[i]).children[0].style.opacity = "1"; } catch {}
+                    try { document.getElementById(x[i]).children[0].style.backgroundColor = "transparent"; } catch { }
+                    try { document.getElementById(x[i]).children[0].style.opacity = "1"; } catch { }
                 } else {
-                    try { document.getElementById(x[i]).children[0].style.backgroundColor = "transparent"; } catch {}
-                    try { document.getElementById(x[i]).children[0].style.opacity = "0.5"; } catch {}
+                    try { document.getElementById(x[i]).children[0].style.backgroundColor = "transparent"; } catch { }
+                    try { document.getElementById(x[i]).children[0].style.opacity = "0.5"; } catch { }
                 }
 
             }
         }
-    } catch {}
+    } catch { }
 }
 
 /*setInterval(() => {

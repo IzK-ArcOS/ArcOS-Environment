@@ -14,7 +14,7 @@ class PersonalizationLogic {
             document.getElementById("addonShellLoader").href = "./system/css/lightmodesharp.css"
         }
     }
-    
+
     applyTaskbarPos() {
         localStorage.setItem(args.get("username") + "_taskbarpos", document.getElementById("taskbarPosSelect").value);
         let pos = document.getElementById("taskbarPosSelect").value;
@@ -24,7 +24,7 @@ class PersonalizationLogic {
             document.getElementById("taskbarAddonLoader").href = "";
         }
     }
-    
+
     setAnimations() {
         let checked = document.getElementById("preferencesAnimationsSwitch").checked;
         if (checked == true) {
@@ -35,7 +35,7 @@ class PersonalizationLogic {
             document.getElementById("animationsAddonLoader").href = "system/css/noanimations.css";
         }
     }
-    
+
     setTitlebarButtonLocations() {
         let checked = document.getElementById("preferencesTitlebarButtonsSwitch").checked;
         if (checked == true) {
@@ -46,7 +46,7 @@ class PersonalizationLogic {
             document.getElementById("titlebarAddonLoader").href = "";
         }
     }
-    
+
     toggleTaskbarButtonLabels() {
         if (localStorage.getItem(args.get("username") + "_noTaskbarButtonLabels") == "true") {
             localStorage.setItem(args.get("username") + "_noTaskbarButtonLabels", "false");
@@ -55,7 +55,7 @@ class PersonalizationLogic {
         }
         updateTaskBar();
     }
-    
+
     setTaskbarButtonLabels(obj) {
         let checked = obj.checked;
         if (checked) {

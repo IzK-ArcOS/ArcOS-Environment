@@ -36,18 +36,20 @@ class NotificationLogic {
     
     startNotificationCenterPopulator() {
         setInterval(() => {
-            let newNotificationInnerHMTL = "";
-            if (notificationList.length > 0) {
-                for (let i = 0; i < notificationList.length; i++) {
-                    newNotificationInnerHMTL += `<div class="notificationCenterItem"><b>${notificationList[i].title}<button onclick="notificationList.splice(${i},1);" class="title close">✖</button></b><br><p>${notificationList[i].message}</p></div><hr><br>`;
+            try {
+                let newNotificationInnerHMTL = "";
+                if (notificationList.length > 0) {
+                    for (let i = 0; i < notificationList.length; i++) {
+                        newNotificationInnerHMTL += `<div class="notificationCenterItem"><b>${notificationList[i].title}<button onclick="notificationList.splice(${i},1);" class="title close">✖</button></b><br><p>${notificationList[i].message}</p></div><hr><br>`;
+                    }
+                    if (document.getElementById("notificationCenterInline").innerHTML != newNotificationInnerHMTL) {
+                        document.getElementById("notificationCenterInline").innerHTML = newNotificationInnerHMTL;
+                    }
+                } else {
+                    document.getElementById("notificationCenterInline").innerHTML = "<center><p style='color:let(--windowColor);'>You have no new notifications</p></center>";
                 }
-                if (document.getElementById("notificationCenterInline").innerHTML != newNotificationInnerHMTL) {
-                    document.getElementById("notificationCenterInline").innerHTML = newNotificationInnerHMTL;
-                }
-            } else {
-                document.getElementById("notificationCenterInline").innerHTML = "<center><p style='color:let(--windowColor);'>You have no new notifications</p></center>";
-            }
-    
+        
+            } catch { }
         }, 50);
     }
     

@@ -18,13 +18,71 @@ function mediaPlayerToggle() {
 
 function mediaPlayerStop() {
     let mediaPlayer = document.getElementById("ArcOSMediaPlayerAudioObj");
-
-    if (mediaPlayer.children[0].tagName = "source") {
-        mediaPlayer.pause();
-        mediaPlayer.children[0].src = "";
+    mediaPlayer.pause();
+    mediaPlayer.src = "";
+    mediaPlayer.currentTime = 0;
+    for (let i=0;i<100;i++) {
+        clearInterval(mediaPlayerInterval)
     }
+    document.getElementById("musicPlayerProgressBarIndicator").style.width = "";
+    document.getElementById("musicPlayerCurrentTimeDisplay").innerText = `00:00 / 00:00`;
+    setTimeout(() => {
+        document.getElementById("mediaPlayerTitle").innerHTML = "Stopped";        
+    }, 50);
 }
 
-function setProgress(target) {
-    // TODO: Make setProgress Code
+function setProgress(target = "musicPlayerProgressBarIndicator", multiplier = 4) {
+    target = document.getElementById(target);
+
+    target.style.width = (mediaPlayerCurrentTime() * multiplier) + "px";
+}
+
+function startMediaPlayerStatusInterval() {
+    mediaPlayerInterval = setInterval(() => {
+        setProgress();
+        let mediaPlayer = document.getElementById("ArcOSMediaPlayerAudioObj");
+        if (mediaPlayer.paused) {
+            document.getElementById("mediaPlayerPauseButton").classList.add("selected");
+            document.getElementById("mediaPlayerPlayButton").classList.remove("selected");
+            if (mediaPlayer.src != "") {
+                document.getElementById("mediaPlayerTitle").innerHTML = "Paused";
+            } else {
+                document.getElementById("mediaPlayerTitle").innerHTML = "Stopped";
+            }
+        } else {
+            document.getElementById("mediaPlayerPauseButton").classList.remove("selected");
+            document.getElementById("mediaPlayerPlayButton").classList.add("selected");
+            let file = mediaPlayer.src;
+            var filename = path.parse(file).base;
+            document.getElementById("mediaPlayerTitle").innerHTML = "Playing";
+        }
+        if (mediaPlayer.duration > 0 && mediaPlayer.currentTime > 0) {
+            function convertToMinutes(seconds) {
+                var hr = Math.floor(seconds / 3600);
+                var min = Math.floor((seconds - (hr * 3600)) / 60);
+                var sec = Math.floor(seconds - (hr * 3600) - (min * 60));
+                if (sec < 10) {
+                    sec = "0" + sec;
+                }
+                return min + ':' + sec;
+            }
+            document.getElementById("musicPlayerCurrentTimeDisplay").innerText = `${convertToMinutes(mediaPlayer.currentTime)} / ${convertToMinutes(mediaPlayer.duration)}`
+        }
+    }, 50);
+}
+
+function openAudioFile(file) {
+    let mediaPlayer = document.getElementById("ArcOSMediaPlayerAudioObj");
+    mediaPlayer.src = file;
+    openWindow("Music Player")
+    mediaPlayer.play();
+    startMediaPlayerStatusInterval();
+}
+
+function mediaPlayerForward(sec) {
+    document.getElementById("ArcOSMediaPlayerAudioObj").currentTime += sec;
+}
+
+function mediaPlayerRewind(sec) {
+    document.getElementById("ArcOSMediaPlayerAudioObj").currentTime -= sec;
 }
