@@ -55,48 +55,46 @@ function closewindow(window) {
 
 function openWindow(win) {
     win = document.getElementById(win);
-    if (win != null || win != undefined) {
-        // new consoleNotifier().notifyStartService("windowLogic.openWindow", win.id)
-        if (win != null) {
-            if (!activeapps.includes(win.id)) {
+    if (win) {
+        if (!activeapps.includes(win.id)) {
+            if (win.id === "ArcTerm") initiateArcTerm();
+            win.style.visibility = "visible";
+            win.style.display = "";
+            setTimeout(() => {
+                win.style.opacity = "1";
+            }, 250);
+            activeapps.push(win.id);
+        } else {
+            if (win.style.opacity == "0" && win.style.visibility == "hidden" && win.style.display == "none") {
                 win.style.visibility = "visible";
                 win.style.display = "";
                 setTimeout(() => {
                     win.style.opacity = "1";
-                }, 250);
-                activeapps.push(win.id);
+                }, 50);
             } else {
-                if (win.style.opacity == "0" && win.style.visibility == "hidden" && win.style.display == "none") {
-                    win.style.visibility = "visible";
-                    win.style.display = "";
-                    setTimeout(() => {
-                        win.style.opacity = "1";
-                    }, 50);
+                if (win.style.zIndex < maxamount + 1) {
+                    bringToFront(win);
                 } else {
-                    if (win.style.zIndex < maxamount + 1) {
-                        bringToFront(win);
-                    } else {
-                        minimizeWindow(win.id);
-                    }
+                    minimizeWindow(win.id);
                 }
             }
-            updateTaskBar();
-            setTimeout(() => {
-                bringToFront(win);
-                updateTitlebar();
-            }, 250);
-            try {
-                document.getElementById('startMenu').style.opacity = '0';
-                setTimeout(() => {
-                    document.getElementById('startMenu').style.visibility = 'hidden';
-                    setTimeout(() => {
-                        document.getElementById('startMenu').style.display = 'none';
-                    }, 200);
-                }, 200);
-            } catch { }
-        } else {
-            new ErrorLogic().sendError("ArcOS Program Manager", "The requested applcation couldn't be opened: Cannot read propoerty 'id' of null.");
         }
+        updateTaskBar();
+        setTimeout(() => {
+            bringToFront(win);
+            updateTitlebar();
+        }, 250);
+        try {
+            document.getElementById('startMenu').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('startMenu').style.visibility = 'hidden';
+                setTimeout(() => {
+                    document.getElementById('startMenu').style.display = 'none';
+                }, 200);
+            }, 200);
+        } catch { }
+    } else {
+        new ErrorLogic().sendError("ArcOS Program Manager", "The requested applcation couldn't be opened: Cannot read propoerty 'id' of null.");
     }
 }
 

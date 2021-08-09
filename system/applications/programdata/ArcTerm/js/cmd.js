@@ -198,18 +198,30 @@ class ArcTermCommands {
     }
 
     intro() {
-        new ArcTermUserInterface().outputColor(`ArcOS version 2.0 [${version}]`, "", 'var(--purple)');
-        new ArcTermUserInterface().outputColor(`Copyright © [TechWorldInc] ${new Date().getFullYear()}.`, "", 'var(--blue)');
-        new ArcTermUserInterface().outputColor("<br>");
-        new ArcTermUserInterface().outputColor("Welcome to [ArcTerm], the terminal of [ArcOS].", "", 'var(--green)');
-        new ArcTermUserInterface().outputColor("You can type [help] for a list of commands.","","var(--yellow)");
+        /*userInterfaceClass.outputColor("[█] Welcome to [ArcTerm]!", "", 'var(--purple)');
+        userInterfaceClass.outputColor("[█]", "", 'var(--blue)');
+        userInterfaceClass.outputColor(`[█] You are currently running ArcOS [${version}].`, "", 'var(--aqua)');
+        userInterfaceClass.outputColor("[█]", "", 'var(--green)');
+        userInterfaceClass.outputColor("[█] You can type [help] for a list of commands.", "", 'var(--yellow)');*/
+        userInterfaceClass.outputColor(
+            "    [_]         _____             <br>" +
+            "   [/_\\]  _ _ _|_   _|__ _ _ _ __  <br>" +
+            "  [/ _ \\]| '_/ _|| |/ -_) '_| '  \\ <br>" +
+            " [/_/ \\_\\]_| \\__||_|\\___|_| |_|_|_|<br>",``,`var(--blue)`,true);
+        userInterfaceClass.outputColor(
+            `<br>ArcTerm & ArcOS [${version}].<br><br>`+
+            `ArcOS and all components created by the [ArcOS team].<br><br>Entire project Licensed under [GPLv3].<br>`+
+            `Type [LICENSE] to open the license in ArcOS Notepad.<br><br>Type [HELP] for a list of commands.`,``,`var(--blue)`
+        )
         new ArcTermUserInterface().prompt();
     }
 
     ls() {
         new ArcTermUserInterface().outputColor("Showing contents of [localStorage]<br><br>", ``, `var(--blue)`)
         for (let i = 0; i < localStorage.length; i++) {
-            new ArcTermUserInterface().outputColor(`[${localStorage.key(i)}]: ${localStorage.getItem(localStorage.key(i))}`, ``, `var(--yellow)`);
+            if (!localStorage.key(i).endsWith("pswd")) {
+                new ArcTermUserInterface().outputColor(`[${localStorage.key(i)}]: ${localStorage.getItem(localStorage.key(i))}`, ``, `var(--yellow)`);
+            }
         }
         new ArcTermUserInterface().prompt();
     }
@@ -277,6 +289,90 @@ class ArcTermCommands {
         document.getElementById(inputId).setAttribute("disabled", "");
         closewindow(document.getElementById("ArcTerm"));
         initiateArcTerm();
+    }
+
+    crusr() {
+        let username = this.getAllCommandArgs(1, false);
+
+        if (username) {
+            createUserData(usernamem);
+            new ArcTermUserInterface().outputColor(`User [${username}] created.`, ``, `var(--blue)`);
+        } else {
+            new ArcTermUserInterface().outputColor(`[Error]: entered username cannot be empty.`);
+        }
+        new ArcTermUserInterface().prompt();
+    }
+
+    rmusr() {
+        let username = this.getAllCommandArgs(1, false);
+
+        if (username) {
+            deleteUserData(username,false);
+            new ArcTermUserInterface().outputColor(`User [${username}] deleted.`, ``, `var(--blue)`);
+        } else {
+            new ArcTermUserInterface().outputColor(`[Error]: entered username cannot be empty.`);
+        }
+
+        new ArcTermUserInterface().prompt();
+    }
+
+    open() {
+        let program = this.getAllCommandArgs(1, false);
+
+        if (loadedApps.includes(program) && program) {
+            new ArcTermUserInterface().outputColor(`Program [${program}] opened.`, ``, `var(--blue)`);
+            openWindow(program);
+        } else {
+            new ArcTermUserInterface().outputColor(`[Error]: program not found or entry empty.`);
+        }
+
+        new ArcTermUserInterface().prompt();
+    }
+
+    bsod() {
+        let message = this.getAllCommandArgs(1, false);
+
+        if (message) {
+            new ErrorLogic().bsod("USR_SPECIFIED_ERR", message);
+        } else {
+            new ArcTermUserInterface().outputColor(`[Error]: entered message cannot be empty.`);
+        }
+        new ArcTermUserInterface().prompt();
+    }
+
+    close() {
+        let program = this.getAllCommandArgs(1, false);
+
+        if (activeapps.includes(program) && program) {
+            new ArcTermUserInterface().outputColor(`Program [${program}] closed.`, ``, `var(--blue)`);
+            closewindow(document.getElementById(program));
+        } else {
+            new ArcTermUserInterface().outputColor(`[Error]: program not opnened or entry empty.`);
+        }
+
+        new ArcTermUserInterface().prompt();
+    }
+
+    users() {
+        startUserDataUpdateCycle();
+        setTimeout(() => {
+            let userList = localStorage.getItem("userList").split(",");
+            for (let i=0;i<userList.length;i++) {
+                new ArcTermUserInterface().outputColor(`Userdata of [${userList[i]}]:`,``,`var(--yellow)`);
+                new ArcTermUserInterface().outputColor(`    [${userList[i].padEnd(31," ")}]: ${localStorage.getItem(userList[i])}`,``,`var(--yellow)`,true);
+                for (let x=0;x<localStorage.length;x++) {
+                    if (localStorage.key(x).startsWith(userList[i] + "_")) {
+                        let value = localStorage.getItem(localStorage.key(x))
+                        let property = localStorage.key(x).replace(`${userList[i]}_`,`    `).padEnd(35," ");;
+                        if (property !== "    pswd") {
+                            new ArcTermUserInterface().outputColor(`[${property}]: ${value}`,``,`var(--yellow)`,true);
+                        }
+                    }
+                }
+            }
+    
+            new ArcTermUserInterface().prompt();    
+        }, 100);
     }
 }
 

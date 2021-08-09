@@ -10,6 +10,22 @@ function help() {
                     ``, `var(--blue)`
                 );
                 break;
+            case "rmusr":
+                new ArcTermUserInterface().outputColor(
+                    "Deletes a user account<br><br>" +
+                    "Usage: [RMUSR ]{[USERNAME]}<br><br>" +
+                    "[USERNAME]&nbsp;&nbsp;&nbsp;&nbsp;Required - The name of the user to be deleted.",
+                    ``, `var(--blue)`
+                );
+                break;
+            case "crusr":
+                new ArcTermUserInterface().outputColor(
+                    "Creates a user account<br><br>" +
+                    "Usage: [CRUSR ]{[USERNAME]}<br><br>" +
+                    "[USERNAME]&nbsp;&nbsp;&nbsp;&nbsp;Required - The name of the user to be created.",
+                    ``, `var(--blue)`
+                );
+                break;
             case "ver":
                 new ArcTermUserInterface().outputColor(
                     "Provides the current running build of NetcommandsClass.<br><br>" +
@@ -130,6 +146,14 @@ function help() {
                     ``, `var(--blue)`
                 );
                 break;
+            case "open":
+                new ArcTermUserInterface().outputColor(
+                    "Open a specified program<br><br>" +
+                    "Usage: [OPEN ]{[PROGRAM]}<br><br>" +
+                    "[PROGRAM]&nbsp;&nbsp;&nbsp;&nbsp;Required - The program to be opened.",
+                    ``, `var(--blue)`
+                );
+                break;
             case "rand":
                 new ArcTermUserInterface().outputColor(
                     "Gives back a random number with a max of the number specified.<br><br>" +
@@ -155,7 +179,7 @@ function help() {
             case "setls":
                 new ArcTermUserInterface().outputColor(
                     "Sets the specified localStorage item to the specified value.<br><br>" +
-                    "Usage: [ERROR] {[ITEM]} {[VALUE]}<br><br>" +
+                    "Usage: [SETLS] {[ITEM]} {[VALUE]}<br><br>" +
                     "[ITEM]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Required - The name of the item to be set<br>" +
                     "[VALUE]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Required - The value of the item to be set<br>",
                     ``, `var(--blue)`
@@ -164,16 +188,24 @@ function help() {
             case "remls":
                 new ArcTermUserInterface().outputColor(
                     "Removes the specified localStorage item.<br><br>" +
-                    "Usage: [ERROR] {[ITEM]}<br><br>" +
+                    "Usage: [REMLS] {[ITEM]}<br><br>" +
                     "[ITEM]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Required - The name of the item to be removed<br>",
                     ``, `var(--blue)`
                 );
                 break;
-            case "zoom":
+            case "close":
                 new ArcTermUserInterface().outputColor(
-                    "Sets the zoom level of NetcommandsClass.<br><br>" +
-                    "Usage: [ZOOM] {[LEVEL]}<br><br>" +
-                    "[LEVEL]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Optional - The zoom level to set to.<br>",
+                    "Closes the specified program.<br><br>" +
+                    "Usage: [CLOSE] {[PROGRAM]}<br><br>" +
+                    "[PROGRAM]&nbsp;&nbsp;&nbsp;Required - The name of the program to be closed<br>",
+                    ``, `var(--blue)`
+                );
+                break;
+            case "bsod":
+                new ArcTermUserInterface().outputColor(
+                    "Crashes ArcOS with a custom BSOD message.<br><br>" +
+                    "Usage: [BSOD ]{[MESSAGE]}<br><br>" +
+                    "[PROGRAM]&nbsp;&nbsp;&nbsp;&nbsp;Required - The message of the BSOD.",
                     ``, `var(--blue)`
                 );
                 break;
@@ -199,11 +231,16 @@ function help() {
             `[RF]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Prints the contents of the specified file.<br>` +
             `[COLORS]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For testing - displays an example string in every color.<br>` +
             `[INTRO]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Displays the intro text you see when you start NetcommandsClass.<br>` +
+            `[CRUSR]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates a user account.<br>` +
+            `[RMUSR]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Deletes a user account.<br>` +
             `[LS]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Shows the contents of LocalStorage.<br>` +
             `[HELP]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Displays this list or detailed information about a command.<br>` +
+            `[OPEN]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Open a specified program.<br>` +
+            `[BSOD]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Crashes ArcOS with a custom BSOD message.<br>` +
             `[HISTORY]&nbsp;&nbsp;&nbsp;&nbsp;Shows a list of the commands you entered.<br>` +
             `[SETLS]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the specified localStorage item to the specified value.<br>` +
             `[REMLS]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Removes the specified localStorage item<br>` +
+            `[CLOSE]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Closes the specified program<br>` +
             `[EXIT]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Closes the current running instance<br>`,
             ``, `var(--blue)`
         );

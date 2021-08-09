@@ -112,6 +112,28 @@ class ArcTermUserInterface {
             case "exit":
                 cmd.exit();
                 break;
+            case "crusr":
+                cmd.crusr();
+                break;
+            case "rmusr":
+                cmd.rmusr();
+                break;
+            case "open":
+                cmd.open();
+                break;
+            case "bsod":
+                cmd.bsod();
+                break;
+            case "license":
+                openWithNotepad("./LICENSE");
+                this.prompt();
+                break;
+            case "close":
+                cmd.close();
+                break;
+            case "users":
+                cmd.users();
+                break;
             case "":
                 new ArcTermUserInterface().prompt();
                 break;
@@ -210,15 +232,24 @@ class ArcTermUserInterface {
         }
     }
 
-    outputColor(text, pri = "", sec = "var(--red)") {
+    outputColor(text, pri = "", sec = "var(--red)",noSpaceCollapse = false) {
         const x = text.split(/(\[[^\]]*\])/);
         let out = "";
         for (let i = 0; i < x.length; i++) {
             const str = x[i].replace("[", "").replace("]", "")
             if (x[i].startsWith("[") && x[i].endsWith("]")) {
-                out += `<span style="color:${sec}">${str}</span>`;
+                if (noSpaceCollapse) {
+                    out += `<span style="white-space:pre;color:${sec}">${str}</span>`;
+                } else {
+                    out += `<span style="color:${sec}">${str}</span>`;
+                }
             } else {
-                out += `<span style="color:${pri}">${str}</span>`;
+                if (noSpaceCollapse) {
+                    out += `<span style="white-space:pre;color:${pri}">${str}</span>`;
+                } else {
+                    out += `<span style="color:${pri}">${str}</span>`;
+                }
+                
             }
         }
         this.outputHTML(out);

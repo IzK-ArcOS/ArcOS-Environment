@@ -211,7 +211,7 @@ class OnloadLogic {
 
         window.addEventListener("keydown", (e) => {
             if (e.ctrlKey && e.altKey && e.shiftKey && e.key.toLowerCase() === 'x') {
-                openWindow("Execute Command");
+                openWindow("ArcTerm");
             }
         });
 

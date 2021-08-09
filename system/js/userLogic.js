@@ -54,11 +54,12 @@ function deleteUserData(user, notify = 1) {
     if (user != "") {
         for (let x = 0; x < 5; x++) {
             for (let i = 0; i < localStorage.length; i++) {
-                if (localStorage.key(i).includes(user)) {
+                if (localStorage.key(i).includes(user + "_")) {
                     console.log(localStorage.key(i))
                     localStorage.removeItem(localStorage.key(i));
                 }
             }
+            localStorage.removeItem(user)
         }
         if (notify == 1) {
             try {

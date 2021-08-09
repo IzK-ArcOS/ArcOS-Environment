@@ -13,9 +13,7 @@
                 style="padding:10px;width:600px;margin-left:20px;font-family:monospace;margin-bottom:21px;"
                 spellcheck="false">
             <button style="padding:10px;margin-left:10px;margin-bottom:20px;"
-                onclick="eval(document.getElementById('runDialogInput').value)">Execute</button>
-            <button style="padding:10px;margin-left:10px;margin-right:20px;margin-bottom:20px;"
-                onclick="runCommandGoMulti();">MultiLine</button>
+                onclick="new ArcTermUserInterface().executeProgram([document.getElementById('runDialogInput').value])">Execute</button>
         </center>
     </div>
 </div>
