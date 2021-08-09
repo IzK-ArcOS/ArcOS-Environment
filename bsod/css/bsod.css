@@ -1,0 +1,20 @@
+body {
+    background-color: #000082;
+    color: #DBDBED;
+    overflow: hidden;
+    word-break: break-all;
+    font-family: 'Roboto', sans-serif;
+}
+
+* {
+    cursor: none;
+}
+
+code {
+    font-family: 'Ubuntu Mono', monospace;
+}
+
+h1 {
+    font-size: 3vw;
+    font-weight: lighter;
+}
