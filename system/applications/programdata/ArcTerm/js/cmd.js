@@ -154,7 +154,7 @@ class ArcTermCommands {
 
     cdParentDir() {
         const prevPath = currentDir;
-        const newPath = path.dirname(prevPath).split(path.sep).pop();
+        const newPath = path.dirname(prevPath).split("/").pop();
         if (prevPath === newPath) {
             currentDir = newPath;
         }
@@ -207,11 +207,11 @@ class ArcTermCommands {
             "    [_]         _____             <br>" +
             "   [/_\\]  _ _ _|_   _|__ _ _ _ __  <br>" +
             "  [/ _ \\]| '_/ _|| |/ -_) '_| '  \\ <br>" +
-            " [/_/ \\_\\]_| \\__||_|\\___|_| |_|_|_|<br>",``,`var(--blue)`,true);
+            " [/_/ \\_\\]_| \\__||_|\\___|_| |_|_|_|<br>", ``, `var(--blue)`, true);
         userInterfaceClass.outputColor(
-            `<br>ArcTerm & ArcOS [${version}].<br><br>`+
-            `ArcOS and all components created by the [ArcOS team].<br><br>Entire project Licensed under [GPLv3].<br>`+
-            `Type [LICENSE] to open the license in ArcOS Notepad.<br><br>Type [HELP] for a list of commands.`,``,`var(--blue)`
+            `<br>ArcTerm & ArcOS [${version}].<br><br>` +
+            `ArcOS and all components created by the [ArcOS team].<br><br>Entire project Licensed under [GPLv3].<br>` +
+            `Type [LICENSE] to open the license in ArcOS Notepad.<br><br>Type [HELP] for a list of commands.`, ``, `var(--blue)`
         )
         new ArcTermUserInterface().prompt();
     }
@@ -295,7 +295,7 @@ class ArcTermCommands {
         let username = this.getAllCommandArgs(1, false);
 
         if (username) {
-            createUserData(usernamem);
+            createUserData(username);
             new ArcTermUserInterface().outputColor(`User [${username}] created.`, ``, `var(--blue)`);
         } else {
             new ArcTermUserInterface().outputColor(`[Error]: entered username cannot be empty.`);
@@ -307,7 +307,7 @@ class ArcTermCommands {
         let username = this.getAllCommandArgs(1, false);
 
         if (username) {
-            deleteUserData(username,false);
+            deleteUserData(username, false);
             new ArcTermUserInterface().outputColor(`User [${username}] deleted.`, ``, `var(--blue)`);
         } else {
             new ArcTermUserInterface().outputColor(`[Error]: entered username cannot be empty.`);
@@ -354,25 +354,66 @@ class ArcTermCommands {
     }
 
     users() {
-        startUserDataUpdateCycle();
         setTimeout(() => {
             let userList = localStorage.getItem("userList").split(",");
-            for (let i=0;i<userList.length;i++) {
-                new ArcTermUserInterface().outputColor(`Userdata of [${userList[i]}]:`,``,`var(--yellow)`);
-                new ArcTermUserInterface().outputColor(`    [${userList[i].padEnd(31," ")}]: ${localStorage.getItem(userList[i])}`,``,`var(--yellow)`,true);
-                for (let x=0;x<localStorage.length;x++) {
+            for (let i = 0; i < userList.length; i++) {
+                new ArcTermUserInterface().outputColor(`Userdata of [${userList[i]}]:`, ``, `var(--yellow)`);
+                new ArcTermUserInterface().outputColor(`    [${userList[i].padEnd(31, " ")}]: ${localStorage.getItem(userList[i])}`, ``, `var(--yellow)`, true);
+                for (let x = 0; x < localStorage.length; x++) {
                     if (localStorage.key(x).startsWith(userList[i] + "_")) {
                         let value = localStorage.getItem(localStorage.key(x))
-                        let property = localStorage.key(x).replace(`${userList[i]}_`,`    `).padEnd(35," ");;
+                        let property = localStorage.key(x).replace(`${userList[i]}_`, `    `).padEnd(35, " ");;
                         if (property !== "    pswd") {
-                            new ArcTermUserInterface().outputColor(`[${property}]: ${value}`,``,`var(--yellow)`,true);
+                            new ArcTermUserInterface().outputColor(`[${property}]: ${value}`, ``, `var(--yellow)`, true);
                         }
                     }
                 }
             }
-    
-            new ArcTermUserInterface().prompt();    
+
+            new ArcTermUserInterface().prompt();
         }, 100);
+    }
+
+    notifications() {
+        if (notificationList.length) {
+            for (let i = 0; i < notificationList.length; i++) {
+                let title = notificationList[i].title,
+                    message = notificationList[i].message;
+                
+                new ArcTermUserInterface().outputColor(`[Index ${i} | ${title}]<br>${message}<br><br>`, ``, `var(--yellow)`);
+            }
+        } else {
+            new ArcTermUserInterface().outputColor(`[NotificationService]: there are no notifications`, ``, `var(--yellow)`);
+        }
+
+        new ArcTermUserInterface().prompt();
+    }
+
+    delnotification() {
+        let index = parseInt(this.getAllCommandArgs(1));
+
+        console.log(`"${index}"`);
+        if (index >= 0 && notificationList[index]) {
+            notificationList.splice(index,1);
+            new ArcTermUserInterface().outputColor(`[NotificationService]: Notification at index ${index} deleted.`, ``, `var(--yellow)`);
+        } else {
+            new ArcTermUserInterface().outputColor(`[Error]: The specified index was invalid or there was no notification at the index.`, ``);
+        }
+        new ArcTermUserInterface().prompt();
+    }
+
+    run() {
+        let file = currentDir + "/" + this.getAllCommandArgs(1);
+
+        if (this.isFile(file)) {
+            new ArcTermUserInterface().outputColor(`Opening [${file.replace("\\","/")}]...`, ``, `var(--yellow)`);
+        
+            fileExplorerOpenFile(file);
+        } else {
+            new ArcTermUserInterface().outputColor(`[Error]: The specified file is invalid.`, ``, `var(--red)`);
+        }
+        new ArcTermUserInterface().prompt();
+
     }
 }
 

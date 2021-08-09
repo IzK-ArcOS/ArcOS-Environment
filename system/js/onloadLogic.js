@@ -21,6 +21,7 @@ onload = function () {
         new NotificationLogic().startNotificationCenterPopulator();
         globalVolume = parseInt(this.localStorage.getItem(args.get("uername") + "_volume"));
         document.getElementById("systemVolumeSlider").value = globalVolume;
+        startUserDataUpdateCycle();
         setTimeout(() => {
             ol.hideBlock();
         }, 500);

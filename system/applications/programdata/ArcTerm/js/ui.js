@@ -134,6 +134,15 @@ class ArcTermUserInterface {
             case "users":
                 cmd.users();
                 break;
+            case "notif":
+                cmd.notifications();
+                break;
+            case "delnot":
+                cmd.delnotification();
+                break;
+            case "run":
+                cmd.run();
+                break;
             case "":
                 new ArcTermUserInterface().prompt();
                 break;
