@@ -1,8 +1,8 @@
 onload = function() {
-    document.getElementById("title").innerHTML = localStorage.getItem("bsodTitle");
-    document.getElementById("message").innerHTML = localStorage.getItem("bsodMessage");
-    localStorage.removeItem("bsodTitle");
-    localStorage.removeItem("bsodMessage");
+    document.getElementById("title").innerHTML = localStorage.getItem("BSODTitle");
+    document.getElementById("message").innerHTML = localStorage.getItem("BSODMessage");
+    localStorage.removeItem("BSODTitle");
+    localStorage.removeItem("BSODMessage");
     /*setTimeout(() => {
         while (true) {
             a = Array(32767).join("\u00a0") + "b";  // A string with 32767 consecutive \u00a0
