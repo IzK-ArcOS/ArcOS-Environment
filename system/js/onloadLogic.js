@@ -169,8 +169,9 @@ class OnloadLogic {
                 document.getElementById("usernameDisplay", 0).innerHTML = args.get("username");
                 let newPicture = "./system/images/profilePictures/" + localStorage.getItem(args.get("username") + "_picture") + ".png";
                 document.getElementById("userSettingsProfilePicture", 0).src = newPicture
+            } catch (e) { }
                 document.getElementById("usernameStartMenu").innerHTML = args.get('username');
-            } catch { }
+            
         }, 5);
         setInterval(() => {
             try {
@@ -321,10 +322,10 @@ class OnloadLogic {
             loadWindow("./system/applications/programdata/File Manager/utils/createFolder.app", 1, 0);
             loadWindow("./system/applications/imageViewer.app", 1, 0);
             loadWindow("./system/applications/appManager.app", 1);
-            loadWindow("./system/applications/openWith.app", 1);
+            loadWindow("./system/applications/openWith.app", 1, 0);
             loadWindow("./system/applications/newsettings.app", 1);
             loadWindow("./system/applications/ArcTerm.app", 1);
-            loadWindow("./system/applications/musicPlayer.app", 0, 1);
+            loadWindow("./system/applications/musicPlayer.app", 1, 0);
             setTimeout(() => {
                 initiateArcTerm();
             }, 100);

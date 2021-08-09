@@ -89,6 +89,7 @@ function fileExplorerOpenFile(file) {
             break;
         case "mp3":
         case "wav":
+        case "flac":
             openAudioFile(file);
             break;
         default:
