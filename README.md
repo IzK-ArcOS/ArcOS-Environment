@@ -1,6 +1,6 @@
-# ArcOS Private Repository
+# ArcOS Repository
 
-WARNING: anny code in this repository can and will have bugs, because that code will still be in development. Please take note of this, because it can result in corruption of your ArcOS user account, depending on what code is actually in development.
+WARNING: any code in this repository can and will have bugs, because that code will still be in development. Please take note of this, because it can result in corruption of your ArcOS user account, depending on what code is actually in development.
 
 If you do decide to clone the repository to your local drive, please follow these instructions:
 
