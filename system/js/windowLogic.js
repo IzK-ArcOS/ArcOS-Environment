@@ -112,8 +112,8 @@ function updateTaskBar() {
     try {
         new consoleNotifier().notifyStartService("ArcOS.System.windowLogic.updateTaskbar");
         let str = "";
-
-        if (localStorage.getItem(args.get("username") + "_noTaskbarButtonLabels") != "true") {
+        let userData = JSON.parse(localStorage.getItem(args.get("username")));
+        if (!userData.noTaskbarButtonLabels) {
             activeapps.forEach(element => {
                 if (element.includes("(") && element.endsWith(")")) {
                     str += "<button class=\"taskbarButton\" onclick='openWindow(\"" + element + "\")' title=\"" + element + "\"><span style=\"vertical-align:middle;\"><img src=\"./system/images/errorMessage.svg\" style=\"width:20px;height:20px;vertical-align:middle;\">&nbsp;&nbsp;<span style=\"vertical-align:middle;\">" + element + "</span></button> ";

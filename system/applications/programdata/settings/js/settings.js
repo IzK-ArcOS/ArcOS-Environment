@@ -4,6 +4,16 @@ function switchControlPanelPage(pageFile) {
             new ErrorLogic().sendError(`Unable to open settings applet`, `The settings applet specified is invalid. Please check the path to the applet and try again.<br><br>Details: ` + error)
         } else {
             document.getElementById(`controlPanelContent`).innerHTML = data;
+            try {
+                let userData = JSON.parse(localStorage.getItem(args.get("username")));
+        
+                document.getElementById("preferencesAnimationsSwitch").checked = userData.enableAnimations;
+                document.getElementById("preferencesTaskbarButtonLabelsSwitch").checked = !userData.noTaskbarButtonLabels;
+        
+                new PersonalizationLogic().setTitlebarButtonLocations(false, false)
+        
+                new OnloadLogic().loadTitlebarButtonPos();
+            } catch (e) {console.log(e);}
         }
     })
 }
@@ -14,29 +24,30 @@ function openSettingsPane(name, buttonNode) {
     }
     switch (name) {
         case `home`:
-            switchControlPanelPage(path.join(__dirname,`system/applications/programdata/settings/inline/home.inline`));
+            switchControlPanelPage(path.join(__dirname, `system/applications/programdata/settings/inline/home.inline`));
             break;
         case `user`:
-            switchControlPanelPage(path.join(__dirname,`system/applications/programdata/settings/inline/user.inline`));
+            switchControlPanelPage(path.join(__dirname, `system/applications/programdata/settings/inline/user.inline`));
             break;
         case `personalize`:
-            switchControlPanelPage(path.join(__dirname,`system/applications/programdata/settings/inline/personalize.inline`));
+            switchControlPanelPage(path.join(__dirname, `system/applications/programdata/settings/inline/personalize.inline`));
             break;
         case `addapp`:
-            switchControlPanelPage(path.join(__dirname,`system/applications/programdata/settings/inline/addapp.inline`));
+            switchControlPanelPage(path.join(__dirname, `system/applications/programdata/settings/inline/addapp.inline`));
             break;
         case `profpicsel`:
-            switchControlPanelPage(path.join(__dirname,`system/applications/programdata/settings/inline/profilepictureselector.inline`));
+            switchControlPanelPage(path.join(__dirname, `system/applications/programdata/settings/inline/profilepictureselector.inline`));
             break;
         case `manusers`:
-            switchControlPanelPage(path.join(__dirname,`system/applications/programdata/settings/inline/manageotherusers.inline`));
+            switchControlPanelPage(path.join(__dirname, `system/applications/programdata/settings/inline/manageotherusers.inline`));
             break;
         case `manacc`:
-            switchControlPanelPage(path.join(__dirname,`system/applications/programdata/settings/inline/manageprofile.inline`));
+            switchControlPanelPage(path.join(__dirname, `system/applications/programdata/settings/inline/manageprofile.inline`));
             break;
         case `about`:
-            switchControlPanelPage(path.join(__dirname,`system/applications/programdata/settings/inline/about.inline`));
+            switchControlPanelPage(path.join(__dirname, `system/applications/programdata/settings/inline/about.inline`));
             break;
     }
-    try { buttonNode.classList.add(`active`); } catch {}
+    try { buttonNode.classList.add(`active`); } catch { }
+
 }

@@ -58,7 +58,7 @@
             <div class="notificationCenterAction">
                 <p style="margin-bottom:5px;">Volume:</p>
                 <input type="range" min="1" max="10" id="systemVolumeSlider" style="width:50%;padding:0px;"
-                    class="slider">
+                    class="slider" onchange="new PersonalizationLogic().updateVolume(this);">
             </div>
             <div class="notificationCenterAction">
             </div>

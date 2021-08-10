@@ -19,12 +19,13 @@ onload = function () {
         hideStart();
         openSettingsPane("home", document.getElementsByClassName("controlPanelSidebar")[0]);
         new NotificationLogic().startNotificationCenterPopulator();
-        globalVolume = parseInt(this.localStorage.getItem(args.get("uername") + "_volume"));
-        document.getElementById("systemVolumeSlider").value = globalVolume;
+        globalVolume = parseInt(JSON.parse(this.localStorage.getItem(args.get("username"))).globalVolume);
         startUserDataUpdateCycle();
         setTimeout(() => {
             ol.hideBlock();
         }, 500);
+        document.getElementById("showDesktopIconsSwitch").checked = JSON.parse(this.localStorage.getItem(args.get("username"))).showDesktopIcons;
+        new GeneralLogic().updateDesktopIcons();
     }, 1000);
 }
 
@@ -68,47 +69,54 @@ class OnloadLogic {
     onloadSetWindowControls() {
         try {
             setInterval(() => {
+                let userData = JSON.parse(localStorage.getItem(args.get("username")));
+                let eas = userData.enableAnimations.toString();
+                let tbl = userData.titlebarButtonsLeft.toString();
+                let mtd = userData.muted.toString();
+                let stl = userData.noTaskbarButtonLabels.toString();
+                
                 try {
-                    let eas = localStorage.getItem(args.get("username") + "_enableAnimations");
-                    let tbl = localStorage.getItem(args.get("username") + "_titlebarButtonsLeft");
-                    let mtd = localStorage.getItem(args.get("username") + "_muted");
-                    let stl = localStorage.getItem(args.get("username") + "_noTaskbarButtonLabels");
-                    if (eas != document.getElementById("preferencesAnimationsSwitch").checked.toString()) {
-                        switch (eas) {
-                            case "true":
-                                document.getElementById("preferencesAnimationsSwitch").checked = true;
-                                document.getElementById("animationsAddonLoader").href = "";
-                                break;
-                            default:
-                                document.getElementById("preferencesAnimationsSwitch").checked = false;
-                                document.getElementById("animationsAddonLoader").href = "system/css/noanimations.css";
-                                break;
-                        }
+                    switch (eas) {
+                        case "true":
+                            document.getElementById("preferencesAnimationsSwitch").checked = true;
+                            document.getElementById("animationsAddonLoader").href = "";
+                            break;
+                        default:
+                            document.getElementById("preferencesAnimationsSwitch").checked = false;
+                            document.getElementById("animationsAddonLoader").href = "system/css/noAnimations.css";
+                            break;
                     }
+                } catch { }
+                try {
                     if (stl != document.getElementById("preferencesTaskbarButtonLabelsSwitch").checked.toString()) {
                         switch (stl) {
                             case "false":
-                                document.getElementById("preferencesTaskbarButtonLabelsSwitch").checked = true;
+                                try { document.getElementById("preferencesTaskbarButtonLabelsSwitch").checked = true; } catch { }
+                                userData.noTaskbarButtonLabels = false;
                                 updateTaskBar();
                                 break;
                             default:
-                                document.getElementById("preferencesTaskbarButtonLabelsSwitch").checked = false;
+                                try { document.getElementById("preferencesTaskbarButtonLabelsSwitch").checked = false; } catch { }
+                                userData.noTaskbarButtonLabels = true;
                                 updateTaskBar();
                                 break;
                         }
+                        localStorage.setItem(args.get("username"), JSON.stringify(userdata));
                     }
+                } catch { }
+                try {
                     switch (tbl) {
                         case "true":
                             document.getElementById("preferencesTitlebarButtonsSwitch").checked = true;
-                            //localStorage.setItem(args.get("username") + "_noTaskbarButtonLabels", "true")
                             document.getElementById("titlebarAddonLoader").href = "system/css/titleBarButtonsLeft.css";
                             break;
                         default:
                             document.getElementById("preferencesTitlebarButtonsSwitch").checked = false;
-                            //localStorage.setItem(args.get("username") + "_noTaskbarButtonLabels", "false")
                             document.getElementById("titlebarAddonLoader").href = "";
                             break;
                     }
+                } catch { }
+                try {
                     switch (mtd) {
                         case "true":
                             document.getElementById("volumeControlEnableSoundSwitch").checked = true;
@@ -119,40 +127,42 @@ class OnloadLogic {
                     }
                 } catch { }
             }, 100);
-            new consoleNotifier().notifyStartService("ArcOS.System.onloadLogic.onloadSetWindowControls");
 
         } catch (e) {
             new consoleNotifier().notifyStopService("ArcOS.System.onloadLogic.onloadSetWindowControls:" + e);
-            onloadSetWindowControls();
+            this.onloadSetWindowControls();
         }
     }
 
     onloadSetDesktopIcons() {
         try {
             new consoleNotifier().notifyStartService("ArcOS.System.onloadLogic.onloadDesktopIcons");
-            let show = localStorage.getItem(args.get("username") + "_showDesktopIcons");
+            let userData = JSON.parse(localStorage.getItem(args.get("username")));
+            let show = userData.showDesktopIcons;
             switch (show) {
                 case 0:
                     document.getElementById("desktopIcons").style.visibility = 'hidden';
-                    localStorage.setItem(args.get("username") + "_showDesktopIcons", 0);
+                    userData.showDesktopIcons = 0
                     break;
                 case 1:
                     document.getElementById("showDesktopIconsSwitch").setAttribute('checked', 'true');
                     document.getElementById("desktopIcons").style.visibility = 'visible';
-                    localStorage.setItem(args.get("username") + "_showDesktopIcons", 1);
+                    userData.showDesktopIcons = 1;
                     break;
                 default:
                     document.getElementById("showDesktopIconsSwitch").setAttribute('checked', 'true');
                     document.getElementById("desktopIcons").style.visibility = 'visible';
-                    localStorage.setItem(args.get("username") + "_showDesktopIcons", 1);
+                    userData.showDesktopIcons = 1;
                     break;
             }
+
+            localStorage.setItem(args.get("username"), JSON.stringify(userData));
         } catch {
             if (onloadDesktopIconsRetryCount >= 3) {
                 new ErrorLogic().bsod("OnloadLogic.onloadSetDesktopIcons: OSDIRC_OVERFLOW", "process couldn't be started.")
             } else {
                 new consoleNotifier().notifyStopService("ArcOS.System.onloadLogic.onloadDesktopIcons");
-                onloadSetDesktopIcons();
+                this.onloadSetDesktopIcons();
             }
         }
     }
@@ -168,15 +178,17 @@ class OnloadLogic {
                 }
                 document.getElementById("userSettingsPasswordStatusDisplay", 0).innerHTML = passwordStatus
                 document.getElementById("usernameDisplay", 0).innerHTML = args.get("username");
-                let newPicture = "./system/images/profilePictures/" + localStorage.getItem(args.get("username") + "_picture") + ".png";
+                let pfp = JSON.parse(localStorage.getItem(args.get("username"))).profilePicture
+                let newPicture = "./system/images/profilePictures/" + pfp + ".png";
                 document.getElementById("userSettingsProfilePicture", 0).src = newPicture
             } catch (e) { }
-                document.getElementById("usernameStartMenu").innerHTML = args.get('username');
-            
+            document.getElementById("usernameStartMenu").innerHTML = args.get('username');
+
         }, 5);
         setInterval(() => {
             try {
-                if (localStorage.getItem(args.get("username")) != "1") {
+                let usrEnabled = JSON.parse(localStorage.getItem(args.get("username"))).enabled;
+                if (!usrEnabled) {
                     new ErrorLogic().bsod("OnloadLogic.onloadSetIntervals: USR_DATA_MISSING", "The user data corrupted while the session was running.");
                 }
             } catch { }
@@ -186,13 +198,6 @@ class OnloadLogic {
                 new DOMLogic().getElemId("aboutScreenVersionNumber").innerText = version;
             } catch { }
         }, 5);
-        setInterval(() => {
-            try {
-                let newVolume = parseInt(document.getElementById("systemVolumeSlider").value) / 10;
-                localStorage.setItem(args.get("username") + "_volume", newVolume)
-                globalVolume = newVolume;
-            } catch { }
-        }, 50)
     }
 
     onloadSetEventListeners() {
@@ -237,7 +242,8 @@ class OnloadLogic {
 
     loadTaskbarPos() {
         try {
-            let pos = localStorage.getItem(args.get("username") + "_taskbarpos");
+            let userData = JSON.parse(localStorage.getItem(args.get("username")));
+            let pos = userData.taskbarpos;
             switch (pos) {
                 case "top":
                     document.getElementById("taskbarAddonLoader").href = "./system/css/taskbarontop.css";
@@ -251,8 +257,9 @@ class OnloadLogic {
 
     loadTheme() {
         try {
-            if (args.get("username") + "_theme" !== "") {
-                let theme = localStorage.getItem(args.get("username") + "_theme");
+            if (JSON.parse(localStorage.getItem(args.get("username"))).theme !== "") {
+                let userData = JSON.parse(localStorage.getItem(args.get("username")));
+                let theme = userData.theme;
                 switch (theme) {
                     case "darkrounded":
                         document.getElementById("addonShellLoader").href = "";
@@ -268,7 +275,9 @@ class OnloadLogic {
                         break;
                 }
             } else {
-                localStorage.setItem(args.get("username") + "_theme", "darkrounded");
+                let userData = JSON.parse(localStorage.getItem(args.get("username")));
+                userData.theme = "darkrounded";
+                localStorage.setItem(args.get("username"), JSON.stringify(userData));
             }
         } catch { loadTheme(); }
     }
@@ -283,12 +292,17 @@ class OnloadLogic {
         document.getElementsByClassName("block")[0].style.opacity = "0";
     }
 
-    loadTitlebarButtonPos() {
-        let tbp = localStorage.getItem(args.get("username") + "_titlebarButtonsLeft");
+    loadTitlebarButtonPos(updatePreferenceSwitch) {
+        let userData = JSON.parse(localStorage.getItem(args.get("username")));
+        let tbp = userData.titlebarButtonsLeft;
         if (tbp == "true") {
             document.getElementById("titlebarAddonLoader").href = "system/css/titleBarButtonsLeft.css";
         } else {
             document.getElementById("titlebarAddonLoader").href = "";
+        }
+
+        if (updatePreferenceSwitch) {
+            document.getElementById("preferencesAnimationsSwitch").checked = tbp;
         }
     }
 

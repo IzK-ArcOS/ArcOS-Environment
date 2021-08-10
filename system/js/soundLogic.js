@@ -1,8 +1,9 @@
 new consoleNotifier().startModule("ArcOS.System.soundLogic");
 
 function playSystemSound(sound) {
+    let userData = JSON.parse(localStorage.getItem(args.get("username")));
     if (localStorage.getItem("safeMode") != 1) {
-        if (localStorage.getItem(args.get("username") + "_muted") == 0) {
+        if (userData.muted == 0) {
             let audio = new Audio(sound);
             audio.volume = globalVolume;
             audio.play();
@@ -13,8 +14,12 @@ function playSystemSound(sound) {
 function changeVolumeState() {
     let checked = document.getElementById("volumeControlEnableSoundSwitch").checked;
     if (checked == true) {
-        localStorage.setItem(args.get("username") + "_muted", 1)
+        let userData = JSON.parse(localStorage.getItem(args.get("username")));
+        userData.muted = 1;
+        localStorage.setItem(args.get("username"), JSON.stringify(userData));
     } else {
-        localStorage.setItem(args.get("username") + "_muted", 0);
+        let userData = JSON.parse(localStorage.getItem(args.get("username")));
+        userData.muted = 0;
+        localStorage.setItem(args.get("username"), JSON.stringify(userData));
     }
 }

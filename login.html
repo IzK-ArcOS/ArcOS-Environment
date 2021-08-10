@@ -7,7 +7,7 @@
     <link rel="preload" href="./system/wallpaper/img05.jpg" as="image">
     <link rel="stylesheet" href="./system/css/progressbar.css">
     <script src="system/js/consoleNotifier.js"></script>
-    
+
     <script src="system/js/userLogic.js"></script>
     <script type="text/javascript" src="./setupAssets/setupLogic.js"></script>
     <script src="system/js/toolbarLogic.js"></script>
@@ -16,86 +16,58 @@
 </head>
 
 <body>
+    <div class="blur"></div>
     <div class="toolbar retracted" id="toolbar">
-        <button class="toolbar" style="margin-top:3px;padding-top:3px;padding-bottom:3px;" onclick="require('electron').remote.getCurrentWindow().toggleDevTools()">Developer Tools</button>
-        <span style="position:inherit;left:50%;top:10px;transform:translate(-50%,0);-webkit-transform: translate(-50%,0);">ArcOS</span>
+        <span
+            style="position:inherit;left:50%;top:10px;transform:translate(-50%,0);-webkit-transform: translate(-50%,0);">ArcOS</span>
         <button class="toolbar right" onclick="require('electron').remote.getCurrentWindow().close();">✖</button>
-        <button class="toolbar right" onclick="require('electron').remote.getCurrentWindow().maximize();toggleFullscreenMode();">🗖</button>
+        <button class="toolbar right"
+            onclick="require('electron').remote.getCurrentWindow().maximize();toggleFullscreenMode();">🗖</button>
         <button class="toolbar right" onclick="require('electron').remote.getCurrentWindow().minimize();">🗕</button>
     </div>
     <div class="toolbarHoverTrigger" id="toolbarHoverTrigger"></div>
+
     <div class="" id="content" style="visibility: visible;display: unset;">
     </div>
+
     <div id="page1" style="visibility: hidden;">
         <center>
-            <h1>ArcOS Login</h1>
             <div id="userSelectorInner"></div>
         </center>
     </div>
-    <button class="bottomRightOfScreen shutdown">
-        <span class="material-icons" style="vertical-align: middle;">
-        power_settings_new
-        </span>
-        <span style="vertical-align: middle;">Power</span>
-    </button>
+
     <div id="page2" style="visibility: hidden;">
-        <div class="frameLeft">
-            <img src="./system/images/user.png" height="115px" style="border-radius: 10px;" id="profilePicture">
-        </div>
-        <div class="frameRight">
-            <h2 style="margin:0px;">Welcome, <span id="username"></span></h2>
-            <p style="margin:0px;">Please fill in your password.</p>
-        </div>
-        <div class="frameBottom">
-            <br>
-            <br>
-            <p style="margin:0px;margin-bottom:5px;">Password:</p>
-            <input id="passwordInputField" type="password">
-        </div>
-        <button onclick="continueLoginAs(document.getElementById('passwordInputField').value);" class="suggested">Login</button>
-        <button onclick="userSelector();" style="left:30px;right:unset;">Cancel</button>
+        <img src="./system/images/user.png" height="115px" style="border-radius:50%;" id="profilePicture">
+        <h1 style="margin:0px;">Hi, <span id="username"></span>!</h1>
+        <h3 style="margin:0px;margin-top:5px;">Enter your password:</h3>
+        <br>
+        <input id="passwordInputField" type="password" style="width:260px">
+        <button class="buttonLoginField" onclick="continueLoginAs(document.getElementById('passwordInputField'));">
+            <span class="material-icons">arrow_forward_ios</span>
+        </button>
+        <p>
+            <a onclick="userSelector();">Cancel</a>
+        </p>
     </div>
-    <div id="page3" style="visibility: hidden;">
-        <div class="frameLeft">
-            <img src="./system/images/user.png" height="115px" style="border-radius: 10px;">
-        </div>
-        <div class="frameRight">
-            <h2 style="margin:0px;">Welcome to ArcOS!</h2>
-            <p style="margin:0px;">Please create the first account.</p>
-        </div>
-        <div class="frameBottom">
-            <br><br>
-            <input id="firstUsernameInputField">
-            <button onclick="createFirstUser();">Login</button>
-        </div>
-    </div>
+
     <div id="page6" style="visibility: hidden;">
-        <div class="frameLeft">
-            <img src="./system/images/user.png" height="115px" style="border-radius: 10px;" id="profilePicture">
-        </div>
-        <div class="frameRight">
-            <h2 style="margin:0px;">Welcome, <span id="username"></span></h2>
-            <p style="margin:0px;">Loading your personal settings...</p>
-        </div>
-        <div class="frameBottom">
-            <br>
-            <br>
-            <div class="slider userdefined" style="width:100%;">
-                <div class="line dark"></div>
-                <div class="subline dark inc" style="background: white;"></div>
-                <div class="subline dark dec" style="background: white;"></div>
-            </div>
-        </div>
-        <button onclick="cancelLogin();" style="left:30px;right:unset;">Cancel</button>
+        <img src="./system/images/user.png" height="115px" style="border-radius:50%;" id="profilePicture">
+        <h1 style="margin:0px;">Hi, <span id="username"></span>!</h1>
+        <h3 style="margin:0px;margin-top:5px;">Hang on...</h3>
+        <br>
+        <img src="./system/images/spinner.svg" height="50px">
     </div>
+
     <div id="page7" style="visibility: hidden;">
         <center>
             <h1>Password Incorrect</h1>
         </center>
         <p>The password you entered is incorrect. Please try again.
-            <br><br><i style="color:#555">ERR_PSWD_WRONG</i></p>
+            <br><br><i style="color:#555">ERR_PSWD_WRONG</i>
+        </p>
         <button onclick="loginAs(username);" id="passwordIncorrectButton">Back</button>
     </div>
+
     <div class="lockScreen" onclick="revealLogin();">
         <div class="heightCenteredAbsolute">
             <h1 class="big lockScreenClock">

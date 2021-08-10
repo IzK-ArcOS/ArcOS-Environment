@@ -1,170 +1,59 @@
 new consoleNotifier().startModule("ArcOS.System.userLogic");
 
 function createUserData(user) {
-    try {
-        if (!localStorage.getItem("userList").split(",").includes(user)) {
-            if (user == "null" || user == "undefined" || user == null || user == undefined) {
-                try { new NotificationLogic().notificationService("User Accounts", "The specified name is invalid. Please change the name and try again.") } catch { }
-            } else {
-                localStorage.setItem(user, 1);
-                localStorage.setItem(user + "_dispWelcome", "1");
-                localStorage.setItem(user + "_enableAnimations", "true");
-                localStorage.setItem(user + "_muted", "0");
-                localStorage.setItem(user + "_showDesktopIcons", "1");
-                localStorage.setItem(user + "_taskbarpos", "bottom");
-                localStorage.setItem(user + "_theme", "darkrounded");
-                localStorage.setItem(user + "_titlebarButtonsLeft", "false");
-                localStorage.setItem(user + "_noTaskbarButtonLabels", "true");
-                localStorage.setItem(user + "_globalVolume", "1");
-                if (localStorage.getItem("userAmount") != null) {
-                    localStorage.setItem("userAmount", parseInt(localStorage.getItem("userAmount")) + 1);
-                } else {
-                    localStorage.setItem("userAmount", 1);
-                }
-            }
-            //try { new ErrorLogic().sendError("Create User Account", "The user account was created successfully."); } catch {}
-        } else {
-            new ErrorLogic().sendError("Create User Account", "The user account you tried to create already exists. Please fill out a different name and try again.");
-        }
-    } catch (e) {
-        if (user == "null" || user == "undefined" || user == null || user == undefined) {
-            try { new NotificationLogic().notificationService("User Accounts", "The specified name is invalid. Please change the name and try again.") } catch { }
-        } else {
-            localStorage.setItem(user, 1);
-            localStorage.setItem(user + "_dispWelcome", "1");
-            localStorage.setItem(user + "_enableAnimations", "true");
-            localStorage.setItem(user + "_muted", "0");
-            localStorage.setItem(user + "_showDesktopIcons", "1");
-            localStorage.setItem(user + "_taskbarpos", "bottom");
-            localStorage.setItem(user + "_theme", "darkrounded");
-            localStorage.setItem(user + "_titlebarButtonsLeft", "false");
-            localStorage.setItem(user + "_noTaskbarButtonLabels", "true");
-            localStorage.setItem(user + "_globalVolume", "1");
-            if (localStorage.getItem("userAmount") != null) {
-                localStorage.setItem("userAmount", parseInt(localStorage.getItem("userAmount")) + 1);
-            } else {
-                localStorage.setItem("userAmount", 1);
-            }
-        }
-    }
+    localStorage.setItem(user, JSON.stringify(userTemplate));
     return `Userdata of "${user}" has been created.`;
 }
 
 function deleteUserData(user, notify = 1) {
-    if (user != "") {
-        for (let x = 0; x < 5; x++) {
-            for (let i = 0; i < localStorage.length; i++) {
-                if (localStorage.key(i).includes(user + "_")) {
-                    console.log(localStorage.key(i))
-                    localStorage.removeItem(localStorage.key(i));
-                }
-            }
-            localStorage.removeItem(user)
-        }
-        if (notify == 1) {
-            try {
-                new NotificationLogic().notificationService("User Accounts", "The requested user account has been deleted.", 3000);
-            } catch { }
-        }
-    } else {
-        new ErrorLogic().sendError("User Accounts", "Please enter a valid username to delete.");
+    if (user && localStorage.getItem(user)) {
+        localStorage.removeItem(user);
     }
+
     return `Userdata of "${user}" has been deleted.`;
 }
 
 function resetUserData(user) {
-    localStorage.setItem(user, 1);
-    localStorage.setItem(user + "_dispWelcome", "1");
-    localStorage.setItem(user + "_enableAnimations", "true");
-    localStorage.setItem(user + "_muted", "0");
-    localStorage.setItem(user + "_showDesktopIcons", "1");
-    localStorage.setItem(user + "_taskbarpos", "bottom");
-    localStorage.setItem(user + "_theme", "darkrounded");
-    localStorage.setItem(user + "_titlebarButtonsLeft", "false");
-    localStorage.setItem(user + "_noTaskbarButtonLabels", "true");
-    localStorage.setItem(user + "_globalVolume", "1");
-    try {
-        new NotificationLogic().notificationService("User Accounts", "Your account's user data has been reset, and you will be logged off in 5 seconds to apply the changes...")
-        setTimeout(() => {
-            new PowerLogic().logoff();
-        }, 5000);
+    if (localStorage.getItem(user)) {
+        localStorage.setItem(user, JSON.stringify(userTemplate));
+    }
 
-    } catch { }
     return `Userdata of "${user}" has been reset.`;
 }
 
 function changeUserDataName(oldname, newname) {
-    if (newname != "") {
-        let accountValue = localStorage.getItem(oldname),
-            dispWelcome = localStorage.getItem(oldname + "_dispWelcome"),
-            enableAnimations = localStorage.getItem(oldname + "_enableAnimations"),
-            muted = localStorage.getItem(oldname + "_muted"),
-            showDesktopIcons = localStorage.getItem(oldname + "_showDesktopIcons"),
-            taskbarpos = localStorage.getItem(oldname + "_taskbarpos"),
-            theme = localStorage.getItem(oldname + "_theme"),
-            titlebarButtonsLeft = localStorage.getItem(oldname + "_titlebarButtonsLeft"),
-            picture = localStorage.getItem(oldname + "_picture"),
-            pswd = localStorage.getItem(oldname + "_pswd"),
-            noTaskbarButtonLabels = localStorage.getItem(oldname + "_noTaskbarButtonLabels"),
-            volume = localStorage.getItem(oldname + "_volume");
-        localStorage.removeItem(oldname, 1);
-        localStorage.removeItem(oldname + "_dispWelcome");
-        localStorage.removeItem(oldname + "_enableAnimations");
-        localStorage.removeItem(oldname + "_muted");
-        localStorage.removeItem(oldname + "_showDesktopIcons");
-        localStorage.removeItem(oldname + "_taskbarpos");
-        localStorage.removeItem(oldname + "_theme");
-        localStorage.removeItem(oldname + "_titlebarButtonsLeft");
-        localStorage.removeItem(oldname + "_pswd");
-        localStorage.removeItem(oldname + "_picture");
-        localStorage.removeItem(oldname + "_globalVolume");
-        localStorage.setItem(newname, accountValue);
-        localStorage.setItem(newname + "_dispWelcome", dispWelcome);
-        localStorage.setItem(newname + "_enableAnimations", enableAnimations);
-        localStorage.setItem(newname + "_muted", muted);
-        localStorage.setItem(newname + "_showDesktopIcons", showDesktopIcons);
-        localStorage.setItem(newname + "_taskbarpos", taskbarpos);
-        localStorage.setItem(newname + "_theme", theme);
-        localStorage.setItem(newname + "_titlebarButtonsLeft", titlebarButtonsLeft);
-        localStorage.setItem(newname + "_picture", picture);
-        localStorage.setItem(newname + "_noTaskbarButtonLabels", noTaskbarButtonLabels);
-        localStorage.setItem(newname + "_globalVolume", volume);
-        if (pswd != null) {
-            localStorage.setItem(newname + "_pswd", pswd);
-        }
+    if (oldname && newname) {
+        if (localStorage.getITem(oldname)) {
+            let userData = JSON.parse(localStorage.getItem(oldname));
 
-        try {
-            closewindow(document.getElementById("startMenu"));
-            closewindow(document.getElementById("taskbar"));
-            closewindow(document.getElementById("desktopIcons"));
-            for (let i = 0; i < document.getElementById("windowStore").childNodes.length; i++) {
-                closewindow(document.getElementById("windowStore").childNodes[i]);
-            }
-            new NotificationLogic().notificationService("User Accounts", "Your username has been updated, but you have to log in before the changes will take effect.<br><br><button onclick=\"new PowerLogic().logoff()\">Logoff</button>")
-        } catch { }
-    } else {
-        new ErrorLogic().sendError("User Accounts", "Please enter a valid replacement username, the entered one is incorrect.");
+            localStorage.setItem(newname, JSON.stringify(userData));
+        }
     }
+
     return `Userdata of "${oldname}" has been renamed to "${newname}".`;
 }
 
 function toggleUserData(user) {
-    if (localStorage.getItem(user) == 1) {
-        if (localStorage.getItem("userAmount") <= 1 || localStorage.getItem("username") == user) {
-            try { new NotificationLogic().notificationService("User Accounts", "You cannot disable the user account that is logged on or that is the only user."); } catch { }
-        } else {
-            localStorage.setItem(user, 0);
-            try { new NotificationLogic().notificationService("User Accounts", "The user account \"" + user + "\" has been disabled."); } catch { }
-        }
-    } else {
-        localStorage.setItem(user, 1);
-        try { new NotificationLogic().notificationService("User Accounts", "The user account \"" + user + "\" has been enabled."); } catch { }
+    if (localStorage.getItem(user) && JSON.parse(localStorage.getItem(user))) {
+        let userData = JSON.parse(localStorage.getItem(user));
+
+        userData.enabled = !userData.enabled;
+
+        localStorage.setItem(user, JSON.stringify(userData));
+        return `Userdata access of "${user}" has been toggled to "${localStorage.getItem(userData.enabled)}".`;
+
     }
-    return `Userdata access of "${user}" has been toggled to "${localStorage.getItem(user)}".`;
+
 }
 
 function setUserProfilePicture(user, x) {
-    localStorage.setItem(user + "_picture", x);
+    if (user && localStorage.getItem(user) && x) {
+        let userData = JSON.parse(localStorage.getItem(user));
+
+        userData.profilePicture = x;
+
+        localStorage.setItem(user, JSON.stringify(userData));
+    }
     return `Profile picture of "${user}" has been set to "${x}".`;
 }
 
@@ -177,15 +66,92 @@ function startUserDataUpdateCycle() {
             tempUsrList = localStorage.getItem("userList").split(',');
         }
         for (let i = 0; i < localStorage.length; i++) {
-            if (localStorage.getItem((localStorage.key(i)) + "_theme") != null && localStorage.getItem((localStorage.key(i)) + "_taskbarpos") != null) {
-                if (!tempUsrList.includes(localStorage.key(i)) && localStorage.getItem(localStorage.key(i)) != "0") {
+            try {
+                let userData = JSON.parse(localStorage.getItem(localStorage.key(i)));
+
+                if (
+                    userData.enabled == 1 &&
+                    userData.theme
+                ) {
                     localStorage.setItem("userAmount", parseInt(localStorage.getItem("userAmount")) + 1);
                     tempUsrList.push(localStorage.key(i));
                 }
-                localStorage.setItem("userList", tempUsrList);
-            } else {
-                //alert("Invalid Account!")
             }
+            catch { }
+            localStorage.setItem("userList", tempUsrList);
         }
     }, 500);
 }
+
+function convertUserAccount(user) {
+    let template = userTemplate,
+        original = [],
+        converted = [],
+        out = `{"enabled":${localStorage.getItem(user)},`;
+
+    for (let key in template) {
+        converted.push(key);
+        original.push(key);
+    };
+
+    for (let i = 1; i < converted.length; i++) {
+        if (localStorage.getItem(`${user}_${converted[i]}`)) {
+            converted[i] = localStorage.getItem(`${user}_${converted[i]}`);
+
+            if (converted[i] != original[i]) {
+                console.log(converted[i], isBoolOrInt(converted[i]));
+
+                if (isBoolOrInt(converted[i].toString())) {
+                    out += `"${original[i]}":${converted[i]}`;
+                } else {
+                    out += `"${original[i]}":"${converted[i]}"`;
+                }
+
+                if (i != converted.length - 1) out += ","
+            }
+            
+            localStorage.removeItem(`${user}_${original[i]}`);
+        }
+    }
+
+    if (out.endsWith(",")) {
+        out = out.substring(0, out.length - 1);
+    }
+
+    out += "}";
+    
+    let userData = JSON.parse(out);
+    if (!userData.profilePicture) {
+        userData.profilePicture = null;
+    }
+
+    out = JSON.stringify(userData);
+
+    localStorage.setItem(user, out);
+}
+
+function isBoolOrInt(str) {
+    let isBool = (str.valueOf() === "true" || str.valueOf() === "false");
+    let isInt = isNumeric(str);
+    return (isBool || isInt);
+}
+
+function isNumeric(str) {
+    if (typeof str != "string") return false // we only process strings!  
+    return !isNaN(str) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
+           !isNaN(parseFloat(str)) // ...and ensure strings of whitespace fail
+  }
+
+const userTemplate = {
+    enabled: 1,
+    dispWelcome: 1,
+    enableAnimations: true,
+    globalVolume: 1,
+    muted: 0,
+    noTaskbarButtonLabels: true,
+    showDesktopIcons: 1,
+    taskbarpos: "bottom",
+    theme: "darkrounded",
+    titlebarButtonsLeft: false,
+    profilePicture: null,
+};

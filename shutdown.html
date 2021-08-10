@@ -42,6 +42,7 @@
 </head>
 
 <body>
+    <div class="blur"></div>
     <div class="toolbar retracted" id="toolbar">
         <button class="toolbar" style="margin-top:3px;padding-top:3px;padding-bottom:3px;" onclick="require('electron').remote.getCurrentWindow().toggleDevTools()">Developer Tools</button>
         <span style="position:inherit;left:50%;top:10px;transform:translate(-50%,0);-webkit-transform: translate(-50%,0);">arcosv2</span>
@@ -52,22 +53,11 @@
     <div class="toolbarHoverTrigger" id="toolbarHoverTrigger"></div>
     <div class="content" id="main" style="visibility: visible;display: unset;">
         <div class="content" id="main" style="visibility: visible;display: unset;">
-            <div class="frameLeft">
-                <img src="./system/images/user.png" height="115px" style="border-radius: 10px;" id="profilePicture">
-            </div>
-            <div class="frameRight">
-                <h2 style="margin:0px;">Goodbye, <span id="username"></span></h2>
-                <p style="margin:0px;">Saving your personal settings...</p>
-            </div>
-            <div class="frameBottom">
-                <br>
-                <br>
-                <div class="slider userdefined" style="width:100%;">
-                    <div class="line dark"></div>
-                    <div class="subline dark inc" style="background: white;"></div>
-                    <div class="subline dark dec" style="background: white;"></div>
-                </div>
-            </div>
+            <img src="./system/images/user.png" height="115px" style="border-radius:50%;" id="profilePicture">
+            <h1 style="margin:0px;">Goodbye, <span id="username"></span>!</h1>
+            <h3 style="margin:0px;margin-top:5px;">Shutting down...</h3>
+            <br>
+            <img src="./system/images/spinner.svg" height="50px">
         </div>
 </body>
 

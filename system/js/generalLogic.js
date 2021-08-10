@@ -27,10 +27,14 @@ class GeneralLogic {
         let elmnt = document.getElementById("showDesktopIconsSwitch").checked;
         if (elmnt) {
             document.getElementById("desktopIcons").style.visibility = "visible";
-            localStorage.setItem(args.get("username") + "_showDesktopIcons", "1");
+            let userData = JSON.parse(localStorage.getItem(args.get("username")));
+            userData.showDesktopIcons = 1;
+            localStorage.setItem(args.get("username"), JSON.stringify(userData));
         } else {
             document.getElementById("desktopIcons").style.visibility = "hidden";
-            localStorage.setItem(args.get("username") + "_showDesktopIcons", "0");
+            let userData = JSON.parse(localStorage.getItem(args.get("username")));
+            userData.showDesktopIcons = 0;
+            localStorage.setItem(args.get("username"), JSON.stringify(userData));
         }
     }
 
@@ -143,4 +147,14 @@ class GeneralLogic {
 
 window.addEventListener("click", e => {
     updateTitlebar();
+    new GeneralLogic().updateDesktopIcons();
+    new PersonalizationLogic().setTitlebarButtonLocations(false, false);
+    let userData = JSON.parse(localStorage.getItem(args.get("username")));
+    try { document.getElementById("systemVolumeSlider").value = userData.globalVolume * 10; } catch {}
+    try { document.getElementById("volumeControlEnableSoundSwitch").checked = userData.muted } catch { }
 });
+
+window.addEventListener("contextmenu", e => {
+    updateTitlebar();
+    new GeneralLogic().updateDesktopIcons();
+})

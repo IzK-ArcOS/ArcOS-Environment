@@ -2,7 +2,9 @@ new consoleNotifier().startModule("ArcOS.System.personalizationLogic");
 
 class PersonalizationLogic {
     applyTheme() {
-        localStorage.setItem(args.get("username") + "_theme", document.getElementById("themeSelect").value);
+        let userData = JSON.parse(localStorage.getItem(args.get("username")));
+        userData.theme = document.getElementById("themeSelect").value;
+        localStorage.setItem(args.get("username"), JSON.stringify(userData));
         let theme = document.getElementById("themeSelect").value;
         if (theme === "darkrounded") {
             document.getElementById("addonShellLoader").href = "";
@@ -16,7 +18,9 @@ class PersonalizationLogic {
     }
 
     applyTaskbarPos() {
-        localStorage.setItem(args.get("username") + "_taskbarpos", document.getElementById("taskbarPosSelect").value);
+        let userData = JSON.parse(localStorage.getItem(args.get("username")));
+        userData.taskbarpos = document.getElementById("taskbarPosSelect").value;
+        localStorage.setItem(args.get("username"), JSON.stringify(userData));
         let pos = document.getElementById("taskbarPosSelect").value;
         if (pos === "top") {
             document.getElementById("taskbarAddonLoader").href = "./system/css/taskbarontop.css";
@@ -28,41 +32,52 @@ class PersonalizationLogic {
     setAnimations() {
         let checked = document.getElementById("preferencesAnimationsSwitch").checked;
         if (checked == true) {
-            localStorage.setItem(args.get("username") + "_enableAnimations", true);
+            let userData = JSON.parse(localStorage.getItem(args.get("username")));
+            userData.enableAnimations = true;
+            localStorage.setItem(args.get("username"), JSON.stringify(userData));
             document.getElementById("animationsAddonLoader").href = "";
         } else {
-            localStorage.setItem(args.get("username") + "_enableAnimations", false);
+            let userData = JSON.parse(localStorage.getItem(args.get("username")));
+            userData.enableAnimations = false;
+            localStorage.setItem(args.get("username"), JSON.stringify(userData));
             document.getElementById("animationsAddonLoader").href = "system/css/noanimations.css";
         }
     }
 
     setTitlebarButtonLocations() {
-        let checked = document.getElementById("preferencesTitlebarButtonsSwitch").checked;
-        if (checked == true) {
-            localStorage.setItem(args.get("username") + "_titlebarButtonsLeft", true);
+        let userData = JSON.parse(localStorage.getItem(args.get("username")));
+        let checked = userData.titlebarButtonsLeft;
+        checked = !userData.titlebarButtonsLeft;
+        userData.setTitlebarButtonsLeft = checked;
+        localStorage.setItem(args.get("username"), JSON.stringify(userData));
+        
+        if (checked) {
             document.getElementById("titlebarAddonLoader").href = "system/css/titleBarButtonsLeft.css";
         } else {
-            localStorage.setItem(args.get("username") + "_titlebarButtonsLeft", false);
             document.getElementById("titlebarAddonLoader").href = "";
         }
     }
 
     toggleTaskbarButtonLabels() {
-        if (localStorage.getItem(args.get("username") + "_noTaskbarButtonLabels") == "true") {
-            localStorage.setItem(args.get("username") + "_noTaskbarButtonLabels", "false");
-        } else {
-            localStorage.setItem(args.get("username") + "_noTaskbarButtonLabels", "true");
-        }
+        let userData = JSON.parse(localStorage.getItem(args.get("username")));
+        userData.taskbarButtonLabels = !userData.taskbarButtonLabels;
+        localStorage.setItem(args.get("username"), JSON.stringify(userData));
         updateTaskBar();
     }
 
     setTaskbarButtonLabels(obj) {
-        let checked = obj.checked;
-        if (checked) {
-            localStorage.setItem(args.get("username") + "_noTaskbarButtonLabels", "false");
-        } else {
-            localStorage.setItem(args.get("username") + "_noTaskbarButtonLabels", "true");
-        }
+        let checked = !obj.checked;
+        let userData = JSON.parse(localStorage.getItem(args.get("username")));
+        userData.noTaskbarButtonLabels = checked;
+        localStorage.setItem(args.get("username"), JSON.stringify(userData));
         updateTaskBar();
+    }
+
+    updateVolume(obj) {
+        let userData = JSON.parse(localStorage.getItem(args.get("username")));
+        userData.globalVolume = obj.value / 10;
+        console.log("LOCAL:",userData);
+        localStorage.setItem(args.get("username"), JSON.stringify(userData));
+        console.log("LS:",JSON.parse(localStorage.getItem(args.get("username"))));
     }
 }

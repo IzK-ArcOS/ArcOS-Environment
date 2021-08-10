@@ -76,7 +76,7 @@ function toggleFullscreenMode() {
     }
 }
 
-function setToolbarMode() {
+/*function setToolbarMode() {
     let checked = document.getElementById("enableToolbarSwitch").checked;
     if (checked == true) {
         enableToolbar = true;
@@ -90,4 +90,4 @@ function setToolbarMode() {
             document.getElementById("toolbar").classList.add("retracted")
         }, 1000);
     }
-}
+}*/

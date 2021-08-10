@@ -62,7 +62,14 @@ let args = new URLSearchParams(window.location.search),
     oldProfilePicture = "",
     version = "r15",
     loadedApps = [],
-    globalVolume = 0.1,
+    globalVolume,
     notificationList = [],
     oldNotificationList = [],
     mediaPlayerInterval = null;
+
+
+try {
+    globalVolume = JSON.parse(localStorage.getItem(args.get("username"))).globalVolume
+} catch {
+    globalVolume = 0;
+}
