@@ -1,7 +1,7 @@
 new consoleNotifier().startModule("ArcOS.System.windowLogic");
 
 function closewindow(window) {
-    new consoleNotifier().notifyStartService("ArcOS.System.windowLogic.closewindow: " + window.id);
+    new consoleNotifier().notifyStartService("closewindow: closing " + window.id);
     try {
 
         try {
@@ -26,8 +26,6 @@ function closewindow(window) {
         try {
             try {
                 window = document.getElementById(window)
-                new consoleNotifier().notifyStartService("ArcOS.System.windowLogic.closewindow: " + window.id + " * ALT *");
-
                 window.style.opacity = '0';
                 setTimeout(() => {
                     window.style.visibility = "hidden";
@@ -54,6 +52,7 @@ function closewindow(window) {
 
 
 function openWindow(win) {
+    new consoleNotifier().notifyStartService("openWindow: opening " + win);
     win = document.getElementById(win);
     if (win) {
         if (!activeapps.includes(win.id)) {
@@ -99,7 +98,7 @@ function openWindow(win) {
 }
 
 function minimizeWindow(window) {
-    new consoleNotifier().notifyStartService("ArcOS.System.windowLogic.minimizeWindow: " + window);
+    new consoleNotifier().notifyStartService("minimizeWindow: " + window);
     window = document.getElementById(window);
     window.style.opacity = '0';
     setTimeout(() => {
@@ -110,7 +109,6 @@ function minimizeWindow(window) {
 
 function updateTaskBar() {
     try {
-        new consoleNotifier().notifyStartService("ArcOS.System.windowLogic.updateTaskbar");
         let str = "";
         let userData = JSON.parse(localStorage.getItem(args.get("username")));
         if (!userData.noTaskbarButtonLabels) {
@@ -216,7 +214,7 @@ function closeAllWindows() {
 }
 
 function maximizeWindow(win) {
-    new consoleNotifier().notifyStartService("ArcOS.System.windowLogic.maximizeWindow: " + win.id)
+    new consoleNotifier().notifyStartService("maximizeWindow: " + win.id)
     setTimeout(() => {
         bringToFront(win);
     }, 100);
@@ -240,7 +238,7 @@ function maximizeWindow(win) {
 }
 
 function unMaximizeWindow(win) {
-    new consoleNotifier().notifyStartService("ArcOS.System.windowLogic.unMaximizeWindow: " + win.id)
+    new consoleNotifier().notifyStartService("unMaximizeWindow: " + win.id)
     setTimeout(() => {
         bringToFront(win);
     }, 100);
@@ -262,7 +260,6 @@ function unMaximizeWindow(win) {
 }
 
 function toggleMaximizedState(win) {
-    new consoleNotifier().notifyStartService("ArcOS.System.windowLogic.toggleMaximizedState: " + win.id)
     if (localStorage.getItem(win.id + "_windowData") != null) {
         unMaximizeWindow(win);
     } else {

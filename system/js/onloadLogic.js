@@ -43,8 +43,6 @@ onbeforeunload = function () {
     }
 }
 
-new consoleNotifier().notifyStartService("ArcOS.System.onloadLogic.startTime service");
-
 class OnloadLogic {
     startTime() {
         setInterval(() => {
@@ -119,7 +117,6 @@ class OnloadLogic {
             }, 100);
 
         } catch (e) {
-            new consoleNotifier().notifyStopService("ArcOS.System.onloadLogic.onloadSetWindowControls:" + e);
             this.onloadSetWindowControls();
         }
     }
@@ -151,7 +148,6 @@ class OnloadLogic {
             if (onloadDesktopIconsRetryCount >= 3) {
                 new ErrorLogic().bsod("OnloadLogic.onloadSetDesktopIcons: OSDIRC_OVERFLOW", "process couldn't be started.")
             } else {
-                new consoleNotifier().notifyStopService("ArcOS.System.onloadLogic.onloadDesktopIcons");
                 this.onloadSetDesktopIcons();
             }
         }

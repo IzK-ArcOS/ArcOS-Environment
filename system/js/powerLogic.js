@@ -34,6 +34,7 @@ class PowerLogic {
             document.getElementById("lockScreenUsername").innerText = args.get("username");
             document.getElementsByClassName("lockScreen")[0].classList.remove("hidden");
             lockScreenActive = true;
+            new consoleNotifier().notifyStartService("powerLogic.lock: locked ArcOS Desktop")
         } else {
             new ErrorLogic().sendError("Lock Not Available","In order for you to be able to lock your desktop, you must have a password. Go to settings to set a password, and then try again.")
         }
@@ -45,6 +46,7 @@ class PowerLogic {
         let ntrdPswd = document.getElementById("lockScreenPasswordInputField").value;
 
         if (reqPswrd == ntrdPswd) {
+            new consoleNotifier().notifyStartService("powerLogic.unlock: unlocked ArcOS Desktop")
             document.getElementById("lockScreenPasswordInputField").value = "";
             document.getElementsByClassName("lockScreen")[0].classList.add("hidden");
             lockScreenActive = false;

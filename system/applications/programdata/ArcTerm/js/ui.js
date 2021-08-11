@@ -42,10 +42,6 @@ class ArcTermUserInterface {
         if (!hist.includes(command)) hist.push(command);
         const commandList = command.split(" ");
         globalCommandList = commandList;
-        console.log(
-            `%c[SUCCESS] ui.evaluateCommand: Evaluating first argv: "${commandList[0]}", argvlist is "${commandList}"`,
-            "color:lime"
-        );
         new ArcTermUserInterface().output("\n");
         const cmd = new ArcTermCommands();
         switch (commandList[0].toLowerCase()) {
@@ -171,14 +167,12 @@ class ArcTermUserInterface {
 
         cdhos.style.opacity = "0.5";
         cdhos.append(cddir)
-        console.log(`%c[VARDEFS] ui.prompt: dvdiv = ${dvdiv}, prmpt = ${prmpt}, input = ${input}`, 'color:yellow');
 
         this.focusToInput();
 
         try {
             document.getElementById(inputId).setAttribute("disabled", "");
-            console.log(`%c[SUCCESS] ui.prompt: set attribute "disabled" to enabled for "${inputId}"`, "color:lime");
-        } catch (e) { console.log(`%c[FAILURE] ui.prompt: couldn't set attribute "disabled" to enabled for "${inputId}"`, "color:red"); }
+        } catch (e) {}
 
         input.id = `input${Math.floor(Math.random() * 0x32767)}`;
         inputId = input.id;
@@ -195,7 +189,6 @@ class ArcTermUserInterface {
 
         document.getElementById("ArcTermBody").append(dvdiv);
 
-        console.log(`%c[SUCCESS] ui.prompt: Appended input with id "${input.id}" to "ArcTermBody"`, "color:lime");
     }
 
     focusToInput() {
@@ -292,8 +285,6 @@ class ArcTermUserInterface {
         try { cmdValid = cmdToken; } catch { cmdValid = false; }
         try { envValid = envToken; } catch { envValid = false; }
         try { etcValid = etcToken; } catch { etcValid = false; }
-
-        console.log(cmdValid, envValid, etcValid);
         return ([cmdValid, envValid, etcValid]);
     }
 }

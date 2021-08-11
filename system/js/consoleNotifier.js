@@ -1,16 +1,31 @@
 console.warn = (e, c) => {
     if (e != "%cElectron Security Warning (Insecure Content-Security-Policy)") {
-        console.info(`%c${e}`, 'color:#fe8019;');
+        let today = new Date();
+        let hour = today.getHours().toString().padStart(2,"0");
+        let minute = today.getMinutes().toString().padStart(2,"0");
+        let second = today.getSeconds().toString().padStart(2,"0");
+        let milisecond = today.getMilliseconds().toString().padStart(3,"0");
+        console.info(`%c${hour}:${minute}:${second}.${milisecond}%c${e}`,"color: #fff;padding:2.5px 5px;border-radius:2.5px;background-color:#666;margin-right:10px",'color:#fe8019;');
     }
 
 }
 
-window.onerror = function (e, c) {
-    console.info(`%c${e}`, 'color:#fb4934;');
+window.onerror = function(e, c) {
+    let today = new Date();
+    let hour = today.getHours().toString().padStart(2,"0");
+    let minute = today.getMinutes().toString().padStart(2,"0");
+    let second = today.getSeconds().toString().padStart(2,"0");
+    let milisecond = today.getMilliseconds().toString().padStart(3,"0");
+    console.info(`%c${hour}:${minute}:${second}.${milisecond}%cERR%c${e}`,"color: #fff;padding:2.5px 5px;border-radius:2.5px;background-color:#666;margin-right:10px","color: #fff;padding:2.5px 5px;border-radius:2.5px;background-color:#800;margin-right:10px",'color:#fb4934;');
 }
 
 console.error = (e, c) => {
-    console.info(`%c${e}`, 'color:#fb4934;');
+    let today = new Date();
+    let hour = today.getHours().toString().padStart(2,"0");
+    let minute = today.getMinutes().toString().padStart(2,"0");
+    let second = today.getSeconds().toString().padStart(2,"0");
+    let milisecond = today.getMilliseconds().toString().padStart(3,"0");
+    console.info(`%c${hour}:${minute}:${second}.${milisecond}%cERR%c${e}`,"color: #fff;padding:2.5px 5px;border-radius:2.5px;background-color:#666;margin-right:10px","color: #fff;padding:2.5px 5px;border-radius:2.5px;background-color:#800;margin-right:10px",'color:#fb4934;');
 }
 
 console.info(
@@ -25,27 +40,52 @@ console.info(
 
 class consoleNotifier {
     notifyStartService(name, forControl = "") {
+        let today = new Date();
+        let hour = today.getHours().toString().padStart(2,"0");
+        let minute = today.getMinutes().toString().padStart(2,"0");
+        let second = today.getSeconds().toString().padStart(2,"0");
+        let milisecond = today.getMilliseconds().toString().padStart(3,"0");
         if (!forControl) {
-            console.info(`%cSTATUS: Started ${name}`, "color:#b8bb26");
+            console.info(`%c${hour}:${minute}:${second}.${milisecond}%cSTATUS%c Started ${name}`,
+            "color: #fff;padding:2.5px 5px;border-radius:2.5px;background-color:#666;margin-right:10px",
+                "color: #000;padding:2.5px 5px;border-radius:2.5px;background-color:#83a598;",
+                "color: #83a598"
+            );
         } else {
-            console.info(`%cSTATUS: Started ${name} for ${forControl}`, "color:#fabd2f");
+            
+            console.info(`%c${hour}:${minute}:${second}.${milisecond}%cSTATUS%c Started ${name} for ${forControl}`,
+            "color: #fff;padding:2.5px 5px;border-radius:2.5px;background-color:#666;margin-right:10px",
+                "color: #000;padding:2.5px 5px;border-radius:2.5px;background-color:#83a598;",
+                "color: #83a598"
+            );
         }
     }
 
-    notifyLoadApp(app, mod = "System.windowLogic.loadWindow") {
-        console.info(`%cStarted ${mod}: Loading .app file from ${app}`, "color: #d3869b");
+    notifyLoadApp(app, mod = "loadWindow") {
+        let today = new Date();
+        let hour = today.getHours().toString().padStart(2,"0");
+        let minute = today.getMinutes().toString().padStart(2,"0");
+        let second = today.getSeconds().toString().padStart(2,"0");
+        let milisecond = today.getMilliseconds().toString().padStart(3,"0");
+        console.info(
+            `%c${hour}:${minute}:${second}.${milisecond}%c${mod}%c Importing ${app}`,
+            "color: #fff;padding:2.5px 5px;border-radius:2.5px;background-color:#666;margin-right:10px",
+            "color: #000;padding:2.5px 5px;border-radius:2.5px;background-color:#d3869b;",
+            "color: #d3869b"
+        );
     }
-
-    notifyStopService(name) {
-        console.info(`%Stopped ${name}...`, "color:#b8bb26");
-    }
-
-    notifyLoadModule(mod, from = "System.windowLogic.loadWindow") {
-        console.info(`${from}: Loading module from "${mod}"`);
-    }
-
     startModule(mod) {
-        console.warn(`Initiated module: ${mod}`);
+        let today = new Date();
+        let hour = today.getHours().toString().padStart(2,"0");
+        let minute = today.getMinutes().toString().padStart(2,"0");
+        let second = today.getSeconds().toString().padStart(2,"0");
+        let milisecond = today.getMilliseconds().toString().padStart(3,"0");
+        console.info(
+            `%c${hour}:${minute}:${second}.${milisecond}%cJS%c ${mod}`,
+            "color: #fff;padding:2.5px 5px;border-radius:2.5px;background-color:#666;margin-right:10px",
+            "color: #000;padding:2.5px 5px;border-radius:2.5px;background-color:#fabd2f;",
+            "color: #fabd2f"
+        );
     }
 }
-new consoleNotifier().startModule("System.consoleNotifier");
+new consoleNotifier().startModule("ArcOS.System.consoleNotifier");
