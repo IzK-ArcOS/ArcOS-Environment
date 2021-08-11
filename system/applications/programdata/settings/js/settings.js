@@ -35,13 +35,13 @@ function openSettingsPane(name, buttonNode) {
             switchControlPanelPage(path.join(__dirname, `system/applications/programdata/settings/inline/addapp.inline`));
             break;
         case `profpicsel`:
-            switchControlPanelPage(path.join(__dirname, `system/applications/programdata/settings/inline/profilepictureselector.inline`));
+            switchControlPanelPage(path.join(__dirname, `system/applications/programdata/settings/inline/profilePictureSelector.inline`));
             break;
         case `manusers`:
-            switchControlPanelPage(path.join(__dirname, `system/applications/programdata/settings/inline/manageotherusers.inline`));
+            switchControlPanelPage(path.join(__dirname, `system/applications/programdata/settings/inline/manageOtherUsers.inline`));
             break;
         case `manacc`:
-            switchControlPanelPage(path.join(__dirname, `system/applications/programdata/settings/inline/manageprofile.inline`));
+            switchControlPanelPage(path.join(__dirname, `system/applications/programdata/settings/inline/manageProfile.inline`));
             break;
         case `about`:
             switchControlPanelPage(path.join(__dirname, `system/applications/programdata/settings/inline/about.inline`));
