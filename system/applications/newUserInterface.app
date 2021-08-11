@@ -3,6 +3,8 @@
         <span class="h3" id="usernameStartMenu"></span>
         <button class="transparent newStartMenuShutDownButton" onclick="openWindow('Shut Down ArcOS');"><span
                 class="material-icons" style="font-size:20px;">power_settings_new</span></button>
+        <button class="transparent newStartMenuShutDownButton" onclick="new PowerLogic().lock();"><span
+                class="material-icons" style="font-size:20px;">lock</span></button>
     </div>
     <div class="leftPane" id="startMenuAppList"></div>
     <div class="rightPane">

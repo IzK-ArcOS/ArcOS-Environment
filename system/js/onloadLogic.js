@@ -192,22 +192,35 @@ class OnloadLogic {
 
     onloadSetEventListeners() {
         window.addEventListener('keydown', (e) => {
-            let { key, altKey } = e;
-            if (key === 'F4' && altKey) {
-                e.preventDefault();
-                if (activeapps.length == 0) {
-                    openWindow("Shut Down ArcOS");
-                } else {
-                    closewindow(document.getElementById(focusedWindow));
+            if (!lockScreenActive) {
+                let { key, altKey } = e;
+                if (key === 'F4' && altKey) {
+                    e.preventDefault();
+                    if (activeapps.length == 0) {
+                        openWindow("Shut Down ArcOS");
+                    } else {
+                        closewindow(document.getElementById(focusedWindow));
+                    }
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
                 }
-                e.stopImmediatePropagation();
-                e.stopPropagation();
             }
         });
 
         window.addEventListener("keydown", (e) => {
-            if (e.ctrlKey && e.altKey && e.shiftKey && e.key.toLowerCase() === 'x') {
-                openWindow("ArcTerm");
+            if (!lockScreenActive) {
+                if (e.ctrlKey && e.altKey && e.shiftKey && e.key.toLowerCase() === 'x') {
+                    openWindow("ArcTerm");
+                }
+            }
+        });
+
+        window.addEventListener("keydown", (e) => {
+            if (lockScreenActive) {
+                if (document.activeElement != document.getElementById("lockScreenPasswordInputField")) {
+                    e.preventDefault();
+                    return false;
+                } else {}
             }
         });
 
@@ -331,6 +344,7 @@ class OnloadLogic {
             loadWindow("./system/applications/newsettings.app", 1);
             loadWindow("./system/applications/ArcTerm.app", 1);
             loadWindow("./system/applications/musicPlayer.app", 1, 0);
+            loadWindow("./system/applications/lockScreen.app", 1, 0);
             setTimeout(() => {
                 initiateArcTerm();
             }, 100);

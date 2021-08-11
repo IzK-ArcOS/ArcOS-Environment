@@ -14,20 +14,22 @@ function toggleStart() {
 }
 
 window.addEventListener('mousedown', function (event) {
-    try {
-        strt = document.getElementById('startMenu');
-        startbutton = document.getElementById('startButton');
-        if (!strt.contains(event.target) && !strt.contains(event.target.parentNode) && event.target.id != "startButton" && !startbutton.contains(event.target) && !startbutton.contains(event.target.parentNode)) {
-            if (strt.style.visibility === 'visible') {
-                document.getElementById('startMenu').style.opacity = '0';
-                setTimeout(() => {
-                    document.getElementById('startMenu').style.visibility = 'hidden';
-                    document.getElementById('startMenu').style.display = 'none';
-                }, 200);
+    if (!lockScreenActive) {
+        try {
+            strt = document.getElementById('startMenu');
+            startbutton = document.getElementById('startButton');
+            if (!strt.contains(event.target) && !strt.contains(event.target.parentNode) && event.target.id != "startButton" && !startbutton.contains(event.target) && !startbutton.contains(event.target.parentNode)) {
+                if (strt.style.visibility === 'visible') {
+                    document.getElementById('startMenu').style.opacity = '0';
+                    setTimeout(() => {
+                        document.getElementById('startMenu').style.visibility = 'hidden';
+                        document.getElementById('startMenu').style.display = 'none';
+                    }, 200);
+                }
             }
+        } catch {
+            new ErrorLogic().bsod("window.addEventListener: START_NOT_LOADED", "The startMenu is not loaded.");
         }
-    } catch {
-        new ErrorLogic().bsod("window.addEventListener: START_NOT_LOADED", "The startMenu is not loaded.");
     }
 });
 

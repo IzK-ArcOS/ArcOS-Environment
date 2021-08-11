@@ -200,7 +200,9 @@ class ArcTermUserInterface {
 
     focusToInput() {
         try {
-            document.getElementById(inputId).focus();
+            if (!lockScreenActive) {
+                document.getElementById(inputId).focus();
+            }
         } catch (e) { /** */ }
     }
 
@@ -319,13 +321,15 @@ function initiateArcTerm() {
     }, 100)
 
     document.addEventListener("keydown", (e) => {
-        let key = e.key.toLowerCase();
+        if (!lockScreenActive) {
+            let key = e.key.toLowerCase();
 
-        if (key == "enter") {
-            if (focusedWindow == "ArcTerm") {
-                new ArcTermUserInterface().evaluateCommand();
-                e.stopImmediatePropagation();
-                e.stopPropagation();
+            if (key == "enter") {
+                if (focusedWindow == "ArcTerm") {
+                    new ArcTermUserInterface().evaluateCommand();
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                }
             }
         }
     })

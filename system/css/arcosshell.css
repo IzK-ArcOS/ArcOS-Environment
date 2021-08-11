@@ -210,7 +210,7 @@ div.taskbar {
     background: var(--controlPanelMainBackgroundColor);
     backdrop-filter: blur(20px);
     transition: var(--taskbarTransition);
-    z-index: 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
+    z-index: 1000000000;
 }
 
 .windowTitle>button:hover {
@@ -548,7 +548,7 @@ hr {
     transition: background 0.2s, opacity 0.2s;
     padding-bottom: 10px;
     box-shadow: var(--boxShadow);
-    z-index: 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000003;
+    z-index: 1000000003;
 }
 
 .context-menu ul {
@@ -657,7 +657,7 @@ div.menuBar>button.right {
     transition: var(--windowTransition);
     font-style: normal;
     font-weight: unset;
-    z-index: 100000000000000000000000000000000000000000000000000000000000000000000000000000000005;
+    z-index: 1000000000004;
 }
 
 .notification>h1,
@@ -993,10 +993,6 @@ button.controlPanelSidebar:active {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    -o-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
 }
 
 button.controlPanelSidebar.active {
@@ -1107,7 +1103,7 @@ input.folder.big.controlPanel span.material-icons.right {
     width: 500px;
     height: 600px;
     opacity: 0;
-    z-index: 1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
+    z-index: 1000000003;
 }
 
 .newStartMenu>div.bottomPane {
@@ -1201,7 +1197,7 @@ div.notificationCenter {
     border-radius: var(--windowBorderRadius);
     transition: var(--notificationCenterTransition), var(--windowTransition), var(--globalTransition);
     border: var(--windowBorder);
-    z-index: 1000000000000000000000000000000000000000;
+    z-index: 1000000003;
     box-shadow: var(--boxShadow);
     color: var(--windowColor);
     backdrop-filter: blur(30px);
@@ -1340,7 +1336,7 @@ div#ArcTermBody {
     background-color: var(--backgroundColor);
     color: var(--color);
     padding: var(--bodyPadding);
-    cursor:text
+    cursor: text
 }
 
 div.ArcTermBody * {
@@ -1385,23 +1381,23 @@ div.ArcTermBody span.material-icons.folder {
 }
 
 audio#ArcOSMediaPlayerAudioObj {
-    display:none;
+    display: none;
 }
 
 div.musicPlayerControlsDiv {
-    padding:0px;
-    position:absolute;
-    top:45px;
-    left:30px;
+    padding: 0px;
+    position: absolute;
+    top: 45px;
+    left: 30px;
 }
 
 div.musicPlayerControlsDiv button {
-    width:40px;
-    height:40px;
+    width: 40px;
+    height: 40px;
     min-width: unset;
     min-height: unset;
     padding: 8px;
-    margin:0px;
+    margin: 0px;
 }
 
 div.musicPlayerControlsDiv button.play {
@@ -1414,11 +1410,10 @@ div.musicPlayerControlsDiv button.pause.selected {
     background-color: var(--buttonBackgroundColorHover);
 }
 
-
 div.musicPlayerControlsDiv button.pause {
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
-    margin-left:-3px;
+    margin-left: -3px;
 }
 
 div.musicPlayerControlsDiv button.rewind {
@@ -1426,49 +1421,129 @@ div.musicPlayerControlsDiv button.rewind {
     border-bottom-right-radius: 0px;
 }
 
-
 div.musicPlayerControlsDiv button.forward {
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
-    margin-left:-3px;
+    margin-left: -3px;
 }
 
 div.musicPlayerProgressBarOutline {
-    position:absolute;
-    top:100px;
-    left:30px;
-    width:400px;
-    height:8px;
+    position: absolute;
+    top: 100px;
+    left: 30px;
+    width: 400px;
+    height: 8px;
     border-radius: 4px;
     background-color: var(--buttonBackgroundColorActive);
 }
 
 div.musicPlayerProgressBarOutline div.progressIndicator {
-    top:0px;
-    left:0px;
-    height:8px;
+    top: 0px;
+    left: 0px;
+    height: 8px;
     border-radius: 4px;
     min-width: 8px;
-    width:8px;
+    width: 8px;
     background-color: deepskyblue;
-    transition:none;
+    transition: none;
 }
 
 p.mediaPlayerPath {
-    position:absolute;
-    top:123px;
-    left:30px;
+    position: absolute;
+    top: 123px;
+    left: 30px;
     max-width: 400px;
-    overflow:hidden;
+    overflow: hidden;
 }
 
 p#musicPlayerCurrentTimeDisplay {
-    position:fixed;
-    right:30px;
-    bottom:15px;
+    position: fixed;
+    right: 30px;
+    bottom: 15px;
 }
 
 textarea#notepadTextField {
     font-family: 'Ubuntu Mono', monospace;
-    font-size:16px;
+    font-size: 16px;
+}
+
+div.lockScreen {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 50%);
+    backdrop-filter: blur(50px);
+    color: white;
+    z-index: 1000000000009;
+    transition:visibility 0.3s, opacity 0.3s;
+}
+
+.centerText {
+    text-align: center;
+}
+
+div.lockScreenlockBackground {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.055);   
+    align-self: center;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+div.lockScreenlockBackground span.material-icons {
+    font-size: 100px;
+}
+
+input#lockScreenPasswordInputField {
+    background-color: rgba(255, 255, 255, 0.055);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: x-large;
+    width: calc(100% - 17px);
+    padding: 5px 10px;
+    margin-bottom: 0px;
+    margin: 0px;
+    min-width: unset;
+    width: 280px;
+    height: 38px;
+    vertical-align: middle;
+}
+
+button.lockScreenUnlockButton {
+    width: 38px;
+    height: 38px;
+    background-color: rgba(255, 255, 255, 0.055);
+    border-radius: 19px;
+    min-width: unset;
+    padding: 0px;
+    vertical-align: middle;
+}
+
+button.lockScreenUnlockButton span.material-icons {
+    font-size: 15px;
+    vertical-align: middle;
+}
+
+div.lockScreen p {
+    opacity: 0.5;
+    font-size: 20px;
+    margin: 0px;
+    margin-bottom: 10px;
+    margin-top: 10px
+}
+
+div.lockScreen h3 {
+    font-size: 28px;
+    font-weight: normal;
+    margin-top: 24px
+}
+
+div.lockScreen.hidden {
+    visibility: hidden;
+    opacity:0;
 }

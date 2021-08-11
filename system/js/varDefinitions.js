@@ -70,7 +70,8 @@ let args = new URLSearchParams(window.location.search),
     globalVolume,
     notificationList = [],
     oldNotificationList = [],
-    mediaPlayerInterval = null;
+    mediaPlayerInterval = null,
+    lockScreenActive = false;
 
 
 try {

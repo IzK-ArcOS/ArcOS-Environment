@@ -14,7 +14,7 @@ function calculatorClear() {
 }
 bringToFront("Calculator");
 let x = window.addEventListener("keydown", e => {
-    if (activeapps.includes("Calculator") && focusedWindow == "Calculator") {
+    if (activeapps.includes("Calculator") && focusedWindow == "Calculator" && !lockScreenActive) {
         switch (e.key.toLowerCase()) {
             case "1":
                 document.getElementById("calculator1").click();
