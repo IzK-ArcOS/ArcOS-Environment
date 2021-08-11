@@ -109,7 +109,7 @@ function convertUserAccount(user) {
 
                 if (i != converted.length - 1) out += ","
             }
-            
+
             localStorage.removeItem(`${user}_${original[i]}`);
         }
     }
@@ -119,7 +119,7 @@ function convertUserAccount(user) {
     }
 
     out += "}";
-    
+
     let userData = JSON.parse(out);
     if (!userData.profilePicture) {
         userData.profilePicture = null;
@@ -139,8 +139,34 @@ function isBoolOrInt(str) {
 function isNumeric(str) {
     if (typeof str != "string") return false // we only process strings!  
     return !isNaN(str) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
-           !isNaN(parseFloat(str)) // ...and ensure strings of whitespace fail
-  }
+        !isNaN(parseFloat(str)) // ...and ensure strings of whitespace fail
+}
+
+function hotSwapUserAccount(username) {
+    if (localStorage.getItem(username)) {
+        let userData = JSON.parse(localStorage.getItem(username));
+        
+        if (!userData.pswd) {
+            args.set("username", username);
+            setTimeout(() => {
+                new OnloadLogic().loadTheme();
+                new OnloadLogic().loadTaskbarPos();
+                new PersonalizationLogic().setTitlebarButtonLocations(false, false)
+                new GeneralLogic().updateDesktopIcons();
+                new PersonalizationLogic().setAnimations(false);
+                openSettingsPane("home", document.getElementsByClassName("controlPanelSidebar")[0]);
+                initiateArcTerm();
+                notifications = [];
+                closeAllWindows();
+                setTimeout(() => {    
+                    new ErrorLogic().sendError("ArcOS User Accounts",`The account was successfully switched to "${username}".`);
+                }, 100);
+            }, 100);            
+        } else {
+            new ErrorLogic().sendError("Unable to switch",`ArcOS can't switch to the "${username}" account because it has a password. To use this account, log in to it using the ArcOS Login.`);
+        }
+    }
+}
 
 const userTemplate = {
     enabled: 1,

@@ -58,6 +58,7 @@ onload = function () {
         document.getElementById("content").className = "content";
         document.getElementById("username").innerHTML = "ArcOS Safe Mode";
         document.getElementsByClassName("blur")[0].classList.remove("hidden");
+        this.document.getElementsByClassName("lockScreen")[0].style.visibility = "hidden";
 
         let userPicPath = "";
 
@@ -105,6 +106,7 @@ function userSelector() {
         document.getElementById("content").classList.remove("content");
         document.getElementById("content").classList.add("userSelector");
         document.getElementsByClassName("blur")[0].classList.add("hidden");
+        this.document.getElementsByClassName("lockScreen")[0].style.visibility = "visible";
 
         populateUserSelector();
 
@@ -159,6 +161,7 @@ function loginAs(user) {
                 document.getElementById("content").className = "content";
                 document.getElementById("username").innerHTML = user;
                 document.getElementsByClassName("blur")[0].classList.remove("hidden");
+                this.document.getElementsByClassName("lockScreen")[0].style.visibility = "hidden";
 
                 let userPicPath;
 
@@ -177,6 +180,7 @@ function loginAs(user) {
                 document.getElementById("content").className = "content";
                 document.getElementById("username").innerHTML = username;
                 document.getElementsByClassName("blur")[0].classList.remove("hidden");
+                this.document.getElementsByClassName("lockScreen")[0].style.visibility = "hidden";
 
                 let userPicPath = "";
 
@@ -223,6 +227,7 @@ function continueLoginAs(pswd) {
         document.getElementById("content").className = "content";
         document.getElementById("username").innerHTML = username;
         document.getElementsByClassName("blur")[0].classList.remove("hidden");
+        this.document.getElementsByClassName("lockScreen")[0].style.visibility = "hidden";
 
         let userPicPath;
 

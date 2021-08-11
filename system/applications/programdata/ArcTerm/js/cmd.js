@@ -41,29 +41,6 @@ class ArcTermCommands {
         new ArcTermUserInterface().prompt();
     }
 
-    set() {
-        const evr = globalCommandList[1];
-        let str = "";
-
-        for (let i = 2; i < globalCommandList.length; i++) {
-            str += `${globalCommandList[i]} `;
-        }
-        str = str.trim();
-        let doesContain = false;
-        for (let i = 0; i < environmentVariables.length; i++) {
-            if (JSON.stringify(environmentVariables[i]).startsWith(`{"${evr}":"`)) {
-                doesContain = true;
-                environmentVariables[i] = JSON.parse(`{"${evr}":"${str}"}`);
-                break;
-            }
-        }
-        if (!doesContain) {
-            environmentVariables.push(JSON.parse(`{"${evr}":"${str}"}`));
-        }
-        console.log(environmentVariables);
-        new ArcTermUserInterface().prompt();
-    }
-
     cls() {
         new ArcTermUserInterface().clearScreen();
         new ArcTermUserInterface().prompt();
@@ -353,25 +330,32 @@ class ArcTermCommands {
         new ArcTermUserInterface().prompt();
     }
 
-    users() {
-        setTimeout(() => {
-            let userList = localStorage.getItem("userList").split(",");
-            for (let i = 0; i < userList.length; i++) {
-                new ArcTermUserInterface().outputColor(`Userdata of [${userList[i]}]:`, ``, `var(--yellow)`);
-                new ArcTermUserInterface().outputColor(`    [${userList[i].padEnd(31, " ")}]: ${localStorage.getItem(userList[i])}`, ``, `var(--yellow)`, true);
-                for (let x = 0; x < localStorage.length; x++) {
-                    if (localStorage.key(x).startsWith(userList[i] + "_")) {
-                        let value = localStorage.getItem(localStorage.key(x))
-                        let property = localStorage.key(x).replace(`${userList[i]}_`, `    `).padEnd(35, " ");;
-                        if (property !== "    pswd") {
-                            new ArcTermUserInterface().outputColor(`[${property}]: ${value}`, ``, `var(--yellow)`, true);
-                        }
-                    }
+    user() {
+        let user = this.getAllCommandArgs(1);
+
+        if (localStorage.getItem(user)) {
+            let userData = JSON.parse(localStorage.getItem(user));
+
+            if (!userData.pswd) {
+                new ArcTermUserInterface().outputColor(`user data of [${user}]:<br>{`, ``, `var(--yellow)`, true);
+                for (let key in userData)
+                    new ArcTermUserInterface().outputColor(`[  ${key.padEnd(25, ' ')}]: ${userData[key]}`, ``, `var(--yellow)`, true);
+                new ArcTermUserInterface().outputColor(`}`, ``, `var(--yellow)`, true);
+            } else {
+                if (args.get("username") != user) {
+                    new ArcTermUserInterface().outputColor(`[Error]: The specified account is password-protected`, ``);
+                } else {
+                    new ArcTermUserInterface().outputColor(`user data of [${user}]:<br>{`, ``, `var(--yellow)`, true);
+                    for (let key in userData)
+                        new ArcTermUserInterface().outputColor(`[  ${key.padEnd(25, ' ')}]: ${userData[key]}`, ``, `var(--yellow)`, true);
+                    new ArcTermUserInterface().outputColor(`}`, ``, `var(--yellow)`, true);
                 }
             }
+        } else {
+            new ArcTermUserInterface().outputColor(`[Error]: The specified account doesn't exist`, ``);
+        }
 
-            new ArcTermUserInterface().prompt();
-        }, 100);
+        new ArcTermUserInterface().prompt();
     }
 
     notifications() {
@@ -379,7 +363,7 @@ class ArcTermCommands {
             for (let i = 0; i < notificationList.length; i++) {
                 let title = notificationList[i].title,
                     message = notificationList[i].message;
-                
+
                 new ArcTermUserInterface().outputColor(`[Index ${i} | ${title}]<br>${message}<br><br>`, ``, `var(--yellow)`);
             }
         } else {
@@ -394,7 +378,7 @@ class ArcTermCommands {
 
         console.log(`"${index}"`);
         if (index >= 0 && notificationList[index]) {
-            notificationList.splice(index,1);
+            notificationList.splice(index, 1);
             new ArcTermUserInterface().outputColor(`[NotificationService]: Notification at index ${index} deleted.`, ``, `var(--yellow)`);
         } else {
             new ArcTermUserInterface().outputColor(`[Error]: The specified index was invalid or there was no notification at the index.`, ``);
@@ -406,14 +390,45 @@ class ArcTermCommands {
         let file = currentDir + "/" + this.getAllCommandArgs(1);
 
         if (this.isFile(file)) {
-            new ArcTermUserInterface().outputColor(`Opening [${file.replace("\\","/")}]...`, ``, `var(--yellow)`);
-        
+            new ArcTermUserInterface().outputColor(`Opening [${file.replace("\\", "/")}]...`, ``, `var(--yellow)`);
+
             fileExplorerOpenFile(file);
         } else {
             new ArcTermUserInterface().outputColor(`[Error]: The specified file is invalid.`, ``, `var(--red)`);
         }
         new ArcTermUserInterface().prompt();
 
+    }
+
+    runwith() {
+        let file = currentDir + "/" + this.getAllCommandArgs(1);
+
+        if (this.isFile(file)) {
+            new ArcTermUserInterface().outputColor(`Opening [Open With] for [${file.replace("\\", "/")}]...`, ``, `var(--yellow)`);
+            openWith(file);
+        }
+        new ArcTermUserInterface().prompt();
+    }
+
+    resui() {
+        try {
+            document.getElementById("taskbar").removeAttribute("style");
+            document.getElementById("startMenu").removeAttribute("style");
+            document.getElementById("notificationCenter").removeAttribute("style");
+            document.getElementById("desktopIcons").removeAttribute("style");
+            new ArcTermUserInterface().outputColor(`[Success]: ArcTerm succeeded in restarting the entire user interface.`, ``, `var(--green)`);
+        } catch {
+            new ArcTermUserInterface().outputColor(`[Error]: ArcTerm failed to restart the entire user interface.`, ``, `var(--red)`);
+        }
+        new ArcTermUserInterface().prompt();
+    }
+
+    openapps() {
+        new ArcTermUserInterface().outputColor(`List of [active] applications:`, ``, `var(--yellow)`);
+        for (let i = 0; i < activeapps.length; i++) {
+            new ArcTermUserInterface().outputColor(`[${i.toString().padEnd(3, ' ')}] ${activeapps[i]}`, ``, `var(--yellow)`, true);
+        }
+        new ArcTermUserInterface().prompt();
     }
 }
 

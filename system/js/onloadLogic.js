@@ -111,7 +111,8 @@ class OnloadLogic {
                             document.getElementById("volumeControlEnableSoundSwitch").checked = true;
                             break;
                         default:
-                            localStorage.setItem(args.get("username") + "_muted", 0);
+                            userData.muted = 0;
+                            localStorage.setItem(args.get("username"), JSON.stringify(userdata));
                             break;
                     }
                 } catch { }

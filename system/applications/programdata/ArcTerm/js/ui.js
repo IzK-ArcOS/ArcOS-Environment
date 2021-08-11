@@ -64,9 +64,6 @@ class ArcTermUserInterface {
             case "cls":
                 cmd.cls();
                 break;
-            case "set":
-                cmd.set();
-                break;
             case "restart":
                 cmd.restart();
                 break;
@@ -131,8 +128,8 @@ class ArcTermUserInterface {
             case "close":
                 cmd.close();
                 break;
-            case "users":
-                cmd.users();
+            case "user":
+                cmd.user();
                 break;
             case "notif":
                 cmd.notifications();
@@ -142,6 +139,15 @@ class ArcTermUserInterface {
                 break;
             case "run":
                 cmd.run();
+                break;
+            case "runwith":
+                cmd.runwith();
+                break;
+            case "resui":
+                cmd.resui();
+                break;
+            case "openapps":
+                cmd.openapps();
                 break;
             case "":
                 new ArcTermUserInterface().prompt();

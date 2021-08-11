@@ -209,8 +209,8 @@ function updateTitlebar() {
 }, 10);*/
 
 function closeAllWindows() {
-    for (let i = 0; i < document.getElementById("windowStore").childNodes.length; i++) {
-        closewindow(document.getElementById("windowStore").childNodes[i]);
+    for (let i = 0; i < document.getElementsByClassName("window").length; i++) {
+        closewindow(document.getElementsByClassName("window")[i]);
         activeapps = [];
     }
 }

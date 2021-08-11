@@ -28,7 +28,12 @@ let args = new URLSearchParams(window.location.search),
         "Calculator",
         "Change Password"
     ],
-    excludeTitlebarChange = [],
+    excludeTitlebarChange = [
+        "desktopIcons",
+        "taskbar",
+        "startMenu",
+        "notificationCenter"
+    ],
     allowExit = true,
     path = require("path"),
     fs = require("fs"),
