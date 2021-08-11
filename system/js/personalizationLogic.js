@@ -29,28 +29,45 @@ class PersonalizationLogic {
         }
     }
 
-    setAnimations() {
-        let checked = document.getElementById("preferencesAnimationsSwitch").checked;
-        if (checked == true) {
-            let userData = JSON.parse(localStorage.getItem(args.get("username")));
+    setAnimations(updateLS) {
+        let checked;
+        let userData = JSON.parse(localStorage.getItem(args.get("username")));
+        if (updateLS) {
+            checked = document.getElementById("preferencesAnimationsSwitch").checked;
+        } else {
+            checked = userData.enableAnimations
+        }
+        if (checked) {
             userData.enableAnimations = true;
             localStorage.setItem(args.get("username"), JSON.stringify(userData));
             document.getElementById("animationsAddonLoader").href = "";
         } else {
-            let userData = JSON.parse(localStorage.getItem(args.get("username")));
             userData.enableAnimations = false;
             localStorage.setItem(args.get("username"), JSON.stringify(userData));
             document.getElementById("animationsAddonLoader").href = "system/css/noanimations.css";
         }
     }
 
-    setTitlebarButtonLocations() {
+    setTitlebarButtonLocations(updateLS) {
+
+        let checked;
         let userData = JSON.parse(localStorage.getItem(args.get("username")));
-        let checked = userData.titlebarButtonsLeft;
-        checked = !userData.titlebarButtonsLeft;
-        userData.setTitlebarButtonsLeft = checked;
-        localStorage.setItem(args.get("username"), JSON.stringify(userData));
-        
+
+        if (updateLS) {
+            checked = document.getElementById("preferencesTitlebarButtonsSwitch").checked;
+
+            userData.titlebarButtonsLeft = checked;
+
+            localStorage.setItem(args.get("username"), JSON.stringify(userData));
+
+        } else {
+
+            checked = userData.titlebarButtonsLeft
+
+        }
+
+
+
         if (checked) {
             document.getElementById("titlebarAddonLoader").href = "system/css/titleBarButtonsLeft.css";
         } else {
@@ -76,8 +93,8 @@ class PersonalizationLogic {
     updateVolume(obj) {
         let userData = JSON.parse(localStorage.getItem(args.get("username")));
         userData.globalVolume = obj.value / 10;
-        console.log("LOCAL:",userData);
+        console.log("LOCAL:", userData);
         localStorage.setItem(args.get("username"), JSON.stringify(userData));
-        console.log("LS:",JSON.parse(localStorage.getItem(args.get("username"))));
+        console.log("LS:", JSON.parse(localStorage.getItem(args.get("username"))));
     }
 }

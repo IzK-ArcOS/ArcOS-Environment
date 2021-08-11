@@ -148,7 +148,7 @@ class GeneralLogic {
 window.addEventListener("click", e => {
     updateTitlebar();
     new GeneralLogic().updateDesktopIcons();
-    new PersonalizationLogic().setTitlebarButtonLocations(false, false);
+    //new PersonalizationLogic().setTitlebarButtonLocations(false, false);
     let userData = JSON.parse(localStorage.getItem(args.get("username")));
     try { document.getElementById("systemVolumeSlider").value = userData.globalVolume * 10; } catch {}
     try { document.getElementById("volumeControlEnableSoundSwitch").checked = userData.muted } catch { }

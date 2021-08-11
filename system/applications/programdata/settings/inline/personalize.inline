@@ -27,11 +27,11 @@
 </button>
 <br>
 <br>
-<input type="checkbox" class="switch" id="preferencesAnimationsSwitch" checked="yes" style="min-width: unset;" onclick="new PersonalizationLogic().setAnimations();">
+<input type="checkbox" class="switch" id="preferencesAnimationsSwitch" checked="yes" style="min-width: unset;" onclick="new PersonalizationLogic().setAnimations(true);">
 <label for="preferencesAnimationsSwitch">Enable animations</label>
 
 <br><br>
-<input type="checkbox" class="switch" id="preferencesTitlebarButtonsSwitch" checked="yes" style="min-width: unset;" onclick="new PersonalizationLogic().setTitlebarButtonLocations();">
+<input type="checkbox" class="switch" id="preferencesTitlebarButtonsSwitch" checked="yes" style="min-width: unset;" onclick="new PersonalizationLogic().setTitlebarButtonLocations(true);">
 <label for="preferencesTitlebarButtonsSwitch">Titlebar buttons on the left side</label>
 
 <br><br>

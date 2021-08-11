@@ -25,7 +25,9 @@ onload = function () {
             ol.hideBlock();
         }, 500);
         document.getElementById("showDesktopIconsSwitch").checked = JSON.parse(this.localStorage.getItem(args.get("username"))).showDesktopIcons;
+        new PersonalizationLogic().setTitlebarButtonLocations(false, false)
         new GeneralLogic().updateDesktopIcons();
+        new PersonalizationLogic().setAnimations(false);
     }, 1000);
 }
 
@@ -71,10 +73,9 @@ class OnloadLogic {
             setInterval(() => {
                 let userData = JSON.parse(localStorage.getItem(args.get("username")));
                 let eas = userData.enableAnimations.toString();
-                let tbl = userData.titlebarButtonsLeft.toString();
                 let mtd = userData.muted.toString();
                 let stl = userData.noTaskbarButtonLabels.toString();
-                
+
                 try {
                     switch (eas) {
                         case "true":
@@ -102,18 +103,6 @@ class OnloadLogic {
                                 break;
                         }
                         localStorage.setItem(args.get("username"), JSON.stringify(userdata));
-                    }
-                } catch { }
-                try {
-                    switch (tbl) {
-                        case "true":
-                            document.getElementById("preferencesTitlebarButtonsSwitch").checked = true;
-                            document.getElementById("titlebarAddonLoader").href = "system/css/titleBarButtonsLeft.css";
-                            break;
-                        default:
-                            document.getElementById("preferencesTitlebarButtonsSwitch").checked = false;
-                            document.getElementById("titlebarAddonLoader").href = "";
-                            break;
                     }
                 } catch { }
                 try {
@@ -292,7 +281,7 @@ class OnloadLogic {
         document.getElementsByClassName("block")[0].style.opacity = "0";
     }
 
-    loadTitlebarButtonPos(updatePreferenceSwitch) {
+    /*loadTitlebarButtonPos(updatePreferenceSwitch) {
         let userData = JSON.parse(localStorage.getItem(args.get("username")));
         let tbp = userData.titlebarButtonsLeft;
         if (tbp == "true") {
@@ -304,7 +293,7 @@ class OnloadLogic {
         if (updatePreferenceSwitch) {
             document.getElementById("preferencesAnimationsSwitch").checked = tbp;
         }
-    }
+    }*/
 
     loadDefaultApps() {
         loadWindow("./system/applications/newUserInterface.app", 1, 0);

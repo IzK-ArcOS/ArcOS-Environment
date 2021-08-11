@@ -9,11 +9,10 @@ function switchControlPanelPage(pageFile) {
         
                 document.getElementById("preferencesAnimationsSwitch").checked = userData.enableAnimations;
                 document.getElementById("preferencesTaskbarButtonLabelsSwitch").checked = !userData.noTaskbarButtonLabels;
-        
-                new PersonalizationLogic().setTitlebarButtonLocations(false, false)
+                document.getElementById("preferencesTitlebarButtonsSwitch").checked = userData.titlebarButtonsLeft;
         
                 new OnloadLogic().loadTitlebarButtonPos();
-            } catch (e) {console.log(e);}
+            } catch (e) {}
         }
     })
 }

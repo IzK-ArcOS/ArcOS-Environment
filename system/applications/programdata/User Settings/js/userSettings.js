@@ -1,11 +1,13 @@
 function changePassword(user, oldpswd, newpswd, confirmnewpswd) {
-    if (localStorage.getItem(user + "_pswd") != null) {
-        if (localStorage.getItem(user + "_pswd") == oldpswd) {
+    let userData = JSON.parse(localStorage.getItem(user));
+
+    if (userData.pswd) {
+        if (userData.pswd == oldpswd) {
             if (newpswd == confirmnewpswd) {
                 if (newpswd == "") {
-                    localStorage.removeItem(user + "_pswd");
+                    userData.pswd = "";
                 } else {
-                    localStorage.setItem(user + "_pswd", newpswd);
+                    userData.pswd = newpswd;
                 }
                 new ErrorLogic().sendError("Password Manager", "Your password has been updated.");
             } else {
@@ -17,13 +19,15 @@ function changePassword(user, oldpswd, newpswd, confirmnewpswd) {
     } else {
         if (newpswd == confirmnewpswd) {
             if (newpswd == "") {
-                localStorage.removeItem(user + "_pswd");
+                userData.pswd = "";
             } else {
-                localStorage.setItem(user + "_pswd", newpswd);
+                userData.pswd = newpswd;
             }
             new ErrorLogic().sendError("Password Manager", "Your password has been updated.");
         } else {
             new ErrorLogic().sendError("Password Manager", "The two new passwords don't match. Please retype each of them and try again.");
         }
     }
+
+    localStorage.setItem(user,JSON.stringify(userData));
 }

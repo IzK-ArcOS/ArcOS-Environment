@@ -2,6 +2,7 @@ let username;
 let userSelectorActive = false;
 let loginTimeout;
 let page;
+let userData;
 onload = function () {
 
     if (this.localStorage.getItem("safeMode") != "1") {
@@ -60,10 +61,10 @@ onload = function () {
 
         let userPicPath = "";
 
-        if (!localStorage.getItem(username + "_picture")) {
+        if (!userData.profilePicture) {
             userPicPath = "./system/images/user.png";
         } else {
-            userPicPath = "./system/images/profilePictures/" + localStorage.getItem(username + "_picture") + ".png";
+            userPicPath = "./system/images/profilePictures/" + userData.profilePicture + ".png";
         }
 
         document.getElementById("profilePicture").src = userPicPath;
@@ -106,7 +107,7 @@ function userSelector() {
         document.getElementsByClassName("blur")[0].classList.add("hidden");
 
         populateUserSelector();
-        
+
     } else {
 
         window.location.href = "firsttimesetup.html";
@@ -145,12 +146,13 @@ function enterKeyHit() {
 function loginAs(user) {
 
     username = user;
+    userData = JSON.parse(localStorage.getItem(username));
 
     if (localStorage.getItem("userList").split(",").includes(user)) {
 
         if (localStorage.getItem(username) != "0" || localStorage.getItem(username) != 0) {
 
-            if (localStorage.getItem(user + "_pswd")) {
+            if (userData.pswd) {
 
                 switchPage(2);
 
@@ -160,10 +162,10 @@ function loginAs(user) {
 
                 let userPicPath;
 
-                if (!localStorage.getItem(user + "_picture")) {
+                if (!userData.profilePicture) {
                     userPicPath = "./system/images/user.png";
                 } else {
-                    userPicPath = "./system/images/profilePictures/" + localStorage.getItem(user + "_picture") + ".png";
+                    userPicPath = "./system/images/profilePictures/" + userData.profilePicture + ".png";
                 }
 
                 document.getElementById("profilePicture").src = userPicPath;
@@ -178,10 +180,10 @@ function loginAs(user) {
 
                 let userPicPath = "";
 
-                if (!localStorage.getItem(username + "_picture")) {
+                if (!userData.profilePicture) {
                     userPicPath = "./system/images/user.png";
                 } else {
-                    userPicPath = "./system/images/profilePictures/" + localStorage.getItem(username + "_picture") + ".png";
+                    userPicPath = "./system/images/profilePictures/" + userData.profilePicture + ".png";
                 }
 
                 document.getElementById("profilePicture").src = userPicPath;
@@ -212,7 +214,7 @@ function continueLoginAs(pswd) {
 
     pswd = pswd.value;
 
-    let pass = localStorage.getItem(username + "_pswd");
+    let pass = userData.pswd;
 
     if (pass == pswd) {
 
@@ -224,10 +226,10 @@ function continueLoginAs(pswd) {
 
         let userPicPath;
 
-        if (!localStorage.getItem(username + "_picture")) {
+        if (!userData.profilePicture) {
             userPicPath = "./system/images/user.png";
         } else {
-            userPicPath = "./system/images/profilePictures/" + localStorage.getItem(username + "_picture") + ".png";
+            userPicPath = "./system/images/profilePictures/" + userData.profilePicture + ".png";
         }
 
         document.getElementById("profilePicture").src = userPicPath;
@@ -250,12 +252,12 @@ function continueLoginAs(pswd) {
 
     } else {
 
-        input.style.backgroundColor = "#ff000055";    
-        input.setAttribute("disabled","")
-        
+        input.style.backgroundColor = "#ff000055";
+        input.setAttribute("disabled", "")
+
         setTimeout(() => {
 
-            input.style.backgroundColor = "";  
+            input.style.backgroundColor = "";
             input.value = "";
             input.removeAttribute("disabled")
 
@@ -278,14 +280,21 @@ function populateUserSelector() {
 
                 let userPicPath;
 
-                if (!localStorage.getItem(users[i] + "_picture")) {
+                userData = JSON.parse(localStorage.getItem(users[i]));
+
+                if (!userData.profilePicture) {
+
                     userPicPath = "./system/images/user.png";
+
                 } else {
-                    userPicPath = "./system/images/profilePictures/" + localStorage.getItem(users[i] + "_picture") + ".png";
+
+                    userPicPath = "./system/images/profilePictures/" + userData.profilePicture + ".png";
+
                 }
 
                 document.getElementById("userSelectorInner").innerHTML += "<button class=\"user\" onclick=\"loginAs(`" + users[i] + "`);\"><img src=\"" + userPicPath + "\"><br><p>" + users[i] + "</p> </button>"
 
+                userData = "";
             }
         }
     } catch (e) {
