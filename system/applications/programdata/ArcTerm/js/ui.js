@@ -145,6 +145,9 @@ class ArcTermUserInterface {
             case "openapps":
                 cmd.openapps();
                 break;
+            case "lock":
+                cmd.lock();
+                break;
             case "":
                 new ArcTermUserInterface().prompt();
                 break;

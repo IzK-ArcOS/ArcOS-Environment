@@ -3,9 +3,13 @@ let userSelectorActive = false;
 let loginTimeout;
 let page;
 let userData;
+
 onload = function () {
 
     if (this.localStorage.getItem("safeMode") != "1") {
+
+        new consoleNotifier().notifyStartService("setupLogic: no Safe Mode, using default");
+
         localStorage.setItem("userAmount", 0);
         localStorage.removeItem("userList");
 
@@ -51,6 +55,8 @@ onload = function () {
 
     } else {
 
+        new consoleNotifier().notifyStartService("ArcOS Safe Mode")
+
         document.body.style.opacity = "1";
 
         switchPage(6);
@@ -60,13 +66,7 @@ onload = function () {
         document.getElementsByClassName("blur")[0].classList.remove("hidden");
         this.document.getElementsByClassName("lockScreen")[0].style.visibility = "hidden";
 
-        let userPicPath = "";
-
-        if (!userData.profilePicture) {
-            userPicPath = "./system/images/user.png";
-        } else {
-            userPicPath = "./system/images/profilePictures/" + userData.profilePicture + ".png";
-        }
+        let userPicPath = "./system/images/systemIcon.svg";
 
         document.getElementById("profilePicture").src = userPicPath;
 
@@ -76,6 +76,7 @@ onload = function () {
 
         loginTimeout = setTimeout(() => {
             localStorage.setItem("username", "ArcOS Safe Mode");
+            createUserData("ArcOS Safe Mode")
 
             document.body.style.opacity = "0";
 
@@ -90,6 +91,8 @@ onload = function () {
 }
 
 function userSelector() {
+
+    new consoleNotifier().notifyStartService("userSelector")
 
     startUserDataUpdateCycle();
 
@@ -120,6 +123,8 @@ function userSelector() {
 
 function switchPage(x) {
 
+    new consoleNotifier().notifyStartService("switchPage: " + x)
+
     page = x;
 
     document.getElementById("content").innerHTML = document.getElementById("page" + x).innerHTML;
@@ -130,7 +135,7 @@ function enterKeyHit() {
 
     switch (page) {
         case 2:
-            continueLoginAs(document.getElementById('passwordInputField').value);
+            continueLoginAs(document.getElementById('passwordInputField'));
             break;
         case 3:
             createFirstUser();
@@ -147,6 +152,8 @@ function enterKeyHit() {
 
 function loginAs(user) {
 
+    new consoleNotifier().notifyStartService("loginAs: " + user)
+
     username = user;
     userData = JSON.parse(localStorage.getItem(username));
 
@@ -154,7 +161,11 @@ function loginAs(user) {
 
         if (localStorage.getItem(username) != "0" || localStorage.getItem(username) != 0) {
 
+            new consoleNotifier().notifyStartService("loginAs: user account active")
+
             if (userData.pswd) {
+
+                new consoleNotifier().notifyStartService("loginAs: user account has password")
 
                 switchPage(2);
 
@@ -174,6 +185,8 @@ function loginAs(user) {
                 document.getElementById("profilePicture").src = userPicPath;
 
             } else {
+
+                new consoleNotifier().notifyStartService("loginAs: user account doesn't have password, logging in")
 
                 switchPage(6);
 
@@ -212,15 +225,17 @@ function loginAs(user) {
     }
 }
 
-function continueLoginAs(pswd) {
+async function continueLoginAs(pswd) {
+
+    new consoleNotifier().notifyStartService("continueLoginAs")
 
     let input = pswd;
 
     pswd = pswd.value;
 
-    let pass = userData.pswd;
+    if (await verifyPassword(username,pswd)) {
 
-    if (pass == pswd) {
+        new consoleNotifier().notifyStartService("continueLoginAs: password valid, logging in")
 
         switchPage(6);
 
@@ -243,7 +258,7 @@ function continueLoginAs(pswd) {
 
         document.getElementsByClassName("lockScreen")[0].style.display = "none";
 
-        loginTimeout = setTimeout(() => {
+         loginTimeout = setTimeout(() => {
 
             localStorage.setItem("username", username);
 
@@ -256,6 +271,8 @@ function continueLoginAs(pswd) {
         }, 6000);
 
     } else {
+
+        new consoleNotifier().notifyStartService("continueLoginAs: password entered invalid.")
 
         input.style.backgroundColor = "#ff000055";
         input.setAttribute("disabled", "")
@@ -272,6 +289,8 @@ function continueLoginAs(pswd) {
 }
 
 function populateUserSelector() {
+
+    new consoleNotifier().notifyStartService("populateUserSelector")
 
     try {
 
@@ -312,6 +331,8 @@ function populateUserSelector() {
 
 function cancelLogin() {
 
+    new consoleNotifier().notifyStartService("cancelLogin")
+
     startLockscreenInterval();
 
     document.getElementsByClassName("lockScreen")[0].style.display = "";
@@ -322,6 +343,8 @@ function cancelLogin() {
 }
 
 function createFirstUser() {
+
+    new consoleNotifier().notifyStartService("createFirstUser")
 
     let username = document.getElementById("firstUsernameInputField").value;
 
@@ -342,7 +365,7 @@ function createFirstUser() {
 
 function startLockscreenInterval() {
 
-    console.log("Started Lockscreen Interval");
+    new consoleNotifier().notifyStartService("startLockscreenInterval");
 
     setInterval(() => {
 
@@ -368,19 +391,19 @@ function checkTime(i) {
 }
 
 function revealLogin() {
+    new consoleNotifier().notifyStartService("revealLogin")
     document.getElementsByClassName("lockScreen")[0].classList.add('revealed');
     coverTimeout = setTimeout(() => {
         hideLogin();
     }, 30000);
     lockScreenVisible = false;
-    console.log("Lockscreen hidden.")
 }
 let lockScreenVisible = true;
 
 function hideLogin() {
+    new consoleNotifier().notifyStartService("hideLogin")
     document.getElementsByClassName("lockScreen")[0].classList.remove('revealed');
     lockScreenVisible = true;
-    console.log("Lockscreen visible.")
 }
 
 window.addEventListener("click", () => {
@@ -390,7 +413,7 @@ window.addEventListener("click", () => {
             hideLogin();
         }
     }, 30000);
-    console.log("Cover Timeout Reset.")
+    //new consoleNotifier().notifyStartService("Lock screen: cover timeout reset");
 })
 
 let coverInterval = setInterval(() => {

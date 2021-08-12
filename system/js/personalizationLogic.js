@@ -2,6 +2,9 @@ new consoleNotifier().startModule("ArcOS.System.personalizationLogic");
 
 class PersonalizationLogic {
     applyTheme() {
+
+        new consoleNotifier().notifyStartService("PersonalizationLogic.applyTheme");
+
         let userData = JSON.parse(localStorage.getItem(args.get("username")));
         userData.theme = document.getElementById("themeSelect").value;
         localStorage.setItem(args.get("username"), JSON.stringify(userData));
@@ -18,6 +21,9 @@ class PersonalizationLogic {
     }
 
     applyTaskbarPos() {
+
+        new consoleNotifier().notifyStartService("PersonalizationLogic.applyTaskbarPos");
+
         let userData = JSON.parse(localStorage.getItem(args.get("username")));
         userData.taskbarpos = document.getElementById("taskbarPosSelect").value;
         localStorage.setItem(args.get("username"), JSON.stringify(userData));
@@ -30,6 +36,9 @@ class PersonalizationLogic {
     }
 
     setAnimations(updateLS) {
+
+        new consoleNotifier().notifyStartService("PersonalizationLogic.setAnimations");
+
         let checked;
         let userData = JSON.parse(localStorage.getItem(args.get("username")));
         if (updateLS) {
@@ -50,6 +59,8 @@ class PersonalizationLogic {
 
     setTitlebarButtonLocations(updateLS) {
 
+        new consoleNotifier().notifyStartService("PersonalizationLogic.setTitlebarButtonLocations");
+
         let checked;
         let userData = JSON.parse(localStorage.getItem(args.get("username")));
 
@@ -66,8 +77,6 @@ class PersonalizationLogic {
 
         }
 
-
-
         if (checked) {
             document.getElementById("titlebarAddonLoader").href = "system/css/titleBarButtonsLeft.css";
         } else {
@@ -76,6 +85,9 @@ class PersonalizationLogic {
     }
 
     toggleTaskbarButtonLabels() {
+
+        new consoleNotifier().notifyStartService("PersonalizationLogic.toggleTaskbarButtonLabels");
+
         let userData = JSON.parse(localStorage.getItem(args.get("username")));
         userData.taskbarButtonLabels = !userData.taskbarButtonLabels;
         localStorage.setItem(args.get("username"), JSON.stringify(userData));
@@ -83,6 +95,9 @@ class PersonalizationLogic {
     }
 
     setTaskbarButtonLabels(obj) {
+
+        new consoleNotifier().notifyStartService("PersonalizationLogic.setTaskbarButtonLabels");
+
         let checked = !obj.checked;
         let userData = JSON.parse(localStorage.getItem(args.get("username")));
         userData.noTaskbarButtonLabels = checked;
@@ -91,6 +106,9 @@ class PersonalizationLogic {
     }
 
     updateVolume(obj) {
+
+        new consoleNotifier().notifyStartService("PersonalizationLogic.updateVolume");
+
         let userData = JSON.parse(localStorage.getItem(args.get("username")));
         userData.globalVolume = obj.value / 10;
         console.log("LOCAL:", userData);

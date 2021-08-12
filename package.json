@@ -13,6 +13,7 @@
         "electron": "^11.4.11"
     },
     "dependencies": {
+        "argon2": "^0.28.2",
         "drivelist": "^9.2.4",
         "electron-packager": "^15.2.0",
         "electron-rebuild": "^2.3.5",

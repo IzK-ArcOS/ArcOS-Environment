@@ -3,18 +3,27 @@ new consoleNotifier().startModule("ArcOS.System.powerLogic");
 class PowerLogic {
 
     shutdown() {
+
+        new consoleNotifier().notifyStartService("PowerLogic.shutdown");
+
         document.getElementsByClassName("block")[0].style.visibility = "visible";
         document.getElementsByClassName("block")[0].style.opacity = "1";
         setTimeout(() => { window.location.href = 'shutdown.html?username=' + args.get("username"); }, 1000);
     }
 
     logoff() {
+
+        new consoleNotifier().notifyStartService("PowerLogic.logoff");
+
         document.getElementsByClassName("block")[0].style.visibility = "visible";
         document.getElementsByClassName("block")[0].style.opacity = "1";
         setTimeout(() => { window.location.href = 'logoff.html?username=' + args.get("username"); }, 1000);
     }
 
     restart() {
+
+        new consoleNotifier().notifyStartService("PowerLogic.restart");
+
         document.getElementsByClassName("block")[0].style.visibility = "visible";
         document.getElementsByClassName("block")[0].style.opacity = "1";
         setTimeout(() => { window.location.href = 'restart.html?username=' + args.get("username"); }, 1000);
@@ -22,6 +31,9 @@ class PowerLogic {
 
 
     fts() {
+
+        new consoleNotifier().notifyStartService("PowerLogic.fts");
+
         document.getElementsByClassName("block")[0].style.visibility = "visible";
         document.getElementsByClassName("block")[0].style.opacity = "1";
         setTimeout(() => { window.location.href = 'firsttimesetup.html'; }, 1000);
@@ -40,12 +52,11 @@ class PowerLogic {
         }
     }
 
-    unlock() {
+    async unlock() {
         let userData = JSON.parse(localStorage.getItem(args.get("username")));
-        let reqPswrd = userData.pswd;
         let ntrdPswd = document.getElementById("lockScreenPasswordInputField").value;
 
-        if (reqPswrd == ntrdPswd) {
+        if (await verifyPassword(args.get("username"),ntrdPswd)) {
             new consoleNotifier().notifyStartService("powerLogic.unlock: unlocked ArcOS Desktop")
             document.getElementById("lockScreenPasswordInputField").value = "";
             document.getElementsByClassName("lockScreen")[0].classList.add("hidden");

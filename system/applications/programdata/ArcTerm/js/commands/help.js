@@ -223,6 +223,13 @@ function help() {
                     ``, `var(--blue)`, true
                 );
                 break;
+            case "lock":
+                new ArcTermUserInterface().outputColor(
+                    "Locks the ArcOS Desktop if the user has a password.<br><br>" +
+                    "Usage: [LOCK]",
+                    ``, `var(--blue)`, true
+                );
+                break;
             case "run":
                 new ArcTermUserInterface().outputColor(
                     "Runs the specified file with it's default application.<br><br>" +
@@ -267,6 +274,7 @@ function help() {
             `[HELP]       Displays this list or detailed information about a command.<br>` +
             `[HISTORY]    Shows a list of the commands you entered.<br>` +
             `[INTRO]      Displays the intro text you see when you start ArcTerm.<br>` +
+            `[LOCK]       Locks the ArcOS Desktop if the user has a password.<br>` +
             `[LOGOFF]     Logs off the current user.<br>` +
             `[LS]         Shows the contents of LocalStorage.<br>` +
             `[NOTIF]      Shows your notifications.<br>` +

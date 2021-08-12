@@ -1,13 +1,13 @@
-function changePassword(user, oldpswd, newpswd, confirmnewpswd) {
+async function changePassword(user, oldpswd, newpswd, confirmnewpswd) {
     let userData = JSON.parse(localStorage.getItem(user));
 
     if (userData.pswd) {
-        if (userData.pswd == oldpswd) {
+        if (await verifyPassword(user,oldpswd)) {
             if (newpswd == confirmnewpswd) {
                 if (newpswd == "") {
                     userData.pswd = "";
                 } else {
-                    userData.pswd = newpswd;
+                    setPassword(user,newpswd);
                 }
                 new ErrorLogic().sendError("Password Manager", "Your password has been updated.");
             } else {
@@ -21,7 +21,7 @@ function changePassword(user, oldpswd, newpswd, confirmnewpswd) {
             if (newpswd == "") {
                 userData.pswd = "";
             } else {
-                userData.pswd = newpswd;
+                setPassword(user,newpswd);
             }
             new ErrorLogic().sendError("Password Manager", "Your password has been updated.");
         } else {

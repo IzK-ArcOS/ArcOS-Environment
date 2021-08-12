@@ -68,6 +68,9 @@ function setToolbarTrigger() {
 }
 
 function toggleFullscreenMode() {
+
+    new consoleNotifier().notifyStartService("toggleFullscreenMode");
+
     let { BrowserWindow } = require("electron").remote;
     if (BrowserWindow.getFocusedWindow().fullScreen == true) {
         BrowserWindow.getFocusedWindow().fullScreen = false;

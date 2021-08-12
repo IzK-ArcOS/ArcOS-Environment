@@ -2,6 +2,9 @@ new consoleNotifier().startModule("ArcOS.System.errorLogic");
 
 class ErrorLogic {
     bsod(title, message) {
+
+        new consoleNotifier().notifyStartService("ErrorLogic.bsod");
+
         if (localStorage.getItem("safeMode") != 1) {
             localStorage.setItem("BSODTitle", title);
             localStorage.setItem("BSODMessage", message);
@@ -12,6 +15,9 @@ class ErrorLogic {
     }
 
     sendError(title, message, safemodeOverride = 0) {
+
+        new consoleNotifier().notifyStartService("ErrorLogic.sendError")
+
         this.createNewError(title, message, safemodeOverride);
     }
 

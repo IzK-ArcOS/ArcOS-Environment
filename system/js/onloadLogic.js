@@ -1,33 +1,25 @@
 new consoleNotifier().startModule("ArcOS.System.onloadLogic");
 
+
+
 onload = function () {
     if (!clientInformation.appVersion.includes("Electron")) { window.location.href = "invalidClient.html"; }
+    setInterval(() => {
+        try {
+            let usrEnabled = JSON.parse(localStorage.getItem(args.get("username")));
+            if (!usrEnabled || !usrEnabled.enabled) {
+                new ErrorLogic().bsod("OnloadLogic.onloadSetIntervals: USR_DATA_MISSING", "The user data corrupted while the session was running.");
+            }
+        } catch { }
+    }, 5);
     let ol = new OnloadLogic();
     ol.startTime();
     ol.loadDefaultApps();
     setTimeout(() => {
         ol.loadSafemodeDependingFunctions();
-        ol.onloadSetEventListeners();
-        ol.onloadSetIntervals();
-        setToolbarTrigger();
-        new ContextMenuLogic().hideMenu();
-        ol.loadTheme();
-        ol.loadTaskbarPos();
-        populateAppManager();
-        getDriveLetters();
-        updateTaskBar();
-        hideStart();
-        openSettingsPane("home", document.getElementsByClassName("controlPanelSidebar")[0]);
-        new NotificationLogic().startNotificationCenterPopulator();
-        globalVolume = parseInt(JSON.parse(this.localStorage.getItem(args.get("username"))).globalVolume);
-        startUserDataUpdateCycle();
         setTimeout(() => {
             ol.hideBlock();
         }, 500);
-        document.getElementById("showDesktopIconsSwitch").checked = JSON.parse(this.localStorage.getItem(args.get("username"))).showDesktopIcons;
-        new PersonalizationLogic().setTitlebarButtonLocations(false, false)
-        new GeneralLogic().updateDesktopIcons();
-        new PersonalizationLogic().setAnimations(false);
     }, 1000);
 }
 
@@ -45,6 +37,7 @@ onbeforeunload = function () {
 
 class OnloadLogic {
     startTime() {
+
         setInterval(() => {
             try {
                 let today = new Date();
@@ -157,7 +150,8 @@ class OnloadLogic {
         setInterval(() => {
             try {
                 let passwordStatus = "";
-                if (localStorage.getItem(args.get("username") + "_pswd") != null) {
+                let userData = JSON.parse(localStorage.getItem(args.get("username")))
+                if (userData.pswd) {
                     passwordStatus = "Password Protected";
                 } else {
                     passwordStatus = "No Password";
@@ -170,14 +164,6 @@ class OnloadLogic {
             } catch (e) { }
             document.getElementById("usernameStartMenu").innerHTML = args.get('username');
 
-        }, 5);
-        setInterval(() => {
-            try {
-                let usrEnabled = JSON.parse(localStorage.getItem(args.get("username"))).enabled;
-                if (!usrEnabled) {
-                    new ErrorLogic().bsod("OnloadLogic.onloadSetIntervals: USR_DATA_MISSING", "The user data corrupted while the session was running.");
-                }
-            } catch { }
         }, 5);
         setInterval(() => {
             try {
@@ -199,6 +185,11 @@ class OnloadLogic {
                     }
                     e.stopImmediatePropagation();
                     e.stopPropagation();
+                } else if (key.toLowerCase() == 'tab') {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    e.stopImmediatePropagation();
+                    return false;
                 }
             }
         });
@@ -216,7 +207,11 @@ class OnloadLogic {
                 if (document.activeElement != document.getElementById("lockScreenPasswordInputField")) {
                     e.preventDefault();
                     return false;
-                } else {}
+                } else {
+                    if(e.key.toLowerCase() == "enter") {
+                        new PowerLogic().unlock();
+                    }
+                }
             }
         });
 
@@ -249,9 +244,7 @@ class OnloadLogic {
                 case "bottom":
                     document.getElementById("taskbarAddonLoader").href = "";
             }
-        } catch {
-            loadTaskbarPos();
-        }
+        } catch { }
     }
 
     loadTheme() {
@@ -278,7 +271,7 @@ class OnloadLogic {
                 userData.theme = "darkrounded";
                 localStorage.setItem(args.get("username"), JSON.stringify(userData));
             }
-        } catch { loadTheme(); }
+        } catch { }
     }
 
     showBlock() {
@@ -360,16 +353,34 @@ class OnloadLogic {
     }
 
     loadSafemodeDependingFunctions() {
+        getDriveLetters();
+        updateTaskBar();
+        hideStart();
+        openSettingsPane("home", document.getElementsByClassName("controlPanelSidebar")[0]);
+        new ContextMenuLogic().hideMenu();
+        new NotificationLogic().startNotificationCenterPopulator();
+        this.onloadSetDesktopIcons();
+        this.onloadSetIntervals();
+        this.onloadSetWindowControls();
+        this.onloadSetEventListeners();
+        setToolbarTrigger();
+        this.loadTheme();
+        this.loadTaskbarPos();
+        populateAppManager();
+        globalVolume = parseInt(JSON.parse(localStorage.getItem(args.get("username"))).globalVolume);
+        startUserDataUpdateCycle();
+        document.getElementById("showDesktopIconsSwitch").checked = JSON.parse(localStorage.getItem(args.get("username"))).showDesktopIcons;
+        new PersonalizationLogic().setTitlebarButtonLocations(false, false)
+        new GeneralLogic().updateDesktopIcons();
+        new PersonalizationLogic().setAnimations(false);
         if (localStorage.getItem("safeMode") != 1) {
-            this.onloadSetDesktopIcons();
-            this.onloadSetIntervals();
-            this.onloadSetWindowControls();
+
         } else {
             document.getElementsByClassName("block")[0].style.backgroundImage = "unset";
             document.getElementById("addonShellLoader").href = "./system/css/darkModeSharp.css";
             document.getElementById("animationsAddonLoader").href = "system/css/noanimations.css";
             document.getElementById("wallpaper").style.backgroundImage = "unset";
-            new ErrorLogic().sendError("Safe Mode", "ArcOS is running in Safe Mode.<br> - If this was not your intention, just restart from the start menu.<br> - If this was your intention, use this mode only to repair ArcOS if it doesn't boot. ", 1)
+            new ErrorLogic().sendError("Safe Mode", "ArcOS is running in Safe Mode.<br> - If this was not your intention, just restart from the start menu.<br> - If this was your intention, use this mode only to repair ArcOS if it doesn't boot.<br><br>Pleae note the following: all changes made in this account will be deleted at logoff.", 1)
         }
     }
 }

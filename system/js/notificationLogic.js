@@ -2,6 +2,9 @@ new consoleNotifier().startModule("ArcOS.System.notificationLogic");
 
 class NotificationLogic {
     notificationService(title, message, closeDelay) {
+
+        new consoleNotifier().notifyStartService("NotificationLogic.notificationService")
+
         clearTimeout(tmo);
         if (title) {
             if (message) {
@@ -26,6 +29,9 @@ class NotificationLogic {
     }
     
     closeNotification() {
+
+        new consoleNotifier().notifyStartService("NotificationLogic.closeNotification")
+
         document.getElementById('notificationService').style.opacity = '0';
         setTimeout(() => {
             document.getElementById('notificationService').style.visibility = 'hidden';
@@ -35,6 +41,9 @@ class NotificationLogic {
     }
     
     startNotificationCenterPopulator() {
+
+        new consoleNotifier().notifyStartService("NotificationLogic.startNotificationCenterPopulator")
+
         setInterval(() => {
             try {
                 let newNotificationInnerHMTL = "";
@@ -54,6 +63,9 @@ class NotificationLogic {
     }
     
     toggleNotificationCenter() {
+
+        new consoleNotifier().notifyStartService("NotificationLogic.toggleNotificationCenter")
+
         let nc = document.getElementById("notificationCenter");
         if (nc.classList.contains("retracted")) {
             nc.classList.remove("retracted");

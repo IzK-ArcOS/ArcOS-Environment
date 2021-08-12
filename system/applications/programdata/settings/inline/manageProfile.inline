@@ -14,7 +14,6 @@
     <p>Change Username<span class="material-icons right">chevron_right</span></p>
 </button>
 <h3 class="controlPanelSubHeader" style="margin-top:20px;">Change Password</h3><br>
-<i style="color:yellow">NOTE: Passwords at this stage in development are NOT secure. Keep that in mind.</i>
 <p>Fill out the form below to change your password:</p>
 <table>
     <tr>

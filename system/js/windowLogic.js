@@ -108,32 +108,45 @@ function minimizeWindow(window) {
 }
 
 function updateTaskBar() {
-    try {
+    if (localStorage.getItem("safeMode") != "1") {
+        try {
+            let str = "";
+            let userData = JSON.parse(localStorage.getItem(args.get("username")));
+            if (!userData.noTaskbarButtonLabels) {
+                activeapps.forEach(element => {
+                    if (element.includes("(") && element.endsWith(")")) {
+                        str += "<button class=\"taskbarButton\" onclick='openWindow(\"" + element + "\")' title=\"" + element + "\"><span style=\"vertical-align:middle;\"><img src=\"./system/images/errorMessage.svg\" style=\"width:20px;height:20px;vertical-align:middle;\">&nbsp;&nbsp;<span style=\"vertical-align:middle;\">" + element + "</span></button> ";
+                    } else {
+                        str += "<button class=\"taskbarButton\" onclick='openWindow(\"" + element + "\")' title=\"" + element + "\"><img src=\"./system/images/" + element + ".svg\" style=\"width:20px;height:20px;vertical-align:middle;\">&nbsp;&nbsp;<span style=\"vertical-align:middle;\">" + element + "</span></button> ";
+                    }
+
+                });
+            } else {
+                activeapps.forEach(element => {
+                    if (element.includes("(") && element.endsWith(")")) {
+                        str += "<button class=\"taskbarButton\" onclick='openWindow(\"" + element + "\")' title=\"" + element + "\"><img src=\"./system/images/errorMessage.svg\" style=\"width:20px;height:20px;vertical-align:middle;\"></button> ";
+                    } else {
+                        str += "<button class=\"taskbarButton\" onclick='openWindow(\"" + element + "\")' title=\"" + element + "\"><img src=\"./system/images/" + element + ".svg\" style=\"width:20px;height:20px;vertical-align:middle;\"></button> ";
+                    }
+
+                });
+            }
+
+            document.getElementById("taskbarButtons").innerHTML = str;
+        } catch { new NotificationLogic().notificationService("Error", "Unable to update taskbar, is <code>userInterface</code> loaded?") }
+    } else {
         let str = "";
-        let userData = JSON.parse(localStorage.getItem(args.get("username")));
-        if (!userData.noTaskbarButtonLabels) {
-            activeapps.forEach(element => {
-                if (element.includes("(") && element.endsWith(")")) {
-                    str += "<button class=\"taskbarButton\" onclick='openWindow(\"" + element + "\")' title=\"" + element + "\"><span style=\"vertical-align:middle;\"><img src=\"./system/images/errorMessage.svg\" style=\"width:20px;height:20px;vertical-align:middle;\">&nbsp;&nbsp;<span style=\"vertical-align:middle;\">" + element + "</span></button> ";
-                } else {
-                    str += "<button class=\"taskbarButton\" onclick='openWindow(\"" + element + "\")' title=\"" + element + "\"><img src=\"./system/images/" + element + ".svg\" style=\"width:20px;height:20px;vertical-align:middle;\">&nbsp;&nbsp;<span style=\"vertical-align:middle;\">" + element + "</span></button> ";
-                }
+        activeapps.forEach(element => {
+            if (element.includes("(") && element.endsWith(")")) {
+                str += "<button class=\"taskbarButton\" onclick='openWindow(\"" + element + "\")' title=\"" + element + "\"><span style=\"vertical-align:middle;\"><img src=\"./system/images/errorMessage.svg\" style=\"width:20px;height:20px;vertical-align:middle;\">&nbsp;&nbsp;<span style=\"vertical-align:middle;\">" + element + "</span></button> ";
+            } else {
+                str += "<button class=\"taskbarButton\" onclick='openWindow(\"" + element + "\")' title=\"" + element + "\"><img src=\"./system/images/" + element + ".svg\" style=\"width:20px;height:20px;vertical-align:middle;\">&nbsp;&nbsp;<span style=\"vertical-align:middle;\">" + element + "</span></button> ";
+            }
 
-            });
-        } else {
-            activeapps.forEach(element => {
-                if (element.includes("(") && element.endsWith(")")) {
-                    str += "<button class=\"taskbarButton\" onclick='openWindow(\"" + element + "\")' title=\"" + element + "\"><img src=\"./system/images/errorMessage.svg\" style=\"width:20px;height:20px;vertical-align:middle;\"></button> ";
-                } else {
-                    str += "<button class=\"taskbarButton\" onclick='openWindow(\"" + element + "\")' title=\"" + element + "\"><img src=\"./system/images/" + element + ".svg\" style=\"width:20px;height:20px;vertical-align:middle;\"></button> ";
-                }
-
-            });
-        }
+        });
 
         document.getElementById("taskbarButtons").innerHTML = str;
-    } catch { new NotificationLogic().notificationService("Error", "Unable to update taskbar, is <code>userInterface</code> loaded?") }
-
+    }
 }
 
 function bringToFront(window) {

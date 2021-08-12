@@ -1,6 +1,9 @@
 new consoleNotifier().startModule("ArcOS.System.soundLogic");
 
 function playSystemSound(sound) {
+
+    new consoleNotifier().notifyStartService("playSystemSound");
+
     let userData = JSON.parse(localStorage.getItem(args.get("username")));
     if (localStorage.getItem("safeMode") != 1) {
         if (userData.muted == 0) {
@@ -12,6 +15,9 @@ function playSystemSound(sound) {
 }
 
 function changeVolumeState() {
+
+    new consoleNotifier().notifyStartService("changeVolumeState");
+
     let checked = document.getElementById("volumeControlEnableSoundSwitch").checked;
     if (checked == true) {
         let userData = JSON.parse(localStorage.getItem(args.get("username")));

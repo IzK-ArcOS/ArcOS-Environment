@@ -2,11 +2,17 @@ new consoleNotifier().startModule("ArcOS.System.generalLogic");
 
 class GeneralLogic {
     changeUsername() {
+
+        new consoleNotifier().notifyStartService("GeneralLogic.changeUsername");
+
         newUsername = document.getElementById("changeUsernameInputField").value;
         changeUserDataName(args.get("username"), newUsername);
     }
 
     addNewApp() {
+
+        new consoleNotifier().notifyStartService("GeneralLogic.addNewApp")
+
         try {
             if (document.getElementById("addAppInputField").value !== "") {
                 let open = document.getElementById("startAppAfterAddCheckBox").checked;
@@ -24,22 +30,30 @@ class GeneralLogic {
     }
 
     updateDesktopIcons() {
-        let elmnt = document.getElementById("showDesktopIconsSwitch").checked;
-        if (elmnt) {
-            document.getElementById("desktopIcons").style.visibility = "visible";
-            let userData = JSON.parse(localStorage.getItem(args.get("username")));
-            userData.showDesktopIcons = 1;
-            localStorage.setItem(args.get("username"), JSON.stringify(userData));
-        } else {
-            document.getElementById("desktopIcons").style.visibility = "hidden";
-            let userData = JSON.parse(localStorage.getItem(args.get("username")));
-            userData.showDesktopIcons = 0;
-            localStorage.setItem(args.get("username"), JSON.stringify(userData));
+
+        //new consoleNotifier().notifyStartService("GeneralLogic.updateDesktopIcons")
+
+        if (localStorage.getItem("safeMode") != "1") {
+            let elmnt = document.getElementById("showDesktopIconsSwitch").checked;
+            if (elmnt) {
+                document.getElementById("desktopIcons").style.visibility = "visible";
+                let userData = JSON.parse(localStorage.getItem(args.get("username")));
+                userData.showDesktopIcons = 1;
+                localStorage.setItem(args.get("username"), JSON.stringify(userData));
+            } else {
+                document.getElementById("desktopIcons").style.visibility = "hidden";
+                let userData = JSON.parse(localStorage.getItem(args.get("username")));
+                userData.showDesktopIcons = 0;
+                localStorage.setItem(args.get("username"), JSON.stringify(userData));
+            }
         }
     }
 
 
     replaceAllCharsInStr(s, from, to) {
+
+        new consoleNotifier().notifyStartService("GeneralLogic.replaceAllCharsInStr")
+
         let out = "";
         for (let i = 0; i < s.length; i++) {
             if (s.charAt(i) === from) {
@@ -52,6 +66,8 @@ class GeneralLogic {
     }
 
     countOccurrences(string, subString, allowOverlapping) {
+
+        new consoleNotifier().notifyStartService("GeneralLogic.countOccurrences")
 
         string += "";
         subString += "";
@@ -72,6 +88,9 @@ class GeneralLogic {
     }
 
     executeWindowsShellCommand(command, args) {
+
+        new consoleNotifier().notifyStartService("GeneralLogic.executeWindowsShellCommand")
+
         const { spawn } = require("child_process");
 
         const ls = spawn(command, args);
@@ -96,14 +115,23 @@ class GeneralLogic {
     }
 
     disableExit() {
+
+        new consoleNotifier().notifyStartService("GeneralLogic.disableExit")
+
         allowExit = false;
     }
 
     enableExit() {
+
+        new consoleNotifier().notifyStartService("GeneralLogic.enableExit")
+
         allowExit = true;
     }
 
     getAllFunctions() {
+
+        new consoleNotifier().notifyStartService("GeneralLogic.getAllFunctions")
+
         let myfunctions = [];
         for (let l in this) {
             if (this.hasOwnProperty(l) &&
@@ -116,6 +144,9 @@ class GeneralLogic {
     }
 
     reloadShell() {
+
+        new consoleNotifier().notifyStartService("GeneralLogic.reloadShell")
+
         document.getElementById("shellLoader").href = "";
         setTimeout(() => {
             document.getElementById("shellLoader").href = "./system/css/arcosshell.css";
@@ -123,6 +154,9 @@ class GeneralLogic {
     }
 
     reloadApplications() {
+
+        new consoleNotifier().notifyStartService("GeneralLogic.reloadApplications")
+
         let tempList = activeapps;
         let tempFocusedWindow = focusedWindow;
         loadedApps = [];

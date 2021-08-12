@@ -28,9 +28,10 @@
             }, 1000);
         }
         setInterval(() => {
-            if (document.getElementById("profilePicture").src != "./system/images/profilePictures/" + localStorage.getItem(params.get("username") + "_picture") + ".png") {
-                if (localStorage.getItem(params.get("username") + "_picture") != null) {
-                    document.getElementById("profilePicture").src = "./system/images/profilePictures/" + localStorage.getItem(params.get("username") + "_picture") + ".png";
+            let userData = JSON.parse(localStorage.getItem(params.get("username")));
+            if (document.getElementById("profilePicture").src != "./system/images/profilePictures/" + userData.profilePicture + ".png") {
+                if (userData.profilePicture) {
+                    document.getElementById("profilePicture").src = "./system/images/profilePictures/" + userData.profilePicture + ".png";
                 }
             }
         }, 10);

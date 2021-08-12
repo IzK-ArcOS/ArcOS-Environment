@@ -337,7 +337,7 @@ class ArcTermCommands {
             let userData = JSON.parse(localStorage.getItem(user));
 
             if (!userData.pswd) {
-                new ArcTermUserInterface().outputColor(`user data of [${user}]:<br>{`, ``, `var(--yellow)`, true);
+                new ArcTermUserInterface().outputColor(`user data of [${user}]:<br>JSON: {`, ``, `var(--yellow)`, true);
                 for (let key in userData)
                     new ArcTermUserInterface().outputColor(`[  ${key.padEnd(25, ' ')}]: ${userData[key]}`, ``, `var(--yellow)`, true);
                 new ArcTermUserInterface().outputColor(`}`, ``, `var(--yellow)`, true);
@@ -345,7 +345,7 @@ class ArcTermCommands {
                 if (args.get("username") != user) {
                     new ArcTermUserInterface().outputColor(`[Error]: The specified account is password-protected`, ``);
                 } else {
-                    new ArcTermUserInterface().outputColor(`user data of [${user}]:<br>{`, ``, `var(--yellow)`, true);
+                    new ArcTermUserInterface().outputColor(`user data of [${user}]:<br>JSON: {`, ``, `var(--yellow)`, true);
                     for (let key in userData)
                         new ArcTermUserInterface().outputColor(`[  ${key.padEnd(25, ' ')}]: ${userData[key]}`, ``, `var(--yellow)`, true);
                     new ArcTermUserInterface().outputColor(`}`, ``, `var(--yellow)`, true);
@@ -428,6 +428,22 @@ class ArcTermCommands {
         for (let i = 0; i < activeapps.length; i++) {
             new ArcTermUserInterface().outputColor(`[${i.toString().padEnd(3, ' ')}] ${activeapps[i]}`, ``, `var(--yellow)`, true);
         }
+        new ArcTermUserInterface().prompt();
+    }
+
+    lock() {
+        let userData = JSON.parse(localStorage.getItem(args.get("username")));
+
+        if (userData.pswd) {
+            document.getElementById("lockScreenUsername").innerText = args.get("username");
+            document.getElementsByClassName("lockScreen")[0].classList.remove("hidden");
+            lockScreenActive = true;
+            new consoleNotifier().notifyStartService("powerLogic.lock: locked ArcOS Desktop")
+            new ArcTermUserInterface().outputColor(`[Lock]: ArcOS Desktop is now locked.`,``,`var(--yellow)`);
+        } else {
+            new ArcTermUserInterface().outputColor(`[Error]: Unable to lock: user account doesn't have a password.`);
+        }
+
         new ArcTermUserInterface().prompt();
     }
 }
