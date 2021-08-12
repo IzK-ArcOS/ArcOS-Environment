@@ -300,7 +300,9 @@ function populateUserSelector() {
 
         for (let i = 0; i < users.length; i++) {
 
-            if (localStorage.getItem(users[i])) {
+            if (isUser(users[i])) {
+
+                convertPassword(users[i])
 
                 let userPicPath;
 

@@ -204,6 +204,9 @@ function hotSwapUserAccount(username) {
 }
 
 async function verifyPassword(user,password) {
+
+    new consoleNotifier().notifyStartService("verifyPassword");
+
     let userData = JSON.parse(localStorage.getItem(user));
     let reqpswd = userData.pswd;
 
@@ -215,6 +218,9 @@ async function verifyPassword(user,password) {
 }
 
 async function encryptPassword(password) {
+
+    new consoleNotifier().notifyStartService("encryptPassword");
+
     return await argon2.hash(password, {
         type: argon2.argon2i,
         memoryCost: 2 ** 16,
@@ -224,6 +230,9 @@ async function encryptPassword(password) {
 }
 
 async function setPassword(user,password) {
+
+    new consoleNotifier().notifyStartService("setPassword");
+
     if (localStorage.getItem(user)) {
         let userData = JSON.parse(localStorage.getItem(user));
 
@@ -231,6 +240,30 @@ async function setPassword(user,password) {
 
         localStorage.setItem(user,JSON.stringify(userData));
     }
+}
+
+async function convertPassword(user) {
+
+    new consoleNotifier().notifyStartService("convertPassword");
+
+    let userData = JSON.parse(localStorage.getItem(user));
+    if (userData) {
+        let password = userData.pswd;
+        if (password && !password.toString().startsWith("$argon2i$v=")) {
+            let newPswd = await encryptPassword(password);
+            userData.pswd = newPswd;
+            localStorage.setItem(user,JSON.stringify(userData));
+        }
+    }
+}
+
+function isUser(user) {
+    user = localStorage.getItem(user);
+    try {
+        let json = JSON.parse(user);
+        console.log(json);
+        return (!!json && (json.enabled == 1 || json.enabled == 0));
+    } catch (e) { return false };
 }
 
 const userTemplate = {
