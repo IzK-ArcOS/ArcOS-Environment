@@ -1,4 +1,6 @@
-onload = function() {
+let username = "";
+
+onload = function () {
     setPage("home");
     setTimeout(() => {
         document.body.style.opacity = "1";
@@ -18,12 +20,13 @@ function setPage(idOfContent) {
 }
 
 function createUserAccount() {
-    let username = document.getElementById("usernameInputField").value;
+    username = document.getElementById("usernameInputField").value;
     console.log(`[FTS] Attempting to create user account "${username}"`);
     if (username != "") {
         console.log(`[FTS] ... Attempt succeeded.`);
         createUserData(username);
-        setPage("finish");
+        setAdmin(username, true);
+        setPage("passwordSetup");
     } else {
         console.log(`[FTS] ... Attempt failed.`);
         setPage("invalidAccount")
@@ -67,14 +70,28 @@ function execCom() {
     }
 }
 
+function setUserPassword() {
+    let password = document.getElementById("passwordInputField").value,
+        confrm = document.getElementById("passwordConfirmInputField").value;
+
+    if (password == confrm) {
+        setPassword(username,password);
+        setPage('finish');
+    } else {
+        setPage('noPswdMatch');
+    }
+}
+
 console.log = (e, c) => {
     try {
         document.getElementById("executeCommandOutput").innerText += e + "\n";
-    } catch {}
+    } catch { }
 }
 
 window.onerror = (e) => {
     try {
         document.getElementById("executeCommandOutput").innerText += e + "\n";
-    } catch {}
+    } catch { }
 }
+
+const args = new URLSearchParams(window.location.search);

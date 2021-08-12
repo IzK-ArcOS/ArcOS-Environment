@@ -4,69 +4,88 @@ new consoleNotifier().startModule("ArcOS.System.userLogic");
 
 function createUserData(user) {
 
-    new consoleNotifier().notifyStartService("PowerLogic.createUserData");
+    new consoleNotifier().notifyStartService("createUserData");
 
-    localStorage.setItem(user, JSON.stringify(userTemplate));
-    return `Userdata of "${user}" has been created.`;
+    if (isAdmin(args.get("username"))) {
+        localStorage.setItem(user, JSON.stringify(userTemplate));
+        return `Userdata of "${user}" has been created.`;
+    } else {
+        return `Userdata of "${user}" could not be created: logged in user is not admin.`
+    }
 }
 
 function deleteUserData(user, notify = 1) {
 
-    new consoleNotifier().notifyStartService("PowerLogic.deleteUserData");
+    new consoleNotifier().notifyStartService("deleteUserData");
 
-    if (user && localStorage.getItem(user)) {
-        localStorage.removeItem(user);
+    if (isAdmin(args.get("username"))) {
+        if (user && localStorage.getItem(user)) {
+            localStorage.removeItem(user);
+        }
+
+        return `Userdata of "${user}" has been deleted.`;
+    } else {
+        return `Userdata of "${user}" could not be deleted: logged in user is not admin.`;
     }
 
-    return `Userdata of "${user}" has been deleted.`;
 }
 
 function resetUserData(user) {
 
-    new consoleNotifier().notifyStartService("PowerLogic.resetUserData");
+    new consoleNotifier().notifyStartService("resetUserData");
 
-    if (localStorage.getItem(user)) {
-        localStorage.setItem(user, JSON.stringify(userTemplate));
+    if (isAdmin(args.get("username"))) {
+        if (localStorage.getItem(user)) {
+            localStorage.setItem(user, JSON.stringify(userTemplate));
+        }
+
+        return `Userdata of "${user}" has been reset.`;
+    } else {
+        return `Userdata of "${user}" could not be reset: logged in user is not admin`
     }
 
-    return `Userdata of "${user}" has been reset.`;
 }
 
 function changeUserDataName(oldname, newname) {
 
-    new consoleNotifier().notifyStartService("PowerLogic.changeUserDataName");
-
-    if (oldname && newname) {
-        if (localStorage.getItem(oldname)) {
-            let userData = JSON.parse(localStorage.getItem(oldname));
-            args.set("username",newname);
-            localStorage.setItem(newname, JSON.stringify(userData));
-            localStorage.removeItem(oldname);
+    new consoleNotifier().notifyStartService("changeUserDataName");
+    if (isAdmin(args.get("username")) || oldname == args.get("username")) {
+        if (oldname && newname) {
+            if (localStorage.getItem(oldname)) {
+                let userData = JSON.parse(localStorage.getItem(oldname));
+                args.set("username", newname);
+                localStorage.setItem(newname, JSON.stringify(userData));
+                localStorage.removeItem(oldname);
+            }
         }
-    }
 
-    return `Userdata of "${oldname}" has been renamed to "${newname}".`;
+        return `Userdata of "${oldname}" has been renamed to "${newname}".`;
+    } else {
+        return `Userdata of "${oldname}" could not be renamed: logged in user is not admin`
+    }
 }
 
 function toggleUserData(user) {
 
-    new consoleNotifier().notifyStartService("PowerLogic.toggleUserData");
-    
-    if (localStorage.getItem(user) && JSON.parse(localStorage.getItem(user))) {
-        let userData = JSON.parse(localStorage.getItem(user));
+    new consoleNotifier().notifyStartService("toggleUserData");
+    if (isAdmin(args.get("username"))) {
+        if (localStorage.getItem(user) && JSON.parse(localStorage.getItem(user))) {
+            let userData = JSON.parse(localStorage.getItem(user));
 
-        userData.enabled = !userData.enabled;
+            userData.enabled = !userData.enabled;
 
-        localStorage.setItem(user, JSON.stringify(userData));
-        return `Userdata access of "${user}" has been toggled to "${localStorage.getItem(userData.enabled)}".`;
+            localStorage.setItem(user, JSON.stringify(userData));
+            return `Userdata access of "${user}" has been toggled to "${localStorage.getItem(userData.enabled)}".`;
 
+        }
+    } else {
+        return `Userdata of "${user}" could not be toggled: logged in user is not admin`
     }
-
 }
 
 function setUserProfilePicture(user, x) {
 
-    new consoleNotifier().notifyStartService("PowerLogic.setUserProfilePicture");
+    new consoleNotifier().notifyStartService("setUserProfilePicture");
 
     if (user && localStorage.getItem(user) && x) {
         let userData = JSON.parse(localStorage.getItem(user));
@@ -80,7 +99,7 @@ function setUserProfilePicture(user, x) {
 
 function startUserDataUpdateCycle() {
 
-    new consoleNotifier().notifyStartService("PowerLogic.startUserDataUpdateCycle");
+    new consoleNotifier().notifyStartService("startUserDataUpdateCycle");
 
     setInterval(() => {
         localStorage.setItem("userAmount", 0);
@@ -180,7 +199,7 @@ function hotSwapUserAccount(username) {
 
     if (localStorage.getItem(username)) {
         let userData = JSON.parse(localStorage.getItem(username));
-        
+
         if (!userData.pswd) {
             args.set("username", username);
             setTimeout(() => {
@@ -193,17 +212,17 @@ function hotSwapUserAccount(username) {
                 initiateArcTerm();
                 notifications = [];
                 closeAllWindows();
-                setTimeout(() => {    
-                    new ErrorLogic().sendError("ArcOS User Accounts",`The account was successfully switched to "${username}".`);
+                setTimeout(() => {
+                    new ErrorLogic().sendError("ArcOS User Accounts", `The account was successfully switched to "${username}".`);
                 }, 100);
-            }, 100);            
+            }, 100);
         } else {
-            new ErrorLogic().sendError("Unable to switch",`ArcOS can't switch to the "${username}" account because it has a password. To use this account, log in to it using the ArcOS Login.`);
+            new ErrorLogic().sendError("Unable to switch", `ArcOS can't switch to the "${username}" account because it has a password. To use this account, log in to it using the ArcOS Login.`);
         }
     }
 }
 
-async function verifyPassword(user,password) {
+async function verifyPassword(user, password) {
 
     new consoleNotifier().notifyStartService("verifyPassword");
 
@@ -211,7 +230,7 @@ async function verifyPassword(user,password) {
     let reqpswd = userData.pswd;
 
     if (reqpswd) {
-        return await argon2.verify(reqpswd,password);
+        return await argon2.verify(reqpswd, password);
     } else {
         return false;
     }
@@ -229,7 +248,7 @@ async function encryptPassword(password) {
     })
 }
 
-async function setPassword(user,password) {
+async function setPassword(user, password) {
 
     new consoleNotifier().notifyStartService("setPassword");
 
@@ -238,7 +257,7 @@ async function setPassword(user,password) {
 
         userData.pswd = await encryptPassword(password);
 
-        localStorage.setItem(user,JSON.stringify(userData));
+        localStorage.setItem(user, JSON.stringify(userData));
     }
 }
 
@@ -247,23 +266,54 @@ async function convertPassword(user) {
     new consoleNotifier().notifyStartService("convertPassword");
 
     let userData = JSON.parse(localStorage.getItem(user));
+
     if (userData) {
         let password = userData.pswd;
+
         if (password && !password.toString().startsWith("$argon2i$v=")) {
             let newPswd = await encryptPassword(password);
+
             userData.pswd = newPswd;
-            localStorage.setItem(user,JSON.stringify(userData));
+
+            localStorage.setItem(user, JSON.stringify(userData));
         }
     }
 }
 
 function isUser(user) {
+    new consoleNotifier().notifyStartService("isUser");
+
     user = localStorage.getItem(user);
     try {
         let json = JSON.parse(user);
-        console.log(json);
         return (!!json && (json.enabled == 1 || json.enabled == 0));
     } catch (e) { return false };
+}
+
+function isOldUser(user) {
+    if (localStorage.getItem(user + "_theme") != null && localStorage.getItem(user + "_taskbarpos") != null) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function setAdmin(user, admin = false) {
+    if (localStorage.getItem(user)) {
+        let userData = JSON.parse(localStorage.getItem(user));
+
+        userData.isAdmin = !!admin;
+
+        localStorage.setItem(user, JSON.stringify(userData));
+    }
+}
+
+function isAdmin(user) {
+    if (localStorage.getItem(user)) {
+        return JSON.parse(localStorage.getItem(user)).isAdmin || true;
+    } else {
+        return true;
+    }
 }
 
 const userTemplate = {
@@ -278,4 +328,5 @@ const userTemplate = {
     theme: "darkrounded",
     titlebarButtonsLeft: false,
     profilePicture: null,
+    isAdmin: false
 };

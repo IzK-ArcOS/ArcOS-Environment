@@ -6,6 +6,8 @@ let userData;
 
 onload = function () {
 
+    upgradeAllUsers();
+
     if (this.localStorage.getItem("safeMode") != "1") {
 
         new consoleNotifier().notifyStartService("setupLogic: no Safe Mode, using default");
@@ -300,6 +302,8 @@ function populateUserSelector() {
 
         for (let i = 0; i < users.length; i++) {
 
+
+
             if (isUser(users[i])) {
 
                 convertPassword(users[i])
@@ -423,3 +427,14 @@ let coverInterval = setInterval(() => {
         hideLogin();
     }
 }, 30000);
+
+function upgradeAllUsers() {
+    let ls = localStorage;
+
+    for (let i=0;i<ls.length;i++) {
+        if (isOldUser(localStorage.key(i))) {
+            console.log(localStorage.key(i));
+            convertUserAccount(localStorage.key(i));
+        }
+    }
+}

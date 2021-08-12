@@ -276,20 +276,23 @@ class ArcTermCommands {
             new ArcTermUserInterface().outputColor(`User [${username}] created.`, ``, `var(--blue)`);
         } else {
             new ArcTermUserInterface().outputColor(`[Error]: entered username cannot be empty.`);
-        }
+        }   
         new ArcTermUserInterface().prompt();
     }
 
     rmusr() {
-        let username = this.getAllCommandArgs(1, false);
+        if (isAdmin(args.get("username"))) {
+            let username = this.getAllCommandArgs(1, false);
 
-        if (username) {
-            deleteUserData(username, false);
-            new ArcTermUserInterface().outputColor(`User [${username}] deleted.`, ``, `var(--blue)`);
+            if (username) {
+                deleteUserData(username, false);
+                new ArcTermUserInterface().outputColor(`User [${username}] deleted.`, ``, `var(--blue)`);
+            } else {
+                new ArcTermUserInterface().outputColor(`[Error]: entered username cannot be empty.`);
+            }
         } else {
-            new ArcTermUserInterface().outputColor(`[Error]: entered username cannot be empty.`);
+            new ArcTermUserInterface().outputColor(`[Error]: You need admin rights to delete an account.`);
         }
-
         new ArcTermUserInterface().prompt();
     }
 
@@ -333,29 +336,35 @@ class ArcTermCommands {
     user() {
         let user = this.getAllCommandArgs(1);
 
-        if (localStorage.getItem(user)) {
-            let userData = JSON.parse(localStorage.getItem(user));
-
-            if (!userData.pswd) {
-                new ArcTermUserInterface().outputColor(`user data of [${user}]:<br>JSON: {`, ``, `var(--yellow)`, true);
-                for (let key in userData)
-                    new ArcTermUserInterface().outputColor(`[  ${key.padEnd(25, ' ')}]: ${userData[key]}`, ``, `var(--yellow)`, true);
-                new ArcTermUserInterface().outputColor(`}`, ``, `var(--yellow)`, true);
-            } else {
-                if (args.get("username") != user) {
-                    new ArcTermUserInterface().outputColor(`[Error]: The specified account is password-protected`, ``);
+        if (args.get("username") != user) {
+            if (localStorage.getItem(user)) {
+                let userData = JSON.parse(localStorage.getItem(user));
+    
+                if (!userData.pswd) {
+                    this.listUserData(user);
                 } else {
-                    new ArcTermUserInterface().outputColor(`user data of [${user}]:<br>JSON: {`, ``, `var(--yellow)`, true);
-                    for (let key in userData)
-                        new ArcTermUserInterface().outputColor(`[  ${key.padEnd(25, ' ')}]: ${userData[key]}`, ``, `var(--yellow)`, true);
-                    new ArcTermUserInterface().outputColor(`}`, ``, `var(--yellow)`, true);
+                    if (!isAdmin(args.get("username"))) {
+                        new ArcTermUserInterface().outputColor(`[Error]: You need admin rights to list a password-protected account.`, ``);
+                    } else {
+                        this.listUserData(user);
+                    }
                 }
+            } else {
+                new ArcTermUserInterface().outputColor(`[Error]: The specified account doesn't exist`, ``);
             }
         } else {
-            new ArcTermUserInterface().outputColor(`[Error]: The specified account doesn't exist`, ``);
+            this.listUserData(user);
         }
-
+        
         new ArcTermUserInterface().prompt();
+    }
+
+    listUserData(user) {
+        let userData = JSON.parse(localStorage.getItem(user));
+        new ArcTermUserInterface().outputColor(`user data of [${user}]:<br>JSON: {`, ``, `var(--yellow)`, true);
+        for (let key in userData)
+            new ArcTermUserInterface().outputColor(`[  ${key.padEnd(25, ' ')}]: ${userData[key]}`, ``, `var(--yellow)`, true);
+        new ArcTermUserInterface().outputColor(`}`, ``, `var(--yellow)`, true);
     }
 
     notifications() {
