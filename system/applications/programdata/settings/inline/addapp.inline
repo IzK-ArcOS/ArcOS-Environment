@@ -11,10 +11,10 @@
             style="min-width: unset;margin:0;float:right;margin-right:7.5px">
         <label for="startAppAfterAddCheckBox" style="margin:0;">Start app when added</label><br>
     </p>
-</button>
+</button><br>
 <button class="folder big controlPanel" onclick="new GeneralLogic().addNewApp();">
     <p>
         Import App
-        <span class="material-icons right">chevron_right</span>
+        <span class="material-icons right">arrow_forward_ios</span>
     </p>
 </button>

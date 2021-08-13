@@ -1,6 +1,8 @@
 <div style="position: absolute;left:0px;width:100%;padding:30px;padding-top:0px;">
-    <h2 style="margin:0px;margin-bottom:10px;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-weight: 100;margin:0px;">
-        <a style="padding-left:-10px;" onclick="openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);">User
+    <h2
+        style="margin:0px;margin-bottom:10px;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-weight: 100;margin:0px;">
+        <a style="padding-left:-10px;"
+            onclick="openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);">User
             Settings</a>
         <span class="material-icons" style="vertical-align: bottom;">
             chevron_right
@@ -12,160 +14,190 @@
 <table>
     <tr>
         <td>
-            <button onclick="setUserProfilePicture(args.get('username'),1);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
+            <button
+                onclick="setUserProfilePicture(args.get('username'),1);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
                     src="./system/images/profilePictures/1.png" height="50px"
                     style="margin:2.5px;border-radius:5px"></button>
         </td>
         <td>
-            <button onclick="setUserProfilePicture(args.get('username'),2);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
+            <button
+                onclick="setUserProfilePicture(args.get('username'),2);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
                     src="./system/images/profilePictures/2.png" height="50px"
                     style="margin:2.5px;border-radius:5px"></button>
         </td>
         <td>
-            <button onclick="setUserProfilePicture(args.get('username'),3);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
+            <button
+                onclick="setUserProfilePicture(args.get('username'),3);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
                     src="./system/images/profilePictures/3.png" height="50px"
                     style="margin:2.5px;border-radius:5px"></button>
         </td>
         <td>
-            <button onclick="setUserProfilePicture(args.get('username'),4);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
+            <button
+                onclick="setUserProfilePicture(args.get('username'),4);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
                     src="./system/images/profilePictures/4.png" height="50px"
                     style="margin:2.5px;border-radius:5px"></button>
         </td>
         <td>
-            <button onclick="setUserProfilePicture(args.get('username'),5);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
+            <button
+                onclick="setUserProfilePicture(args.get('username'),5);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
                     src="./system/images/profilePictures/5.png" height="50px"
                     style="margin:2.5px;border-radius:5px"></button>
         </td>
         <td>
-            <button onclick="setUserProfilePicture(args.get('username'),6);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
+            <button
+                onclick="setUserProfilePicture(args.get('username'),6);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
                     src="./system/images/profilePictures/6.png" height="50px"
                     style="margin:2.5px;border-radius:5px"></button>
         </td>
     </tr>
     <tr>
         <td>
-            <button onclick="setUserProfilePicture(args.get('username'),7);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
+            <button
+                onclick="setUserProfilePicture(args.get('username'),7);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
                     src="./system/images/profilePictures/7.png" height="50px"
                     style="margin:2.5px;border-radius:5px"></button>
         </td>
         <td>
-            <button onclick="setUserProfilePicture(args.get('username'),8);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
+            <button
+                onclick="setUserProfilePicture(args.get('username'),8);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
                     src="./system/images/profilePictures/8.png" height="50px"
                     style="margin:2.5px;border-radius:5px"></button>
         </td>
         <td>
-            <button onclick="setUserProfilePicture(args.get('username'),9);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
+            <button
+                onclick="setUserProfilePicture(args.get('username'),9);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
                     src="./system/images/profilePictures/9.png" height="50px"
                     style="margin:2.5px;border-radius:5px"></button>
         </td>
         <td>
-            <button onclick="setUserProfilePicture(args.get('username'),10);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
+            <button
+                onclick="setUserProfilePicture(args.get('username'),10);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
                     src="./system/images/profilePictures/10.png" height="50px"
                     style="margin:2.5px;border-radius:5px"></button>
         </td>
         <td>
-            <button onclick="setUserProfilePicture(args.get('username'),11);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
+            <button
+                onclick="setUserProfilePicture(args.get('username'),11);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
                     src="./system/images/profilePictures/11.png" height="50px"
                     style="margin:2.5px;border-radius:5px"></button>
         </td>
         <td>
-            <button onclick="setUserProfilePicture(args.get('username'),12);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
+            <button
+                onclick="setUserProfilePicture(args.get('username'),12);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
                     src="./system/images/profilePictures/12.png" height="50px"
                     style="margin:2.5px;border-radius:5px"></button>
         </td>
     </tr>
     <tr>
         <td>
-            <button onclick="setUserProfilePicture(args.get('username'),13);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
+            <button
+                onclick="setUserProfilePicture(args.get('username'),13);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
                     src="./system/images/profilePictures/13.png" height="50px"
                     style="margin:2.5px;border-radius:5px"></button>
         </td>
         <td>
-            <button onclick="setUserProfilePicture(args.get('username'),14);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
+            <button
+                onclick="setUserProfilePicture(args.get('username'),14);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
                     src="./system/images/profilePictures/14.png" height="50px"
                     style="margin:2.5px;border-radius:5px"></button>
         </td>
         <td>
-            <button onclick="setUserProfilePicture(args.get('username'),15);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
+            <button
+                onclick="setUserProfilePicture(args.get('username'),15);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
                     src="./system/images/profilePictures/15.png" height="50px"
                     style="margin:2.5px;border-radius:5px"></button>
         </td>
         <td>
-            <button onclick="setUserProfilePicture(args.get('username'),16);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
+            <button
+                onclick="setUserProfilePicture(args.get('username'),16);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
                     src="./system/images/profilePictures/16.png" height="50px"
                     style="margin:2.5px;border-radius:5px"></button>
         </td>
         <td>
-            <button onclick="setUserProfilePicture(args.get('username'),17);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
+            <button
+                onclick="setUserProfilePicture(args.get('username'),17);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
                     src="./system/images/profilePictures/17.png" height="50px"
                     style="margin:2.5px;border-radius:5px"></button>
         </td>
         <td>
-            <button onclick="setUserProfilePicture(args.get('username'),18);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
+            <button
+                onclick="setUserProfilePicture(args.get('username'),18);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
                     src="./system/images/profilePictures/18.png" height="50px"
                     style="margin:2.5px;border-radius:5px"></button>
         </td>
     </tr>
     <tr>
         <td>
-            <button onclick="setUserProfilePicture(args.get('username'),19);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
+            <button
+                onclick="setUserProfilePicture(args.get('username'),19);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
                     src="./system/images/profilePictures/19.png" height="50px"
                     style="margin:2.5px;border-radius:5px"></button>
         </td>
         <td>
-            <button onclick="setUserProfilePicture(args.get('username'),20);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
+            <button
+                onclick="setUserProfilePicture(args.get('username'),20);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
                     src="./system/images/profilePictures/20.png" height="50px"
                     style="margin:2.5px;border-radius:5px"></button>
         </td>
         <td>
-            <button onclick="setUserProfilePicture(args.get('username'),21);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
+            <button
+                onclick="setUserProfilePicture(args.get('username'),21);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
                     src="./system/images/profilePictures/21.png" height="50px"
                     style="margin:2.5px;border-radius:5px"></button>
         </td>
         <td>
-            <button onclick="setUserProfilePicture(args.get('username'),22);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
+            <button
+                onclick="setUserProfilePicture(args.get('username'),22);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
                     src="./system/images/profilePictures/22.png" height="50px"
                     style="margin:2.5px;border-radius:5px"></button>
         </td>
         <td>
-            <button onclick="setUserProfilePicture(args.get('username'),23);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
+            <button
+                onclick="setUserProfilePicture(args.get('username'),23);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
                     src="./system/images/profilePictures/23.png" height="50px"
                     style="margin:2.5px;border-radius:5px"></button>
         </td>
         <td>
-            <button onclick="setUserProfilePicture(args.get('username'),24);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
+            <button
+                onclick="setUserProfilePicture(args.get('username'),24);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
                     src="./system/images/profilePictures/24.png" height="50px"
                     style="margin:2.5px;border-radius:5px"></button>
         </td>
     </tr>
     <tr>
         <td>
-            <button onclick="setUserProfilePicture(args.get('username'),25);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
+            <button
+                onclick="setUserProfilePicture(args.get('username'),25);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
                     src="./system/images/profilePictures/25.png" height="50px"
                     style="margin:2.5px;border-radius:5px"></button>
         </td>
         <td>
-            <button onclick="setUserProfilePicture(args.get('username'),26);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
+            <button
+                onclick="setUserProfilePicture(args.get('username'),26);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
                     src="./system/images/profilePictures/26.png" height="50px"
                     style="margin:2.5px;border-radius:5px"></button>
         </td>
         <td>
-            <button onclick="setUserProfilePicture(args.get('username'),27);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
+            <button
+                onclick="setUserProfilePicture(args.get('username'),27);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
                     src="./system/images/profilePictures/27.png" height="50px"
                     style="margin:2.5px;border-radius:5px"></button>
         </td>
         <td>
-            <button onclick="setUserProfilePicture(args.get('username'),28);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
+            <button
+                onclick="setUserProfilePicture(args.get('username'),28);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
                     src="./system/images/profilePictures/28.png" height="50px"
                     style="margin:2.5px;border-radius:5px"></button>
         </td>
         <td>
-            <button onclick="setUserProfilePicture(args.get('username'),29);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
+            <button
+                onclick="setUserProfilePicture(args.get('username'),29);openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
                     src="./system/images/profilePictures/29.png" height="50px"
                     style="margin:2.5px;border-radius:5px"></button>
         </td>
         <td>
-            <button onclick="setUserProfilePicture(args.get('username'),'null');openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
+            <button
+                onclick="setUserProfilePicture(args.get('username'),'null');openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);"><img
                     src="./system/images/profilePictures/null.png" height="50px"
                     style="margin:2.5px;border-radius:5px"></button>
         </td>

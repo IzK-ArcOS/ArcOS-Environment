@@ -1,6 +1,7 @@
 <div class="controlPanelUserSettingsHeader">
     <h2 class="controlPanelAppletHeader">
-        <a style="padding-left:-10px;" onclick="openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);">
+        <a style="padding-left:-10px;"
+            onclick="openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);">
             User Settings
         </a><span class="material-icons" style="vertical-align: bottom;">chevron_right</span>Manage Profile
     </h2>
@@ -10,8 +11,9 @@
 <p>Enter a new name for your account:</p>
 <input id="changeUsernameInputField" class="controlPanelElementWidth inp">
 <br><br>
-<button onclick="changeUserDataName(args.get('username'),document.getElementById('changeUsernameInputField').value);" class="folder big controlPanel">
-    <p>Change Username<span class="material-icons right">chevron_right</span></p>
+<button onclick="changeUserDataName(args.get('username'),document.getElementById('changeUsernameInputField').value);"
+    class="folder big controlPanel">
+    <p>Change Username<span class="material-icons right">arrow_forward_ios</span></p>
 </button>
 <h3 class="controlPanelSubHeader" style="margin-top:20px;">Change Password</h3><br>
 <p>Fill out the form below to change your password:</p>
@@ -19,20 +21,23 @@
     <tr>
         <td>Old Password</td>
         <td>
-            <input type="password" id="changePasswordCurrentPasswordInputField" class="controlPanelElementWidth inp" style="width:215px;">
+            <input type="password" id="changePasswordCurrentPasswordInputField" class="controlPanelElementWidth inp"
+                style="width:215px;">
         </td>
     </tr>
     <tr>
         <td>New Password</td>
         <td>
-            <input type="password" id="changePasswordNewPasswordInputField" class="controlPanelElementWidth inp" style="width:215px;">
+            <input type="password" id="changePasswordNewPasswordInputField" class="controlPanelElementWidth inp"
+                style="width:215px;">
         </td>
     </tr>
     <tr>
         <td>
             Confirm New Password
         </td>
-        <td><input type="password" id="changePasswordConfirmPasswordInputField" class="controlPanelElementWidth inp" style="width:215px;"></td>
+        <td><input type="password" id="changePasswordConfirmPasswordInputField" class="controlPanelElementWidth inp"
+                style="width:215px;"></td>
     </tr>
 </table>
 <Br>
@@ -42,5 +47,5 @@
             document.getElementById('changePasswordNewPasswordInputField').value,
             document.getElementById('changePasswordConfirmPasswordInputField').value
             )" class="folder big controlPanel">
-    <p>Change Password&nbsp;&nbsp;<span class="material-icons right">chevron_right</span></p>
+    <p>Change Password&nbsp;&nbsp;<span class="material-icons right">arrow_forward_ios</span></p>
 </button>

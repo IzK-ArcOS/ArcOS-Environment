@@ -2,19 +2,25 @@ const argon2 = require("argon2")
 
 new consoleNotifier().startModule("ArcOS.System.userLogic");
 
-function createUserData(user) {
+function createUserData(user, notify = false) {
 
     new consoleNotifier().notifyStartService("createUserData");
 
     if (isAdmin(args.get("username"))) {
         localStorage.setItem(user, JSON.stringify(userTemplate));
+        if (notify) {
+            new ErrorLogic().sendError("User Accounts", `User account of "${user}" was created successfully.`);
+        }
         return `Userdata of "${user}" has been created.`;
     } else {
-        return `Userdata of "${user}" could not be created: logged in user is not admin.`
+        if (notify) {
+            new ErrorLogic().sendError("User Accounts", `User account of "${user}" could not be created.<br><br>Reason: you do not have admin rights.`);
+        }
+        return `Userdata of "${user}" could not be created: logged in user is not admin.`;
     }
 }
 
-function deleteUserData(user, notify = 1) {
+function deleteUserData(user, notify = false) {
 
     new consoleNotifier().notifyStartService("deleteUserData");
 
@@ -22,15 +28,20 @@ function deleteUserData(user, notify = 1) {
         if (user && localStorage.getItem(user)) {
             localStorage.removeItem(user);
         }
-
+        if (notify) {
+            new ErrorLogic().sendError("User Accounts", `User account of "${user}" was deleted successfully.`);
+        }
         return `Userdata of "${user}" has been deleted.`;
     } else {
+        if (notify) {
+            new ErrorLogic().sendError("User Accounts", `User account of "${user}" could not be deleted.<br><br>Reason: you do not have admin rights.`);
+        }
         return `Userdata of "${user}" could not be deleted: logged in user is not admin.`;
     }
 
 }
 
-function resetUserData(user) {
+function resetUserData(user, notify = false) {
 
     new consoleNotifier().notifyStartService("resetUserData");
 
@@ -38,15 +49,20 @@ function resetUserData(user) {
         if (localStorage.getItem(user)) {
             localStorage.setItem(user, JSON.stringify(userTemplate));
         }
-
+        if (notify) {
+            new ErrorLogic().sendError("User Accounts", `User account of "${user}" was reset successfully.`);
+        }
         return `Userdata of "${user}" has been reset.`;
     } else {
-        return `Userdata of "${user}" could not be reset: logged in user is not admin`
+        if (notify) {
+            new ErrorLogic().sendError("User Accounts", `User account of "${user}" could not be reset.<br><br>Reason: you do not have admin rights.`);
+        }
+        return `Userdata of "${user}" could not be reset: logged in user is not admin`;
     }
 
 }
 
-function changeUserDataName(oldname, newname) {
+function changeUserDataName(oldname, newname, notify = false) {
 
     new consoleNotifier().notifyStartService("changeUserDataName");
     if (isAdmin(args.get("username")) || oldname == args.get("username")) {
@@ -58,14 +74,19 @@ function changeUserDataName(oldname, newname) {
                 localStorage.removeItem(oldname);
             }
         }
-
+        if (notify) {
+            new ErrorLogic().sendError("User Accounts", `User account of "${oldname}" was successfully renamed to "${newname}".`);
+        }
         return `Userdata of "${oldname}" has been renamed to "${newname}".`;
     } else {
+        if (notify) {
+            new ErrorLogic().sendError("User Accounts", `User account of "${user}" could not be renamed.<br><br>Reason: you do not have admin rights.`);
+        }
         return `Userdata of "${oldname}" could not be renamed: logged in user is not admin`
     }
 }
 
-function toggleUserData(user) {
+function toggleUserData(user, notify = false) {
 
     new consoleNotifier().notifyStartService("toggleUserData");
     if (isAdmin(args.get("username"))) {
@@ -75,10 +96,16 @@ function toggleUserData(user) {
             userData.enabled = !userData.enabled;
 
             localStorage.setItem(user, JSON.stringify(userData));
+            if (notify) {
+                new ErrorLogic().sendError("User Accounts", `User account of "${user}" was toggled successfully.`);
+            }
             return `Userdata access of "${user}" has been toggled to "${localStorage.getItem(userData.enabled)}".`;
 
         }
     } else {
+        if (notify) {
+            new ErrorLogic().sendError("User Accounts", `User account of "${user}" could not be toggled.<br><br>Reason: you do not have admin rights.`);
+        }
         return `Userdata of "${user}" could not be toggled: logged in user is not admin`
     }
 }
@@ -231,9 +258,8 @@ async function verifyPassword(user, password) {
 
     if (reqpswd) {
         return await argon2.verify(reqpswd, password);
-    } else {
-        return false;
     }
+    return false;
 }
 
 async function encryptPassword(password) {
@@ -293,9 +319,8 @@ function isUser(user) {
 function isOldUser(user) {
     if (localStorage.getItem(user + "_theme") != null && localStorage.getItem(user + "_taskbarpos") != null) {
         return true;
-    } else {
-        return false;
     }
+    return false;
 }
 
 function setAdmin(user, admin = false) {
@@ -310,10 +335,9 @@ function setAdmin(user, admin = false) {
 
 function isAdmin(user) {
     if (localStorage.getItem(user)) {
-        return JSON.parse(localStorage.getItem(user)).isAdmin || true;
-    } else {
-        return true;
+        return !!JSON.parse(localStorage.getItem(user)).isAdmin;
     }
+    return false;
 }
 
 const userTemplate = {
