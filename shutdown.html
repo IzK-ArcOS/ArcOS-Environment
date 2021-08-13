@@ -28,6 +28,7 @@
                 setToolbarTrigger();
                 document.body.style.opacity = "1";
             }, 1000);
+            document.getElementById("username").innerHTML = params.get("username");
         }
 
         setInterval(() => {
@@ -51,14 +52,14 @@
         <button class="toolbar right" onclick="require('electron').remote.getCurrentWindow().minimize();">🗕</button>
     </div>
     <div class="toolbarHoverTrigger" id="toolbarHoverTrigger"></div>
-    <div class="content" id="main" style="visibility: visible;display: unset;">
-        <div class="content" id="main" style="visibility: visible;display: unset;">
-            <img src="./system/images/user.png" height="150px" style="border-radius:50%;" id="profilePicture">
-            <h1 style="margin:0px;">Goodbye, <span id="username"></span>!</h1>
-            <h3 style="margin:0px;margin-top:5px;">Shutting down...</h3>
-            <br>
-            <img src="./system/images/spinner.svg" height="50px">
-        </div>
+    <div class="content" id="main" style="visibility: visible;display: unset;width:fit-content">
+        <img src="./system/images/user.png" height="150px" style="border-radius:50%;" id="profilePicture">
+        <h1 style="margin:0px;">Goodbye, <span id="username"></span>!</h1>
+        <h3 style="margin:0px;margin-top:5px;">Shutting down...</h3>
+        <br>
+        <img src="./system/images/spinner.svg" height="50px">
+    </div>
+
 </body>
 
 </html>

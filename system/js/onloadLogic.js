@@ -336,7 +336,7 @@ class OnloadLogic {
             loadWindow("./system/applications/lockScreen.app", 1, 0);
             setTimeout(() => {
                 initiateArcTerm();
-            }, 100);
+            }, 1000);
         }, 100);
     }
 

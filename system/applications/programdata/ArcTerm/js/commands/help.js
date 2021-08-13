@@ -252,6 +252,15 @@ function help() {
                     ``, `var(--blue)`, true
                 );
                 break;
+            case "admin":
+                new ArcTermUserInterface().outputColor(
+                    "Allows or denies admin rights for a user account.<br><br>" +
+                    "Usage: [ADMIN] {[TYPE]} {[USER]}<br><br>" +
+                    '[TYPE]        Required - "allow" or "deny", specifies if the user will get admin rights.<br>' +
+                    "[USER]        Required - Target user account.<br>",
+                    ``, `var(--blue)`, true
+                );
+                break;
             default:
                 new ArcTermUserInterface().outputColor(
                     "[Error]: The specified command could not be found. For a list of commands, enter \"HELP\" without arguments."
@@ -260,6 +269,7 @@ function help() {
         }
     } else {
         new ArcTermUserInterface().outputColor(
+            `[ADMIN]      Allows or denies admin rights for a user account.<br>` +
             `[BSOD]       Crashes ArcOS with a custom BSOD message.<br>` +
             `[CD]         Changes the current directory.<br>` +
             `[CLOSE]      Closes the specified program<br>` +

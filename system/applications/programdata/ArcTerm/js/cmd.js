@@ -455,6 +455,36 @@ class ArcTermCommands {
 
         new ArcTermUserInterface().prompt();
     }
+
+    admin() {
+        if (isAdmin(args.get("username"))) {
+            let toggle = globalCommandList[1];
+            let user = this.getAllCommandArgs(2);
+            if (localStorage.getItem(user)) {
+                let userData = JSON.parse(localStorage.getItem(user));
+                switch (toggle) {
+                    case "allow":
+                        userData.isAdmin = true;
+                        new ArcTermUserInterface().outputColor(`[ALLOW]: The user account of [${user}] now has admin rights.`, ``, `var(--green)`);
+                        break;
+                    case "deny":
+                        userData.isAdmin = false;
+                        new ArcTermUserInterface().outputColor(`[DENY ]: The user account of [${user}] no longer has admin rights.`, ``, `var(--red)`);
+                        break;
+                    default:
+                        new ArcTermUserInterface().outputColor(`[Error]: unknown type "${toggle}", expected "allow" or "deny"`);
+                        break;
+                }
+                localStorage.setItem(user,JSON.stringify(userData));
+            } else {
+                new ArcTermUserInterface().outputColor(`[Error]: User account doesn't exist`);
+            }
+        } else {
+            new ArcTermUserInterface().outputColor(`[Error]: You need admin rights to give other accounts admin rights.`);
+        }
+
+        new ArcTermUserInterface().prompt();
+    }
 }
 
 const cmdToken = true;

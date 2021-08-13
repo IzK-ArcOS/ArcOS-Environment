@@ -148,6 +148,9 @@ class ArcTermUserInterface {
             case "lock":
                 cmd.lock();
                 break;
+            case "admin":
+                cmd.admin();
+                break;
             case "":
                 new ArcTermUserInterface().prompt();
                 break;
