@@ -6,84 +6,108 @@ function createUserData(user, notify = false) {
 
     new consoleNotifier().notifyStartService("createUserData");
 
-    if (isAdmin(args.get("username"))) {
-        localStorage.setItem(user, JSON.stringify(userTemplate));
-        if (notify) {
-            new ErrorLogic().sendError("User Accounts", `User account of "${user}" was created successfully.`);
+    if (user) {
+        if (isAdmin(args.get("username"))) {
+            localStorage.setItem(user, JSON.stringify(userTemplate));
+            if (notify) {
+                new ErrorLogic().sendError("User Accounts", `User account of "${user}" was created successfully.`);
+            }
+            return `Userdata of "${user}" has been created.`;
+        } else {
+            if (notify) {
+                new ErrorLogic().sendError("User Accounts", `User account of "${user}" could not be created.<br><br>Reason: you do not have admin rights.`);
+            }
+            return `Userdata of "${user}" could not be created: logged in user is not admin.`;
         }
-        return `Userdata of "${user}" has been created.`;
     } else {
         if (notify) {
-            new ErrorLogic().sendError("User Accounts", `User account of "${user}" could not be created.<br><br>Reason: you do not have admin rights.`);
+            new ErrorLogic().sendError("User Accounts", `User account of "${user}" could not be created.<br><br>Reason: username cannot be empty.`);
         }
-        return `Userdata of "${user}" could not be created: logged in user is not admin.`;
     }
+
 }
 
 function deleteUserData(user, notify = false) {
 
     new consoleNotifier().notifyStartService("deleteUserData");
 
-    if (isAdmin(args.get("username"))) {
-        if (user && localStorage.getItem(user)) {
-            localStorage.removeItem(user);
+    if (user) {
+        if (isAdmin(args.get("username"))) {
+            if (user && localStorage.getItem(user)) {
+                localStorage.removeItem(user);
+            }
+            if (notify) {
+                new ErrorLogic().sendError("User Accounts", `User account of "${user}" was deleted successfully.`);
+            }
+            return `Userdata of "${user}" has been deleted.`;
+        } else {
+            if (notify) {
+                new ErrorLogic().sendError("User Accounts", `User account of "${user}" could not be deleted.<br><br>Reason: you do not have admin rights.`);
+            }
+            return `Userdata of "${user}" could not be deleted: logged in user is not admin.`;
         }
-        if (notify) {
-            new ErrorLogic().sendError("User Accounts", `User account of "${user}" was deleted successfully.`);
-        }
-        return `Userdata of "${user}" has been deleted.`;
     } else {
         if (notify) {
-            new ErrorLogic().sendError("User Accounts", `User account of "${user}" could not be deleted.<br><br>Reason: you do not have admin rights.`);
+            new ErrorLogic().sendError("User Accounts", `User account of "${user}" could not be deleted.<br><br>Reason: username cannot be empty.`);
         }
-        return `Userdata of "${user}" could not be deleted: logged in user is not admin.`;
-    }
-
+    }    
 }
 
 function resetUserData(user, notify = false) {
 
     new consoleNotifier().notifyStartService("resetUserData");
 
-    if (isAdmin(args.get("username"))) {
-        if (localStorage.getItem(user)) {
-            localStorage.setItem(user, JSON.stringify(userTemplate));
+    if (user) {
+        if (isAdmin(args.get("username"))) {
+            if (localStorage.getItem(user)) {
+                localStorage.setItem(user, JSON.stringify(userTemplate));
+            }
+            if (notify) {
+                new ErrorLogic().sendError("User Accounts", `User account of "${user}" was reset successfully.`);
+            }
+            return `Userdata of "${user}" has been reset.`;
+        } else {
+            if (notify) {
+                new ErrorLogic().sendError("User Accounts", `User account of "${user}" could not be reset.<br><br>Reason: you do not have admin rights.`);
+            }
+            return `Userdata of "${user}" could not be reset: logged in user is not admin`;
         }
-        if (notify) {
-            new ErrorLogic().sendError("User Accounts", `User account of "${user}" was reset successfully.`);
-        }
-        return `Userdata of "${user}" has been reset.`;
     } else {
         if (notify) {
-            new ErrorLogic().sendError("User Accounts", `User account of "${user}" could not be reset.<br><br>Reason: you do not have admin rights.`);
+            new ErrorLogic().sendError("User Accounts", `User account of "${user}" could not be reset.<br><br>Reason: username cannot be empty.`);
         }
-        return `Userdata of "${user}" could not be reset: logged in user is not admin`;
-    }
-
+    }    
 }
 
 function changeUserDataName(oldname, newname, notify = false) {
 
     new consoleNotifier().notifyStartService("changeUserDataName");
-    if (isAdmin(args.get("username")) || oldname == args.get("username")) {
-        if (oldname && newname) {
-            if (localStorage.getItem(oldname)) {
-                let userData = JSON.parse(localStorage.getItem(oldname));
-                args.set("username", newname);
-                localStorage.setItem(newname, JSON.stringify(userData));
-                localStorage.removeItem(oldname);
+    if (oldname && newname) {
+        if (isAdmin(args.get("username")) || oldname == args.get("username")) {
+            if (oldname && newname) {
+                if (localStorage.getItem(oldname)) {
+                    let userData = JSON.parse(localStorage.getItem(oldname));
+                    args.set("username", newname);
+                    localStorage.setItem(newname, JSON.stringify(userData));
+                    localStorage.removeItem(oldname);
+                }
             }
+            if (notify) {
+                new ErrorLogic().sendError("User Accounts", `User account of "${oldname}" was successfully renamed to "${newname}".`);
+            }
+            return `Userdata of "${oldname}" has been renamed to "${newname}".`;
+        } else {
+            if (notify) {
+                new ErrorLogic().sendError("User Accounts", `User account of "${user}" could not be renamed.<br><br>Reason: you do not have admin rights.`);
+            }
+            return `Userdata of "${oldname}" could not be renamed: logged in user is not admin`
         }
-        if (notify) {
-            new ErrorLogic().sendError("User Accounts", `User account of "${oldname}" was successfully renamed to "${newname}".`);
-        }
-        return `Userdata of "${oldname}" has been renamed to "${newname}".`;
     } else {
         if (notify) {
-            new ErrorLogic().sendError("User Accounts", `User account of "${user}" could not be renamed.<br><br>Reason: you do not have admin rights.`);
+            new ErrorLogic().sendError("User Accounts",`User account of "${oldname}" could not be renamed.<br><br>Reason: <code>oldname</code> or <code>newname</code> is empty.`)
         }
-        return `Userdata of "${oldname}" could not be renamed: logged in user is not admin`
     }
+    
 }
 
 function toggleUserData(user, notify = false) {
@@ -146,8 +170,7 @@ function startUserDataUpdateCycle() {
                     localStorage.setItem("userAmount", parseInt(localStorage.getItem("userAmount")) + 1);
                     tempUsrList.push(localStorage.key(i));
                 }
-            }
-            catch { }
+            } catch {}
             localStorage.setItem("userList", tempUsrList);
         }
     }, 500);

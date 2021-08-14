@@ -8,7 +8,7 @@
     and has come a far way since. In order to use this software, you must<br>read the license agreement:<br><br>
     <button class="folder big controlPanel" onclick="openWithNotepad('./LICENSE');">
         <p>
-            &nbsp;&nbsp;&nbsp;<img src="./system/images/ArcOS Notepad.svg" height="16px"
+            <img src="./system/images/ArcOS Notepad.svg" height="16px"
                 style="vertical-align: middle;">&nbsp;&nbsp;&nbsp;Open License
             <span class="material-icons right" style="vertical-align: middle;">arrow_forward_ios</span>
         </p>

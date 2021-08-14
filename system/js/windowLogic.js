@@ -145,7 +145,9 @@ function updateTaskBar() {
 
         });
 
-        document.getElementById("taskbarButtons").innerHTML = str;
+        if (document.getElementById("taskbarButtons").innerHTML != str) {
+            document.getElementById("taskbarButtons").innerHTML = str;
+        }
     }
 }
 

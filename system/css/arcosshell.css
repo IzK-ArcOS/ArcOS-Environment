@@ -1070,7 +1070,7 @@ input.folder.big.controlPanel {
     max-width: unset;
     max-height: unset;
     width: 390px;
-    padding-left: 10px
+    padding-left: 30px;
 }
 
 button.folder.big.controlPanel>p,
@@ -1292,6 +1292,11 @@ div.window#Settings div.controlPanelMainFrame input.inp:hover {
     background-color: var(--controlPanelThrdBackgroundColor);
 }
 
+div.window#Settings div.controlPanelMainFrame button:active,
+div.window#Settings div.controlPanelMainFrame select:active,
+div.window#Settings div.controlPanelMainFrame input.inp:active {
+    background-color: var(--controlPanelMainBackgroundColor);
+}
 
 div.window[id="Shut Down ArcOS"],
 div.window[id="ArcTerm"] {
@@ -1301,6 +1306,13 @@ div.window[id="ArcTerm"] {
 
 div.window[id="Shut Down ArcOS"] button {
     background-color: var(--controlPanelSecoBackgroundColor);
+}
+div.window[id="Shut Down ArcOS"] button:hover {
+    background-color: var(--controlPanelThrdBackgroundColor);
+}
+
+div.window[id="Shut Down ArcOS"] button:active {
+    background-color: var(--controlPanelMainBackgroundColor);
 }
 
 div.fileExplorerTopPane button {
@@ -1553,4 +1565,20 @@ div.lockScreen h3 {
 div.lockScreen.hidden {
     visibility: hidden;
     opacity:0;
+}
+
+code {
+    font-family: 'Ubuntu Mono', monospace;
+    padding:2.5px 5px;
+    border-radius: 5px;
+    background-color: var(--startMenuBackgroundColor);
+}
+
+div.newStartMenu.small {
+    width: 405px;
+    height: 405px;   
+}
+
+div.newStartMenu.small>div.leftPane {
+    width: 203px;
 }

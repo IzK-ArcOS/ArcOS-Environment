@@ -1,4 +1,4 @@
-<div class="newStartMenu" id="startMenu">
+<div class="newStartMenu small" id="startMenu">
     <div class="bottomPane">
         <span class="h3" id="usernameStartMenu"></span>
         <button class="transparent newStartMenuShutDownButton" onclick="openWindow('Shut Down ArcOS');"><span
