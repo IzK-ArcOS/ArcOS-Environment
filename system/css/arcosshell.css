@@ -1286,6 +1286,13 @@ div.window#Settings div.controlPanelMainFrame input.inp {
     background-color: var(--controlPanelSecoBackgroundColor);
 }
 
+div.window#Settings div.controlPanelMainFrame button:hover,
+div.window#Settings div.controlPanelMainFrame select:hover,
+div.window#Settings div.controlPanelMainFrame input.inp:hover {
+    background-color: var(--controlPanelThrdBackgroundColor);
+}
+
+
 div.window[id="Shut Down ArcOS"],
 div.window[id="ArcTerm"] {
     background-color: var(--controlPanelMainBackgroundColor);
