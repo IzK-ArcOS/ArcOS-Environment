@@ -194,9 +194,10 @@ class ArcTermCommands {
     }
 
     ls() {
-        new ArcTermUserInterface().outputColor("Showing contents of [localStorage]<br><br>", ``, `var(--blue)`)
+        new ArcTermUserInterface().outputColor("Showing contents of [localStorage]<br><br>", ``, `var(--blue)`);
         for (let i = 0; i < localStorage.length; i++) {
-            if (!localStorage.key(i).endsWith("pswd")) {
+            console.log(localStorage.key(i), isUser(localStorage.key(i)));
+            if (!isUser(localStorage.key(i))) {
                 new ArcTermUserInterface().outputColor(`[${localStorage.key(i)}]: ${localStorage.getItem(localStorage.key(i))}`, ``, `var(--yellow)`);
             }
         }
@@ -276,7 +277,7 @@ class ArcTermCommands {
             new ArcTermUserInterface().outputColor(`User [${username}] created.`, ``, `var(--blue)`);
         } else {
             new ArcTermUserInterface().outputColor(`[Error]: entered username cannot be empty.`);
-        }   
+        }
         new ArcTermUserInterface().prompt();
     }
 
@@ -339,7 +340,7 @@ class ArcTermCommands {
         if (args.get("username") != user) {
             if (localStorage.getItem(user)) {
                 let userData = JSON.parse(localStorage.getItem(user));
-    
+
                 if (!userData.pswd) {
                     this.listUserData(user);
                 } else {
@@ -355,7 +356,7 @@ class ArcTermCommands {
         } else {
             this.listUserData(user);
         }
-        
+
         new ArcTermUserInterface().prompt();
     }
 
@@ -448,7 +449,7 @@ class ArcTermCommands {
             document.getElementsByClassName("lockScreen")[0].classList.remove("hidden");
             lockScreenActive = true;
             new consoleNotifier().notifyStartService("powerLogic.lock: locked ArcOS Desktop")
-            new ArcTermUserInterface().outputColor(`[Lock]: ArcOS Desktop is now locked.`,``,`var(--yellow)`);
+            new ArcTermUserInterface().outputColor(`[Lock]: ArcOS Desktop is now locked.`, ``, `var(--yellow)`);
         } else {
             new ArcTermUserInterface().outputColor(`[Error]: Unable to lock: user account doesn't have a password.`);
         }
@@ -475,12 +476,58 @@ class ArcTermCommands {
                         new ArcTermUserInterface().outputColor(`[Error]: unknown type "${toggle}", expected "allow" or "deny"`);
                         break;
                 }
-                localStorage.setItem(user,JSON.stringify(userData));
+                localStorage.setItem(user, JSON.stringify(userData));
             } else {
-                new ArcTermUserInterface().outputColor(`[Error]: User account doesn't exist`);
+                new ArcTermUserInterface().outputColor(`[Error]: User account doesn't exist.`);
             }
         } else {
             new ArcTermUserInterface().outputColor(`[Error]: You need admin rights to give other accounts admin rights.`);
+        }
+
+        new ArcTermUserInterface().prompt();
+    }
+
+    swapusr() {
+        let username = this.getAllCommandArgs(1);
+        if (localStorage.getItem(username)) {
+            let userData = JSON.parse(localStorage.getItem(username));
+            if (!userData.pswd) {
+                new ArcTermUserInterface().outputColor(`[Swap User]: Swapping to user account [${username}]...`, ``, `var(--blue)`);
+                setTimeout(() => {
+                    hotSwapUserAccount(username);
+                }, 2000);
+            } else {
+                new ArcTermUserInterface().outputColor(`[Error]: Requested user account is password-protected.`);
+            }
+        } else {
+            new ArcTermUserInterface().outputColor(`[Error]: Requested user account doesn't exist.`);
+        }
+    }
+
+    arcutil() {
+        let util = this.getAllCommandArgs(1);
+        switch (util) {
+            case "reload":
+                window.location.reload();
+                break;
+            case "kill":
+                window.close();
+                break;
+            default:
+                new ArcTermUserInterface().clearScreen();
+                new ArcTermUserInterface().outputColor(
+                    `[__]          _          _   _ _   [_] _ <br>` +
+                    `[\\ \\]        /_\\  _ _ __| | | | |_[(_)] |<br>` +
+                    `[ > >___]   / _ \\| '_/ _| |_| |  _| | |<br>` +
+                    `[/_/(___)] /_/ \\_\\_| \\__|\\___/ \\__|_|_|`,
+                    ``, `var(--blue)`, true
+                );
+                new ArcTermUserInterface().outputColor(`<br>[ArcUtil] is only ment for development purposes`, ``, `var(--blue)`, true);
+                new ArcTermUserInterface().outputColor(`<br>Please note that the wrong ArcUtil commands<Br>can make you [lose all unsaved changes in opened documents]`, ``, `var(--red)`, true);
+                new ArcTermUserInterface().outputColor(`<br>[ArcTerm] commands:`, ``, `var(--blue)`, true);
+                new ArcTermUserInterface().outputColor(`<br>[reload]     Immediately reloads the session`, ``, `var(--blue)`, true);
+                new ArcTermUserInterface().outputColor(`[kill]       immediately kills the ArcOS process`, ``, `var(--blue)`, true);
+                break;
         }
 
         new ArcTermUserInterface().prompt();

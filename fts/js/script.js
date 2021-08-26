@@ -24,7 +24,7 @@ function createUserAccount() {
     console.log(`[FTS] Attempting to create user account "${username}"`);
     if (username != "") {
         console.log(`[FTS] ... Attempt succeeded.`);
-        createUserData(username);
+        createUserData(username, true);
         setAdmin(username, true);
         setPage("passwordSetup");
     } else {
@@ -75,7 +75,7 @@ function setUserPassword() {
         confrm = document.getElementById("passwordConfirmInputField").value;
 
     if (password == confrm) {
-        setPassword(username,password);
+        setPassword(username, password);
         setPage('finish');
     } else {
         setPage('noPswdMatch');

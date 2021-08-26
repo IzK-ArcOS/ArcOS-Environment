@@ -151,6 +151,12 @@ class ArcTermUserInterface {
             case "admin":
                 cmd.admin();
                 break;
+            case "swapusr":
+                cmd.swapusr();
+                break;
+            case "arcutil":
+                cmd.arcutil();
+                break;
             case "":
                 new ArcTermUserInterface().prompt();
                 break;
@@ -178,7 +184,7 @@ class ArcTermUserInterface {
 
         try {
             document.getElementById(inputId).setAttribute("disabled", "");
-        } catch (e) {}
+        } catch (e) { }
 
         input.id = `input${Math.floor(Math.random() * 0x32767)}`;
         inputId = input.id;
@@ -248,7 +254,7 @@ class ArcTermUserInterface {
         }
     }
 
-    outputColor(text, pri = "", sec = "var(--red)",noSpaceCollapse = false) {
+    outputColor(text, pri = "", sec = "var(--red)", noSpaceCollapse = false) {
         const x = text.split(/(\[[^\]]*\])/);
         let out = "";
         for (let i = 0; i < x.length; i++) {
@@ -265,7 +271,7 @@ class ArcTermUserInterface {
                 } else {
                     out += `<span style="color:${pri}">${str}</span>`;
                 }
-                
+
             }
         }
         this.outputHTML(out);

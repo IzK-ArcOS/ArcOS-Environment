@@ -2,12 +2,12 @@ const argon2 = require("argon2")
 
 new consoleNotifier().startModule("ArcOS.System.userLogic");
 
-function createUserData(user, notify = false) {
+function createUserData(user, override = false, notify = false) {
 
     new consoleNotifier().notifyStartService("createUserData");
 
     if (user) {
-        if (isAdmin(args.get("username"))) {
+        if (isAdmin(args.get("username")) || override) {
             localStorage.setItem(user, JSON.stringify(userTemplate));
             if (notify) {
                 new ErrorLogic().sendError("User Accounts", `User account of "${user}" was created successfully.`);
@@ -27,12 +27,12 @@ function createUserData(user, notify = false) {
 
 }
 
-function deleteUserData(user, notify = false) {
+function deleteUserData(user, override = false, notify = false) {
 
     new consoleNotifier().notifyStartService("deleteUserData");
 
     if (user) {
-        if (isAdmin(args.get("username"))) {
+        if (isAdmin(args.get("username")) || override) {
             if (user && localStorage.getItem(user)) {
                 localStorage.removeItem(user);
             }
@@ -50,15 +50,15 @@ function deleteUserData(user, notify = false) {
         if (notify) {
             new ErrorLogic().sendError("User Accounts", `User account of "${user}" could not be deleted.<br><br>Reason: username cannot be empty.`);
         }
-    }    
+    }
 }
 
-function resetUserData(user, notify = false) {
+function resetUserData(user, override = false, notify = false) {
 
     new consoleNotifier().notifyStartService("resetUserData");
 
     if (user) {
-        if (isAdmin(args.get("username"))) {
+        if (isAdmin(args.get("username")) || override) {
             if (localStorage.getItem(user)) {
                 localStorage.setItem(user, JSON.stringify(userTemplate));
             }
@@ -76,14 +76,14 @@ function resetUserData(user, notify = false) {
         if (notify) {
             new ErrorLogic().sendError("User Accounts", `User account of "${user}" could not be reset.<br><br>Reason: username cannot be empty.`);
         }
-    }    
+    }
 }
 
-function changeUserDataName(oldname, newname, notify = false) {
+function changeUserDataName(oldname, newname, override = false, notify = false) {
 
     new consoleNotifier().notifyStartService("changeUserDataName");
     if (oldname && newname) {
-        if (isAdmin(args.get("username")) || oldname == args.get("username")) {
+        if (isAdmin(args.get("username")) || oldname == args.get("username") || override) {
             if (oldname && newname) {
                 if (localStorage.getItem(oldname)) {
                     let userData = JSON.parse(localStorage.getItem(oldname));
@@ -104,16 +104,16 @@ function changeUserDataName(oldname, newname, notify = false) {
         }
     } else {
         if (notify) {
-            new ErrorLogic().sendError("User Accounts",`User account of "${oldname}" could not be renamed.<br><br>Reason: <code>oldname</code> or <code>newname</code> is empty.`)
+            new ErrorLogic().sendError("User Accounts", `User account of "${oldname}" could not be renamed.<br><br>Reason: <code>oldname</code> or <code>newname</code> is empty.`)
         }
     }
-    
+
 }
 
-function toggleUserData(user, notify = false) {
+function toggleUserData(user, override = false, notify = false) {
 
     new consoleNotifier().notifyStartService("toggleUserData");
-    if (isAdmin(args.get("username"))) {
+    if (isAdmin(args.get("username")) || override) {
         if (localStorage.getItem(user) && JSON.parse(localStorage.getItem(user))) {
             let userData = JSON.parse(localStorage.getItem(user));
 
@@ -170,7 +170,7 @@ function startUserDataUpdateCycle() {
                     localStorage.setItem("userAmount", parseInt(localStorage.getItem("userAmount")) + 1);
                     tempUsrList.push(localStorage.key(i));
                 }
-            } catch {}
+            } catch { }
             localStorage.setItem("userList", tempUsrList);
         }
     }, 500);

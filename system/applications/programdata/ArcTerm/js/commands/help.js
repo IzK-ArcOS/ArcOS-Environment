@@ -238,6 +238,14 @@ function help() {
                     ``, `var(--blue)`, true
                 );
                 break;
+            case "swapusr":
+                new ArcTermUserInterface().outputColor(
+                    "hot-swaps the current user without having to log off.<br><br>" +
+                    "Usage: [SWAPUSR] {[USER]}<br><br>" +
+                    "[USER]        Required - The specified user to be swapped to.",
+                    ``, `var(--blue)`, true
+                );
+                break;
             case "resui":
                 new ArcTermUserInterface().outputColor(
                     "Restarts the ArcOS user interface.<br><br>" +
@@ -301,6 +309,7 @@ function help() {
             `[RUNWITH]    Opens the Open With dialog for the specified file.<br>` +
             `[SETLS]      Sets the specified localStorage item to the specified value.<br>` +
             `[SHUTDOWN]   Shuts down ArcOS.<br>` +
+            `[SWAPUSR]    hot-swaps the current user without having to log off.<br>` +
             `[USER]       Displays preference information about the specified user.<br>` +
             `[VER]        Gives back the current version.<br>`,
             ``, `var(--blue)`, true
