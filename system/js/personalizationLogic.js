@@ -115,4 +115,30 @@ class PersonalizationLogic {
         localStorage.setItem(args.get("username"), JSON.stringify(userData));
         console.log("LS:", JSON.parse(localStorage.getItem(args.get("username"))));
     }
+
+    setStartmenuSize(updateLS) {
+        new consoleNotifier().notifyStartService("PersonalizationLogic.setStartmenuSize");
+
+        let checked;
+        let userData = JSON.parse(localStorage.getItem(args.get("username")));
+
+        if (updateLS) {
+            checked = document.getElementById("preferencesSmallStartSwitch").checked;
+
+            userData.smallStart = checked;
+
+            localStorage.setItem(args.get("username"), JSON.stringify(userData));
+
+        } else {
+
+            checked = userData.smallStart
+
+        }
+
+        if (checked) {
+            document.getElementById("newStartMenu").classList.add("small");
+        } else {
+            document.getElementById("newStartMenu").classList.remove("small");
+        }
+    }
 }

@@ -375,5 +375,6 @@ const userTemplate = {
     theme: "darkrounded",
     titlebarButtonsLeft: false,
     profilePicture: null,
-    isAdmin: false
+    isAdmin: false,
+    smallStart: false
 };

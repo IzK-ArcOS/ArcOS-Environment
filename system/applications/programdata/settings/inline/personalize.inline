@@ -41,3 +41,8 @@
 <input type="checkbox" class="switch" id="preferencesTaskbarButtonLabelsSwitch" checked="yes" style="min-width: unset;"
     onclick="new PersonalizationLogic().setTaskbarButtonLabels(this);">
 <label for="preferencesTaskbarButtonLabelsSwitch">Show Taskbar Button Labels</label>
+
+<br><br>
+<input type="checkbox" class="switch" id="preferencesSmallStartSwitch" checked="yes" style="min-width: unset;"
+    onclick="new PersonalizationLogic().setTitlebarButtonLocations(true);">
+<label for="preferencesSmallStartSwitch">Small Start Menu</label>
