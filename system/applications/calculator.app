@@ -1,7 +1,7 @@
 <div class="window" id="Calculator" onclick="bringToFront(this);"
     style="width:360px;height:250px;min-height:unset;resize:none;">
     <div class="windowTitle" onclick="bringToFront(parentNode);">
-        <p>Calculator</p>
+        <p class="titleText">Calculator</p>
         <button onclick="closewindow(this.parentNode.parentNode);" class="title close">✖</button>
         <button onclick="minimizeWindow(this.parentNode.parentNode.id);" class="title">🗕</button>
     </div>

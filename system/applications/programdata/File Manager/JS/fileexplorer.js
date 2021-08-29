@@ -25,6 +25,7 @@ function fileExplorerOpenDir(dirName) {
             
             image.style.height = "15px";
             image.style.verticalAlign = "top";
+            image.style.marginRight = "7px";
 
             button.className = "folder";
             

@@ -1,7 +1,7 @@
 <div class="window" id="Execute Command" onclick="bringToFront(this);"
     style="width:610px;min-height:fit-content;resize: none;">
     <div class="windowTitle" onclick="bringToFront(parentNode);">
-        <p>Execute Command</p>
+        <p class="titleText">Execute Command</p>
         <button onclick="closewindow(this.parentNode.parentNode);" class="title close">✖</button>
         <button onclick="minimizeWindow(this.parentNode.parentNode.id);" class="title">🗕</button>
     </div>

@@ -1,4 +1,4 @@
-<div class="lockScreen hidden">
+<div class="lockScreen hidden" id="lockScreen">
     <div class="centeredAbsolute centerText">
         <div class="lockScreenlockBackground">
             <span class="material-icons">lock</span>

@@ -1,6 +1,6 @@
 <div class="window" id="File Manager" onclick="bringToFront(this);" style="min-width: 948px; min-height: 514px;">
     <div class="windowTitle" onclick="bringToFront(parentNode);" ondblclick="toggleMaximizedState(this.parentNode);">
-        <p>File Manager</p>
+        <p class="titleText">File Manager</p>
         <button onclick="closewindow(this.parentNode.parentNode);" class="title close">✖</button>
         <button onclick="toggleMaximizedState(this.parentNode.parentNode);" class="title">🗖</button>
         <button onclick="minimizeWindow(this.parentNode.parentNode.id);" class="title">🗕</button>

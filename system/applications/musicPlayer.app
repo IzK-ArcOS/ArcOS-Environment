@@ -1,6 +1,6 @@
 <div class="window" id="Music Player" onclick="bringToFront(this);" style="min-width:458px;min-height:164px;resize: none;">
     <div class="windowTitle" onclick="bringToFront(parentNode);">
-        <p>Music Player - <span id="mediaPlayerTitle">Stopped</span></p>
+        <p class="titleText">Music Player - <span id="mediaPlayerTitle">Stopped</span></p>
         <button onclick="closewindow(this.parentNode.parentNode);mediaPlayerStop();" class="title close">✖</button>
         <button onclick="minimizeWindow(this.parentNode.parentNode.id);" class="title">🗕</button>
     </div>

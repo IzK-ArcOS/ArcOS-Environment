@@ -1,6 +1,6 @@
 <div class="window" id="Delete Notepad" onclick="bringToFront(this);" style="resize:none;width:fit-content;height:fit-content;min-width:unset;min-height:unset;">
     <div class="windowTitle" onclick="bringToFront(parentNode);">
-        <p><span id="notepadFilenameTitle">Delete Notepad</p>
+        <p class="titleText">Delete Notepad</p>
         <button onclick="closewindow(this.parentNode.parentNode);" class="title close">✖</button>
         <button onclick="minimizeWindow(this.parentNode.parentNode.id);" class="title">🗕</button>
     </div>

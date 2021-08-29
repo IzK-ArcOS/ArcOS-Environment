@@ -162,14 +162,31 @@ function bringToFront(window) {
 function loadWindow(appFile, fromKernel = 0, register = 1, fromAddApp = 0) {
     new consoleNotifier().notifyLoadApp(appFile);
     let x = fetch(appFile).then(response => response.text()).then(text => {
+
         document.getElementById("temp").innerHTML = text;
-        if (document.getElementById("temp").childNodes[0].id != undefined || document.getElementById("temp").childNodes[0].id != null) {
-            document.getElementById("windowStore").insertAdjacentHTML("afterbegin", text);
+        
+        if (document.getElementById("temp").childNodes[0].id) {
+            try {
+                let titlebar = document.getElementById("temp").childNodes[0].getElementsByTagName("p")[0];
+                if (titlebar && titlebar.className == "titleText") {
+                    let image = document.createElement("img");
+
+                    image.style.height = "15px"
+                    image.src = `./system/images/${document.getElementById("temp").childNodes[0].id}.svg`;
+                    image.style.marginRight = "5px"
+                    image.style.verticalAlign = "middle"
+                    titlebar.insertAdjacentElement("afterbegin",image);
+                }
+            } catch (e) {console.error(e);}
+            
+            document.getElementById("windowStore").insertAdjacentHTML("afterbegin", document.getElementById("temp").innerHTML);
 
             for (let i = 0; i < document.getElementsByClassName("window").length; i++) {
                 new DragLogic().dragElement(document.getElementsByClassName("window")[i], document.getElementsByClassName("windowTitle")[i]);
             }
+        
             if (fromKernel == 0) { openWindow(document.getElementById("windowStore").childNodes[0].id); }
+        
             if (fromAddApp == 1) {
                 new NotificationLogic().notificationService(
                     "Import App",
@@ -178,10 +195,13 @@ function loadWindow(appFile, fromKernel = 0, register = 1, fromAddApp = 0) {
                     "<br><code>openWindow(\"" + document.getElementById("windowStore").childNodes[0].id + "\");</code><br><br>" +
                     "<button onclick=\"openWindow('" + document.getElementById("windowStore").childNodes[0].id + "');\">Open loaded app</button>");
             }
+        
             if (register == 1) {
                 loadedApps.push(document.getElementById("windowStore").childNodes[0].id);
             }
+        
             populateStartMenuAppList("startMenuAppList");
+
         } else {
             new ErrorLogic().sendError("System Error", "The app file specified does not contain a valid application. Please check the name and try again.<br>File: " + appFile);
         }

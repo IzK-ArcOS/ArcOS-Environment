@@ -1293,7 +1293,7 @@ input#fileExplorerAddressBar {
     display: flex;
     flex: 2;
     background-color: var(--controlPanelThrdBackgroundColor);
-    margin: 0 5px;
+    margin: 0 10px;
 }
 
 div.window>div.windowTitle span.material-icons {

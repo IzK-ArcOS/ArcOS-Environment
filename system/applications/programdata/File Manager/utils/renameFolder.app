@@ -1,6 +1,6 @@
 <div class="window" id="File Manager - Rename Folder" onclick="bringToFront(this);" style="resize:none;width:fit-content;height:fit-content;min-width:unset;min-height:unset;">
     <div class="windowTitle" onclick="bringToFront(parentNode);">
-        <p>File Manager - Rename Folder</p>
+        <p class="titleText">File Manager - Rename Folder</p>
         <button onclick="closewindow(this.parentNode.parentNode);" class="title close">✖</button>
         <button onclick="minimizeWindow(this.parentNode.parentNode.id);" class="title">🗕</button>
     </div>

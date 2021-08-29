@@ -1,6 +1,6 @@
 <div class="window" id="Save Notepad" onclick="bringToFront(this);" style="resize:none;width:fit-content;height:fit-content;min-width:unset;min-height:unset;">
     <div class="windowTitle" onclick="bringToFront(parentNode);">
-        <p><span id="notepadFilenameTitle">Save Notepad</p>
+        <p class="titleText">Save Notepad</p>
         <button onclick="closewindow(this.parentNode.parentNode);" class="title close">✖</button>
         <button onclick="minimizeWindow(this.parentNode.parentNode.id);" class="title">🗕</button>
     </div>

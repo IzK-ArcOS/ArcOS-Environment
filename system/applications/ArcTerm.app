@@ -1,7 +1,7 @@
 <div class="window" id="ArcTerm" onclick="bringToFront(this);"
     style="/*resize:none;*/width:fit-content;height:fit-content;min-width:unset;min-height:unset;min-width:794px;min-height:537px;">
     <div class="windowTitle" onclick="bringToFront(parentNode);" ondblclick="toggleMaximizedState(this.parentNode);">
-        <p>ArcTerm</p>
+        <p class="titleText">ArcTerm</p>
         <button onclick="closewindow(this.parentNode.parentNode);" class="title close">✖</button>
         <button onclick="toggleMaximizedState(this.parentNode.parentNode);" class="title">🗖</button>
         <button onclick="minimizeWindow(this.parentNode.parentNode.id);" class="title">🗕</button>
