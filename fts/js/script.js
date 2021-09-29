@@ -1,6 +1,6 @@
 let username = "";
 
-onload = function () {
+onload = function() {
     setPage("home");
     setTimeout(() => {
         document.body.style.opacity = "1";
@@ -75,7 +75,9 @@ function setUserPassword() {
         confrm = document.getElementById("passwordConfirmInputField").value;
 
     if (password == confrm) {
-        setPassword(username, password);
+        if (password && confrm) {
+            setPassword(username, password);
+        }
         setPage('finish');
     } else {
         setPage('noPswdMatch');
@@ -85,13 +87,13 @@ function setUserPassword() {
 console.log = (e, c) => {
     try {
         document.getElementById("executeCommandOutput").innerText += e + "\n";
-    } catch { }
+    } catch {}
 }
 
 window.onerror = (e) => {
     try {
         document.getElementById("executeCommandOutput").innerText += e + "\n";
-    } catch { }
+    } catch {}
 }
 
 const args = new URLSearchParams(window.location.search);

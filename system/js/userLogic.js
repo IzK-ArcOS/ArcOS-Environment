@@ -170,7 +170,7 @@ function startUserDataUpdateCycle() {
                     localStorage.setItem("userAmount", parseInt(localStorage.getItem("userAmount")) + 1);
                     tempUsrList.push(localStorage.key(i));
                 }
-            } catch { }
+            } catch {}
             localStorage.setItem("userList", tempUsrList);
         }
     }, 500);
@@ -258,9 +258,13 @@ function hotSwapUserAccount(username) {
                 new PersonalizationLogic().setTitlebarButtonLocations(false, false)
                 new GeneralLogic().updateDesktopIcons();
                 new PersonalizationLogic().setAnimations(false);
+                new OnloadLogic().setStartMenuSize();
+
                 openSettingsPane("home", document.getElementsByClassName("controlPanelSidebar")[0]);
                 initiateArcTerm();
                 notifications = [];
+                oldNotificationsList = [];
+                notificationList = [];
                 closeAllWindows();
                 setTimeout(() => {
                     new ErrorLogic().sendError("ArcOS User Accounts", `The account was successfully switched to "${username}".`);

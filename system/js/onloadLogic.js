@@ -2,7 +2,7 @@ new consoleNotifier().startModule("ArcOS.System.onloadLogic");
 
 
 
-onload = function () {
+onload = function() {
     if (!clientInformation.appVersion.includes("Electron")) { window.location.href = "invalidClient.html"; }
     setInterval(() => {
         try {
@@ -10,7 +10,7 @@ onload = function () {
             if (!usrEnabled || !usrEnabled.enabled) {
                 new ErrorLogic().bsod("OnloadLogic.onloadSetIntervals: USR_DATA_MISSING", "The user data corrupted while the session was running.");
             }
-        } catch { }
+        } catch {}
     }, 5);
     let ol = new OnloadLogic();
     ol.startTime();
@@ -23,7 +23,7 @@ onload = function () {
     }, 1000);
 }
 
-onbeforeunload = function () {
+onbeforeunload = function() {
     if (!allowExit) {
         new ErrorLogic().sendError("Access Denied", "The global variable <code>allowExit</code> is set to <code>false</code>, so you can't log off or shutdown.");
         return allowExit;
@@ -50,7 +50,7 @@ class OnloadLogic {
                     h + ":" + m;
                 document.getElementById("taskbarClockWidgetTime", 0).innerText =
                     h + ":" + m + ":" + s;
-            } catch { }
+            } catch {}
         }, 500);
     }
 
@@ -78,24 +78,24 @@ class OnloadLogic {
                             document.getElementById("animationsAddonLoader").href = "system/css/noAnimations.css";
                             break;
                     }
-                } catch { }
+                } catch {}
                 try {
                     if (stl != document.getElementById("preferencesTaskbarButtonLabelsSwitch").checked.toString()) {
                         switch (stl) {
                             case "false":
-                                try { document.getElementById("preferencesTaskbarButtonLabelsSwitch").checked = true; } catch { }
+                                try { document.getElementById("preferencesTaskbarButtonLabelsSwitch").checked = true; } catch {}
                                 userData.noTaskbarButtonLabels = false;
                                 updateTaskBar();
                                 break;
                             default:
-                                try { document.getElementById("preferencesTaskbarButtonLabelsSwitch").checked = false; } catch { }
+                                try { document.getElementById("preferencesTaskbarButtonLabelsSwitch").checked = false; } catch {}
                                 userData.noTaskbarButtonLabels = true;
                                 updateTaskBar();
                                 break;
                         }
                         localStorage.setItem(args.get("username"), JSON.stringify(userdata));
                     }
-                } catch { }
+                } catch {}
                 try {
                     switch (mtd) {
                         case "true":
@@ -106,7 +106,7 @@ class OnloadLogic {
                             localStorage.setItem(args.get("username"), JSON.stringify(userdata));
                             break;
                     }
-                } catch { }
+                } catch {}
             }, 100);
 
         } catch (e) {
@@ -161,14 +161,14 @@ class OnloadLogic {
                 let pfp = JSON.parse(localStorage.getItem(args.get("username"))).profilePicture
                 let newPicture = "./system/images/profilePictures/" + pfp + ".png";
                 document.getElementById("userSettingsProfilePicture", 0).src = newPicture
-            } catch (e) { }
+            } catch (e) {}
             document.getElementById("usernameStartMenu").innerHTML = args.get('username');
 
         }, 5);
         setInterval(() => {
             try {
                 new DOMLogic().getElemId("aboutScreenVersionNumber").innerText = version;
-            } catch { }
+            } catch {}
         }, 5);
     }
 
@@ -208,7 +208,7 @@ class OnloadLogic {
                     e.preventDefault();
                     return false;
                 } else {
-                    if(e.key.toLowerCase() == "enter") {
+                    if (e.key.toLowerCase() == "enter") {
                         new PowerLogic().unlock();
                     }
                 }
@@ -216,7 +216,7 @@ class OnloadLogic {
         });
 
         new consoleNotifier().notifyStartService("ArcOS.System.onloadLogic.EventListener.mousedown", "taskbarVolumeControl");
-        window.addEventListener('mousedown', function (event) {
+        window.addEventListener('mousedown', function(event) {
             try {
                 let center = document.getElementById('notificationCenter', 0);
                 let button = document.getElementById('notificationCenterButton', 0);
@@ -244,7 +244,7 @@ class OnloadLogic {
                 case "bottom":
                     document.getElementById("taskbarAddonLoader").href = "";
             }
-        } catch { }
+        } catch {}
     }
 
     loadTheme() {
@@ -271,7 +271,7 @@ class OnloadLogic {
                 userData.theme = "darkrounded";
                 localStorage.setItem(args.get("username"), JSON.stringify(userData));
             }
-        } catch { }
+        } catch {}
     }
 
     showBlock() {
@@ -348,7 +348,7 @@ class OnloadLogic {
             for (let i = 0; i < windows.length; i++) {
                 windows[i].style.position = "absolute";
             }
-        } catch { }
+        } catch {}
         //try { closeAllWindows(); } catch {}
     }
 
@@ -356,6 +356,7 @@ class OnloadLogic {
         getDriveLetters();
         updateTaskBar();
         hideStart();
+        this.setStartMenuSize();
         openSettingsPane("home", document.getElementsByClassName("controlPanelSidebar")[0]);
         new ContextMenuLogic().hideMenu();
         new NotificationLogic().startNotificationCenterPopulator();
@@ -381,6 +382,18 @@ class OnloadLogic {
             document.getElementById("animationsAddonLoader").href = "system/css/noanimations.css";
             document.getElementById("wallpaper").style.backgroundImage = "unset";
             new ErrorLogic().sendError("Safe Mode", "ArcOS is running in Safe Mode.<br> - If this was not your intention, just restart from the start menu.<br> - If this was your intention, use this mode only to repair ArcOS if it doesn't boot.<br><br>Pleae note the following: all changes made in this account will be deleted at logoff.", 1)
+        }
+    }
+
+    setStartMenuSize() {
+        let userData = JSON.parse(localStorage.getItem(args.get("username")));
+
+        let checked = userData.smallStart;
+
+        if (checked) {
+            document.getElementById("startMenu").classList.add("small");
+        } else {
+            document.getElementById("startMenu").classList.remove("small");
         }
     }
 }

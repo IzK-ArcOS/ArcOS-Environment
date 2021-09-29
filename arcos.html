@@ -2,8 +2,8 @@
 <html>
 
 <head>
-    <link rel="preload" href="./system/wallpaper/img08.png" as="image">
-    <link rel="preload" href="./system/wallpaper/img09.png" as="image">
+    <link rel="preload" href="./system/wallpaper/img12.png" as="image">
+    <link rel="preload" href="./system/wallpaper/img13.png" as="image">
     <config id="javascriptLoader">
         <script src="system/js/consoleNotifier.js"></script>
         <Script src="system/js/userLogic.js"></Script>
@@ -35,13 +35,12 @@
         <script src="system/applications/programdata/ArcTerm/js/etc.js"></script>
         <script src="system/applications/programdata/ArcTerm/js/ui.js"></script>
         <script src="system/applications/programdata/ArcTerm/js/env.js"></script>
-
     </config>
 
     <link rel="stylesheet" href="./system/css/checkboxes.css">
     <link rel="stylesheet" href="./system/css/arcosshell.css" id="shellLoader">
     <link rel="stylesheet" href="" id="titlebarAddonLoader">
-    <link rel="stylesheet" href="./system/css/terminal.css" id="addonShellLoader">
+    <link rel="stylesheet" href="" id="addonShellLoader">
     <link rel="stylesheet" href="" id="animationsAddonLoader">
     <link rel="stylesheet" href="" id="taskbarAddonLoader">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -53,13 +52,10 @@
 <body id="bdy">
     <div class="wallpaper" id="wallpaper"></div>
     <div class="toolbar retracted" id="toolbar">
-        <button class="toolbar" style="margin-top:3px;padding-top:3px;padding-bottom:3px;"
-            onclick="require('electron').remote.getCurrentWindow().toggleDevTools()">Developer Tools</button>
-        <span
-            style="position:inherit;left:50%;top:10px;transform:translate(-50%,0);-webkit-transform: translate(-50%,0);">arcosv2</span>
+        <button class="toolbar" style="margin-top:3px;padding-top:3px;padding-bottom:3px;" onclick="require('electron').remote.getCurrentWindow().toggleDevTools()">Developer Tools</button>
+        <span style="position:inherit;left:50%;top:10px;transform:translate(-50%,0);-webkit-transform: translate(-50%,0);">arcosv2</span>
         <button class="toolbar right" onclick="require('electron').remote.getCurrentWindow().close();">✖</button>
-        <button class="toolbar right"
-            onclick="require('electron').remote.getCurrentWindow().maximize();toggleFullscreenMode();">🗖</button>
+        <button class="toolbar right" onclick="require('electron').remote.getCurrentWindow().maximize();toggleFullscreenMode();">🗖</button>
         <button class="toolbar right" onclick="require('electron').remote.getCurrentWindow().minimize();">🗕</button>
     </div>
     <div class="toolbarHoverTrigger" id="toolbarHoverTrigger"></div>
@@ -67,18 +63,14 @@
     <div id="windowStore"></div>
     <div id="contextMenu" class="context-menu" style="display:block">
         <ul>
-            <li style="padding-left:10px; padding-right:10px;margin-top:10px;"><input type="checkbox" class="switch"
-                    id="showDesktopIconsSwitch" style="min-width: unset;"
-                    onclick="new GeneralLogic().updateDesktopIcons();"><label for="showDesktopIconsSwitch"
-                    onclick="new GeneralLogic().updateDesktopIcons();">
+            <li style="padding-left:10px; padding-right:10px;margin-top:10px;"><input type="checkbox" class="switch" id="showDesktopIconsSwitch" style="min-width: unset;" onclick="new GeneralLogic().updateDesktopIcons();"><label for="showDesktopIconsSwitch" onclick="new GeneralLogic().updateDesktopIcons();">
                     <p style="margin:0px;">Show Desktop Icons</p>
                 </label></li>
             <hr>
             <li onclick="openWindow('Shut Down ArcOS')"><a>Shut Down</a></li>
             <hr>
             <li onclick="openWindow('Settings');"><a>Settings</a></li>
-            <li
-                onclick="openSettingsPane('personalize',document.getElementsByClassName('controlPanelSidebar')[1]);openWindow('Settings');">
+            <li onclick="openSettingsPane('personalize',document.getElementsByClassName('controlPanelSidebar')[1]);openWindow('Settings');">
                 <a>Preferences</a></li>
         </ul>
     </div>

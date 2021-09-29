@@ -6,12 +6,14 @@ function switchControlPanelPage(pageFile) {
             document.getElementById(`controlPanelContent`).innerHTML = data;
             try {
                 let userData = JSON.parse(localStorage.getItem(args.get("username")));
-        
+
                 document.getElementById("preferencesAnimationsSwitch").checked = userData.enableAnimations;
                 document.getElementById("preferencesTaskbarButtonLabelsSwitch").checked = !userData.noTaskbarButtonLabels;
                 document.getElementById("preferencesTitlebarButtonsSwitch").checked = userData.titlebarButtonsLeft;
-        
+                document.getElementById("preferencesSmallStartSwitch").checked = userData.smallStart;
+
                 new OnloadLogic().loadTitlebarButtonPos();
+                new OnloadLogic().setStartMenuSize();
             } catch (e) {}
         }
     })
@@ -47,6 +49,6 @@ function openSettingsPane(name, buttonNode) {
             switchControlPanelPage(path.join(__dirname, `system/applications/programdata/settings/inline/about.inline`));
             break;
     }
-    try { buttonNode.classList.add(`active`); } catch { }
+    try { buttonNode.classList.add(`active`); } catch {}
 
 }

@@ -93,7 +93,7 @@
     /*context menu*/
     --contextMenuBorderRadius: 5px;
     /*Background*/
-    --backgroundImage: url("../wallpaper/img08.png");
+    --backgroundImage: url("../wallpaper/img12.png");
     /*Menu Bar*/
     --menubarBackgroundColor: var(--titlebarBackground);
     /*New Start Menu*/
@@ -152,7 +152,11 @@
     padding-left: 5px;
 }
 
-.window>.body>p, .window>.body>i, .window>.body>u, .window>.body>input, .window>.body>button {
+.window>.body>p,
+.window>.body>i,
+.window>.body>u,
+.window>.body>input,
+.window>.body>button {
     margin-top: 5px;
     margin-bottom: 5px;
 }
@@ -166,6 +170,7 @@
     height: 30px;
     padding-right: 5px;
 }
+
 
 /** {
     outline: none !important;
@@ -393,19 +398,22 @@ button:active {
     background-color: var(--buttonBackgroundColorActive);
 }
 
-.taskbarButtons>button:not(.startButton), .taskbar>button:not(.startButton) {
+.taskbarButtons>button:not(.startButton),
+.taskbar>button:not(.startButton) {
     border-radius: 0px;
     min-width: unset;
     background-color: transparent;
 }
 
-.taskbarButtons>button:hover:not(.startButton), .taskbar>button:hover:not(.startButton) {
+.taskbarButtons>button:hover:not(.startButton),
+.taskbar>button:hover:not(.startButton) {
     border-radius: 0px;
     min-width: unset;
     background-color: var(--taskbarAppButtonBackgroundColor);
 }
 
-.taskbarButtons>button:active:not(.startButton), .taskbar>button:hover:not(.startButton) {
+.taskbarButtons>button:active:not(.startButton),
+.taskbar>button:hover:not(.startButton) {
     border-radius: 0px;
     min-width: unset;
     background-color: transparent;
@@ -431,6 +439,7 @@ button:active {
     cursor: default;
 }
 
+
 /* Handle */
 
 .taskbarButtons>::-webkit-scrollbar-thumb {
@@ -438,6 +447,7 @@ button:active {
     transition: none;
     cursor: default;
 }
+
 
 /* Handle on hover */
 
@@ -488,7 +498,10 @@ div.clockWidget {
     z-index: 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000002;
 }
 
-div.clockWidget>h1, h2, h3, h4 {
+div.clockWidget>h1,
+h2,
+h3,
+h4 {
     color: var(--windowColor);
 }
 
@@ -647,7 +660,11 @@ div.menuBar>button.right {
     z-index: 1000000000004;
 }
 
-.notification>h1, h2, h3, h4, h5 {
+.notification>h1,
+h2,
+h3,
+h4,
+h5 {
     margin: 0px;
 }
 
@@ -690,7 +707,8 @@ a {
     transition: color 0.25s;
 }
 
-a:hover, a:active {
+a:hover,
+a:active {
     color: var(--linkColorHover);
 }
 
@@ -752,7 +770,9 @@ button.toolbar.right {
     float: right;
 }
 
+
 /*///////scrollbars for days*/
+
 
 /* width */
 
@@ -762,12 +782,14 @@ button.toolbar.right {
     height: 5px;
 }
 
+
 /* Track */
 
 ::-webkit-scrollbar-track {
     background-color: transparent;
     cursor: default;
 }
+
 
 /* Handle */
 
@@ -777,6 +799,7 @@ button.toolbar.right {
     cursor: default;
     opacity: 0.5
 }
+
 
 /* Handle on hover */
 
@@ -867,15 +890,18 @@ button.folder:active {
     background-color: var(--folderButtonBackgroundActiveColor);
 }
 
-button.folder.big, input.folder.big {
+button.folder.big,
+input.folder.big {
     padding: 20px;
 }
 
-button.folder.big:hover, input.folder.big:hover {
+button.folder.big:hover,
+input.folder.big:hover {
     background-color: var(--controlPanelSecoBackgroundColor);
 }
 
-button.folder.big:active, input.folder.big:active {
+button.folder.big:active,
+input.folder.big:active {
     background-color: var(--controlPanelMainBackgroundColor);
 }
 
@@ -1039,18 +1065,21 @@ hr.controlPanelBody {
     margin: 10px 0
 }
 
-button.folder.big.controlPanel, input.folder.big.controlPanel {
+button.folder.big.controlPanel,
+input.folder.big.controlPanel {
     max-width: unset;
     max-height: unset;
     width: 390px;
     padding-left: 30px;
 }
 
-button.folder.big.controlPanel>p, input.folder.big.controlPanel>p {
+button.folder.big.controlPanel>p,
+input.folder.big.controlPanel>p {
     margin: 10px 0;
 }
 
-button.folder.big.controlPanel span.material-icons.right, input.folder.big.controlPanel span.material-icons.right {
+button.folder.big.controlPanel span.material-icons.right,
+input.folder.big.controlPanel span.material-icons.right {
     float: right;
     font-size: 14px;
     padding-right: 10px;
@@ -1251,19 +1280,26 @@ div.window#Settings {
     backdrop-filter: blur(30px);
 }
 
-div.window#Settings div.controlPanelMainFrame button, div.window#Settings div.controlPanelMainFrame select, div.window#Settings div.controlPanelMainFrame input.inp {
+div.window#Settings div.controlPanelMainFrame button,
+div.window#Settings div.controlPanelMainFrame select,
+div.window#Settings div.controlPanelMainFrame input.inp {
     background-color: var(--controlPanelSecoBackgroundColor);
 }
 
-div.window#Settings div.controlPanelMainFrame button:hover, div.window#Settings div.controlPanelMainFrame select:hover, div.window#Settings div.controlPanelMainFrame input.inp:hover {
+div.window#Settings div.controlPanelMainFrame button:hover,
+div.window#Settings div.controlPanelMainFrame select:hover,
+div.window#Settings div.controlPanelMainFrame input.inp:hover {
     background-color: var(--controlPanelThrdBackgroundColor);
 }
 
-div.window#Settings div.controlPanelMainFrame button:active, div.window#Settings div.controlPanelMainFrame select:active, div.window#Settings div.controlPanelMainFrame input.inp:active {
+div.window#Settings div.controlPanelMainFrame button:active,
+div.window#Settings div.controlPanelMainFrame select:active,
+div.window#Settings div.controlPanelMainFrame input.inp:active {
     background-color: var(--controlPanelMainBackgroundColor);
 }
 
-div.window[id="Shut Down ArcOS"], div.window[id="ArcTerm"] {
+div.window[id="Shut Down ArcOS"],
+div.window[id="ArcTerm"] {
     background-color: var(--controlPanelMainBackgroundColor);
     backdrop-filter: blur(30px);
 }
@@ -1311,7 +1347,8 @@ div#ArcOSTerminalBody {
     font-family: 'Ubuntu Mono', monospace;
 }
 
-div.ArcTermBody, div#ArcTermBody {
+div.ArcTermBody,
+div#ArcTermBody {
     overflow-y: scroll;
     max-height: 100%;
     height: 100%;
@@ -1388,7 +1425,8 @@ div.musicPlayerControlsDiv button.play {
     border-bottom-right-radius: 0px;
 }
 
-div.musicPlayerControlsDiv button.play.selected, div.musicPlayerControlsDiv button.pause.selected {
+div.musicPlayerControlsDiv button.play.selected,
+div.musicPlayerControlsDiv button.pause.selected {
     background-color: var(--buttonBackgroundColorHover);
 }
 

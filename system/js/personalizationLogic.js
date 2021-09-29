@@ -136,9 +136,9 @@ class PersonalizationLogic {
         }
 
         if (checked) {
-            document.getElementById("newStartMenu").classList.add("small");
+            document.getElementById("startMenu").classList.add("small");
         } else {
-            document.getElementById("newStartMenu").classList.remove("small");
+            document.getElementById("startMenu").classList.remove("small");
         }
     }
 }
