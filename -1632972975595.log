@@ -1,0 +1,46 @@
+consoleNotifier.js:31                     ____   _____    /\             / __ \ / ____|   /  \   _ __ ___| |  | | (___    / /\ \ | '__/ __| |  | |\___ \ / /  \ \| | | (__| |__| |____) |/_/    \_\_|  \___|\____/|_____/                                    
+consoleNotifier.js:83 05:35:53.982JS ArcOS.System.consoleNotifier
+consoleNotifier.js:83 05:35:54.080JS ArcOS.System.userLogic
+consoleNotifier.js:83 05:35:54.082JS ArcOS.System.varDefinitions
+consoleNotifier.js:83 05:35:54.082JS ArcOS.System.soundLogic
+consoleNotifier.js:83 05:35:54.082JS ArcOS.System.personalizationLogic
+consoleNotifier.js:83 05:35:54.084JS ArcOS.System.generalLogic
+consoleNotifier.js:83 05:35:54.084JS ArcOS.System.dragLogic
+consoleNotifier.js:83 05:35:54.085JS ArcOS.System.errorLogic
+consoleNotifier.js:83 05:35:54.085JS ArcOS.System.notificationLogic
+consoleNotifier.js:83 05:35:54.086JS ArcOS.System.powerLogic
+consoleNotifier.js:83 05:35:54.087JS ArcOS.System.startMenuLogic
+consoleNotifier.js:83 05:35:54.088JS ArcOS.System.contextMenuLogic
+consoleNotifier.js:83 05:35:54.088JS ArcOS.System.toolbarLogic
+consoleNotifier.js:83 05:35:54.089JS ArcOS.System.onloadLogic
+consoleNotifier.js:83 05:35:54.089JS ArcOS.System.windowLogic
+consoleNotifier.js:70 05:35:54.111loadWindow Importing ./system/applications/newUserInterface.app
+consoleNotifier.js:70 05:35:54.213loadWindow Importing ./system/applications/calculator.app
+consoleNotifier.js:70 05:35:54.214loadWindow Importing ./system/applications/shutdown.app
+consoleNotifier.js:70 05:35:54.215loadWindow Importing ./system/applications/runCommand.app
+consoleNotifier.js:70 05:35:54.215loadWindow Importing ./system/applications/notepad.app
+consoleNotifier.js:70 05:35:54.215loadWindow Importing ./system/applications/programdata/Notepad/utils/loadFile.app
+consoleNotifier.js:70 05:35:54.216loadWindow Importing ./system/applications/programdata/Notepad/utils/saveFile.app
+consoleNotifier.js:70 05:35:54.216loadWindow Importing ./system/applications/programdata/Notepad/utils/delFile.app
+consoleNotifier.js:70 05:35:54.217loadWindow Importing ./system/applications/desktopIcons.app
+consoleNotifier.js:70 05:35:54.217loadWindow Importing ./system/applications/fileExplorer.app
+consoleNotifier.js:70 05:35:54.217loadWindow Importing ./system/applications/programdata/File Manager/utils/createFile.app
+consoleNotifier.js:70 05:35:54.218loadWindow Importing ./system/applications/programdata/File Manager/utils/deleteFile.app
+consoleNotifier.js:70 05:35:54.218loadWindow Importing ./system/applications/programdata/File Manager/utils/renameFile.app
+consoleNotifier.js:70 05:35:54.219loadWindow Importing ./system/applications/programdata/File Manager/utils/renameFolder.app
+consoleNotifier.js:70 05:35:54.219loadWindow Importing ./system/applications/programdata/File Manager/utils/deleteFolder.app
+consoleNotifier.js:70 05:35:54.220loadWindow Importing ./system/applications/programdata/File Manager/utils/createFolder.app
+consoleNotifier.js:70 05:35:54.220loadWindow Importing ./system/applications/imageViewer.app
+consoleNotifier.js:70 05:35:54.220loadWindow Importing ./system/applications/appManager.app
+consoleNotifier.js:70 05:35:54.221loadWindow Importing ./system/applications/openWith.app
+consoleNotifier.js:70 05:35:54.221loadWindow Importing ./system/applications/newsettings.app
+consoleNotifier.js:70 05:35:54.222loadWindow Importing ./system/applications/ArcTerm.app
+consoleNotifier.js:70 05:35:54.222loadWindow Importing ./system/applications/musicPlayer.app
+consoleNotifier.js:70 05:35:54.222loadWindow Importing ./system/applications/lockScreen.app
+consoleNotifier.js:49 05:35:55.133STATUS Started NotificationLogic.startNotificationCenterPopulator
+consoleNotifier.js:49 05:35:55.133STATUS Started ArcOS.System.onloadLogic.onloadDesktopIcons
+consoleNotifier.js:56 05:35:55.133STATUS Started ArcOS.System.onloadLogic.EventListener.mousedown for taskbarVolumeControl
+consoleNotifier.js:49 05:35:55.134STATUS Started startUserDataUpdateCycle
+consoleNotifier.js:49 05:35:55.134STATUS Started PersonalizationLogic.setTitlebarButtonLocations
+consoleNotifier.js:49 05:35:55.134STATUS Started PersonalizationLogic.setAnimations
+arcos.html:1 The resource file:///home/izaak/Documents/GitHub/ArcOS/ArcOS-Environment/system/wallpaper/img13.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.

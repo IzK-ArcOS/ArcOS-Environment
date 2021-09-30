@@ -109,6 +109,7 @@ input {
     padding: 5px 10px;
     margin-bottom: 0px;
     margin: 0px;
+    vertical-align: -webkit-baseline-middle;
 }
 
 input:hover,
@@ -391,6 +392,8 @@ button.circular {
 
 button.buttonLoginField>span.material-icons {
     font-size:13px;
+    line-height: 1.5;
+
 }
 
 button.buttonLoginField {
@@ -398,14 +401,20 @@ button.buttonLoginField {
     height:38px;
     border:none;
     border-radius: 50%;
-    margin-bottom:-48px;
-    margin-right:-73px;
+    margin:0px;
+    margin-left:5px;
+    vertical-align: -webkit-baseline-middle;
 }
 
 div#userSelectorInner {
     max-width: 900px;
     max-height: 500px;
     overflow-y: scroll;
+}
+
+p.passwordInputFieldHolder {
+    margin:0px;
+    padding:0px;
 }
 
 
