@@ -26,7 +26,7 @@ if (!app.requestSingleInstanceLock()) {
         })
 
         globalShortcut.register('Control+Shift+I', () => {
-            BrowserWindow.getFocusedWindow().toggleDevTools();
+            win.toggleDevTools();
         })
         globalShortcut.register("F4", () => {
             return false;

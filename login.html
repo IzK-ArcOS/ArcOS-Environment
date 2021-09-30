@@ -42,11 +42,11 @@
         <h1 style="margin:0px;">Hi, <span id="username"></span>!</h1>
         <h3 style="margin:0px;margin-top:5px;">Enter your password:</h3>
         <br>
-        <p>
-        <input id="passwordInputField" type="password" style="width:260px">
-        <button class="buttonLoginField" onclick="continueLoginAs(document.getElementById('passwordInputField'));">
-            <span class="material-icons">arrow_forward_ios</span>
-        </button>
+        <p class="passwordInputFieldHolder">
+            <input id="passwordInputField" type="password" style="width:260px">
+            <button class="buttonLoginField" onclick="continueLoginAs(document.getElementById('passwordInputField'));">
+                <span class="material-icons">arrow_forward_ios</span>
+            </button>
         </p>
         <p>
             <a onclick="userSelector();">Cancel</a>
