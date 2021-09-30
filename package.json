@@ -1,5 +1,5 @@
 {
-    "name": "arcosv2",
+    "name": "ArcOS",
     "version": "1.0.0",
     "description": "",
     "main": "./system/kernel.js",

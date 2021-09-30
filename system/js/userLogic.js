@@ -262,13 +262,17 @@ function hotSwapUserAccount(username) {
 
                 openSettingsPane("home", document.getElementsByClassName("controlPanelSidebar")[0]);
                 initiateArcTerm();
+
                 notifications = [];
                 oldNotificationsList = [];
                 notificationList = [];
+
                 closeAllWindows();
+
                 setTimeout(() => {
                     new ErrorLogic().sendError("ArcOS User Accounts", `The account was successfully switched to "${username}".`);
                 }, 100);
+
             }, 100);
         } else {
             new ErrorLogic().sendError("Unable to switch", `ArcOS can't switch to the "${username}" account because it has a password. To use this account, log in to it using the ArcOS Login.`);
