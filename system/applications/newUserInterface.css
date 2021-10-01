@@ -12,3 +12,59 @@ div.rightPane button.fullWidth.textAlignLeft img {
 div.rightPane button.fullWidth.textAlignLeft span.material-icons {
     font-size: 13px;
 }
+
+div.notificationCenter {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 400px;
+    height: calc(100% - 65px);
+    background-color: var(--controlPanelMainBackgroundColor);
+    border-radius: var(--windowBorderRadius);
+    transition: var(--notificationCenterTransition), var(--windowTransition), var(--globalTransition);
+    border: var(--windowBorder);
+    z-index: 1000000003;
+    box-shadow: var(--boxShadow);
+    color: var(--windowColor);
+    backdrop-filter: blur(30px);
+}
+
+div.notificationCenter.retracted {
+    right: -420px;
+}
+
+div.notificationCenter>div.notifications {
+    position: absolute;
+    top: 60px;
+    left: 10px;
+    width: calc(100% - 20px);
+    height: calc(100% - 320px);
+    border-radius: var(--windowBorderRadius);
+    background-color: var(--controlPanelSecoBackgroundColor);
+    padding: 20px;
+    overflow-y: auto;
+    color: var(--windowColor);
+}
+
+div.notificationCenter>div.actions {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    border-radius: var(--windowBorderRadius);
+    width: calc(100% - 20px);
+    padding: 10px;
+    height: 240px;
+    background-color: var(--controlPanelSecoBackgroundColor);
+}
+
+div.notificationCenterAction {
+    background-color: var(--controlPanelSecoBackgroundColor);
+    width: 170px;
+    height: 100px;
+    transition: var(--windowTransition);
+    border-radius: var(--windowBorderRadius);
+    padding: 10px;
+    text-align: center;
+    margin: 5px;
+    display: block;
+}

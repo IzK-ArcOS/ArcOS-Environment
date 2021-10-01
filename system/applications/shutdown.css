@@ -31,3 +31,15 @@
 button.transparent.shutdownOption span.material-icons {
     font-size: 60px;
 }
+
+div.window[id="Shut Down ArcOS"] button {
+    background-color: var(--controlPanelSecoBackgroundColor);
+}
+
+div.window[id="Shut Down ArcOS"] button:hover {
+    background-color: var(--controlPanelThrdBackgroundColor);
+}
+
+div.window[id="Shut Down ArcOS"] button:active {
+    background-color: var(--controlPanelMainBackgroundColor);
+}
