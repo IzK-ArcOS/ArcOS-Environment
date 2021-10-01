@@ -52,8 +52,7 @@
 <body id="bdy">
     <div class="wallpaper" id="wallpaper"></div>
     <div class="toolbar retracted" id="toolbar">
-        <button class="toolbar" style="margin-top:3px;padding-top:3px;padding-bottom:3px;" onclick="require('electron').remote.getCurrentWindow().toggleDevTools()">Developer Tools</button>
-        <span style="position:inherit;left:50%;top:10px;transform:translate(-50%,0);-webkit-transform: translate(-50%,0);">ArcOS</span>
+        <span class="toolbarTitle">ArcOS</span>
         <button class="toolbar right" onclick="require('electron').remote.getCurrentWindow().close();">✖</button>
         <button class="toolbar right" onclick="require('electron').remote.getCurrentWindow().maximize();toggleFullscreenMode();">🗖</button>
         <button class="toolbar right" onclick="require('electron').remote.getCurrentWindow().minimize();">🗕</button>
@@ -61,11 +60,14 @@
     <div class="toolbarHoverTrigger" id="toolbarHoverTrigger"></div>
 
     <div id="windowStore"></div>
-    <div id="contextMenu" class="context-menu" style="display:block">
+    <div id="contextMenu" class="context-menu">
         <ul>
-            <li style="padding-left:10px; padding-right:10px;margin-top:10px;"><input type="checkbox" class="switch" id="showDesktopIconsSwitch" style="min-width: unset;" onclick="generalLogic.updateDesktopIcons();"><label for="showDesktopIconsSwitch" onclick="generalLogic.updateDesktopIcons();">
+            <li class="contextMenuSwitch">
+                <input type="checkbox" class="switch" id="showDesktopIconsSwitch" style="min-width: unset;" onclick="generalLogic.updateDesktopIcons();">
+                <label for="showDesktopIconsSwitch" onclick="generalLogic.updateDesktopIcons();">
                     <p style="margin:0px;">Show Desktop Icons</p>
-                </label></li>
+                </label>
+            </li>
             <hr>
             <li onclick="windowLogic.openWindow('Shut Down ArcOS')"><a>Shut Down</a></li>
             <hr>

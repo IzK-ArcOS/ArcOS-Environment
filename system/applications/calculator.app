@@ -1,13 +1,13 @@
-<div class="window" id="Calculator" onclick="windowLogic.bringToFront(this);" style="width:360px;height:250px;min-height:unset;resize:none;">
+<div class="window" id="Calculator" onclick="windowLogic.bringToFront(this);">
     <div class="windowTitle" onclick="windowLogic.bringToFront(parentNode);">
         <p class="titleText">Calculator</p>
         <button onclick="windowLogic.closewindow(this.parentNode.parentNode);" class="title close">✖</button>
         <button onclick="windowLogic.minimizeWindow(this.parentNode.parentNode.id);" class="title">🗕</button>
     </div>
-    <div class="body" onclick="windowLogic.bringToFront(parentNode);" style="padding:10px;">
+    <div class="body" onclick="windowLogic.bringToFront(parentNode);">
         <table>
             <tr>
-                <td colspan="3"><input readonly="true" id="calculatorOutput" style="width:100%;font-family: 'Ubuntu Mono', monospace;" class="bright" /></td>
+                <td colspan="3"><input readonly="true" id="calculatorOutput" class="bright" /></td>
                 <td><button id="calculatorc" onclick="calculatorClear()">C</button> </td>
             </tr>
             <tr>
@@ -38,3 +38,5 @@
     </div>
 
 </div>
+
+<link rel="stylesheet" href="./system/applications/calculator.css">

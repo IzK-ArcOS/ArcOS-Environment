@@ -216,7 +216,7 @@ class WindowLogic {
                 setTimeout(() => {
                     if (focusedWindow != "Shut Down ArcOS") {
                         if (activeapps.includes("Shut Down ArcOS")) {
-                            closewindow(document.getElementById("Shut Down ArcOS"));
+                            windowLogic.closewindow(document.getElementById("Shut Down ArcOS"));
                         }
                     }
                 }, 250);

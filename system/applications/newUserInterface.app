@@ -8,38 +8,36 @@
     </div>
     <div class="leftPane" id="startMenuAppList"></div>
     <div class="rightPane">
-        <button class="transparent fullWidth textAlignLeft" onclick="windowLogic.openWindow('File Manager');"><img
-                src="./system/images/file manager.svg" style="height:15px;vertical-align:middle">&nbsp;&nbsp;File
-            Manager</button><br>
+        <button class="transparent fullWidth textAlignLeft" onclick="windowLogic.openWindow('File Manager');">
+            <img src="./system/images/file manager.svg">&nbsp;&nbsp;File Manager
+        </button><br>
         <hr>
-        <button class="transparent fullWidth textAlignLeft" onclick="windowLogic.openWindow('Settings');"><img
-                src="./system/images/settings.svg"
-                style="height:15px;vertical-align:middle">&nbsp;&nbsp;Settings</button><br>
-        <button class="transparent fullWidth textAlignLeft" onclick="openSettingsPane('personalize',document.getElementsByClassName('controlPanelSidebar')[1]);windowLogic.openWindow('Settings');"><span
-                class="material-icons"
-                style="font-size:20px;vertical-align: bottom;">palette</span>&nbsp;&nbsp;Personalization</button><br>
-        <button class="transparent fullWidth textAlignLeft" onclick="openSettingsPane('addapp',document.getElementsByClassName('controlPanelSidebar')[2]);windowLogic.openWindow('Settings');"><span
-                class="material-icons" style="font-size:20px;vertical-align: bottom;">extension</span>&nbsp;&nbsp;Import
-            App</button><br>
-        <button class="transparent fullWidth textAlignLeft" onclick="openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);windowLogic.openWindow('Settings');"><span
-                class="material-icons"
-                style="font-size:20px;vertical-align: bottom;">account_circle</span>&nbsp;&nbsp;User
-            Settings</button><br>
-
+        <button class="transparent fullWidth textAlignLeft" onclick="windowLogic.openWindow('Settings');">
+            <img src="./system/images/settings.svg">&nbsp;&nbsp;Settings
+        </button><br>
+        <button class="transparent fullWidth textAlignLeft" onclick="openSettingsPane('personalize',document.getElementsByClassName('controlPanelSidebar')[1]);windowLogic.openWindow('Settings');">
+            <span class="material-icons">palette</span>&nbsp;&nbsp;Personalization
+        </button><br>
+        <button class="transparent fullWidth textAlignLeft" onclick="openSettingsPane('addapp',document.getElementsByClassName('controlPanelSidebar')[2]);windowLogic.openWindow('Settings');">
+            <span class="material-icons">extension</span>&nbsp;&nbsp;Import App
+        </button><br>
+        <button class="transparent fullWidth textAlignLeft" onclick="openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);windowLogic.openWindow('Settings');">
+            <span class="material-icons">account_circle</span>&nbsp;&nbsp;User Settings
+        </button><br>
         <hr>
-        <button class="transparent fullWidth textAlignLeft" onclick="windowLogic.openWindow('Execute Command');"><img
-                src="./system/images/execute command.svg" style="height:15px;vertical-align:middle">&nbsp;&nbsp;Execute
-            Command</button><br>
+        <button class="transparent fullWidth textAlignLeft" onclick="windowLogic.openWindow('Execute Command');">
+            <img src="./system/images/execute command.svg">&nbsp;&nbsp;Execute Command
+        </button><br>
     </div>
 </div>
 <div class="notificationCenter retracted" id="notificationCenter">
-    <h2 style="margin:14px 20px;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-weight: 100;">
+    <h2 class="notificationCenterHeader">
         Notifications<button style="float:right;min-width:unset;" class="transparent" onclick="notificationList = [];">Clear</button></h2>
     <div class="notifications" id="notificationCenterInline"></div>
     <div class="actions">
         <span style="display:flex">
             <div class="notificationCenterAction">
-                <h3 style="margin-top:10px;">Current Time</h3>
+                <h3 margin-top:10px;">Current Time</h3>
                 <h1 style="margin:0px;"><span id="taskbarClockWidgetTime"></span>
         </h1>
     </div>
@@ -76,3 +74,5 @@
     </button>
     </span>
 </div>
+
+<link rel="stylesheet" href="./system/applications/newUserInterface.css">

@@ -1,0 +1,15 @@
+div.window[id*="Image Viewer"] {
+    max-width: 1024;
+    max-height: 600px;
+    min-height: unset;
+    resize: none;
+}
+
+div.window[id*="Image Viewer"] div.body {
+    padding-left: 0px;
+}
+
+img#imageViewerMainImage {
+    max-height: 1024px;
+    max-width: 1024px;
+}

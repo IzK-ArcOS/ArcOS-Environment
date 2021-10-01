@@ -549,6 +549,7 @@ hr {
     padding-bottom: 10px;
     box-shadow: var(--boxShadow);
     z-index: 1000000003;
+    display: block;
 }
 
 .context-menu ul {
@@ -1587,4 +1588,18 @@ div.newStartMenu.small>div.leftPane {
 @font-face {
     font-family: 'webdings';
     src: url('../fonts/webdings.ttf') format('ttf');
-  }
+}
+
+span.toolbarTitle {
+    position: inherit;
+    left: 50%;
+    top: 10px;
+    transform: translate(-50%, 0);
+    -webkit-transform: translate(-50%, 0);
+}
+
+div.contextMenuSwitch {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 10px;
+}

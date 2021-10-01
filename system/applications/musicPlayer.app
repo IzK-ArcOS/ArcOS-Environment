@@ -1,10 +1,10 @@
-<div class="window" id="Music Player" onclick="windowLogic.bringToFront(this);" style="min-width:458px;min-height:164px;resize: none;">
+<div class="window" id="Music Player" onclick="windowLogic.bringToFront(this);">
     <div class="windowTitle" onclick="windowLogic.bringToFront(parentNode);">
         <p class="titleText">Music Player - <span id="mediaPlayerTitle">Stopped</span></p>
         <button onclick="windowLogic.closewindow(this.parentNode.parentNode);mediaPlayerStop();" class="title close">✖</button>
         <button onclick="windowLogic.minimizeWindow(this.parentNode.parentNode.id);" class="title">🗕</button>
     </div>
-    <div class="body" onclick="windowLogic.bringToFront(parentNode);" style="padding:20px;">
+    <div class="body" onclick="windowLogic.bringToFront(parentNode);">
         <div class="musicPlayerControlsDiv">
             <span>
             <button class="play" id="mediaPlayerPlayButton" onclick="mediaPlayerToggle();">
@@ -32,3 +32,5 @@
         </audio>
     </div>
 </div>
+
+<link rel="stylesheet" href="./system/applications/musicPlayer.css">

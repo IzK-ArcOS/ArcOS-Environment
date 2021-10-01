@@ -1,0 +1,8 @@
+div.window[id*="File Manager"] {
+    min-width: 948px;
+    min-height: 514px;
+}
+
+div.window[id*="File Manager"] div.window {
+    padding: 0px;
+}

@@ -1,11 +1,11 @@
-<div class="window" id="File Manager" onclick="windowLogic.bringToFront(this);" style="min-width: 948px; min-height: 514px;">
+<div class="window" id="File Manager" onclick="windowLogic.bringToFront(this);">
     <div class="windowTitle" onclick="windowLogic.bringToFront(parentNode);" ondblclick="windowLogic.toggleMaximizedState(this.parentNode);">
         <p class="titleText">File Manager</p>
         <button onclick="windowLogic.closewindow(this.parentNode.parentNode);" class="title close">✖</button>
         <button onclick="windowLogic.toggleMaximizedState(this.parentNode.parentNode);" class="title">🗖</button>
         <button onclick="windowLogic.minimizeWindow(this.parentNode.parentNode.id);" class="title">🗕</button>
     </div>
-    <div class="body" onclick="windowLogic.bringToFront(parentNode);" style="padding:0px;">
+    <div class="body" onclick="windowLogic.bringToFront(parentNode);">
         <div class="fileExplorerLeftPane">
             <h4>Tasks</h4>
             <div class="fileExplorerLeftPaneDiv" id="fileExplorerRecentLocations">
@@ -44,3 +44,5 @@
         </div>
     </div>
 </div>
+
+<link rel="Stylesheet" href="./system/applications/fileExplorer.css">

@@ -1,0 +1,9 @@
+div.window[id*="Music Player"] {
+    min-width: 458px;
+    min-height: 164px;
+    resize: none;
+}
+
+div.window[id*="Music Player"] div.body {
+    padding: 20px;
+}

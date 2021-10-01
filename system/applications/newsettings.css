@@ -1,0 +1,23 @@
+div.window[id*="Settings"] {
+    min-width: 800px;
+    min-height: 600px;
+}
+
+div.window[id*="Settings"] div.body {
+    padding: 0px;
+}
+
+h2.settingsHeader {
+    font-weight: 300;
+    margin-bottom: 20px;
+}
+
+h2.settingsHeader img {
+    height: 25px;
+    margin-top: 30px;
+    vertical-align: bottom;
+}
+
+button.fullWidth.controlPanelSidebar span.caption {
+    vertical-align: top;
+}
