@@ -5,6 +5,6 @@
         <button onclick="windowLogic.minimizeWindow(this.parentNode.parentNode.id);" class="title">🗕</button>
     </div>
     <div class="body" onclick="windowLogic.bringToFront(parentNode);" style="padding-left:0px;">
-        <center><img id="imageViewerMainImage" src="./system/images/no-image.png" style="max-width:1024px;"></center>
+        <center><img id="imageViewerMainImage" height="500px" src="./system/images/no-image.png" style="max-height:1024px;max-width:1024px;"></center>
     </div>
 </div>
