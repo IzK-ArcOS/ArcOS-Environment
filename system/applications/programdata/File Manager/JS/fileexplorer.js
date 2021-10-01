@@ -2,9 +2,9 @@ const { platform } = require("os");
 
 function fileExplorerOpenDir(dirName) {
 
-    dirName = new GeneralLogic().replaceAllCharsInStr(dirName,"\\","/");
+    dirName = new GeneralLogic().replaceAllCharsInStr(dirName, "\\", "/");
 
-    fs.readdir(dirName, { encoding: "ascii" }, function (err, files) {
+    fs.readdir(dirName, { encoding: "ascii" }, function(err, files) {
 
         if (files == undefined || err) {
             new ErrorLogic().sendError("File Manager", "File Manager failed to open the folder. Please check the path and try again.<br><br>Path: " + dirName);
@@ -22,13 +22,13 @@ function fileExplorerOpenDir(dirName) {
                 image = document.createElement("img"),
                 text = document.createTextNode(files[i]);
 
-            
+
             image.style.height = "15px";
             image.style.verticalAlign = "top";
             image.style.marginRight = "7px";
 
             button.className = "folder";
-            
+
             button.append(image);
             button.append(text);
 
@@ -140,44 +140,44 @@ async function getDriveLetters() {
 }
 
 function fileExplorerParentDir() {
-    fileExplorerCurrentDir = new GeneralLogic().replaceAllCharsInStr(path.resolve(fileExplorerCurrentDir, '..'),"\\","/");
+    fileExplorerCurrentDir = new GeneralLogic().replaceAllCharsInStr(path.resolve(fileExplorerCurrentDir, '..'), "\\", "/");
     fileExplorerOpenDir(fileExplorerCurrentDir);
 }
 
 function createFile(filePath) {
 
-    fs.writeFile(filePath, "", function (err) {
+    fs.writeFile(filePath, "", function(err) {
         if (err) {
             new ErrorLogic().sendError("File Manager - unable to create file", "File Manager was unable to save the requested file. You might not have permission to do so. Please check that the name is valid and try again.");
         }
         if (fileExplorerCurrentDir != "") {
             fileExplorerOpenDir(fileExplorerCurrentDir);
         }
-        closewindow("File Manager - Create File");
+        new WindowLogic().closewindow("File Manager - Create File");
     });
 
 }
 
 function deleteFile(filePath) {
 
-    fs.unlink(filePath, function (err) {
+    fs.unlink(filePath, function(err) {
         if (err) {
             new ErrorLogic().sendError("File Manager - unable to delete file", "File Manager was unable to delete the requested file. You might not have permission to do so. Please check that the name is valid and try again.");
         }
         if (fileExplorerCurrentDir != "") {
             fileExplorerOpenDir(fileExplorerCurrentDir);
         }
-        closewindow("File Manager - Delete File");
+        new WindowLogic().closewindow("File Manager - Delete File");
     });
 }
 
 function renameFile(path, file, name) {
 
-    fs.rename(path + "/" + file, path + "/" + name, function (err) {
+    fs.rename(path + "/" + file, path + "/" + name, function(err) {
         if (err) {
             new ErrorLogic().sendError("File Manager - unable to rename file", "File Manager was unable to rename the requested file. You might not have permission to do so. Please check that the name is valid and try again.");
         } else {
-            closewindow("File Manager - Rename File");
+            new WindowLogic().closewindow("File Manager - Rename File");
         }
         if (fileExplorerCurrentDir != "") {
             fileExplorerOpenDir(fileExplorerCurrentDir);
@@ -190,7 +190,7 @@ function deleteFolder(folderPath) {
         if (err) {
             new ErrorLogic().sendError("File Manager - unable to delete folder", "File Manager was unable to rename the requested folder. You might not have permission to do so. Please check that the name is valid and try again.");
         } else {
-            closewindow("File Manager - Delete Folder");
+            new WindowLogic().closewindow("File Manager - Delete Folder");
             new ErrorLogic().sendError("File Manager - Folder deleted", "File Manager successfully deleted the requested folder.<br><br>Folder path:" + folderPath);
         }
         if (fileExplorerCurrentDir != "") {
@@ -206,11 +206,11 @@ function renameFolder(folderPath, newName) {
     const currPath = folderPath
     const newPath = newName
 
-    fs.rename(currPath, newPath, function (err) {
+    fs.rename(currPath, newPath, function(err) {
         if (err) {
             new ErrorLogic().sendError("File Manager - unable to rename folder", "File Manager was unable to rename the requested folder. You might not have permission to do so. Please check that the name is valid and try again.");
         } else {
-            closewindow("File Manager - rename Folder");
+            new WindowLogic().closewindow("File Manager - rename Folder");
             new ErrorLogic().sendError("File Manager - Folder renamed", "File Manager successfully deleted the requested folder.<br><br>Folder path:" + folderPath);
         }
         if (fileExplorerCurrentDir != "") {
@@ -240,7 +240,7 @@ function openWithNotepad(file) {
     let path = file;
     notepadLoadedFile = path;
 
-    fs.readFile(path, 'utf8', function (err, data) {
+    fs.readFile(path, 'utf8', function(err, data) {
         if (err) {
             new NotificationLogic().notificationService("ArcOS Notepad", "There was an error loading \"" + document.getElementById("notepadLoadFileInput").value + "\". The file might not exist or you don't have the permission to access it. Please verify the name and try again.");
             document.getElementById("notepadTextField").value = "";
@@ -253,17 +253,17 @@ function openWithNotepad(file) {
             }
 
             setTimeout(() => {
-                closewindow(document.getElementById("Load Notepad"))
+                new WindowLogic().closewindow(document.getElementById("Load Notepad"))
             }, 100);
         }
     });
     setTimeout(() => {
-        openWindow("ArcOS Notepad");
+        new WindowLogic().openWindow("ArcOS Notepad");
     }, 100);
 }
 
 function executeECS(filepath) {
-    fs.readFile(filepath, 'utf8', function (err, data) {
+    fs.readFile(filepath, 'utf8', function(err, data) {
         if (err) {
             new NotificationLogic().notificationService("Execute Command Shortcut", "The ECS file is invalid. No commands were executed.");
         } else {

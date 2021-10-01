@@ -91,7 +91,7 @@ class PersonalizationLogic {
         let userData = JSON.parse(localStorage.getItem(args.get("username")));
         userData.taskbarButtonLabels = !userData.taskbarButtonLabels;
         localStorage.setItem(args.get("username"), JSON.stringify(userData));
-        updateTaskBar();
+        new WindowLogic().updateTaskBar();
     }
 
     setTaskbarButtonLabels(obj) {
@@ -102,7 +102,7 @@ class PersonalizationLogic {
         let userData = JSON.parse(localStorage.getItem(args.get("username")));
         userData.noTaskbarButtonLabels = checked;
         localStorage.setItem(args.get("username"), JSON.stringify(userData));
-        updateTaskBar();
+        new WindowLogic().updateTaskBar();
     }
 
     updateVolume(obj) {

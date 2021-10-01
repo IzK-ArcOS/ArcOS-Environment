@@ -17,9 +17,9 @@ class GeneralLogic {
             if (document.getElementById("addAppInputField").value !== "") {
                 let open = document.getElementById("startAppAfterAddCheckBox").checked;
                 if (open == true) {
-                    loadWindow(document.getElementById("addAppInputField").value, 0, 0);
+                    new WindowLogic().loadWindow(document.getElementById("addAppInputField").value, 0, 0);
                 } else {
-                    loadWindow(document.getElementById("addAppInputField").value, 1, 1);
+                    new WindowLogic().loadWindow(document.getElementById("addAppInputField").value, 1, 1);
                 }
             } else {
                 new ErrorLogic().sendError("Application not found", "The Application you tried to import couldn't be found. Check the <b>relative</b> path and try again.");
@@ -168,10 +168,10 @@ class GeneralLogic {
             new OnloadLogic().loadDefaultApps();
             setTimeout(() => {
                 for (let i = 0; i < tempList.length; i++) {
-                    openWindow(tempList[i]);
+                    new WindowLogic().openWindow(tempList[i]);
                 }
                 setTimeout(() => {
-                    bringToFront(document.getElementById(tempFocusedWindow));
+                    new WindowLogic().bringToFront(document.getElementById(tempFocusedWindow));
                 }, 1000);
             }, 1000);
         }, 100);
@@ -181,16 +181,16 @@ class GeneralLogic {
 
 window.addEventListener("click", e => {
     if (!lockScreenActive) {
-        updateTitlebar();
+        new WindowLogic().updateTitlebar();
         new GeneralLogic().updateDesktopIcons();
         //new PersonalizationLogic().setTitlebarButtonLocations(false, false);
         let userData = JSON.parse(localStorage.getItem(args.get("username")));
         try { document.getElementById("systemVolumeSlider").value = userData.globalVolume * 10; } catch {}
-        try { document.getElementById("volumeControlEnableSoundSwitch").checked = userData.muted } catch { }
+        try { document.getElementById("volumeControlEnableSoundSwitch").checked = userData.muted } catch {}
     }
 });
 
 window.addEventListener("contextmenu", e => {
-    updateTitlebar();
+    new WindowLogic().updateTitlebar();
     new GeneralLogic().updateDesktopIcons();
 })

@@ -2,7 +2,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 class ArcTermCommands {
-    default() {
+    default () {
         new ArcTermUserInterface().outputColor(`[Error]: "${globalCommandList[0]}" was not recognized.`, ``, "var(--red)");
     }
 
@@ -265,7 +265,7 @@ class ArcTermCommands {
     exit() {
         new ArcTermUserInterface().outputColor("[█] Now stopping ArcTerm . . .", "", 'var(--green)');
         document.getElementById(inputId).setAttribute("disabled", "");
-        closewindow(document.getElementById("ArcTerm"));
+        new WindowLogic().closewindow(document.getElementById("ArcTerm"));
         initiateArcTerm();
     }
 
@@ -302,7 +302,7 @@ class ArcTermCommands {
 
         if (loadedApps.includes(program) && program) {
             new ArcTermUserInterface().outputColor(`Program [${program}] opened.`, ``, `var(--blue)`);
-            openWindow(program);
+            new WindowLogic().openWindow(program);
         } else {
             new ArcTermUserInterface().outputColor(`[Error]: program not found or entry empty.`);
         }
@@ -326,7 +326,7 @@ class ArcTermCommands {
 
         if (activeapps.includes(program) && program) {
             new ArcTermUserInterface().outputColor(`Program [${program}] closed.`, ``, `var(--blue)`);
-            closewindow(document.getElementById(program));
+            new WindowLogic().closewindow(document.getElementById(program));
         } else {
             new ArcTermUserInterface().outputColor(`[Error]: program not opnened or entry empty.`);
         }

@@ -2,13 +2,13 @@ let notepadLoadedFile = "";
 
 function notepadSaveFile() {
     if (notepadLoadedFile == "") {
-        openWindow("Save Notepad");
+        new WindowLogic().openWindow("Save Notepad");
         if (activeapps.includes("Save Notepad")) {
             document.getElementById("notepadSaveFileInput").addEventListener("keyup", () => {
                 document.getElementById("notepadSaveFilePathDisplay").innerHTML = document.getElementById("notepadSaveFileInput").value;
             })
             setTimeout(() => {
-                bringToFront(document.getElementById("Save Notepad"))
+                new WindowLogic().bringToFront(document.getElementById("Save Notepad"))
             }, 100);
         }
     } else {
@@ -23,13 +23,13 @@ function notepadSaveFile() {
 }
 
 function notepadLoadFile() {
-    openWindow("Load Notepad");
+    new WindowLogic().openWindow("Load Notepad");
     if (activeapps.includes("Load Notepad")) {
         document.getElementById("notepadLoadFileInput").addEventListener("keyup", () => {
             document.getElementById("notepadLoadFilePathDisplay").innerHTML = document.getElementById("notepadLoadFileInput").value;
         })
         setTimeout(() => {
-            bringToFront(document.getElementById("Load Notepad"))
+            new WindowLogic().bringToFront(document.getElementById("Load Notepad"))
         }, 100);
     }
 }
@@ -52,7 +52,7 @@ function loadNotepad() {
                 }
 
                 setTimeout(() => {
-                    closewindow(document.getElementById("Load Notepad"))
+                    new WindowLogic().closewindow(document.getElementById("Load Notepad"))
                 }, 100);
             }
         });
@@ -69,7 +69,7 @@ function saveNotepad() {
             new NotificationLogic().notificationService("ArcOS Notepad", "There was an error writing \"" + document.getElementById("notepadLoadFileInput").value + "\". You might not have permission. Please verify the name and try again.", 3000);
         } else {
             setTimeout(() => {
-                closewindow(document.getElementById("Save Notepad"));
+                new WindowLogic().closewindow(document.getElementById("Save Notepad"));
             }, 100);
         }
     });
@@ -90,17 +90,17 @@ function deleteNotepad() {
         }
     })
     notepadNewFile();
-    closewindow("Delete Notepad");
+    new WindowLogic().closewindow("Delete Notepad");
 }
 
 function notepadDeleteFile() {
-    openWindow("Delete Notepad");
+    new WindowLogic().openWindow("Delete Notepad");
     if (activeapps.includes("Delete Notepad")) {
         document.getElementById("notepadDeleteFileInput").addEventListener("keyup", () => {
             document.getElementById("notepadDeleteFilePathDisplay").innerHTML = document.getElementById("notepadDeleteFileInput").value;
         })
         setTimeout(() => {
-            bringToFront(document.getElementById("Delete Notepad"));
+            new WindowLogic().bringToFront(document.getElementById("Delete Notepad"));
         }, 100);
     }
 }

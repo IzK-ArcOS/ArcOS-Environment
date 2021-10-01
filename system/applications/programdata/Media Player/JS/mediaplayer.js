@@ -27,7 +27,7 @@ function mediaPlayerStop() {
     document.getElementById("musicPlayerCurrentTimeDisplay").innerText = `00:00 / 00:00`;
 
     setTimeout(() => {
-        document.getElementById("mediaPlayerTitle").innerHTML = "Stopped";        
+        document.getElementById("mediaPlayerTitle").innerHTML = "Stopped";
     }, 100);
 }
 
@@ -78,16 +78,16 @@ function startMediaPlayerStatusInterval() {
             }
 
             document.getElementById("musicPlayerCurrentTimeDisplay").innerText =
-            `${convertToMinutes(mediaPlayer.currentTime)} / ${convertToMinutes(mediaPlayer.duration)}`;
+                `${convertToMinutes(mediaPlayer.currentTime)} / ${convertToMinutes(mediaPlayer.duration)}`;
         }
     }, 50);
 }
 
 function openAudioFile(file) {
     let mediaPlayer = document.getElementById("ArcOSMediaPlayerAudioObj");
-    
+
     mediaPlayer.src = file;
-    openWindow("Music Player")
+    new WindowLogic().openWindow("Music Player")
     mediaPlayer.play();
     startMediaPlayerStatusInterval();
 }

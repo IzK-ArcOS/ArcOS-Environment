@@ -1,26 +1,25 @@
 <div class="startMenu" id="startMenu">
     <div class="leftPane" id="startMenuLeftPane">
         <center>
-            <button onclick="openWindow('Shut Down ArcOS');" class="startMenuButton"><img
+            <button onclick="new WindowLogic().openWindow('Shut Down ArcOS');" class="startMenuButton"><img
                     src="./system/images/shutdown.svg" height="20px"></button>
-            <button onclick="openWindow('settings');" class="startMenuButton"><img
+            <button onclick="new WindowLogic().openWindow('settings');" class="startMenuButton"><img
                     src="./system/images/controlPanel.svg" height="20px"></button>
         </center>
     </div>
     <div class="rightPane" id="startMenuRightPane">
-        <div class="startMenuUsername"
-            onclick="openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);openWindow('Settings');">
+        <div class="startMenuUsername" onclick="openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);new WindowLogic().openWindow('Settings');">
             <span id="usernameStartMenu"></span>
         </div>
-        <div class="startMenuAppTile" onclick="openWindow('Calculator');">
+        <div class="startMenuAppTile" onclick="new WindowLogic().openWindow('Calculator');">
             <p style="margin:0px;"><img src="./system/images/calculator.svg" height="20px" />Calculator</p>
         </div>
-        <div class="startMenuAppTile" onclick="openWindow('ArcOS Notepad');">
+        <div class="startMenuAppTile" onclick="new WindowLogic().openWindow('ArcOS Notepad');">
             <p style="margin:0px;"><img src="./system/images/notepad.svg" height="20px" />ArcOS Notepad
             </p>
         </div>
         <hr>
-        <div class="startMenuAppTile" onclick="openWindow('Execute Command');">
+        <div class="startMenuAppTile" onclick="new WindowLogic().openWindow('Execute Command');">
             <p style="margin:0px;"><img src="./system/images/runDialog.svg" height="20px" />Execute Command</p>
         </div>
     </div>
@@ -64,7 +63,6 @@
 <div class="clockWidget" id="taskbarVolumeControl" style="right:80px;">
     <center style="margin:10px;padding-top: 20px;padding-bottom:20px;">
         <label for="volumeControlEnableSoundSwitch">Mute Sound</label>
-        <input type="checkbox" id="volumeControlEnableSoundSwitch" style="min-width: unset;"
-            onclick="changeVolumeState();">
+        <input type="checkbox" id="volumeControlEnableSoundSwitch" style="min-width: unset;" onclick="changeVolumeState();">
     </center>
 </div>

@@ -12,6 +12,6 @@ function openImage(path, width = 0, height = 0) {
         new ErrorLogic().sendError("Image Viewer", "The requested file couldn't be found. Please check the name and try again.<br><br>Path: " + path);
     }
     if (!activeapps.includes("Image Viewer")) {
-        openWindow("Image Viewer");
+        new WindowLogic().openWindow("Image Viewer");
     }
 }

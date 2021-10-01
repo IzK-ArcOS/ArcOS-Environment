@@ -67,10 +67,10 @@
                     <p style="margin:0px;">Show Desktop Icons</p>
                 </label></li>
             <hr>
-            <li onclick="openWindow('Shut Down ArcOS')"><a>Shut Down</a></li>
+            <li onclick="new WindowLogic().openWindow('Shut Down ArcOS')"><a>Shut Down</a></li>
             <hr>
-            <li onclick="openWindow('Settings');"><a>Settings</a></li>
-            <li onclick="openSettingsPane('personalize',document.getElementsByClassName('controlPanelSidebar')[1]);openWindow('Settings');">
+            <li onclick="new WindowLogic().openWindow('Settings');"><a>Settings</a></li>
+            <li onclick="openSettingsPane('personalize',document.getElementsByClassName('controlPanelSidebar')[1]);new WindowLogic().openWindow('Settings');">
                 <a>Preferences</a></li>
         </ul>
     </div>
@@ -84,34 +84,34 @@
     </div>
 
     <noscript id="errorMessageTemplate">
-        <div class="window" id="errorMessageBox" onclick="bringToFront(this);"
+        <div class="window" id="errorMessageBox" onclick="new WindowLogic().bringToFront(this);"
             style="height:unset;visibility:hidden;opacity: 0;resize: none;height:calc(fit-content + 5px);min-height:unset;max-height:unset">
             <div class="windowTitle" id="errorMessageBoxWindowTitle">
                 <p id="errorMessageBoxTitle" style="margin:0px;"></p>
-                <button onclick="closewindow(this.parentNode.parentNode);" class="title close">✖</button>
+                <button onclick="new WindowLogic().closewindow(this.parentNode.parentNode);" class="title close">✖</button>
             </div>
-            <div class="body" onclick="bringToFront(parentNode);">
+            <div class="body" onclick="new WindowLogic().bringToFront(parentNode);">
                 <br>
                 <p id="errorMessageMsg" style="padding-left:20px;padding-right:20px;"></p>
                 <center>
-                    <button onclick="closewindow(this.parentNode.parentNode.parentNode);"
+                    <button onclick="new WindowLogic().closewindow(this.parentNode.parentNode.parentNode);"
                         style="margin-top:10px;">OK</button><br><br>
                 </center>
             </div>
     </noscript>
     <noscript id="confirmationTemplate">
-        <div class="window" id="confirmationMessageBox" onclick="bringToFront(this);"
+        <div class="window" id="confirmationMessageBox" onclick="new WindowLogic().bringToFront(this);"
             style="height:unset;visibility:hidden;opacity: 0;resize: none;height:calc(fit-content + 5px);min-height:unset;max-height:unset">
             <div class="windowTitle" id="confirmationMessageBoxWindowTitle">
                 <p id="confirmationMessageBoxTitle" style="margin:0px;"></p>
-                <button onclick="closewindow(this.parentNode.parentNode);" class="title close">✖</button>
+                <button onclick="new WindowLogic().closewindow(this.parentNode.parentNode);" class="title close">✖</button>
             </div>
-            <div class="body" onclick="bringToFront(parentNode);">
+            <div class="body" onclick="new WindowLogic().bringToFront(parentNode);">
                 <br>
                 <p id="confirmationMessageMsg" style="padding-left:20px;padding-right:20px;"></p>
                 <center>
                     <button style="margin-top:10px;" id="confirmationMessageButton">OK</button>
-                    <button onclick="closewindow(this.parentNode.parentNode.parentNode);"
+                    <button onclick="new WindowLogic().closewindow(this.parentNode.parentNode.parentNode);"
                         style="margin-top:10px;">Cancel</button><br><br>
                 </center>
             </div>

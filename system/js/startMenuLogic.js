@@ -16,7 +16,7 @@ function toggleStart() {
 
 }
 
-window.addEventListener('mousedown', function (event) {
+window.addEventListener('mousedown', function(event) {
     if (!lockScreenActive) {
         try {
             strt = document.getElementById('startMenu');
@@ -43,7 +43,7 @@ function populateStartMenuAppList(appListId) {
     let div = document.getElementById(appListId);
     div.innerHTML = "";
     for (let i = 0; i < loadedApps.length; i++) {
-        div.innerHTML += "<button class=\"transparent fullWidth textAlignLeft\" onclick=\"openWindow('" + loadedApps[i] + "')\"><img src=\"./system/images/" + loadedApps[i] + ".svg\" style=\"height:15px;vertical-align:middle\">&nbsp;&nbsp;" + loadedApps[i] + "</button>";
+        div.innerHTML += "<button class=\"transparent fullWidth textAlignLeft\" onclick=\"new WindowLogic().openWindow('" + loadedApps[i] + "')\"><img src=\"./system/images/" + loadedApps[i] + ".svg\" style=\"height:15px;vertical-align:middle\">&nbsp;&nbsp;" + loadedApps[i] + "</button>";
     }
 }
 

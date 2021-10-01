@@ -267,7 +267,7 @@ function hotSwapUserAccount(username) {
                 oldNotificationsList = [];
                 notificationList = [];
 
-                closeAllWindows();
+                new WindowLogic().closeAllWindows();
 
                 setTimeout(() => {
                     new ErrorLogic().sendError("ArcOS User Accounts", `The account was successfully switched to "${username}".`);

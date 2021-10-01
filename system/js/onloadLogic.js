@@ -31,7 +31,7 @@ onbeforeunload = function() {
         localStorage.setItem("safeMode", 0);
         localStorage.removeItem("username");
         deleteUserData("ArcOS Safe Mode", false);
-        deleteWindowData();
+        new WindowLogic().deleteWindowData();
     }
 }
 
@@ -85,12 +85,12 @@ class OnloadLogic {
                             case "false":
                                 try { document.getElementById("preferencesTaskbarButtonLabelsSwitch").checked = true; } catch {}
                                 userData.noTaskbarButtonLabels = false;
-                                updateTaskBar();
+                                new WindowLogic().updateTaskBar();
                                 break;
                             default:
                                 try { document.getElementById("preferencesTaskbarButtonLabelsSwitch").checked = false; } catch {}
                                 userData.noTaskbarButtonLabels = true;
-                                updateTaskBar();
+                                new WindowLogic().updateTaskBar();
                                 break;
                         }
                         localStorage.setItem(args.get("username"), JSON.stringify(userdata));
@@ -179,9 +179,9 @@ class OnloadLogic {
                 if (key === 'F4' && altKey) {
                     e.preventDefault();
                     if (activeapps.length == 0) {
-                        openWindow("Shut Down ArcOS");
+                        new WindowLogic().openWindow("Shut Down ArcOS");
                     } else {
-                        closewindow(document.getElementById(focusedWindow));
+                        new WindowLogic().closewindow(document.getElementById(focusedWindow));
                     }
                     e.stopImmediatePropagation();
                     e.stopPropagation();
@@ -197,7 +197,7 @@ class OnloadLogic {
         window.addEventListener("keydown", (e) => {
             if (!lockScreenActive) {
                 if (e.ctrlKey && e.altKey && e.shiftKey && e.key.toLowerCase() === 'x') {
-                    openWindow("ArcTerm");
+                    new WindowLogic().openWindow("ArcTerm");
                 }
             }
         });
@@ -299,41 +299,41 @@ class OnloadLogic {
     }*/
 
     loadDefaultApps() {
-        loadWindow("./system/applications/newUserInterface.app", 1, 0);
+        new WindowLogic().loadWindow("./system/applications/newUserInterface.app", 1, 0);
         setTimeout(() => {
-            //loadWindow("./system/applications/controlPanel.app", 1);
-            loadWindow("./system/applications/calculator.app", 1);
-            loadWindow("./system/applications/shutdown.app", 1);
-            //loadWindow("./system/applications/changeUsername.app", 1);
-            //loadWindow("./system/applications/themeSelector.app", 1);
-            //loadWindow("./system/applications/addApp.app", 1);
-            loadWindow("./system/applications/runCommand.app", 1);
-            //loadWindow("./system/applications/wallpaperSettings.app", 1);
-            //loadWindow("./system/applications/systemSettings.app", 1);
-            loadWindow("./system/applications/notepad.app", 1);
-            loadWindow("./system/applications/programdata/Notepad/utils/loadFile.app", 1, 0);
-            loadWindow("./system/applications/programdata/Notepad/utils/saveFile.app", 1, 0);
-            loadWindow("./system/applications/programdata/Notepad/utils/delFile.app", 1, 0);
-            loadWindow("./system/applications/desktopIcons.app", 1, 0);
-            //loadWindow("./system/applications/programdata/User Settings/utils/changePassword.app", 1);
-            //loadWindow("./system/applications/programdata/User Settings/utils/changeUsername.app", 1);
-            //loadWindow("./system/applications/programdata/User Settings/utils/changeUserPicture.app", 1);
-            //loadWindow("./system/applications/programdata/User Settings/utils/createUserAccount.app", 1);
-            //loadWindow("./system/applications/programdata/User Settings/utils/deleteUserAccount.app", 1);
-            loadWindow("./system/applications/fileExplorer.app", 1);
-            loadWindow("./system/applications/programdata/File Manager/utils/createFile.app", 1, 0);
-            loadWindow("./system/applications/programdata/File Manager/utils/deleteFile.app", 1, 0);
-            loadWindow("./system/applications/programdata/File Manager/utils/renameFile.app", 1, 0);
-            loadWindow("./system/applications/programdata/File Manager/utils/renameFolder.app", 1, 0);
-            loadWindow("./system/applications/programdata/File Manager/utils/deleteFolder.app", 1, 0);
-            loadWindow("./system/applications/programdata/File Manager/utils/createFolder.app", 1, 0);
-            loadWindow("./system/applications/imageViewer.app", 1, 0);
-            loadWindow("./system/applications/appManager.app", 1);
-            loadWindow("./system/applications/openWith.app", 1, 0);
-            loadWindow("./system/applications/newsettings.app", 1);
-            loadWindow("./system/applications/ArcTerm.app", 1);
-            loadWindow("./system/applications/musicPlayer.app", 1, 0);
-            loadWindow("./system/applications/lockScreen.app", 1, 0);
+            //new WindowLogic().loadWindow("./system/applications/controlPanel.app", 1);
+            new WindowLogic().loadWindow("./system/applications/calculator.app", 1);
+            new WindowLogic().loadWindow("./system/applications/shutdown.app", 1);
+            //new WindowLogic().loadWindow("./system/applications/changeUsername.app", 1);
+            //new WindowLogic().loadWindow("./system/applications/themeSelector.app", 1);
+            //new WindowLogic().loadWindow("./system/applications/addApp.app", 1);
+            new WindowLogic().loadWindow("./system/applications/runCommand.app", 1);
+            //new WindowLogic().loadWindow("./system/applications/wallpaperSettings.app", 1);
+            //new WindowLogic().loadWindow("./system/applications/systemSettings.app", 1);
+            new WindowLogic().loadWindow("./system/applications/notepad.app", 1);
+            new WindowLogic().loadWindow("./system/applications/programdata/Notepad/utils/loadFile.app", 1, 0);
+            new WindowLogic().loadWindow("./system/applications/programdata/Notepad/utils/saveFile.app", 1, 0);
+            new WindowLogic().loadWindow("./system/applications/programdata/Notepad/utils/delFile.app", 1, 0);
+            new WindowLogic().loadWindow("./system/applications/desktopIcons.app", 1, 0);
+            //new WindowLogic().loadWindow("./system/applications/programdata/User Settings/utils/changePassword.app", 1);
+            //new WindowLogic().loadWindow("./system/applications/programdata/User Settings/utils/changeUsername.app", 1);
+            //new WindowLogic().loadWindow("./system/applications/programdata/User Settings/utils/changeUserPicture.app", 1);
+            //new WindowLogic().loadWindow("./system/applications/programdata/User Settings/utils/createUserAccount.app", 1);
+            //new WindowLogic().loadWindow("./system/applications/programdata/User Settings/utils/deleteUserAccount.app", 1);
+            new WindowLogic().loadWindow("./system/applications/fileExplorer.app", 1);
+            new WindowLogic().loadWindow("./system/applications/programdata/File Manager/utils/createFile.app", 1, 0);
+            new WindowLogic().loadWindow("./system/applications/programdata/File Manager/utils/deleteFile.app", 1, 0);
+            new WindowLogic().loadWindow("./system/applications/programdata/File Manager/utils/renameFile.app", 1, 0);
+            new WindowLogic().loadWindow("./system/applications/programdata/File Manager/utils/renameFolder.app", 1, 0);
+            new WindowLogic().loadWindow("./system/applications/programdata/File Manager/utils/deleteFolder.app", 1, 0);
+            new WindowLogic().loadWindow("./system/applications/programdata/File Manager/utils/createFolder.app", 1, 0);
+            new WindowLogic().loadWindow("./system/applications/imageViewer.app", 1, 0);
+            new WindowLogic().loadWindow("./system/applications/appManager.app", 1);
+            new WindowLogic().loadWindow("./system/applications/openWith.app", 1, 0);
+            new WindowLogic().loadWindow("./system/applications/newsettings.app", 1);
+            new WindowLogic().loadWindow("./system/applications/ArcTerm.app", 1);
+            new WindowLogic().loadWindow("./system/applications/musicPlayer.app", 1, 0);
+            new WindowLogic().loadWindow("./system/applications/lockScreen.app", 1, 0);
             setTimeout(() => {
                 initiateArcTerm();
             }, 1000);
@@ -349,12 +349,12 @@ class OnloadLogic {
                 windows[i].style.position = "absolute";
             }
         } catch {}
-        //try { closeAllWindows(); } catch {}
+        //try { new WindowLogic().closeAllWindows(); } catch {}
     }
 
     loadSafemodeDependingFunctions() {
         getDriveLetters();
-        updateTaskBar();
+        new WindowLogic().updateTaskBar();
         hideStart();
         this.setStartMenuSize();
         openSettingsPane("home", document.getElementsByClassName("controlPanelSidebar")[0]);

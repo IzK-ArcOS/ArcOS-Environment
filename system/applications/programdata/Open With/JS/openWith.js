@@ -1,4 +1,4 @@
 function openWith(file) {
-    openWindow("Open With");
+    new WindowLogic().openWindow("Open With");
     document.getElementById("openWithFileInput").value = file;
 }

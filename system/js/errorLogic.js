@@ -36,10 +36,10 @@ class ErrorLogic {
             document.getElementById("errorMessageMsg").id = messageId;
             document.getElementById(messageId).innerHTML = message;
             new DragLogic().dragElement(document.getElementById(windowId), document.getElementById(titleBarId));
-            openWindow(windowId);
+            new WindowLogic().openWindow(windowId);
             playSystemSound("./system/sounds/error.mp3");
             setTimeout(() => {
-                bringToFront(document.getElementById(windowId));
+                new WindowLogic().bringToFront(document.getElementById(windowId));
             }, 50);
             errorMessageCount += 1;
             if (errorMessageCount >= 200) {
@@ -67,17 +67,17 @@ class ErrorLogic {
             document.getElementById("confirmationMessageMsg").id = messageId;
             document.getElementById(messageId).innerHTML = message;
             document.getElementById("confirmationMessageButton").id = buttonId;
-            document.getElementById(buttonId).setAttribute("onclick",action.toString() + `;closewindow(document.getElementById("${windowId}"))`);
+            document.getElementById(buttonId).setAttribute("onclick", action.toString() + `;new WindowLogic().closewindow(document.getElementById("${windowId}"))`);
             new DragLogic().dragElement(document.getElementById(windowId), document.getElementById(titleBarId));
-            openWindow(windowId);
+            new WindowLogic().openWindow(windowId);
             playSystemSound("./system/sounds/error.mp3");
             setTimeout(() => {
-                bringToFront(document.getElementById(windowId));
+                new WindowLogic().bringToFront(document.getElementById(windowId));
             }, 50);
             errorMessageCount += 1;
             if (errorMessageCount >= 200) {
                 this.bsod("ErrorLogic.createNewConfirmation: ERRMSG_OVERFLOW", "The system error counter overflowed.")
-            }    
+            }
         }, 100);
     }
 }
