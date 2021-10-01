@@ -6,9 +6,11 @@ onload = function() {
     if (!clientInformation.appVersion.includes("Electron")) { window.location.href = "invalidClient.html"; }
     setInterval(() => {
         try {
-            let usrEnabled = JSON.parse(localStorage.getItem(args.get("username")));
-            if (!usrEnabled || !usrEnabled.enabled) {
-                errorLogic.bsod("OnloadLogic.onloadSetIntervals: USR_DATA_MISSING", "The user data corrupted while the session was running.");
+            if (this.localStorage.getItem("safeMode") != "1") {
+                let usrEnabled = JSON.parse(localStorage.getItem(args.get("username")));
+                if (!usrEnabled || !usrEnabled.enabled) {
+                    errorLogic.bsod("OnloadLogic.onloadSetIntervals: USR_DATA_MISSING", "The user data corrupted while the session was running.");
+                }
             }
         } catch {}
     }, 5);
@@ -21,6 +23,9 @@ onload = function() {
             ol.hideBlock();
         }, 500);
     }, 1000);
+    if (this.localStorage.getItem("safeMode") == "1") {
+        createUserData("ArcOS Safe Mode",true,false);
+    }
 }
 
 onbeforeunload = function() {
@@ -30,7 +35,7 @@ onbeforeunload = function() {
     } else {
         localStorage.setItem("safeMode", 0);
         localStorage.removeItem("username");
-        deleteUserData("ArcOS Safe Mode", false);
+        deleteUserData("ArcOS Safe Mode", true,false);
         windowLogic.deleteWindowData();
     }
 }

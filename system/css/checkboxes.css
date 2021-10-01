@@ -134,7 +134,7 @@
         --s: .5;
     }
     input[type=radio]:hover,
-    input[type=checkbox]:hover,
+    input[type=checkbox]:hover:not(.transparent),
     input[type=checkbox].switch:hover {
         background-color: var(--active);
     }
@@ -164,4 +164,21 @@ html {
 *:before,
 *:after {
     box-sizing: inherit;
+}
+
+input[type="checkbox"].transparent {
+    background-color: unset;
+
+    border:none;
+    background-color: none;;
+}
+
+input[type="checkbox"].transparent:after {
+
+}
+
+input[type="checkbox"].right {
+    float: right;
+    margin-left: 15px;
+    margin-right: 5px;
 }

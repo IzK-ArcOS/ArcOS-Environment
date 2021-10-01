@@ -62,14 +62,16 @@
     <div id="windowStore"></div>
     <div id="contextMenu" class="context-menu">
         <ul>
-            <li class="contextMenuSwitch">
-                <input type="checkbox" class="switch" id="showDesktopIconsSwitch" style="min-width: unset;" onclick="generalLogic.updateDesktopIcons();">
+            <li class="contextMenuSwitch" onclick="generalLogic.updateDesktopIcons();">
+                <input type="checkbox" class="transparent right" id="showDesktopIconsSwitch" style="min-width: unset;" onclick="generalLogic.updateDesktopIcons();">
                 <label for="showDesktopIconsSwitch" onclick="generalLogic.updateDesktopIcons();">
                     <p style="margin:0px;">Show Desktop Icons</p>
                 </label>
             </li>
             <hr>
             <li onclick="windowLogic.openWindow('Shut Down ArcOS')"><a>Shut Down</a></li>
+            <hr>
+            <li onclick="windowLogic.openWindow('ArcTerm');"><a>ArcTerm</a></li>
             <hr>
             <li onclick="windowLogic.openWindow('Settings');"><a>Settings</a></li>
             <li onclick="openSettingsPane('personalize',document.getElementsByClassName('controlPanelSidebar')[1]);windowLogic.openWindow('Settings');">

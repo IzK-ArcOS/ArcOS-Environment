@@ -24,25 +24,24 @@ class ContextMenuLogic {
     rightClick(e) {
         if (!lockScreenActive) {
             try {
-
                 let contextMenu = document.getElementById("contextMenu"),
-                    username = args.get("username");
-
-                contextMenu.style.display = 'block';
-                contextMenu.style.opacity = '1';
-                contextMenu.style.visibility = "visible";
-                contextMenu.style.display = 'block';
-                contextMenu.style.left = e.pageX + "px";
-                contextMenu.style.top = e.pageY + "px";
-
+                    username = args.get("username"),
+                    desktopIcons = document.getElementById("desktopIcons"),
+                    wallpaper = document.getElementsByClassName("wallpaper")[0];
+                if (e.path.includes(desktopIcons) || e.path.includes(wallpaper)) {
+                    contextMenu.style.display = 'block';
+                    contextMenu.style.opacity = '1';
+                    contextMenu.style.visibility = "visible";
+                    contextMenu.style.display = 'block';
+                    contextMenu.style.left = e.pageX + "px";
+                    contextMenu.style.top = e.pageY + "px";
+                }
                 contextMenuLogic.performShowDesktopIconsCheck();
-
                 e.preventDefault();
-
             } catch (e) {
 
                 errorLogic.bsod("ContextMenuLogic.rightClick: CONTEXT_MENU_INVALID", "The ArcOS context menu module or one of the modules inheriting it couldn't be found.");
-
+                throw e;
             }
         }
     }

@@ -16,13 +16,15 @@
     min-width: 150px;
     list-style: none;
     transition: var(--globalTransitionTwo);
+    padding-top: 10px;
+    padding-left:5px;
 }
 
 .context-menu ul li {
     padding-bottom: 3px;
     padding-top: 3px;
     border: none;
-    border-radius: var(--contextMenuBorderRadius);
+    border-radius: 0px;
     background-color: transparent;
     transition: var(--globalTransitionThree);
     margin: 0px;
@@ -44,8 +46,15 @@
     background: var(--buttonBackgroundColorActive);
 }
 
-div.contextMenuSwitch {
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-top: 10px;
+.context-menu li.contextMenuSwitch {
+    padding:0 0 0 5px;
+    padding-right:5px
+}
+
+.context-menu li.contextMenuSwitch * {
+    font-size:16px;
+}
+
+.context-menu hr {
+    border: 2px transparent
 }
