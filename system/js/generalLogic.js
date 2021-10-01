@@ -149,7 +149,7 @@ class GeneralLogic {
 
         document.getElementById("shellLoader").href = "";
         setTimeout(() => {
-            document.getElementById("shellLoader").href = "./system/css/arcosshell.css";
+            document.getElementById("shellLoader").href = "./system/css/main.css";
         }, 100);
     }
 

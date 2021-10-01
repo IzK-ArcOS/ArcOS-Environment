@@ -34,10 +34,38 @@ function fileExplorerOpenDir(dirName) {
 
             if (isDir(dirName + "/" + files[i])) {
                 image.src = "./system/images/folder.svg";
+
                 foldspan.append(button);
                 button.setAttribute(`onclick`, `fileExplorerOpenDir("${dirName + "/" + files[i]}")`);
             } else {
-                image.src = "./system/images/file.svg";
+                let extension = files[i].split(".")[files[i].split(".").length - 1];
+                switch (extension) {
+                    case "txt":
+                    case "inf":
+                    case "html":
+                    case "js":
+                    case "css":
+                        image.src = "./system/images/Notepad.svg";
+                        break;
+                    case "jpg":
+                    case "png":
+                    case "svg":
+                    case "gif":
+                    case "webp":
+                    case "bmp":
+                        image.src = "./system/images/Image Viewer.svg";
+                        break;
+                    case "ecs":
+                        image.src = "./system/images/execute command.svg";
+                        break;
+                    case "mp3":
+                    case "wav":
+                    case "flac":
+                        image.src = "./system/images/Music Player.svg";
+                        break;
+                    default:
+                        image.src = "./system/images/file.svg";
+                }
                 filespan.append(button);
                 button.setAttribute(`onclick`, `fileExplorerOpenFile("${dirName + "/" + files[i]}")`);
             }

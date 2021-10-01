@@ -45,4 +45,4 @@
     </div>
 </div>
 
-<link rel="Stylesheet" href="./system/applications/fileExplorer.css">
+<link rel="stylesheet" href="./system/applications/fileExplorer.css">

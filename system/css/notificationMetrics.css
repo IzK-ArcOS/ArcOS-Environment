@@ -1,0 +1,48 @@
+.notification {
+    top: 15px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    -o-transform: translate(-50%, 0);
+    -ms-transform: translate(-50%, 0);
+    -moz-transform: translate(-50%, 0);
+    -webkit-transform: translate(-50%, 0);
+    position: fixed;
+    max-width: 600px;
+    word-wrap: break-word;
+    background: var(--notificationBackgroundColor);
+    color: var(--windowColor);
+    border-radius: var(--notificationBorderRadius);
+    padding: 15px;
+    border: none;
+    visibility: hidden;
+    opacity: 0;
+    transition: var(--windowTransition);
+    font-style: normal;
+    font-weight: unset;
+    z-index: 1000000000004;
+}
+
+.notification>h1,
+h2,
+h3,
+h4,
+h5 {
+    margin: 0px;
+}
+
+.notification>h3>button.close {
+    background: transparent;
+}
+
+.notification>h3>button.close:hover {
+    background: var(--notificationCloseButtonBackgroundColor)
+}
+
+p#notificationMessage {
+    margin-bottom: 5px;
+    margin-top: 20px
+}
+
+.window[id*="Error Message"] {
+    resize: none;
+}

@@ -1,0 +1,51 @@
+.context-menu {
+    position: absolute;
+    background: var(--windowBackground);
+    border: none;
+    border-radius: var(--contextMenuBorderRadius);
+    transition: background 0.2s, opacity 0.2s;
+    padding-bottom: 10px;
+    box-shadow: var(--boxShadow);
+    z-index: 1000000003;
+    display: block;
+}
+
+.context-menu ul {
+    padding: 0px;
+    margin: 0px;
+    min-width: 150px;
+    list-style: none;
+    transition: var(--globalTransitionTwo);
+}
+
+.context-menu ul li {
+    padding-bottom: 3px;
+    padding-top: 3px;
+    border: none;
+    border-radius: var(--contextMenuBorderRadius);
+    background-color: transparent;
+    transition: var(--globalTransitionThree);
+    margin: 0px;
+}
+
+.context-menu ul li a {
+    text-decoration: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: var(--windowColor);
+    transition: var(--globalTransitionTwo);
+}
+
+.context-menu ul li:hover {
+    background: var(--buttonBackgroundColorHover);
+}
+
+.context-menu ul li:active {
+    background: var(--buttonBackgroundColorActive);
+}
+
+div.contextMenuSwitch {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 10px;
+}

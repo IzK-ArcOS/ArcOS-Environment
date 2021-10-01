@@ -1,0 +1,32 @@
+div.desktopicons {
+    left: 0px;
+    top: 0px;
+    position: relative;
+    background-color: transparent;
+    color: var(--windowColor);
+    width: fit-content;
+    width: -moz-fit-content;
+    width: -ms-fit-content;
+    width: -o-fit-content;
+    width: -webkit-fit-content;
+    height: 100%;
+    text-align: center;
+}
+
+button.icon {
+    background-color: var(--desktopButtonBackgroundColor);
+    border: none;
+    color: var(--windowColor);
+    width: 100%;
+    position: relative;
+    padding: 5px;
+    border: 2px solid var(--desktopButtonBorderColor);
+    border-radius: var(--startMenuButtonBorderRadius);
+}
+
+button.icon:hover {
+    border: 2px solid var(--desktopButtonBorderColorHover);
+    background-color: var(--desktopButtonBackgroundColorHover);
+    width: 100%;
+    padding: 5px;
+}

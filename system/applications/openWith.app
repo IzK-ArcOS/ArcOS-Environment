@@ -27,4 +27,4 @@
     </div>
 </div>
 
-<link rel="styhesheet" href="./system/applications/openWith.css">
+<link rel="stylesheet" href="./system/applications/openWith.css">

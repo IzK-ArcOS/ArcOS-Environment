@@ -16,6 +16,9 @@ button.fullWidth.folder.big.openWith {
 }
 
 button.fullWidth.folder.big.openWith img {
-    height: 30px;
+    height: 20px;
+}
+
+button.fullWidth.folder.big.openWith * {
     vertical-align: middle;
 }
