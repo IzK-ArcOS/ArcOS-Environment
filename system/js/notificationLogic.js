@@ -16,10 +16,10 @@ class NotificationLogic {
                 playSystemSound("./system/sounds/notification.mp3");
                 notificationList.push({ title, message })
             } else {
-                new ErrorLogic().sendError('Notification Error', "The notification message is invalid and the notification can't start.<br>Please check the command and try again.")
+                errorLogic.sendError('Notification Error', "The notification message is invalid and the notification can't start.<br>Please check the command and try again.")
             }
         } else {
-            new ErrorLogic().sendError('Notification Error', "The notification title is invalid and the notification can't start.<br>Please check the command and try again.")
+            errorLogic.sendError('Notification Error', "The notification title is invalid and the notification can't start.<br>Please check the command and try again.")
         }
         if (closeDelay) {
             tmo = setTimeout(() => {
@@ -27,7 +27,7 @@ class NotificationLogic {
             }, closeDelay);
         }
     }
-    
+
     closeNotification() {
 
         new consoleNotifier().notifyStartService("NotificationLogic.closeNotification")
@@ -39,7 +39,7 @@ class NotificationLogic {
             document.getElementById('notificationMessage').innerHTML = 'Notification Message';
         }, 200);
     }
-    
+
     startNotificationCenterPopulator() {
 
         new consoleNotifier().notifyStartService("NotificationLogic.startNotificationCenterPopulator")
@@ -57,11 +57,11 @@ class NotificationLogic {
                 } else {
                     document.getElementById("notificationCenterInline").innerHTML = "<center><p style='color:let(--windowColor);'>You have no new notifications</p></center>";
                 }
-        
-            } catch { }
+
+            } catch {}
         }, 50);
     }
-    
+
     toggleNotificationCenter() {
 
         new consoleNotifier().notifyStartService("NotificationLogic.toggleNotificationCenter")
@@ -74,3 +74,5 @@ class NotificationLogic {
         }
     }
 }
+
+let notificationLogic = new NotificationLogic();

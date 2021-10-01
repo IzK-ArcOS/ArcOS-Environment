@@ -1,33 +1,33 @@
 <div class="newStartMenu small" id="startMenu">
     <div class="bottomPane">
         <span class="h3" id="usernameStartMenu"></span>
-        <button class="transparent newStartMenuShutDownButton" onclick="new WindowLogic().openWindow('Shut Down ArcOS');"><span
+        <button class="transparent newStartMenuShutDownButton" onclick="windowLogic.openWindow('Shut Down ArcOS');"><span
                 class="material-icons" style="font-size:20px;">power_settings_new</span></button>
-        <button class="transparent newStartMenuShutDownButton" onclick="new PowerLogic().lock();"><span
+        <button class="transparent newStartMenuShutDownButton" onclick="powerLogic.lock();"><span
                 class="material-icons" style="font-size:20px;">lock</span></button>
     </div>
     <div class="leftPane" id="startMenuAppList"></div>
     <div class="rightPane">
-        <button class="transparent fullWidth textAlignLeft" onclick="new WindowLogic().openWindow('File Manager');"><img
+        <button class="transparent fullWidth textAlignLeft" onclick="windowLogic.openWindow('File Manager');"><img
                 src="./system/images/file manager.svg" style="height:15px;vertical-align:middle">&nbsp;&nbsp;File
             Manager</button><br>
         <hr>
-        <button class="transparent fullWidth textAlignLeft" onclick="new WindowLogic().openWindow('Settings');"><img
+        <button class="transparent fullWidth textAlignLeft" onclick="windowLogic.openWindow('Settings');"><img
                 src="./system/images/settings.svg"
                 style="height:15px;vertical-align:middle">&nbsp;&nbsp;Settings</button><br>
-        <button class="transparent fullWidth textAlignLeft" onclick="openSettingsPane('personalize',document.getElementsByClassName('controlPanelSidebar')[1]);new WindowLogic().openWindow('Settings');"><span
+        <button class="transparent fullWidth textAlignLeft" onclick="openSettingsPane('personalize',document.getElementsByClassName('controlPanelSidebar')[1]);windowLogic.openWindow('Settings');"><span
                 class="material-icons"
                 style="font-size:20px;vertical-align: bottom;">palette</span>&nbsp;&nbsp;Personalization</button><br>
-        <button class="transparent fullWidth textAlignLeft" onclick="openSettingsPane('addapp',document.getElementsByClassName('controlPanelSidebar')[2]);new WindowLogic().openWindow('Settings');"><span
+        <button class="transparent fullWidth textAlignLeft" onclick="openSettingsPane('addapp',document.getElementsByClassName('controlPanelSidebar')[2]);windowLogic.openWindow('Settings');"><span
                 class="material-icons" style="font-size:20px;vertical-align: bottom;">extension</span>&nbsp;&nbsp;Import
             App</button><br>
-        <button class="transparent fullWidth textAlignLeft" onclick="openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);new WindowLogic().openWindow('Settings');"><span
+        <button class="transparent fullWidth textAlignLeft" onclick="openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);windowLogic.openWindow('Settings');"><span
                 class="material-icons"
                 style="font-size:20px;vertical-align: bottom;">account_circle</span>&nbsp;&nbsp;User
             Settings</button><br>
 
         <hr>
-        <button class="transparent fullWidth textAlignLeft" onclick="new WindowLogic().openWindow('Execute Command');"><img
+        <button class="transparent fullWidth textAlignLeft" onclick="windowLogic.openWindow('Execute Command');"><img
                 src="./system/images/execute command.svg" style="height:15px;vertical-align:middle">&nbsp;&nbsp;Execute
             Command</button><br>
     </div>
@@ -55,7 +55,7 @@
             <div class="notificationCenterAction">
                 <p style="margin-bottom:5px;">Volume:</p>
                 <input type="range" min="1" max="10" id="systemVolumeSlider" style="width:50%;padding:0px;"
-                    class="slider" onchange="new PersonalizationLogic().updateVolume(this);">
+                    class="slider" onchange="personalizationLogic.updateVolume(this);">
             </div>
             <div class="notificationCenterAction">
             </div>
@@ -69,7 +69,7 @@
     <div id="taskbarButtons" class="taskbarButtons"></div>
     <span style="float:right;height:43px;">
         <button class="startButton" style="height:100%;margin-right:10px;padding-top:12px;"
-            id="notificationCenterButton" onclick="new NotificationLogic().toggleNotificationCenter();">
+            id="notificationCenterButton" onclick="notificationLogic.toggleNotificationCenter();">
             <h3"><span class="material-icons"
                     style="vertical-align: top;font-size:16px;">notifications</span>&nbsp;&nbsp;<span class="material-icons" style="vertical-align: top;font-size:15px;">volume_up</span>&nbsp;&nbsp;
     <span id="taskbarClock" style="vertical-align: middle;">--:--</span></h3>

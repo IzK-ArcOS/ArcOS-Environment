@@ -1,7 +1,7 @@
 function switchControlPanelPage(pageFile) {
     fs.readFile(pageFile, 'utf8', (error, data) => {
         if (error) {
-            new ErrorLogic().sendError(`Unable to open settings applet`, `The settings applet specified is invalid. Please check the path to the applet and try again.<br><br>Details: ` + error)
+            errorLogic.sendError(`Unable to open settings applet`, `The settings applet specified is invalid. Please check the path to the applet and try again.<br><br>Details: ` + error)
         } else {
             document.getElementById(`controlPanelContent`).innerHTML = data;
             try {
@@ -12,8 +12,8 @@ function switchControlPanelPage(pageFile) {
                 document.getElementById("preferencesTitlebarButtonsSwitch").checked = userData.titlebarButtonsLeft;
                 document.getElementById("preferencesSmallStartSwitch").checked = userData.smallStart;
 
-                new OnloadLogic().loadTitlebarButtonPos();
-                new OnloadLogic().setStartMenuSize();
+                onloadLogic.loadTitlebarButtonPos();
+                onloadLogic.setStartMenuSize();
             } catch (e) {}
         }
     })

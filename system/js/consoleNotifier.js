@@ -61,7 +61,7 @@ class consoleNotifier {
         }
     }
 
-    notifyLoadApp(app, mod = "new WindowLogic().loadWindow") {
+    notifyLoadApp(app, mod = "windowLogic.loadWindow") {
         let today = new Date();
         let hour = today.getHours().toString().padStart(2, "0");
         let minute = today.getMinutes().toString().padStart(2, "0");

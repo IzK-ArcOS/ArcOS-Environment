@@ -35,18 +35,18 @@ class ErrorLogic {
             document.getElementById("errorMessageBoxWindowTitle").id = titleBarId;
             document.getElementById("errorMessageMsg").id = messageId;
             document.getElementById(messageId).innerHTML = message;
-            new DragLogic().dragElement(document.getElementById(windowId), document.getElementById(titleBarId));
-            new WindowLogic().openWindow(windowId);
+            dragLogic.dragElement(document.getElementById(windowId), document.getElementById(titleBarId));
+            windowLogic.openWindow(windowId);
             playSystemSound("./system/sounds/error.mp3");
             setTimeout(() => {
-                new WindowLogic().bringToFront(document.getElementById(windowId));
+                windowLogic.bringToFront(document.getElementById(windowId));
             }, 50);
             errorMessageCount += 1;
             if (errorMessageCount >= 200) {
                 this.bsod("ErrorLogic.createNewError: ERRMSG_OVERFLOW", "The system error counter overflowed.");
             }
         } else {
-            new NotificationLogic().notificationService(title, message);
+            notificationLogic.notificationService(title, message);
         }
 
     }
@@ -67,12 +67,12 @@ class ErrorLogic {
             document.getElementById("confirmationMessageMsg").id = messageId;
             document.getElementById(messageId).innerHTML = message;
             document.getElementById("confirmationMessageButton").id = buttonId;
-            document.getElementById(buttonId).setAttribute("onclick", action.toString() + `;new WindowLogic().closewindow(document.getElementById("${windowId}"))`);
-            new DragLogic().dragElement(document.getElementById(windowId), document.getElementById(titleBarId));
-            new WindowLogic().openWindow(windowId);
+            document.getElementById(buttonId).setAttribute("onclick", action.toString() + `;windowLogic.closewindow(document.getElementById("${windowId}"))`);
+            dragLogic.dragElement(document.getElementById(windowId), document.getElementById(titleBarId));
+            windowLogic.openWindow(windowId);
             playSystemSound("./system/sounds/error.mp3");
             setTimeout(() => {
-                new WindowLogic().bringToFront(document.getElementById(windowId));
+                windowLogic.bringToFront(document.getElementById(windowId));
             }, 50);
             errorMessageCount += 1;
             if (errorMessageCount >= 200) {
@@ -83,5 +83,7 @@ class ErrorLogic {
 }
 
 window.onerror = function errorVisualizer(errorMsg, url, lineNumber) {
-    new NotificationLogic().notificationService("ArcOS Exception", "ArcOS has encountered an internal exception:<br><br>" + errorMsg, 3000);
+    notificationLogic.notificationService("ArcOS Exception", "ArcOS has encountered an internal exception:<br><br>" + errorMsg, 3000);
 }
+
+let errorLogic = new ErrorLogic();

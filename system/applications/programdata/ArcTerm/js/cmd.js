@@ -47,15 +47,15 @@ class ArcTermCommands {
     }
 
     restart() {
-        new PowerLogic().restart();
+        powerLogic.restart();
     }
 
     shutdown() {
-        new PowerLogic().shutdown();
+        powerLogic.shutdown();
     }
 
     logoff() {
-        new PowerLogic().logoff();
+        powerLogic.logoff();
     }
 
     dir() {
@@ -265,7 +265,7 @@ class ArcTermCommands {
     exit() {
         new ArcTermUserInterface().outputColor("[█] Now stopping ArcTerm . . .", "", 'var(--green)');
         document.getElementById(inputId).setAttribute("disabled", "");
-        new WindowLogic().closewindow(document.getElementById("ArcTerm"));
+        windowLogic.closewindow(document.getElementById("ArcTerm"));
         initiateArcTerm();
     }
 
@@ -302,7 +302,7 @@ class ArcTermCommands {
 
         if (loadedApps.includes(program) && program) {
             new ArcTermUserInterface().outputColor(`Program [${program}] opened.`, ``, `var(--blue)`);
-            new WindowLogic().openWindow(program);
+            windowLogic.openWindow(program);
         } else {
             new ArcTermUserInterface().outputColor(`[Error]: program not found or entry empty.`);
         }
@@ -314,7 +314,7 @@ class ArcTermCommands {
         let message = this.getAllCommandArgs(1, false);
 
         if (message) {
-            new ErrorLogic().bsod("USR_SPECIFIED_ERR", message);
+            errorLogic.bsod("USR_SPECIFIED_ERR", message);
         } else {
             new ArcTermUserInterface().outputColor(`[Error]: entered message cannot be empty.`);
         }
@@ -326,7 +326,7 @@ class ArcTermCommands {
 
         if (activeapps.includes(program) && program) {
             new ArcTermUserInterface().outputColor(`Program [${program}] closed.`, ``, `var(--blue)`);
-            new WindowLogic().closewindow(document.getElementById(program));
+            windowLogic.closewindow(document.getElementById(program));
         } else {
             new ArcTermUserInterface().outputColor(`[Error]: program not opnened or entry empty.`);
         }

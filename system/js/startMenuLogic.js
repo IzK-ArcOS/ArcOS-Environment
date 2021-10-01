@@ -11,7 +11,7 @@ function toggleStart() {
             showStart();
         }
     } catch {
-        new ErrorLogic().bsod("window.addEventListener: START_NOT_LOADED", "The startMenu is not loaded.");
+        errorLogic.bsod("window.addEventListener: START_NOT_LOADED", "The startMenu is not loaded.");
     }
 
 }
@@ -31,7 +31,7 @@ window.addEventListener('mousedown', function(event) {
                 }
             }
         } catch {
-            new ErrorLogic().bsod("window.addEventListener: START_NOT_LOADED", "The startMenu is not loaded.");
+            errorLogic.bsod("window.addEventListener: START_NOT_LOADED", "The startMenu is not loaded.");
         }
     }
 });
@@ -43,7 +43,7 @@ function populateStartMenuAppList(appListId) {
     let div = document.getElementById(appListId);
     div.innerHTML = "";
     for (let i = 0; i < loadedApps.length; i++) {
-        div.innerHTML += "<button class=\"transparent fullWidth textAlignLeft\" onclick=\"new WindowLogic().openWindow('" + loadedApps[i] + "')\"><img src=\"./system/images/" + loadedApps[i] + ".svg\" style=\"height:15px;vertical-align:middle\">&nbsp;&nbsp;" + loadedApps[i] + "</button>";
+        div.innerHTML += "<button class=\"transparent fullWidth textAlignLeft\" onclick=\"windowLogic.openWindow('" + loadedApps[i] + "')\"><img src=\"./system/images/" + loadedApps[i] + ".svg\" style=\"height:15px;vertical-align:middle\">&nbsp;&nbsp;" + loadedApps[i] + "</button>";
     }
 }
 

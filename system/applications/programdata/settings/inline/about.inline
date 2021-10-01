@@ -1,11 +1,8 @@
-<h2
-    style="margin:0px;margin-bottom:10px;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-weight: 100;margin:0px;">
+<h2 style="margin:0px;margin-bottom:10px;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-weight: 100;margin:0px;">
     About</h2><br><br>
 
-<p style="margin-top:0px;">You are currently running ArcOSv2.
-    <br><br>Thanks for installing and using ArcOSv2, an OSE built entirely in<br>
-    Electron. ArcOSv2 has been in development since March 14th, 2021,<br>
-    and has come a far way since. In order to use this software, you must<br>read the license agreement:<br><br>
+<p style="margin-top:0px;">You are currently running ArcOS.
+    <br><br>Thanks for installing and using ArcOS, an OSE built entirely in<br> Electron. ArcOS has been in development since March 14th, 2021,<br> and has come a far way since. In order to use this software, you must<br>read the license agreement:<br><br>
     <button class="folder big controlPanel" onclick="openWithNotepad('./LICENSE');">
         <p>
             <img src="./system/images/ArcOS Notepad.svg" height="16px"

@@ -1,24 +1,24 @@
-<div class="window" id="Shut Down ArcOS" onclick="new WindowLogic().bringToFront(this);">
+<div class="window" id="Shut Down ArcOS" onclick="windowLogic.bringToFront(this);">
     <div class="windowTitle" style="background-color: transparent;">
         <center>
             <h3 style="margin:30px 0;">Shutdown ArcOS</h3>
         </center>
     </div>
-    <div class="body" onclick="new WindowLogic().bringToFront(parentNode);">
+    <div class="body" onclick="windowLogic.bringToFront(parentNode);">
         <center>
-            <button onclick="new PowerLogic().shutdown();" class="transparent">
+            <button onclick="powerLogic.shutdown();" class="transparent">
                 <span class="material-icons" style="font-size:60px;">power_settings_new</span><br>
                 Shut down
             </button>
-            <button onclick="new PowerLogic().logoff();" class="transparent">
+            <button onclick="powerLogic.logoff();" class="transparent">
                 <span class="material-icons" style="font-size:60px;">logout</span><br>
                 Logoff
             </button>
-            <button onclick="new PowerLogic().restart();" class="transparent">
+            <button onclick="powerLogic.restart();" class="transparent">
                 <span class="material-icons" style="font-size:60px;">refresh</span><br>
                 Restart
             </button><br><br>
-            <button onclick="new WindowLogic().closewindow(this.parentNode.parentNode.parentNode);" class="transparent">
+            <button onclick="windowLogic.closewindow(this.parentNode.parentNode.parentNode);" class="transparent">
                 Cancel
             </button>
         </center>

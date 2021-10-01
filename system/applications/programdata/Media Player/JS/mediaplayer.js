@@ -87,7 +87,7 @@ function openAudioFile(file) {
     let mediaPlayer = document.getElementById("ArcOSMediaPlayerAudioObj");
 
     mediaPlayer.src = file;
-    new WindowLogic().openWindow("Music Player")
+    windowLogic.openWindow("Music Player")
     mediaPlayer.play();
     startMediaPlayerStatusInterval();
 }

@@ -17,15 +17,15 @@ class GeneralLogic {
             if (document.getElementById("addAppInputField").value !== "") {
                 let open = document.getElementById("startAppAfterAddCheckBox").checked;
                 if (open == true) {
-                    new WindowLogic().loadWindow(document.getElementById("addAppInputField").value, 0, 0);
+                    windowLogic.loadWindow(document.getElementById("addAppInputField").value, 0, 0);
                 } else {
-                    new WindowLogic().loadWindow(document.getElementById("addAppInputField").value, 1, 1);
+                    windowLogic.loadWindow(document.getElementById("addAppInputField").value, 1, 1);
                 }
             } else {
-                new ErrorLogic().sendError("Application not found", "The Application you tried to import couldn't be found. Check the <b>relative</b> path and try again.");
+                errorLogic.sendError("Application not found", "The Application you tried to import couldn't be found. Check the <b>relative</b> path and try again.");
             }
         } catch {
-            new ErrorLogic().sendError("Application not found", "The Application you tried to import couldn't be found. Check the <b>relative</b> path and try again.");
+            errorLogic.sendError("Application not found", "The Application you tried to import couldn't be found. Check the <b>relative</b> path and try again.");
         }
     }
 
@@ -165,25 +165,26 @@ class GeneralLogic {
         focusedWindow = "";
         document.getElementById("windowStore").innerHTML = "";
         setTimeout(() => {
-            new OnloadLogic().loadDefaultApps();
+            onloadLogic.loadDefaultApps();
             setTimeout(() => {
                 for (let i = 0; i < tempList.length; i++) {
-                    new WindowLogic().openWindow(tempList[i]);
+                    windowLogic.openWindow(tempList[i]);
                 }
                 setTimeout(() => {
-                    new WindowLogic().bringToFront(document.getElementById(tempFocusedWindow));
+                    windowLogic.bringToFront(document.getElementById(tempFocusedWindow));
                 }, 1000);
             }, 1000);
         }, 100);
     }
 }
 
+let generalLogic = new GeneralLogic();
 
 window.addEventListener("click", e => {
     if (!lockScreenActive) {
-        new WindowLogic().updateTitlebar();
-        new GeneralLogic().updateDesktopIcons();
-        //new PersonalizationLogic().setTitlebarButtonLocations(false, false);
+        windowLogic.updateTitlebar();
+        generalLogic.updateDesktopIcons();
+        //personalizationLogic.setTitlebarButtonLocations(false, false);
         let userData = JSON.parse(localStorage.getItem(args.get("username")));
         try { document.getElementById("systemVolumeSlider").value = userData.globalVolume * 10; } catch {}
         try { document.getElementById("volumeControlEnableSoundSwitch").checked = userData.muted } catch {}
@@ -191,6 +192,6 @@ window.addEventListener("click", e => {
 });
 
 window.addEventListener("contextmenu", e => {
-    new WindowLogic().updateTitlebar();
-    new GeneralLogic().updateDesktopIcons();
+    windowLogic.updateTitlebar();
+    generalLogic.updateDesktopIcons();
 })

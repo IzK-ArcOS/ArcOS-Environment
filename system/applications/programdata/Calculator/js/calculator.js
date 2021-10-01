@@ -12,7 +12,7 @@ function calculatorSolve() {
 function calculatorClear() {
     document.getElementById("calculatorOutput").value = ""
 }
-new WindowLogic().bringToFront("Calculator");
+windowLogic.bringToFront("Calculator");
 let x = window.addEventListener("keydown", e => {
     if (activeapps.includes("Calculator") && focusedWindow == "Calculator" && !lockScreenActive) {
         switch (e.key.toLowerCase()) {

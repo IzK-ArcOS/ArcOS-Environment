@@ -45,7 +45,7 @@ class WindowLogic {
                 this.updateTaskBar();
 
             } catch {
-                new NotificationLogic().notificationService('Error closing window', "ArcOS was unable to close the window.<br><br>Please check the name and try again.");
+                notificationLogic.notificationService('Error closing window', "ArcOS was unable to close the window.<br><br>Please check the name and try again.");
             }
         }
     }
@@ -93,7 +93,7 @@ class WindowLogic {
                 }, 200);
             } catch {}
         } else {
-            new ErrorLogic().sendError("ArcOS Program Manager", "The requested applcation couldn't be opened: Cannot read propoerty 'id' of null.");
+            errorLogic.sendError("ArcOS Program Manager", "The requested applcation couldn't be opened: Cannot read propoerty 'id' of null.");
         }
     }
 
@@ -115,32 +115,32 @@ class WindowLogic {
                 if (!userData.noTaskbarButtonLabels) {
                     activeapps.forEach(element => {
                         if (element.includes("(") && element.endsWith(")")) {
-                            str += "<button class=\"taskbarButton\" onclick='new WindowLogic().openWindow(\"" + element + "\")' title=\"" + element + "\"><span style=\"vertical-align:middle;\"><img src=\"./system/images/errorMessage.svg\" style=\"width:20px;height:20px;vertical-align:middle;\">&nbsp;&nbsp;<span style=\"vertical-align:middle;\">" + element + "</span></button> ";
+                            str += "<button class=\"taskbarButton\" onclick='windowLogic.openWindow(\"" + element + "\")' title=\"" + element + "\"><span style=\"vertical-align:middle;\"><img src=\"./system/images/errorMessage.svg\" style=\"width:20px;height:20px;vertical-align:middle;\">&nbsp;&nbsp;<span style=\"vertical-align:middle;\">" + element + "</span></button> ";
                         } else {
-                            str += "<button class=\"taskbarButton\" onclick='new WindowLogic().openWindow(\"" + element + "\")' title=\"" + element + "\"><img src=\"./system/images/" + element + ".svg\" style=\"width:20px;height:20px;vertical-align:middle;\">&nbsp;&nbsp;<span style=\"vertical-align:middle;\">" + element + "</span></button> ";
+                            str += "<button class=\"taskbarButton\" onclick='windowLogic.openWindow(\"" + element + "\")' title=\"" + element + "\"><img src=\"./system/images/" + element + ".svg\" style=\"width:20px;height:20px;vertical-align:middle;\">&nbsp;&nbsp;<span style=\"vertical-align:middle;\">" + element + "</span></button> ";
                         }
 
                     });
                 } else {
                     activeapps.forEach(element => {
                         if (element.includes("(") && element.endsWith(")")) {
-                            str += "<button class=\"taskbarButton\" onclick='new WindowLogic().openWindow(\"" + element + "\")' title=\"" + element + "\"><img src=\"./system/images/errorMessage.svg\" style=\"width:20px;height:20px;vertical-align:middle;\"></button> ";
+                            str += "<button class=\"taskbarButton\" onclick='windowLogic.openWindow(\"" + element + "\")' title=\"" + element + "\"><img src=\"./system/images/errorMessage.svg\" style=\"width:20px;height:20px;vertical-align:middle;\"></button> ";
                         } else {
-                            str += "<button class=\"taskbarButton\" onclick='new WindowLogic().openWindow(\"" + element + "\")' title=\"" + element + "\"><img src=\"./system/images/" + element + ".svg\" style=\"width:20px;height:20px;vertical-align:middle;\"></button> ";
+                            str += "<button class=\"taskbarButton\" onclick='windowLogic.openWindow(\"" + element + "\")' title=\"" + element + "\"><img src=\"./system/images/" + element + ".svg\" style=\"width:20px;height:20px;vertical-align:middle;\"></button> ";
                         }
 
                     });
                 }
 
                 document.getElementById("taskbarButtons").innerHTML = str;
-            } catch { new NotificationLogic().notificationService("Error", "Unable to update taskbar, is <code>userInterface</code> loaded?") }
+            } catch { notificationLogic.notificationService("Error", "Unable to update taskbar, is <code>userInterface</code> loaded?") }
         } else {
             let str = "";
             activeapps.forEach(element => {
                 if (element.includes("(") && element.endsWith(")")) {
-                    str += "<button class=\"taskbarButton\" onclick='new WindowLogic().openWindow(\"" + element + "\")' title=\"" + element + "\"><span style=\"vertical-align:middle;\"><img src=\"./system/images/errorMessage.svg\" style=\"width:20px;height:20px;vertical-align:middle;\">&nbsp;&nbsp;<span style=\"vertical-align:middle;\">" + element + "</span></button> ";
+                    str += "<button class=\"taskbarButton\" onclick='windowLogic.openWindow(\"" + element + "\")' title=\"" + element + "\"><span style=\"vertical-align:middle;\"><img src=\"./system/images/errorMessage.svg\" style=\"width:20px;height:20px;vertical-align:middle;\">&nbsp;&nbsp;<span style=\"vertical-align:middle;\">" + element + "</span></button> ";
                 } else {
-                    str += "<button class=\"taskbarButton\" onclick='new WindowLogic().openWindow(\"" + element + "\")' title=\"" + element + "\"><img src=\"./system/images/" + element + ".svg\" style=\"width:20px;height:20px;vertical-align:middle;\">&nbsp;&nbsp;<span style=\"vertical-align:middle;\">" + element + "</span></button> ";
+                    str += "<button class=\"taskbarButton\" onclick='windowLogic.openWindow(\"" + element + "\")' title=\"" + element + "\"><img src=\"./system/images/" + element + ".svg\" style=\"width:20px;height:20px;vertical-align:middle;\">&nbsp;&nbsp;<span style=\"vertical-align:middle;\">" + element + "</span></button> ";
                 }
 
             });
@@ -182,13 +182,13 @@ class WindowLogic {
                 document.getElementById("windowStore").insertAdjacentHTML("afterbegin", document.getElementById("temp").innerHTML);
 
                 for (let i = 0; i < document.getElementsByClassName("window").length; i++) {
-                    new DragLogic().dragElement(document.getElementsByClassName("window")[i], document.getElementsByClassName("windowTitle")[i]);
+                    dragLogic.dragElement(document.getElementsByClassName("window")[i], document.getElementsByClassName("windowTitle")[i]);
                 }
 
                 if (fromKernel == 0) { openWindow(document.getElementById("windowStore").childNodes[0].id); }
 
                 if (fromAddApp == 1) {
-                    new NotificationLogic().notificationService(
+                    notificationLogic.notificationService(
                         "Import App",
                         "The app has been loaded, but needs to be started from " +
                         "<B>Execute Command</B> with the following command:" +
@@ -203,10 +203,10 @@ class WindowLogic {
                 populateStartMenuAppList("startMenuAppList");
 
             } else {
-                new ErrorLogic().sendError("System Error", "The app file specified does not contain a valid application. Please check the name and try again.<br>File: " + appFile);
+                errorLogic.sendError("System Error", "The app file specified does not contain a valid application. Please check the name and try again.<br>File: " + appFile);
             }
 
-        }).catch((e) => { new ErrorLogic().sendError("System Error", "The system cannot find the application specified.<br>Please check the name and try again<br><br>File: " + appFile + "<br><br>" + e); });
+        }).catch((e) => { errorLogic.sendError("System Error", "The system cannot find the application specified.<br>Please check the name and try again<br><br>File: " + appFile + "<br><br>" + e); });
     }
 
     updateTitlebar() {
@@ -313,3 +313,5 @@ class WindowLogic {
         }
     }
 }
+
+let windowLogic = new WindowLogic();

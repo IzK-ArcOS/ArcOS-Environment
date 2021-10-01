@@ -7,7 +7,7 @@
     <option value="darksharp">Dark Mode Sharp Corners</option>
     <option value="lightrounded">Light Mode Rounded Corners</option>
     <option value="lightsharp">Light Mode Sharp Corners</option>
-</select><br><button class="folder big controlPanel" onclick="new PersonalizationLogic().applyTheme();">
+</select><br><button class="folder big controlPanel" onclick="personalizationLogic.applyTheme();">
     <p>apply
         <span class="material-icons right">arrow_forward_ios</span>
     </p>
@@ -20,24 +20,24 @@
     <option value="top">Top</option>
     <option value="bottom">Bottom</option>
 </select>
-<br><button class="folder big controlPanel" onclick="new PersonalizationLogic().applyTaskbarPos();">
+<br><button class="folder big controlPanel" onclick="personalizationLogic.applyTaskbarPos();">
     <p>apply
         <span class="material-icons right">arrow_forward_ios</span>
     </p>
 </button>
 <br>
 <br>
-<input type="checkbox" class="switch" id="preferencesAnimationsSwitch" checked="yes" style="min-width: unset;" onclick="new PersonalizationLogic().setAnimations(true);">
+<input type="checkbox" class="switch" id="preferencesAnimationsSwitch" checked="yes" style="min-width: unset;" onclick="personalizationLogic.setAnimations(true);">
 <label for="preferencesAnimationsSwitch">Enable animations</label>
 
 <br><br>
-<input type="checkbox" class="switch" id="preferencesTitlebarButtonsSwitch" checked="yes" style="min-width: unset;" onclick="new PersonalizationLogic().setTitlebarButtonLocations(true);">
+<input type="checkbox" class="switch" id="preferencesTitlebarButtonsSwitch" checked="yes" style="min-width: unset;" onclick="personalizationLogic.setTitlebarButtonLocations(true);">
 <label for="preferencesTitlebarButtonsSwitch">Titlebar buttons on the left side</label>
 
 <br><br>
-<input type="checkbox" class="switch" id="preferencesTaskbarButtonLabelsSwitch" checked="yes" style="min-width: unset;" onclick="new PersonalizationLogic().setTaskbarButtonLabels(this);">
+<input type="checkbox" class="switch" id="preferencesTaskbarButtonLabelsSwitch" checked="yes" style="min-width: unset;" onclick="personalizationLogic.setTaskbarButtonLabels(this);">
 <label for="preferencesTaskbarButtonLabelsSwitch">Show Taskbar Button Labels</label>
 
 <br><br>
-<input type="checkbox" class="switch" id="preferencesSmallStartSwitch" checked="yes" style="min-width: unset;" onclick="new PersonalizationLogic().setStartmenuSize(true);">
+<input type="checkbox" class="switch" id="preferencesSmallStartSwitch" checked="yes" style="min-width: unset;" onclick="personalizationLogic.setStartmenuSize(true);">
 <label for="preferencesSmallStartSwitch">Small Start Menu</label>

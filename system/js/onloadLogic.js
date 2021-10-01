@@ -8,11 +8,11 @@ onload = function() {
         try {
             let usrEnabled = JSON.parse(localStorage.getItem(args.get("username")));
             if (!usrEnabled || !usrEnabled.enabled) {
-                new ErrorLogic().bsod("OnloadLogic.onloadSetIntervals: USR_DATA_MISSING", "The user data corrupted while the session was running.");
+                errorLogic.bsod("OnloadLogic.onloadSetIntervals: USR_DATA_MISSING", "The user data corrupted while the session was running.");
             }
         } catch {}
     }, 5);
-    let ol = new OnloadLogic();
+    let ol = onloadLogic;
     ol.startTime();
     ol.loadDefaultApps();
     setTimeout(() => {
@@ -25,13 +25,13 @@ onload = function() {
 
 onbeforeunload = function() {
     if (!allowExit) {
-        new ErrorLogic().sendError("Access Denied", "The global variable <code>allowExit</code> is set to <code>false</code>, so you can't log off or shutdown.");
+        errorLogic.sendError("Access Denied", "The global variable <code>allowExit</code> is set to <code>false</code>, so you can't log off or shutdown.");
         return allowExit;
     } else {
         localStorage.setItem("safeMode", 0);
         localStorage.removeItem("username");
         deleteUserData("ArcOS Safe Mode", false);
-        new WindowLogic().deleteWindowData();
+        windowLogic.deleteWindowData();
     }
 }
 
@@ -85,12 +85,12 @@ class OnloadLogic {
                             case "false":
                                 try { document.getElementById("preferencesTaskbarButtonLabelsSwitch").checked = true; } catch {}
                                 userData.noTaskbarButtonLabels = false;
-                                new WindowLogic().updateTaskBar();
+                                windowLogic.updateTaskBar();
                                 break;
                             default:
                                 try { document.getElementById("preferencesTaskbarButtonLabelsSwitch").checked = false; } catch {}
                                 userData.noTaskbarButtonLabels = true;
-                                new WindowLogic().updateTaskBar();
+                                windowLogic.updateTaskBar();
                                 break;
                         }
                         localStorage.setItem(args.get("username"), JSON.stringify(userdata));
@@ -139,7 +139,7 @@ class OnloadLogic {
             localStorage.setItem(args.get("username"), JSON.stringify(userData));
         } catch {
             if (onloadDesktopIconsRetryCount >= 3) {
-                new ErrorLogic().bsod("OnloadLogic.onloadSetDesktopIcons: OSDIRC_OVERFLOW", "process couldn't be started.")
+                errorLogic.bsod("OnloadLogic.onloadSetDesktopIcons: OSDIRC_OVERFLOW", "process couldn't be started.")
             } else {
                 this.onloadSetDesktopIcons();
             }
@@ -179,9 +179,9 @@ class OnloadLogic {
                 if (key === 'F4' && altKey) {
                     e.preventDefault();
                     if (activeapps.length == 0) {
-                        new WindowLogic().openWindow("Shut Down ArcOS");
+                        windowLogic.openWindow("Shut Down ArcOS");
                     } else {
-                        new WindowLogic().closewindow(document.getElementById(focusedWindow));
+                        windowLogic.closewindow(document.getElementById(focusedWindow));
                     }
                     e.stopImmediatePropagation();
                     e.stopPropagation();
@@ -197,7 +197,7 @@ class OnloadLogic {
         window.addEventListener("keydown", (e) => {
             if (!lockScreenActive) {
                 if (e.ctrlKey && e.altKey && e.shiftKey && e.key.toLowerCase() === 'x') {
-                    new WindowLogic().openWindow("ArcTerm");
+                    windowLogic.openWindow("ArcTerm");
                 }
             }
         });
@@ -209,7 +209,7 @@ class OnloadLogic {
                     return false;
                 } else {
                     if (e.key.toLowerCase() == "enter") {
-                        new PowerLogic().unlock();
+                        powerLogic.unlock();
                     }
                 }
             }
@@ -228,7 +228,7 @@ class OnloadLogic {
                 }
             } catch (e) {
                 throw e;
-                //new ErrorLogic().bsod("OnloadLogic.onloadSetEventListeners: TVC_MISSING", "The taskbarVolumeControl couldn't be found.")
+                //errorLogic.bsod("OnloadLogic.onloadSetEventListeners: TVC_MISSING", "The taskbarVolumeControl couldn't be found.")
             }
 
         });
@@ -299,41 +299,41 @@ class OnloadLogic {
     }*/
 
     loadDefaultApps() {
-        new WindowLogic().loadWindow("./system/applications/newUserInterface.app", 1, 0);
+        windowLogic.loadWindow("./system/applications/newUserInterface.app", 1, 0);
         setTimeout(() => {
-            //new WindowLogic().loadWindow("./system/applications/controlPanel.app", 1);
-            new WindowLogic().loadWindow("./system/applications/calculator.app", 1);
-            new WindowLogic().loadWindow("./system/applications/shutdown.app", 1);
-            //new WindowLogic().loadWindow("./system/applications/changeUsername.app", 1);
-            //new WindowLogic().loadWindow("./system/applications/themeSelector.app", 1);
-            //new WindowLogic().loadWindow("./system/applications/addApp.app", 1);
-            new WindowLogic().loadWindow("./system/applications/runCommand.app", 1);
-            //new WindowLogic().loadWindow("./system/applications/wallpaperSettings.app", 1);
-            //new WindowLogic().loadWindow("./system/applications/systemSettings.app", 1);
-            new WindowLogic().loadWindow("./system/applications/notepad.app", 1);
-            new WindowLogic().loadWindow("./system/applications/programdata/Notepad/utils/loadFile.app", 1, 0);
-            new WindowLogic().loadWindow("./system/applications/programdata/Notepad/utils/saveFile.app", 1, 0);
-            new WindowLogic().loadWindow("./system/applications/programdata/Notepad/utils/delFile.app", 1, 0);
-            new WindowLogic().loadWindow("./system/applications/desktopIcons.app", 1, 0);
-            //new WindowLogic().loadWindow("./system/applications/programdata/User Settings/utils/changePassword.app", 1);
-            //new WindowLogic().loadWindow("./system/applications/programdata/User Settings/utils/changeUsername.app", 1);
-            //new WindowLogic().loadWindow("./system/applications/programdata/User Settings/utils/changeUserPicture.app", 1);
-            //new WindowLogic().loadWindow("./system/applications/programdata/User Settings/utils/createUserAccount.app", 1);
-            //new WindowLogic().loadWindow("./system/applications/programdata/User Settings/utils/deleteUserAccount.app", 1);
-            new WindowLogic().loadWindow("./system/applications/fileExplorer.app", 1);
-            new WindowLogic().loadWindow("./system/applications/programdata/File Manager/utils/createFile.app", 1, 0);
-            new WindowLogic().loadWindow("./system/applications/programdata/File Manager/utils/deleteFile.app", 1, 0);
-            new WindowLogic().loadWindow("./system/applications/programdata/File Manager/utils/renameFile.app", 1, 0);
-            new WindowLogic().loadWindow("./system/applications/programdata/File Manager/utils/renameFolder.app", 1, 0);
-            new WindowLogic().loadWindow("./system/applications/programdata/File Manager/utils/deleteFolder.app", 1, 0);
-            new WindowLogic().loadWindow("./system/applications/programdata/File Manager/utils/createFolder.app", 1, 0);
-            new WindowLogic().loadWindow("./system/applications/imageViewer.app", 1, 0);
-            new WindowLogic().loadWindow("./system/applications/appManager.app", 1);
-            new WindowLogic().loadWindow("./system/applications/openWith.app", 1, 0);
-            new WindowLogic().loadWindow("./system/applications/newsettings.app", 1);
-            new WindowLogic().loadWindow("./system/applications/ArcTerm.app", 1);
-            new WindowLogic().loadWindow("./system/applications/musicPlayer.app", 1, 0);
-            new WindowLogic().loadWindow("./system/applications/lockScreen.app", 1, 0);
+            //windowLogic.loadWindow("./system/applications/controlPanel.app", 1);
+            windowLogic.loadWindow("./system/applications/calculator.app", 1);
+            windowLogic.loadWindow("./system/applications/shutdown.app", 1);
+            //windowLogic.loadWindow("./system/applications/changeUsername.app", 1);
+            //windowLogic.loadWindow("./system/applications/themeSelector.app", 1);
+            //windowLogic.loadWindow("./system/applications/addApp.app", 1);
+            windowLogic.loadWindow("./system/applications/runCommand.app", 1);
+            //windowLogic.loadWindow("./system/applications/wallpaperSettings.app", 1);
+            //windowLogic.loadWindow("./system/applications/systemSettings.app", 1);
+            windowLogic.loadWindow("./system/applications/notepad.app", 1);
+            windowLogic.loadWindow("./system/applications/programdata/Notepad/utils/loadFile.app", 1, 0);
+            windowLogic.loadWindow("./system/applications/programdata/Notepad/utils/saveFile.app", 1, 0);
+            windowLogic.loadWindow("./system/applications/programdata/Notepad/utils/delFile.app", 1, 0);
+            windowLogic.loadWindow("./system/applications/desktopIcons.app", 1, 0);
+            //windowLogic.loadWindow("./system/applications/programdata/User Settings/utils/changePassword.app", 1);
+            //windowLogic.loadWindow("./system/applications/programdata/User Settings/utils/changeUsername.app", 1);
+            //windowLogic.loadWindow("./system/applications/programdata/User Settings/utils/changeUserPicture.app", 1);
+            //windowLogic.loadWindow("./system/applications/programdata/User Settings/utils/createUserAccount.app", 1);
+            //windowLogic.loadWindow("./system/applications/programdata/User Settings/utils/deleteUserAccount.app", 1);
+            windowLogic.loadWindow("./system/applications/fileExplorer.app", 1);
+            windowLogic.loadWindow("./system/applications/programdata/File Manager/utils/createFile.app", 1, 0);
+            windowLogic.loadWindow("./system/applications/programdata/File Manager/utils/deleteFile.app", 1, 0);
+            windowLogic.loadWindow("./system/applications/programdata/File Manager/utils/renameFile.app", 1, 0);
+            windowLogic.loadWindow("./system/applications/programdata/File Manager/utils/renameFolder.app", 1, 0);
+            windowLogic.loadWindow("./system/applications/programdata/File Manager/utils/deleteFolder.app", 1, 0);
+            windowLogic.loadWindow("./system/applications/programdata/File Manager/utils/createFolder.app", 1, 0);
+            windowLogic.loadWindow("./system/applications/imageViewer.app", 1, 0);
+            windowLogic.loadWindow("./system/applications/appManager.app", 1);
+            windowLogic.loadWindow("./system/applications/openWith.app", 1, 0);
+            windowLogic.loadWindow("./system/applications/newsettings.app", 1);
+            windowLogic.loadWindow("./system/applications/ArcTerm.app", 1);
+            windowLogic.loadWindow("./system/applications/musicPlayer.app", 1, 0);
+            windowLogic.loadWindow("./system/applications/lockScreen.app", 1, 0);
             setTimeout(() => {
                 initiateArcTerm();
             }, 1000);
@@ -349,17 +349,17 @@ class OnloadLogic {
                 windows[i].style.position = "absolute";
             }
         } catch {}
-        //try { new WindowLogic().closeAllWindows(); } catch {}
+        //try { windowLogic.closeAllWindows(); } catch {}
     }
 
     loadSafemodeDependingFunctions() {
         getDriveLetters();
-        new WindowLogic().updateTaskBar();
+        windowLogic.updateTaskBar();
         hideStart();
         this.setStartMenuSize();
         openSettingsPane("home", document.getElementsByClassName("controlPanelSidebar")[0]);
-        new ContextMenuLogic().hideMenu();
-        new NotificationLogic().startNotificationCenterPopulator();
+        contextMenuLogic.hideMenu();
+        notificationLogic.startNotificationCenterPopulator();
         this.onloadSetDesktopIcons();
         this.onloadSetIntervals();
         this.onloadSetWindowControls();
@@ -371,9 +371,9 @@ class OnloadLogic {
         globalVolume = parseInt(JSON.parse(localStorage.getItem(args.get("username"))).globalVolume);
         startUserDataUpdateCycle();
         document.getElementById("showDesktopIconsSwitch").checked = JSON.parse(localStorage.getItem(args.get("username"))).showDesktopIcons;
-        new PersonalizationLogic().setTitlebarButtonLocations(false, false)
-        new GeneralLogic().updateDesktopIcons();
-        new PersonalizationLogic().setAnimations(false);
+        personalizationLogic.setTitlebarButtonLocations(false, false)
+        generalLogic.updateDesktopIcons();
+        personalizationLogic.setAnimations(false);
         if (localStorage.getItem("safeMode") != 1) {
 
         } else {
@@ -381,7 +381,7 @@ class OnloadLogic {
             document.getElementById("addonShellLoader").href = "./system/css/darkModeSharp.css";
             document.getElementById("animationsAddonLoader").href = "system/css/noanimations.css";
             document.getElementById("wallpaper").style.backgroundImage = "unset";
-            new ErrorLogic().sendError("Safe Mode", "ArcOS is running in Safe Mode.<br> - If this was not your intention, just restart from the start menu.<br> - If this was your intention, use this mode only to repair ArcOS if it doesn't boot.<br><br>Pleae note the following: all changes made in this account will be deleted at logoff.", 1)
+            errorLogic.sendError("Safe Mode", "ArcOS is running in Safe Mode.<br> - If this was not your intention, just restart from the start menu.<br> - If this was your intention, use this mode only to repair ArcOS if it doesn't boot.<br><br>Pleae note the following: all changes made in this account will be deleted at logoff.", 1)
         }
     }
 
@@ -398,5 +398,6 @@ class OnloadLogic {
     }
 }
 
+let onloadLogic = new OnloadLogic();
 
 let onloadDesktopIconsRetryCount = 0;

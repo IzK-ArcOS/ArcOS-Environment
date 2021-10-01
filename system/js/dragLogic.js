@@ -18,7 +18,7 @@ class DragLogic {
         }
 
         function dragMouseDown(e) {
-            new WindowLogic().bringToFront(elmnt);
+            windowLogic.bringToFront(elmnt);
             e = e || window.event;
             e.preventDefault();
             pos3 = e.clientX;
@@ -48,3 +48,5 @@ class DragLogic {
         }
     }
 }
+
+let dragLogic = new DragLogic();

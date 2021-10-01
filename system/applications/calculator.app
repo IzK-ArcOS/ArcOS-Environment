@@ -1,10 +1,10 @@
-<div class="window" id="Calculator" onclick="new WindowLogic().bringToFront(this);" style="width:360px;height:250px;min-height:unset;resize:none;">
-    <div class="windowTitle" onclick="new WindowLogic().bringToFront(parentNode);">
+<div class="window" id="Calculator" onclick="windowLogic.bringToFront(this);" style="width:360px;height:250px;min-height:unset;resize:none;">
+    <div class="windowTitle" onclick="windowLogic.bringToFront(parentNode);">
         <p class="titleText">Calculator</p>
-        <button onclick="new WindowLogic().closewindow(this.parentNode.parentNode);" class="title close">✖</button>
-        <button onclick="new WindowLogic().minimizeWindow(this.parentNode.parentNode.id);" class="title">🗕</button>
+        <button onclick="windowLogic.closewindow(this.parentNode.parentNode);" class="title close">✖</button>
+        <button onclick="windowLogic.minimizeWindow(this.parentNode.parentNode.id);" class="title">🗕</button>
     </div>
-    <div class="body" onclick="new WindowLogic().bringToFront(parentNode);" style="padding:10px;">
+    <div class="body" onclick="windowLogic.bringToFront(parentNode);" style="padding:10px;">
         <table>
             <tr>
                 <td colspan="3"><input readonly="true" id="calculatorOutput" style="width:100%;font-family: 'Ubuntu Mono', monospace;" class="bright" /></td>

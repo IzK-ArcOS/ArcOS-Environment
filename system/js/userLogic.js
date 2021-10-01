@@ -10,18 +10,18 @@ function createUserData(user, override = false, notify = false) {
         if (isAdmin(args.get("username")) || override) {
             localStorage.setItem(user, JSON.stringify(userTemplate));
             if (notify) {
-                new ErrorLogic().sendError("User Accounts", `User account of "${user}" was created successfully.`);
+                errorLogic.sendError("User Accounts", `User account of "${user}" was created successfully.`);
             }
             return `Userdata of "${user}" has been created.`;
         } else {
             if (notify) {
-                new ErrorLogic().sendError("User Accounts", `User account of "${user}" could not be created.<br><br>Reason: you do not have admin rights.`);
+                errorLogic.sendError("User Accounts", `User account of "${user}" could not be created.<br><br>Reason: you do not have admin rights.`);
             }
             return `Userdata of "${user}" could not be created: logged in user is not admin.`;
         }
     } else {
         if (notify) {
-            new ErrorLogic().sendError("User Accounts", `User account of "${user}" could not be created.<br><br>Reason: username cannot be empty.`);
+            errorLogic.sendError("User Accounts", `User account of "${user}" could not be created.<br><br>Reason: username cannot be empty.`);
         }
     }
 
@@ -37,18 +37,18 @@ function deleteUserData(user, override = false, notify = false) {
                 localStorage.removeItem(user);
             }
             if (notify) {
-                new ErrorLogic().sendError("User Accounts", `User account of "${user}" was deleted successfully.`);
+                errorLogic.sendError("User Accounts", `User account of "${user}" was deleted successfully.`);
             }
             return `Userdata of "${user}" has been deleted.`;
         } else {
             if (notify) {
-                new ErrorLogic().sendError("User Accounts", `User account of "${user}" could not be deleted.<br><br>Reason: you do not have admin rights.`);
+                errorLogic.sendError("User Accounts", `User account of "${user}" could not be deleted.<br><br>Reason: you do not have admin rights.`);
             }
             return `Userdata of "${user}" could not be deleted: logged in user is not admin.`;
         }
     } else {
         if (notify) {
-            new ErrorLogic().sendError("User Accounts", `User account of "${user}" could not be deleted.<br><br>Reason: username cannot be empty.`);
+            errorLogic.sendError("User Accounts", `User account of "${user}" could not be deleted.<br><br>Reason: username cannot be empty.`);
         }
     }
 }
@@ -63,18 +63,18 @@ function resetUserData(user, override = false, notify = false) {
                 localStorage.setItem(user, JSON.stringify(userTemplate));
             }
             if (notify) {
-                new ErrorLogic().sendError("User Accounts", `User account of "${user}" was reset successfully.`);
+                errorLogic.sendError("User Accounts", `User account of "${user}" was reset successfully.`);
             }
             return `Userdata of "${user}" has been reset.`;
         } else {
             if (notify) {
-                new ErrorLogic().sendError("User Accounts", `User account of "${user}" could not be reset.<br><br>Reason: you do not have admin rights.`);
+                errorLogic.sendError("User Accounts", `User account of "${user}" could not be reset.<br><br>Reason: you do not have admin rights.`);
             }
             return `Userdata of "${user}" could not be reset: logged in user is not admin`;
         }
     } else {
         if (notify) {
-            new ErrorLogic().sendError("User Accounts", `User account of "${user}" could not be reset.<br><br>Reason: username cannot be empty.`);
+            errorLogic.sendError("User Accounts", `User account of "${user}" could not be reset.<br><br>Reason: username cannot be empty.`);
         }
     }
 }
@@ -93,18 +93,18 @@ function changeUserDataName(oldname, newname, override = false, notify = false) 
                 }
             }
             if (notify) {
-                new ErrorLogic().sendError("User Accounts", `User account of "${oldname}" was successfully renamed to "${newname}".`);
+                errorLogic.sendError("User Accounts", `User account of "${oldname}" was successfully renamed to "${newname}".`);
             }
             return `Userdata of "${oldname}" has been renamed to "${newname}".`;
         } else {
             if (notify) {
-                new ErrorLogic().sendError("User Accounts", `User account of "${user}" could not be renamed.<br><br>Reason: you do not have admin rights.`);
+                errorLogic.sendError("User Accounts", `User account of "${user}" could not be renamed.<br><br>Reason: you do not have admin rights.`);
             }
             return `Userdata of "${oldname}" could not be renamed: logged in user is not admin`
         }
     } else {
         if (notify) {
-            new ErrorLogic().sendError("User Accounts", `User account of "${oldname}" could not be renamed.<br><br>Reason: <code>oldname</code> or <code>newname</code> is empty.`)
+            errorLogic.sendError("User Accounts", `User account of "${oldname}" could not be renamed.<br><br>Reason: <code>oldname</code> or <code>newname</code> is empty.`)
         }
     }
 
@@ -121,14 +121,14 @@ function toggleUserData(user, override = false, notify = false) {
 
             localStorage.setItem(user, JSON.stringify(userData));
             if (notify) {
-                new ErrorLogic().sendError("User Accounts", `User account of "${user}" was toggled successfully.`);
+                errorLogic.sendError("User Accounts", `User account of "${user}" was toggled successfully.`);
             }
             return `Userdata access of "${user}" has been toggled to "${localStorage.getItem(userData.enabled)}".`;
 
         }
     } else {
         if (notify) {
-            new ErrorLogic().sendError("User Accounts", `User account of "${user}" could not be toggled.<br><br>Reason: you do not have admin rights.`);
+            errorLogic.sendError("User Accounts", `User account of "${user}" could not be toggled.<br><br>Reason: you do not have admin rights.`);
         }
         return `Userdata of "${user}" could not be toggled: logged in user is not admin`
     }
@@ -253,12 +253,12 @@ function hotSwapUserAccount(username) {
         if (!userData.pswd) {
             args.set("username", username);
             setTimeout(() => {
-                new OnloadLogic().loadTheme();
-                new OnloadLogic().loadTaskbarPos();
-                new PersonalizationLogic().setTitlebarButtonLocations(false, false)
-                new GeneralLogic().updateDesktopIcons();
-                new PersonalizationLogic().setAnimations(false);
-                new OnloadLogic().setStartMenuSize();
+                onloadLogic.loadTheme();
+                onloadLogic.loadTaskbarPos();
+                personalizationLogic.setTitlebarButtonLocations(false, false)
+                generalLogic.updateDesktopIcons();
+                personalizationLogic.setAnimations(false);
+                onloadLogic.setStartMenuSize();
 
                 openSettingsPane("home", document.getElementsByClassName("controlPanelSidebar")[0]);
                 initiateArcTerm();
@@ -267,15 +267,15 @@ function hotSwapUserAccount(username) {
                 oldNotificationsList = [];
                 notificationList = [];
 
-                new WindowLogic().closeAllWindows();
+                windowLogic.closeAllWindows();
 
                 setTimeout(() => {
-                    new ErrorLogic().sendError("ArcOS User Accounts", `The account was successfully switched to "${username}".`);
+                    errorLogic.sendError("ArcOS User Accounts", `The account was successfully switched to "${username}".`);
                 }, 100);
 
             }, 100);
         } else {
-            new ErrorLogic().sendError("Unable to switch", `ArcOS can't switch to the "${username}" account because it has a password. To use this account, log in to it using the ArcOS Login.`);
+            errorLogic.sendError("Unable to switch", `ArcOS can't switch to the "${username}" account because it has a password. To use this account, log in to it using the ArcOS Login.`);
         }
     }
 }

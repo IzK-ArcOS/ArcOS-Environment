@@ -1,25 +1,25 @@
 <div class="startMenu" id="startMenu">
     <div class="leftPane" id="startMenuLeftPane">
         <center>
-            <button onclick="new WindowLogic().openWindow('Shut Down ArcOS');" class="startMenuButton"><img
+            <button onclick="windowLogic.openWindow('Shut Down ArcOS');" class="startMenuButton"><img
                     src="./system/images/shutdown.svg" height="20px"></button>
-            <button onclick="new WindowLogic().openWindow('settings');" class="startMenuButton"><img
+            <button onclick="windowLogic.openWindow('settings');" class="startMenuButton"><img
                     src="./system/images/controlPanel.svg" height="20px"></button>
         </center>
     </div>
     <div class="rightPane" id="startMenuRightPane">
-        <div class="startMenuUsername" onclick="openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);new WindowLogic().openWindow('Settings');">
+        <div class="startMenuUsername" onclick="openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);windowLogic.openWindow('Settings');">
             <span id="usernameStartMenu"></span>
         </div>
-        <div class="startMenuAppTile" onclick="new WindowLogic().openWindow('Calculator');">
+        <div class="startMenuAppTile" onclick="windowLogic.openWindow('Calculator');">
             <p style="margin:0px;"><img src="./system/images/calculator.svg" height="20px" />Calculator</p>
         </div>
-        <div class="startMenuAppTile" onclick="new WindowLogic().openWindow('ArcOS Notepad');">
+        <div class="startMenuAppTile" onclick="windowLogic.openWindow('ArcOS Notepad');">
             <p style="margin:0px;"><img src="./system/images/notepad.svg" height="20px" />ArcOS Notepad
             </p>
         </div>
         <hr>
-        <div class="startMenuAppTile" onclick="new WindowLogic().openWindow('Execute Command');">
+        <div class="startMenuAppTile" onclick="windowLogic.openWindow('Execute Command');">
             <p style="margin:0px;"><img src="./system/images/runDialog.svg" height="20px" />Execute Command</p>
         </div>
     </div>

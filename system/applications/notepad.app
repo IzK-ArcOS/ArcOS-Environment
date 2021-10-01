@@ -1,10 +1,10 @@
-<div class="window" id="ArcOS Notepad" onclick="new WindowLogic().bringToFront(this);" style="/*resize:none;*/width:fit-content;height:fit-content;min-width:unset;min-height:unset;min-width:794px;min-height:537px;">
-    <div class="windowTitle" onclick="new WindowLogic().bringToFront(parentNode);">
+<div class="window" id="ArcOS Notepad" onclick="windowLogic.bringToFront(this);" style="/*resize:none;*/width:fit-content;height:fit-content;min-width:unset;min-height:unset;min-width:794px;min-height:537px;">
+    <div class="windowTitle" onclick="windowLogic.bringToFront(parentNode);">
         <p class="titleText">ArcOS Notepad</p>
-        <button onclick="new WindowLogic().closewindow(this.parentNode.parentNode);notepadNewFile();" class="title close">✖</button>
-        <button onclick="new WindowLogic().minimizeWindow(this.parentNode.parentNode.id);" class="title">🗕</button>
+        <button onclick="windowLogic.closewindow(this.parentNode.parentNode);notepadNewFile();" class="title close">✖</button>
+        <button onclick="windowLogic.minimizeWindow(this.parentNode.parentNode.id);" class="title">🗕</button>
     </div>
-    <div class="body" onclick="new WindowLogic().bringToFront(parentNode);" style="padding:0px;height:100%;width:100%;">
+    <div class="body" onclick="windowLogic.bringToFront(parentNode);" style="padding:0px;height:100%;width:100%;">
         <div class="menuBar">
             <button onclick="notepadSaveFile();">Save</button>
             <button onclick="notepadLoadFile();">Load</button>

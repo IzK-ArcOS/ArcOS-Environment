@@ -3,8 +3,8 @@
 
 <head>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
     <script src="./system/js/errorLogic.js"></script>
     <style>
         body {
@@ -26,7 +26,7 @@
     </style>
     <script>
         onload = function() {
-            new ErrorLogic().bsod("invalidClient.html: onload: ERR_INVALID_CLIENT", "Node or electron wasn't found!")
+            errorLogic.bsod("invalidClient.html: onload: ERR_INVALID_CLIENT", "Node or electron wasn't found!")
         }
     </script>
 </head>
