@@ -5,7 +5,7 @@ function switchControlPanelPage(pageFile) {
         } else {
             document.getElementById(`controlPanelContent`).innerHTML = data;
             try {
-                let userData = JSON.parse(localStorage.getItem(args.get("username")));
+                let userData = getCurrentUserData();
 
                 document.getElementById("preferencesAnimationsSwitch").checked = userData.enableAnimations;
                 document.getElementById("preferencesTaskbarButtonLabelsSwitch").checked = !userData.noTaskbarButtonLabels;

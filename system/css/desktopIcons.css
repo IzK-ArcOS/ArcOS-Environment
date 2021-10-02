@@ -22,11 +22,15 @@ button.icon {
     padding: 5px;
     border: 2px solid var(--desktopButtonBorderColor);
     border-radius: var(--startMenuButtonBorderRadius);
+    margin: 5px;
+}
+
+button.icon img {
+    height: 45px
 }
 
 button.icon:hover {
-    border: 2px solid var(--desktopButtonBorderColorHover);
-    background-color: var(--desktopButtonBackgroundColorHover);
+    background-color: var(--folderButtonBackgroundHoverColor);
     width: 100%;
     padding: 5px;
 }

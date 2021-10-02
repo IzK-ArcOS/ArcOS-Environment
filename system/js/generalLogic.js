@@ -1,48 +1,32 @@
 new consoleNotifier().startModule("ArcOS.System.generalLogic");
 
 class GeneralLogic {
-    changeUsername() {
-
-        new consoleNotifier().notifyStartService("GeneralLogic.changeUsername");
-
-        newUsername = document.getElementById("changeUsernameInputField").value;
-        changeUserDataName(args.get("username"), newUsername);
-    }
 
     addNewApp() {
 
         new consoleNotifier().notifyStartService("GeneralLogic.addNewApp")
 
-        try {
-            if (document.getElementById("addAppInputField").value !== "") {
-                let open = document.getElementById("startAppAfterAddCheckBox").checked;
-                if (open == true) {
-                    windowLogic.loadWindow(document.getElementById("addAppInputField").value, 0, 0);
-                } else {
-                    windowLogic.loadWindow(document.getElementById("addAppInputField").value, 1, 1);
-                }
-            } else {
-                errorLogic.sendError("Application not found", "The Application you tried to import couldn't be found. Check the <b>relative</b> path and try again.");
-            }
-        } catch {
-            errorLogic.sendError("Application not found", "The Application you tried to import couldn't be found. Check the <b>relative</b> path and try again.");
-        }
+        let open = document.getElementById("startAppAfterAddCheckBox").checked ? 1 : 0;
+
+        windowLogic.loadWindow(document.getElementById("addAppInputField").value, open, open);
     }
 
     updateDesktopIcons() {
 
-        //new consoleNotifier().notifyStartService("GeneralLogic.updateDesktopIcons")
-
         if (localStorage.getItem("safeMode") != "1") {
             let elmnt = document.getElementById("showDesktopIconsSwitch").checked;
+
             if (elmnt) {
                 document.getElementById("desktopIcons").style.visibility = "visible";
-                let userData = JSON.parse(localStorage.getItem(args.get("username")));
+
+                let userData = getCurrentUserData();
                 userData.showDesktopIcons = 1;
+
                 localStorage.setItem(args.get("username"), JSON.stringify(userData));
+
             } else {
                 document.getElementById("desktopIcons").style.visibility = "hidden";
-                let userData = JSON.parse(localStorage.getItem(args.get("username")));
+                let userData = getCurrentUserData();
                 userData.showDesktopIcons = 0;
                 localStorage.setItem(args.get("username"), JSON.stringify(userData));
             }
@@ -182,16 +166,16 @@ let generalLogic = new GeneralLogic();
 
 window.addEventListener("click", e => {
     if (!lockScreenActive) {
-        windowLogic.updateTitlebar();
+        windowLogic.updateTitlebar(e);
         generalLogic.updateDesktopIcons();
         //personalizationLogic.setTitlebarButtonLocations(false, false);
-        let userData = JSON.parse(localStorage.getItem(args.get("username")));
+        let userData = getCurrentUserData();
         try { document.getElementById("systemVolumeSlider").value = userData.globalVolume * 10; } catch {}
         try { document.getElementById("volumeControlEnableSoundSwitch").checked = userData.muted } catch {}
     }
 });
 
 window.addEventListener("contextmenu", e => {
-    windowLogic.updateTitlebar();
+    //windowLogic.updateTitlebar(e);
     generalLogic.updateDesktopIcons();
 })

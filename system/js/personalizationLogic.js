@@ -5,7 +5,7 @@ class PersonalizationLogic {
 
         new consoleNotifier().notifyStartService("PersonalizationLogic.applyTheme");
 
-        let userData = JSON.parse(localStorage.getItem(args.get("username")));
+        let userData = getCurrentUserData();
         userData.theme = document.getElementById("themeSelect").value;
         localStorage.setItem(args.get("username"), JSON.stringify(userData));
         let theme = document.getElementById("themeSelect").value;
@@ -24,7 +24,7 @@ class PersonalizationLogic {
 
         new consoleNotifier().notifyStartService("PersonalizationLogic.applyTaskbarPos");
 
-        let userData = JSON.parse(localStorage.getItem(args.get("username")));
+        let userData = getCurrentUserData();
         userData.taskbarpos = document.getElementById("taskbarPosSelect").value;
         localStorage.setItem(args.get("username"), JSON.stringify(userData));
         let pos = document.getElementById("taskbarPosSelect").value;
@@ -40,7 +40,7 @@ class PersonalizationLogic {
         new consoleNotifier().notifyStartService("PersonalizationLogic.setAnimations");
 
         let checked;
-        let userData = JSON.parse(localStorage.getItem(args.get("username")));
+        let userData = getCurrentUserData();
         if (updateLS) {
             checked = document.getElementById("preferencesAnimationsSwitch").checked;
         } else {
@@ -62,7 +62,7 @@ class PersonalizationLogic {
         new consoleNotifier().notifyStartService("PersonalizationLogic.setTitlebarButtonLocations");
 
         let checked;
-        let userData = JSON.parse(localStorage.getItem(args.get("username")));
+        let userData = getCurrentUserData();
 
         if (updateLS) {
             checked = document.getElementById("preferencesTitlebarButtonsSwitch").checked;
@@ -88,7 +88,7 @@ class PersonalizationLogic {
 
         new consoleNotifier().notifyStartService("PersonalizationLogic.toggleTaskbarButtonLabels");
 
-        let userData = JSON.parse(localStorage.getItem(args.get("username")));
+        let userData = getCurrentUserData();
         userData.taskbarButtonLabels = !userData.taskbarButtonLabels;
         localStorage.setItem(args.get("username"), JSON.stringify(userData));
         windowLogic.updateTaskBar();
@@ -99,7 +99,7 @@ class PersonalizationLogic {
         new consoleNotifier().notifyStartService("PersonalizationLogic.setTaskbarButtonLabels");
 
         let checked = !obj.checked;
-        let userData = JSON.parse(localStorage.getItem(args.get("username")));
+        let userData = getCurrentUserData();
         userData.noTaskbarButtonLabels = checked;
         localStorage.setItem(args.get("username"), JSON.stringify(userData));
         windowLogic.updateTaskBar();
@@ -109,7 +109,7 @@ class PersonalizationLogic {
 
         new consoleNotifier().notifyStartService("PersonalizationLogic.updateVolume");
 
-        let userData = JSON.parse(localStorage.getItem(args.get("username")));
+        let userData = getCurrentUserData();
         userData.globalVolume = obj.value / 10;
         console.log("LOCAL:", userData);
         localStorage.setItem(args.get("username"), JSON.stringify(userData));
@@ -120,7 +120,7 @@ class PersonalizationLogic {
         new consoleNotifier().notifyStartService("PersonalizationLogic.setStartmenuSize");
 
         let checked;
-        let userData = JSON.parse(localStorage.getItem(args.get("username")));
+        let userData = getCurrentUserData();
 
         if (updateLS) {
             checked = document.getElementById("preferencesSmallStartSwitch").checked;

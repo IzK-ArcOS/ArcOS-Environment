@@ -17,9 +17,9 @@ div.window[id*="ArcOS Notepad"] div.body {
 textarea#notepadTextField {
     resize: none;
     width: 100%;
-    height: 100%;
+    height: 507px;
     min-width: 794px;
-    min-height: 507px;
+    min-height: calc(100% - 55px);
     background-color: transparent;
     color: var(--windowColor);
     overflow: scroll;

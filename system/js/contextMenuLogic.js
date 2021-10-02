@@ -7,7 +7,7 @@ class ContextMenuLogic {
             try {
                 let contextMenu = document.getElementById("contextMenu");
 
-                contextMenu.style.display = 'block';
+                contextMenu.style.display = 'none';
                 contextMenu.style.opacity = "0";
                 contextMenu.style.visibility = "hidden";
 
@@ -22,19 +22,35 @@ class ContextMenuLogic {
     }
 
     rightClick(e) {
+        console.log("oop");
         if (!lockScreenActive) {
             try {
                 let contextMenu = document.getElementById("contextMenu"),
                     username = args.get("username"),
                     desktopIcons = document.getElementById("desktopIcons"),
-                    wallpaper = document.getElementsByClassName("wallpaper")[0];
-                if (e.path.includes(desktopIcons) || e.path.includes(wallpaper)) {
+                    wallpaper = document.getElementsByClassName("wallpaper")[0],
+                    body = document.body,
+                    windowStore = document.getElementById("windowStore"),
+                    desktopIconButtons = document.querySelectorAll("button.icon");
+                console.log(e.path);
+                console.log(e);
+                if (
+                    e.path.includes(desktopIcons) ||
+                    e.path.includes(wallpaper) ||
+                    e.target == wallpaper ||
+                    e.target == desktopIcons ||
+                    e.target == body ||
+                    e.target == windowStore &&
+                    !desktopIconButtons.includes(e.target)
+                ) {
                     contextMenu.style.display = 'block';
                     contextMenu.style.opacity = '1';
                     contextMenu.style.visibility = "visible";
                     contextMenu.style.display = 'block';
                     contextMenu.style.left = e.pageX + "px";
                     contextMenu.style.top = e.pageY + "px";
+                } else {
+                    this.hideMenu();
                 }
                 contextMenuLogic.performShowDesktopIconsCheck();
                 e.preventDefault();

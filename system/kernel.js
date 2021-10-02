@@ -8,7 +8,7 @@
 let start = 0;
 
 let win;
-let { app, BrowserWindow } = require('electron')
+let { app, BrowserWindow, webContents } = require('electron')
 
 if (!app.requestSingleInstanceLock()) {
     app.quit();
@@ -34,6 +34,10 @@ if (!app.requestSingleInstanceLock()) {
 
         globalShortcut.register("Control+Alt+Shift+R", () => {
             win.loadFile("main.html")
+        })
+
+        globalShortcut.register("Control+R", () => {
+            win.webContents.reload();
         })
         win = new BrowserWindow({
             width: 800,

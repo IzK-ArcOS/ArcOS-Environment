@@ -40,7 +40,7 @@ class PowerLogic {
     }
 
     lock() {
-        let userData = JSON.parse(localStorage.getItem(args.get("username")));
+        let userData = getCurrentUserData();
 
         if (userData.pswd) {
             document.getElementById("lockScreenUsername").innerText = args.get("username");
@@ -53,7 +53,7 @@ class PowerLogic {
     }
 
     async unlock() {
-        let userData = JSON.parse(localStorage.getItem(args.get("username")));
+        let userData = getCurrentUserData();
         let ntrdPswd = document.getElementById("lockScreenPasswordInputField").value;
 
         if (await verifyPassword(args.get("username"), ntrdPswd)) {

@@ -421,15 +421,14 @@ class ArcTermCommands {
     }
 
     resui() {
-        try {
-            document.getElementById("taskbar").removeAttribute("style");
-            document.getElementById("startMenu").removeAttribute("style");
-            document.getElementById("notificationCenter").removeAttribute("style");
-            document.getElementById("desktopIcons").removeAttribute("style");
-            new ArcTermUserInterface().outputColor(`[Success]: ArcTerm succeeded in restarting the entire user interface.`, ``, `var(--green)`);
-        } catch {
-            new ArcTermUserInterface().outputColor(`[Error]: ArcTerm failed to restart the entire user interface.`, ``, `var(--red)`);
-        }
+        let shellLoader = document.getElementById("shellLoader");
+        let shellPath = shellLoader.href;
+
+        shellLoader.href = "";
+        setTimeout(() => {
+            document.getElementById("shellLoader").href = shellPath;
+        }, 100);
+        new ArcTermUserInterface().outputColor(`[Success]: ArcOS shell has been reloaded.`, ``, `var(--green)`);
         new ArcTermUserInterface().prompt();
     }
 
@@ -442,7 +441,7 @@ class ArcTermCommands {
     }
 
     lock() {
-        let userData = JSON.parse(localStorage.getItem(args.get("username")));
+        let userData = getCurrentUserData();
 
         if (userData.pswd) {
             document.getElementById("lockScreenUsername").innerText = args.get("username");

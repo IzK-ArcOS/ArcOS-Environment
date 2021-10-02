@@ -386,3 +386,7 @@ const userTemplate = {
     isAdmin: false,
     smallStart: false
 };
+
+function getCurrentUserData() {
+    return JSON.parse(localStorage.getItem(args.get("username")));
+}

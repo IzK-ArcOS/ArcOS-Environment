@@ -1,10 +1,13 @@
 let username = "";
 
 onload = function() {
-    setPage("home");
     setTimeout(() => {
         document.body.style.opacity = "1";
-    }, 1000);
+    }, 500);
+    setPage("home");
+    setTimeout(() => {
+        document.getElementsByClassName("block")[0].style.opacity = "0";
+    }, 3000);
     closeExecuteCommand();
     window.addEventListener("keydown", (e) => {
         if (e.shiftKey && e.key.toLowerCase() === 'f10') {

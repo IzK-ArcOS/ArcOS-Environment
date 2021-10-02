@@ -24,7 +24,7 @@ onload = function() {
         }, 500);
     }, 1000);
     if (this.localStorage.getItem("safeMode") == "1") {
-        createUserData("ArcOS Safe Mode",true,false);
+        createUserData("ArcOS Safe Mode", true, false);
     }
 }
 
@@ -35,7 +35,7 @@ onbeforeunload = function() {
     } else {
         localStorage.setItem("safeMode", 0);
         localStorage.removeItem("username");
-        deleteUserData("ArcOS Safe Mode", true,false);
+        deleteUserData("ArcOS Safe Mode", true, false);
         windowLogic.deleteWindowData();
     }
 }

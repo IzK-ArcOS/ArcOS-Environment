@@ -61,6 +61,7 @@ class WindowLogic {
                 win.style.display = "";
                 setTimeout(() => {
                     win.style.opacity = "1";
+                    win.children[0].style.opacity = "1";
                 }, 250);
                 activeapps.push(win.id);
             } else {
@@ -69,10 +70,12 @@ class WindowLogic {
                     win.style.display = "";
                     setTimeout(() => {
                         win.style.opacity = "1";
+                        win.children[0].style.opacity = "1";
                     }, 50);
                 } else {
                     if (win.style.zIndex < maxamount + 1) {
                         this.bringToFront(win);
+                        win.children[0].style.opacity = "1";
                     } else {
                         minimizeWindow(win.id);
                     }
@@ -111,7 +114,7 @@ class WindowLogic {
         if (localStorage.getItem("safeMode") != "1") {
             try {
                 let str = "";
-                let userData = JSON.parse(localStorage.getItem(args.get("username")));
+                let userData = getCurrentUserData();
                 if (!userData.noTaskbarButtonLabels) {
                     activeapps.forEach(element => {
                         if (element.includes("(") && element.endsWith(")")) {
@@ -159,7 +162,7 @@ class WindowLogic {
         } catch (e) {}
     }
 
-    loadWindow(appFile, fromKernel = 0, register = 1, fromAddApp = 0) {
+    loadWindow(appFile, userImport = 0, register = 1) {
         new consoleNotifier().notifyLoadApp(appFile);
         let x = fetch(appFile).then(response => response.text()).then(text => {
 
@@ -185,15 +188,8 @@ class WindowLogic {
                     dragLogic.dragElement(document.getElementsByClassName("window")[i], document.getElementsByClassName("windowTitle")[i]);
                 }
 
-                if (fromKernel == 0) { openWindow(document.getElementById("windowStore").childNodes[0].id); }
-
-                if (fromAddApp == 1) {
-                    notificationLogic.notificationService(
-                        "Import App",
-                        "The app has been loaded, but needs to be started from " +
-                        "<B>Execute Command</B> with the following command:" +
-                        "<br><code>openWindow(\"" + document.getElementById("windowStore").childNodes[0].id + "\");</code><br><br>" +
-                        "<button onclick=\"openWindow('" + document.getElementById("windowStore").childNodes[0].id + "');\">Open loaded app</button>");
+                if (userImport == 0) {
+                    this.openWindow(document.getElementById("windowStore").childNodes[0].id);
                 }
 
                 if (register == 1) {
@@ -209,32 +205,22 @@ class WindowLogic {
         }).catch((e) => { errorLogic.sendError("System Error", "The system cannot find the application specified.<br>Please check the name and try again<br><br>File: " + appFile + "<br><br>" + e); });
     }
 
-    updateTitlebar() {
-        try {
-            let x = activeapps;
-            for (let i = 0; i < x.length; i++) {
-                setTimeout(() => {
-                    if (focusedWindow != "Shut Down ArcOS") {
-                        if (activeapps.includes("Shut Down ArcOS")) {
-                            windowLogic.closewindow(document.getElementById("Shut Down ArcOS"));
-                        }
-                    }
-                }, 250);
-                if (focusedWindow == x[i] && !excludeTitlebarChange.includes(x[i])) {
-                    try { document.getElementById(x[i]).children[0].style.backgroundColor = "transparent"; } catch {}
-                    try { document.getElementById(x[i]).children[0].style.opacity = "1"; } catch {}
-                } else {
-                    if (excludeTitlebarChange.includes(x[i])) {
-                        try { document.getElementById(x[i]).children[0].style.backgroundColor = "transparent"; } catch {}
-                        try { document.getElementById(x[i]).children[0].style.opacity = "1"; } catch {}
-                    } else {
-                        try { document.getElementById(x[i]).children[0].style.backgroundColor = "transparent"; } catch {}
-                        try { document.getElementById(x[i]).children[0].style.opacity = "0.5"; } catch {}
-                    }
+    updateTitlebar(e) {
+        let titlebars = document.querySelectorAll("div.windowTitle"),
+            windows = document.querySelectorAll("div.window");
 
-                }
+        for (let i = 0; i < titlebars.length; i++) {
+            titlebars[i].style.opacity = "0.5";
+
+            let isTitlebar = !!(e.path.includes(titlebars[i]));
+            let isWindow = !!(e.path.includes(windows[i]));
+
+            if (isTitlebar) {
+                titlebars[i].style.opacity = "1";
+            } else if (isWindow) {
+                windows[i].children[0].style.opacity = "1";
             }
-        } catch {}
+        }
     }
 
     /*setInterval(() => {
