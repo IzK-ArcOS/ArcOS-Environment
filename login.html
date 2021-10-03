@@ -11,22 +11,12 @@
 
     <script src="system/js/userLogic.js"></script>
     <script type="text/javascript" src="./setupAssets/setupLogic.js"></script>
-    <script src="system/js/toolbarLogic.js"></script>
     <script src="system/js/varDefinitions.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
     <div class="blur"></div>
-    <div class="toolbar retracted" id="toolbar">
-        <span
-            style="position:inherit;left:50%;top:10px;transform:translate(-50%,0);-webkit-transform: translate(-50%,0);">ArcOS</span>
-        <button class="toolbar right" onclick="require('electron').remote.getCurrentWindow().close();">✖</button>
-        <button class="toolbar right"
-            onclick="require('electron').remote.getCurrentWindow().maximize();toggleFullscreenMode();">🗖</button>
-        <button class="toolbar right" onclick="require('electron').remote.getCurrentWindow().minimize();">🗕</button>
-    </div>
-    <div class="toolbarHoverTrigger" id="toolbarHoverTrigger"></div>
 
     <div class="" id="content" style="visibility: visible;display: unset;">
     </div>

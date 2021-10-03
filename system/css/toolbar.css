@@ -17,6 +17,10 @@ div.toolbar {
     box-shadow: var(--boxShadow);
 }
 
+div.toolbar * {
+    vertical-align: middle;
+}
+
 div.toolbar.retracted {
     top: -40px;
 }
@@ -41,6 +45,11 @@ button.toolbar {
     padding: 0px;
     padding-left: 4px;
     padding-right: 4px;
+    vertical-align: middle;
+}
+
+button.toolbar span.material-icons {
+    font-size:14px;
 }
 
 button.toolbar:hover {

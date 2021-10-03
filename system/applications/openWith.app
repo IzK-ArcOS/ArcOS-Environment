@@ -1,7 +1,7 @@
 <div class="window" id="Open With" onclick="windowLogic.bringToFront(this);">
     <div class="windowTitle" onclick="windowLogic.bringToFront(parentNode);">
         <p class="titleText">Open With</p>
-        <button onclick="windowLogic.closewindow(this.parentNode.parentNode);" class="title close">✖</button>
+        <button onclick="windowLogic.closewindow(this.parentNode.parentNode);" class="title close"><span class="material-icons">close</span></button>
     </div>
     <div class="body" onclick="windowLogic.bringToFront(parentNode);">
         <p>Open this file: </p>

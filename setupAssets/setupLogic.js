@@ -52,7 +52,6 @@ onload = function () {
 
         setTimeout(() => {
             startUserDataUpdateCycle();
-            setToolbarTrigger();
         }, 100);
 
     } else {

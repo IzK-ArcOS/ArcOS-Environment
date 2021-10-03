@@ -1,8 +1,8 @@
 <div class="window" id="Settings" onclick="windowLogic.bringToFront(this);">
     <div class="windowTitle" onclick="windowLogic.bringToFront(parentNode);" ondblclick="windowLogic.toggleMaximizedState(this.parentNode);">
-        <button onclick="windowLogic.closewindow(this.parentNode.parentNode);" class="titlesettings close">✖</button>
-        <button onclick="windowLogic.toggleMaximizedState(this.parentNode.parentNode);" class="titlesettings">🗖</button>
-        <button onclick="windowLogic.minimizeWindow(this.parentNode.parentNode.id);" class="titlesettings">🗕</button>
+        <button onclick="windowLogic.closewindow(this.parentNode.parentNode);" class="titlesettings close"><span class="material-icons">close</span></button>
+        <button onclick="windowLogic.toggleMaximizedState(this.parentNode.parentNode);" class="titlesettings"><span class="material-icons">crop_square</span></button>
+        <button onclick="windowLogic.minimizeWindow(this.parentNode.parentNode.id);" class="titlesettings"><span class="material-icons">minimize</span></button>
     </div>
     <div class="body" onclick="windowLogic.bringToFront(parentNode);">
         <div class="controlPanelLeftPane">

@@ -1,8 +1,8 @@
 <div class="window" id="Music Player" onclick="windowLogic.bringToFront(this);">
     <div class="windowTitle" onclick="windowLogic.bringToFront(parentNode);">
         <p class="titleText">Music Player - <span id="mediaPlayerTitle">Stopped</span></p>
-        <button onclick="windowLogic.closewindow(this.parentNode.parentNode);mediaPlayerStop();" class="title close">✖</button>
-        <button onclick="windowLogic.minimizeWindow(this.parentNode.parentNode.id);" class="title">🗕</button>
+        <button onclick="windowLogic.closewindow(this.parentNode.parentNode);mediaPlayerStop();" class="title close"><span class="material-icons">close</span></button>
+        <button onclick="windowLogic.minimizeWindow(this.parentNode.parentNode.id);" class="title"><span class="material-icons">minimize</span></button>
     </div>
     <div class="body" onclick="windowLogic.bringToFront(parentNode);">
         <div class="musicPlayerControlsDiv">
