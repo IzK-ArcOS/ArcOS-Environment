@@ -4,7 +4,8 @@
     "description": "",
     "main": "./system/kernel.js",
     "scripts": {
-        "start": "electron ."
+        "start": "electron .",
+        "build": "electron-packager . ArcOS"
     },
     "keywords": [],
     "author": "",
