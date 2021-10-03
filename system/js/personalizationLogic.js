@@ -113,7 +113,7 @@ class PersonalizationLogic {
         userData.globalVolume = obj.value / 10;
         console.log("LOCAL:", userData);
         localStorage.setItem(args.get("username"), JSON.stringify(userData));
-        console.log("LS:", JSON.parse(localStorage.getItem(args.get("username"))));
+        console.log("LS:", getCurrentUserData());
     }
 
     setStartmenuSize(updateLS) {

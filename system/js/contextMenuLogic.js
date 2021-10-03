@@ -50,14 +50,14 @@ class ContextMenuLogic {
                     contextMenu.style.left = e.pageX + "px";
                     contextMenu.style.top = e.pageY + "px";
                 } else {
-                    this.hideMenu();
+                    contextMenuLogic.hideMenu();
                 }
                 contextMenuLogic.performShowDesktopIconsCheck();
                 e.preventDefault();
             } catch (e) {
 
-                errorLogic.bsod("ContextMenuLogic.rightClick: CONTEXT_MENU_INVALID", "The ArcOS context menu module or one of the modules inheriting it couldn't be found.");
-                throw e;
+                //errorLogic.bsod("ContextMenuLogic.rightClick: CONTEXT_MENU_INVALID", "The ArcOS context menu module or one of the modules inheriting it couldn't be found.");
+                //throw e;
             }
         }
     }

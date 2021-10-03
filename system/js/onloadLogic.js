@@ -7,7 +7,7 @@ onload = function() {
     setInterval(() => {
         try {
             if (this.localStorage.getItem("safeMode") != "1") {
-                let usrEnabled = JSON.parse(localStorage.getItem(args.get("username")));
+                let usrEnabled = getCurrentUserData();
                 if (!usrEnabled || !usrEnabled.enabled) {
                     errorLogic.bsod("OnloadLogic.onloadSetIntervals: USR_DATA_MISSING", "The user data corrupted while the session was running.");
                 }
@@ -67,7 +67,7 @@ class OnloadLogic {
     onloadSetWindowControls() {
         try {
             setInterval(() => {
-                let userData = JSON.parse(localStorage.getItem(args.get("username")));
+                let userData = getCurrentUserData();
                 let eas = userData.enableAnimations.toString();
                 let mtd = userData.muted.toString();
                 let stl = userData.noTaskbarButtonLabels.toString();
@@ -122,7 +122,7 @@ class OnloadLogic {
     onloadSetDesktopIcons() {
         try {
             new consoleNotifier().notifyStartService("ArcOS.System.onloadLogic.onloadDesktopIcons");
-            let userData = JSON.parse(localStorage.getItem(args.get("username")));
+            let userData = getCurrentUserData();
             let show = userData.showDesktopIcons;
             switch (show) {
                 case 0:
@@ -155,7 +155,7 @@ class OnloadLogic {
         setInterval(() => {
             try {
                 let passwordStatus = "";
-                let userData = JSON.parse(localStorage.getItem(args.get("username")))
+                let userData = getCurrentUserData()
                 if (userData.pswd) {
                     passwordStatus = "Password Protected";
                 } else {
@@ -163,12 +163,13 @@ class OnloadLogic {
                 }
                 document.getElementById("userSettingsPasswordStatusDisplay", 0).innerHTML = passwordStatus
                 document.getElementById("usernameDisplay", 0).innerHTML = args.get("username");
-                let pfp = JSON.parse(localStorage.getItem(args.get("username"))).profilePicture
+                let pfp = getCurrentUserData().profilePicture
                 let newPicture = "./system/images/profilePictures/" + pfp + ".png";
                 document.getElementById("userSettingsProfilePicture", 0).src = newPicture
-            } catch (e) {}
-            document.getElementById("usernameStartMenu").innerHTML = args.get('username');
 
+
+            } catch (e) {}
+            try { document.getElementById("usernameStartMenu").innerHTML = args.get('username'); } catch (e) {}
         }, 5);
         setInterval(() => {
             try {
@@ -241,7 +242,7 @@ class OnloadLogic {
 
     loadTaskbarPos() {
         try {
-            let userData = JSON.parse(localStorage.getItem(args.get("username")));
+            let userData = getCurrentUserData();
             let pos = userData.taskbarpos;
             switch (pos) {
                 case "top":
@@ -254,8 +255,8 @@ class OnloadLogic {
 
     loadTheme() {
         try {
-            if (JSON.parse(localStorage.getItem(args.get("username"))).theme !== "") {
-                let userData = JSON.parse(localStorage.getItem(args.get("username")));
+            if (getCurrentUserData().theme !== "") {
+                let userData = getCurrentUserData();
                 let theme = userData.theme;
                 switch (theme) {
                     case "darkrounded":
@@ -272,7 +273,7 @@ class OnloadLogic {
                         break;
                 }
             } else {
-                let userData = JSON.parse(localStorage.getItem(args.get("username")));
+                let userData = getCurrentUserData();
                 userData.theme = "darkrounded";
                 localStorage.setItem(args.get("username"), JSON.stringify(userData));
             }
@@ -290,7 +291,7 @@ class OnloadLogic {
     }
 
     /*loadTitlebarButtonPos(updatePreferenceSwitch) {
-        let userData = JSON.parse(localStorage.getItem(args.get("username")));
+        let userData = getCurrentUserData();
         let tbp = userData.titlebarButtonsLeft;
         if (tbp == "true") {
             document.getElementById("titlebarAddonLoader").href = "system/css/titleBarButtonsLeft.css";
@@ -373,9 +374,9 @@ class OnloadLogic {
         this.loadTheme();
         this.loadTaskbarPos();
         populateAppManager();
-        globalVolume = parseInt(JSON.parse(localStorage.getItem(args.get("username"))).globalVolume);
+        globalVolume = parseInt(getCurrentUserData().globalVolume);
         startUserDataUpdateCycle();
-        document.getElementById("showDesktopIconsSwitch").checked = JSON.parse(localStorage.getItem(args.get("username"))).showDesktopIcons;
+        document.getElementById("showDesktopIconsSwitch").checked = getCurrentUserData().showDesktopIcons;
         personalizationLogic.setTitlebarButtonLocations(false, false)
         generalLogic.updateDesktopIcons();
         personalizationLogic.setAnimations(false);
@@ -391,7 +392,7 @@ class OnloadLogic {
     }
 
     setStartMenuSize() {
-        let userData = JSON.parse(localStorage.getItem(args.get("username")));
+        let userData = getCurrentUserData();
 
         let checked = userData.smallStart;
 

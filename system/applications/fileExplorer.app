@@ -1,16 +1,19 @@
 <div class="window" id="File Manager" onclick="windowLogic.bringToFront(this);">
     <div class="windowTitle" onclick="windowLogic.bringToFront(parentNode);" ondblclick="windowLogic.toggleMaximizedState(this.parentNode);">
         <p class="titleText">File Manager</p>
+        <button class="titleAction" onclick="windowLogic.openWindow('File Manager - Create File');"><img src="./system/images/File Manager - Create File.svg"></button>
+        <button class="titleAction" onclick="windowLogic.openWindow('File Manager - Delete File');"><img src="./system/images/File Manager - Delete File.svg"></button>
+        <button class="titleAction" onclick="windowLogic.openWindow('File Manager - Rename File');"><img src="./system/images/File Manager - Rename File.svg"></button>
+        <button class="titleAction" onclick="windowLogic.openWindow('File Manager - Create Folder');"><img src="./system/images/File Manager - Create Folder.svg"></button>
+        <button class="titleAction" onclick="windowLogic.openWindow('File Manager - Delete Folder');"><img src="./system/images/File Manager - Rename Folder.svg"></button>
+        <button class="titleAction" onclick="windowLogic.openWindow('File Manager - Rename Folder');"><img src="./system/images/File Manager - Delete Folder.svg"></button>
         <button onclick="windowLogic.closewindow(this.parentNode.parentNode);" class="title close">✖</button>
         <button onclick="windowLogic.toggleMaximizedState(this.parentNode.parentNode);" class="title">🗖</button>
         <button onclick="windowLogic.minimizeWindow(this.parentNode.parentNode.id);" class="title">🗕</button>
     </div>
     <div class="body" onclick="windowLogic.bringToFront(parentNode);">
         <div class="fileExplorerLeftPane">
-            <h4>Tasks</h4>
             <div class="fileExplorerLeftPaneDiv" id="fileExplorerRecentLocations">
-                <button class="fileExplorerSideBar" onclick="fileExplorerParentDir()">Parent Directory</button>
-                <hr>
                 <button class="fileExplorerSideBar" onclick="windowLogic.openWindow('File Manager - Create File');">Create
                     File</button><br>
                 <button class="fileExplorerSideBar" onclick="windowLogic.openWindow('File Manager - Delete File');">Delete

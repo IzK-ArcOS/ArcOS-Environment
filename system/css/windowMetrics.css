@@ -72,6 +72,19 @@ button.title {
     padding-top: 0px;
 }
 
+button.titleAction {
+    min-width: unset;
+    height: 20px;
+    background-color: transparent;
+    padding: 0px 5px;
+    vertical-align: middle;
+    opacity: 0.75;
+}
+
+button.titleAction img {
+    height: 20px;
+}
+
 .windowTitle>button:hover {
     background: var(--titlebarButtonBackgroundHover);
 }
@@ -87,6 +100,7 @@ button.title {
 .windowTitle>p {
     margin: 0px;
     float: left;
+    margin-right: 10px;
 }
 
 div.menuBar {

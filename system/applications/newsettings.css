@@ -173,3 +173,15 @@ button.controlPanelSidebar:hover {
 button.controlPanelSidebar:active {
     color: rgb(27, 113, 199);
 }
+
+button.controlPanelHomePageAction {
+    width: 100%;
+    padding: 20px;
+    text-align: left;
+    width: 400px;
+    margin-bottom: 5px;
+}
+
+button.controlPanelHomePageAction * {
+    vertical-align: middle;
+}

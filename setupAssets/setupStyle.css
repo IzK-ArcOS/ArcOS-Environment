@@ -20,6 +20,7 @@ body {
     opacity: 0;
 }
 
+
 /*div.content {
     padding: 30px;
     background-color: #1b1b1b85;
@@ -59,10 +60,9 @@ div.content {
     /*box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(8px);*/
     /*width:242px;*/
-    height:268px;
+    height: 268px;
     text-align: center;
 }
-
 
 * {
     outline: none !important;
@@ -132,6 +132,7 @@ h5 {
     font-weight: 500;
 }
 
+
 /*div.content>div.frameLeft {
     position: fixed;
     left: 30px;
@@ -173,8 +174,8 @@ button.user {
     margin-left: 5px;
     margin-right: 5px;
     FONT-SIZE: UNSET;
-    padding-bottom:10px;
-    margin-bottom:10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 button.user:hover,
@@ -195,9 +196,9 @@ button.user>img {
 }
 
 button.user>p {
-    max-width:160px;
+    max-width: 160px;
     overflow-x: hidden;
-    margin:0px;
+    margin: 0px;
 }
 
 a {
@@ -383,29 +384,28 @@ h1.lockScreenClock {
 }
 
 button.circular {
-    padding:10px;
+    padding: 10px;
     border-radius: 50%;
-    width:50px;
+    width: 50px;
     height: 50px;
-    border-bottom:none;
+    border-bottom: none;
 }
 
 button.buttonLoginField>span.material-icons {
-    font-size:13px;
+    font-size: 13px;
     line-height: 1.5;
-
 }
 
 button.buttonLoginField {
-    width:38px;
-    height:38px;
-    border:none;
+    width: 38px;
+    height: 38px;
+    border: none;
     border-radius: 10px;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
-    margin:0px;
+    margin: 0px;
     vertical-align: -webkit-baseline-middle;
-    margin-left:-4px;
+    margin-left: -4px;
 }
 
 div#userSelectorInner {
@@ -415,12 +415,12 @@ div#userSelectorInner {
 }
 
 p.passwordInputFieldHolder {
-    margin:0px;
-    padding:0px;
+    margin: 0px;
+    padding: 0px;
 }
 
 p.passwordInputFieldHolder input {
-    margin-right:0px;
+    margin-right: 0px;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
 }
@@ -464,18 +464,18 @@ p.passwordInputFieldHolder input {
 }
 
 div.blur {
-    position:fixed;
+    position: fixed;
     z-index: 0;
-    top:0px;
-    left:0px;
-    width:100%;
+    top: 0px;
+    left: 0px;
+    width: 100%;
     height: 100%;
-    backdrop-filter:blur(20px);
-    background-color: #00000055;
-    transition:background-color 0.5s,backdrop-filter 0.5s;
+    backdrop-filter: blur(2.5px);
+    background-color: #0000007a;
+    transition: background-color 0.5s, backdrop-filter 0.5s;
 }
 
 div.blur.hidden {
     background-color: #0000;
-    backdrop-filter:unset;
+    backdrop-filter: unset;
 }

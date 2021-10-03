@@ -74,7 +74,7 @@ function fileExplorerOpenDir(dirName) {
         document.getElementById("fileExplorerMainFrameOut").append(foldspan);
         document.getElementById("fileExplorerMainFrameOut").append(filespan);
 
-        fileExplorerCurrentDir = dirName;
+        fileExplorerCurrentDir = generalLogic.replaceAllCharsInStr(dirName, "//", "/");
 
         document.getElementById("fileExplorerAddressBar").value = fileExplorerCurrentDir;
 
@@ -141,18 +141,43 @@ async function getDriveLetters() {
     const drivelist = require('drivelist');
     const drives = await drivelist.list();
 
+    fileExplorerCurrentDir = "";
+    document.getElementById("fileExplorerAddressBar").value = "";
+
     document.getElementById("fileExplorerMainFrameOut").innerHTML = "";
+
+    let header = document.createElement("h4"),
+        headerText = document.createTextNode("Drives on your computer");
+
+    header.append(headerText);
+    header.style.marginBottom = "10px"
+
+    document.getElementById("fileExplorerMainFrameOut").append(header);
+
+    drives.sort();
+
     for (let i = 0; i < drives.length; i++) {
+
 
         for (let j = 0; j < drives[i].mountpoints.length; j++) {
 
             let button = document.createElement("button"),
                 buttonText = document.createTextNode("  " + drives[i].mountpoints[j].path),
-                image = document.createElement("img");
+                image = document.createElement("img"),
+                sizeAlloc = document.createElement("p"),
+                sizeAllocText = document.createTextNode(formatBytes(drives[i].size));
 
             image.src = "./system/images/hdd.svg";
             image.style.height = "30px";
             image.style.verticalAlign = "middle";
+            image.style.marginRight = "5px";
+
+            sizeAlloc.append(sizeAllocText);
+            sizeAlloc.style.opacity = "0.5";
+            sizeAlloc.style.float = "right";
+            sizeAlloc.style.verticalAlign = "middle";
+            sizeAlloc.style.marginBottom = "2px";
+            sizeAlloc.style.marginTop = "5px";
 
             button.className = "folder big";
             button.id = drives[i].mountpoints[j].path;
@@ -160,6 +185,7 @@ async function getDriveLetters() {
 
             button.append(image);
             button.append(buttonText);
+            button.append(sizeAlloc);
 
             document.getElementById("fileExplorerMainFrameOut").append(button);
 
@@ -168,8 +194,15 @@ async function getDriveLetters() {
 }
 
 function fileExplorerParentDir() {
-    fileExplorerCurrentDir = generalLogic.replaceAllCharsInStr(path.resolve(fileExplorerCurrentDir, '..'), "\\", "/");
-    fileExplorerOpenDir(fileExplorerCurrentDir);
+    let newDir = generalLogic.replaceAllCharsInStr(path.resolve(fileExplorerCurrentDir, '..'), "\\", "/");
+    if (fileExplorerCurrentDir != newDir) {
+        fileExplorerCurrentDir = newDir
+        fileExplorerOpenDir(fileExplorerCurrentDir);
+    } else {
+        fileExplorerCurrentDir = "";
+        document.getElementById("fileExplorerAddressBar").value = fileExplorerCurrentDir;
+        getDriveLetters();
+    }
 }
 
 function createFile(filePath) {
@@ -298,4 +331,18 @@ function executeECS(filepath) {
             eval(data);
         }
     });
+}
+
+const units = ['bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+
+function formatBytes(bytes) {
+
+    let l = 0,
+        n = parseInt(bytes, 10) || 0;
+
+    while (n >= 1024 && ++l) {
+        n = n / 1024;
+    }
+
+    return (n.toFixed(n < 10 && l > 0 ? 1 : 0) + ' ' + units[l]);
 }

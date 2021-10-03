@@ -75,7 +75,7 @@ let args = new URLSearchParams(window.location.search),
 
 
 try {
-    globalVolume = JSON.parse(localStorage.getItem(args.get("username"))).globalVolume
+    globalVolume = getCurrentUserData().globalVolume
 } catch {
     globalVolume = 0;
 }
