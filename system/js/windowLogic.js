@@ -110,47 +110,38 @@ class WindowLogic {
         }, 300);
     }
 
-    updateTaskBar() {
-        if (localStorage.getItem("safeMode") != "1") {
-            try {
-                let str = "";
-                let userData = getCurrentUserData();
-                if (!userData.noTaskbarButtonLabels) {
-                    activeapps.forEach(element => {
-                        if (element.includes("(") && element.endsWith(")")) {
-                            str += "<button class=\"taskbarButton\" onclick='windowLogic.openWindow(\"" + element + "\")' title=\"" + element + "\"><span style=\"vertical-align:middle;\"><img src=\"./system/images/errorMessage.svg\" style=\"width:20px;height:20px;vertical-align:middle;\">&nbsp;&nbsp;<span style=\"vertical-align:middle;\">" + element + "</span></button> ";
-                        } else {
-                            str += "<button class=\"taskbarButton\" onclick='windowLogic.openWindow(\"" + element + "\")' title=\"" + element + "\"><img src=\"./system/images/" + element + ".svg\" style=\"width:20px;height:20px;vertical-align:middle;\">&nbsp;&nbsp;<span style=\"vertical-align:middle;\">" + element + "</span></button> ";
-                        }
+    updateTaskbar() {
+        let userData = getCurrentUserData();
+        let temp = document.createElement("span");
+        let taskbar = document.getElementById("taskbarButtons");
 
-                    });
-                } else {
-                    activeapps.forEach(element => {
-                        if (element.includes("(") && element.endsWith(")")) {
-                            str += "<button class=\"taskbarButton\" onclick='windowLogic.openWindow(\"" + element + "\")' title=\"" + element + "\"><img src=\"./system/images/errorMessage.svg\" style=\"width:20px;height:20px;vertical-align:middle;\"></button> ";
-                        } else {
-                            str += "<button class=\"taskbarButton\" onclick='windowLogic.openWindow(\"" + element + "\")' title=\"" + element + "\"><img src=\"./system/images/" + element + ".svg\" style=\"width:20px;height:20px;vertical-align:middle;\"></button> ";
-                        }
+        for (let i = 0; i < activeapps.length; i++) {
+            let button = document.createElement("button"),
+                textSpan = document.createElement("span"),
+                textSpanContent = document.createTextNode(userData.noTaskbarButtonLabels ? "" : activeapps[i]),
+                image = document.createElement("img");
 
-                    });
-                }
+            button.id = activeapps[i];
+            button.className = "taskbarButton";
+            button.setAttribute("onclick", `windowLogic.openWindow("${activeapps[i]}");`);
+            button.title = activeapps[i];
 
-                document.getElementById("taskbarButtons").innerHTML = str;
-            } catch { notificationLogic.notificationService("Error", "Unable to update taskbar, is <code>userInterface</code> loaded?") }
-        } else {
-            let str = "";
-            activeapps.forEach(element => {
-                if (element.includes("(") && element.endsWith(")")) {
-                    str += "<button class=\"taskbarButton\" onclick='windowLogic.openWindow(\"" + element + "\")' title=\"" + element + "\"><span style=\"vertical-align:middle;\"><img src=\"./system/images/errorMessage.svg\" style=\"width:20px;height:20px;vertical-align:middle;\">&nbsp;&nbsp;<span style=\"vertical-align:middle;\">" + element + "</span></button> ";
-                } else {
-                    str += "<button class=\"taskbarButton\" onclick='windowLogic.openWindow(\"" + element + "\")' title=\"" + element + "\"><img src=\"./system/images/" + element + ".svg\" style=\"width:20px;height:20px;vertical-align:middle;\">&nbsp;&nbsp;<span style=\"vertical-align:middle;\">" + element + "</span></button> ";
-                }
+            image.src = `./system/images/${(activeapps[i].includes("(") && activeapps[i].endsWith(")")) ? "errorMessage.svg" : activeapps[i]}.svg`;
+            image.style.width = "20px";
+            image.style.height = "20px";
+            image.style.verticalAlign = "middle";
 
-            });
+            textSpan.append(textSpanContent);
+            textSpan.style.marginLeft = !userData.noTaskbarButtonLabels ? "10px" : "";
 
-            if (document.getElementById("taskbarButtons").innerHTML != str) {
-                document.getElementById("taskbarButtons").innerHTML = str;
-            }
+            button.append(image);
+            button.append(textSpan);
+
+            temp.append(button);
+        }
+
+        if (temp.innerHTML != taskbar.innerHTML) {
+            taskbar.innerHTML = temp.innerHTML;
         }
     }
 

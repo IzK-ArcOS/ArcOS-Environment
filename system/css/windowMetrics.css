@@ -18,8 +18,8 @@
     opacity: 0;
     resize: both;
     overflow: hidden;
-    min-width: fit-content;
-    min-height: 380px;
+    min-width: max-content;
+    min-height: max-content;
     max-width: 1300px;
     max-height: 800px;
     top: 50%;
