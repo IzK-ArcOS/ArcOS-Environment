@@ -64,7 +64,25 @@ function setToolbarTrigger() {
                 document.getElementById("toolbar", 0).classList.add("retracted")
             }, 1000);
         }
-    })
+    });
+
+    setInterval(() => {
+        let { BrowserWindow } = require("electron").remote,
+            toolbar = document.getElementById("toolbar"),
+            fullscreen;
+
+        try {
+            fullscreen = BrowserWindow.getFocusedWindow().fullScreen;
+        } catch (e) {
+            fullscreen = false;
+        }
+
+        if (!fullscreen) {
+            toolbar.style.display = "none";
+        } else {
+            toolbar.style.display = "";
+        }
+    }, 100);
 }
 
 function toggleFullscreenMode() {

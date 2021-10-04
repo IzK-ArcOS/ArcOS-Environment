@@ -110,7 +110,7 @@ class WindowLogic {
         }, 300);
     }
 
-    updateTaskbar() {
+    updateTaskBar() {
         let userData = getCurrentUserData();
         let temp = document.createElement("span");
         let taskbar = document.getElementById("taskbarButtons");
