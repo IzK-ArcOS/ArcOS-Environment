@@ -7,31 +7,27 @@
     <script src="./system/js/consoleNotifier.js"></script>
     <script src="./system/js/varDefinitions.js"></script>
     <script>
-        onload = function() {
+        onload = function () {
             new consoleNotifier().notifyStartService("ArcOS.Boot")
             document.body.style.opacity = "1"
             if (localStorage.getItem("WebOSVersion") && localStorage.getItem("FTSFinished") && localStorage.length) {
                 new consoleNotifier().notifyStartService("ArcOS.Boot: configuring boot flags for FTS")
                 localStorage.setItem("FTSFinished", "true");
             }
+            if (localStorage.getItem("WebOSVersion") !== version && localStorage.getItem("safeMode") !== "1") {
+                document.getElementById("statusText").innerHTML = localStorage.length ? ("Updating to " + version) : ("Preparing ArcOS");
+                localStorage.setItem("WebOSVersion", version);
+            }
             setTimeout(() => {
                 new consoleNotifier().notifyStartService("ArcOS.Boot: loading done, preparing for redirect")
                 document.body.style.opacity = "0"
-
                 setTimeout(() => {
                     new consoleNotifier().notifyStartService("ArcOS.Boot: redirect started")
                     document.body.innerHTML = "";
-                    if (localStorage.getItem("WebOSVersion") !== version && localStorage.getItem("safeMode") !== "1") {
-                        setTimeout(() => {
-                            new consoleNotifier().notifyStartService("ArcOS.Boot: redirecting to update screen")
-                            window.location.href = "updateScreen.html";
-                        }, 1000);
-                    } else {
-                        setTimeout(() => {
-                            new consoleNotifier().notifyStartService("ArcOS.Boot: redirecting to login")
-                            window.location.href = "login.html";
-                        }, 1000);
-                    }
+                    setTimeout(() => {
+                        new consoleNotifier().notifyStartService("ArcOS.Boot: redirecting to login")
+                        window.location.href = "login.html";
+                    }, 1000);
                 }, 2000);
             }, 8000);
 
@@ -47,7 +43,7 @@
                 if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'e') {
                     new consoleNotifier().notifyStartService("ArcOS.Boot: Ctrl+Shift+E pressed, clearing LocalStorage")
                     localStorage.clear();
-                    document.getElementById("statusText").innerHTML = "Reset triggered"
+                    document.getElementById("statusText").innerHTML = "Resetting ArcOS"
                 }
             });
         }
@@ -57,7 +53,8 @@
 <body>
     <div class="centered">
         <center>
-            <img class="bootlogo" style="transition: opacity 2s linear;" src="./system/images/systemIcon.svg" height="150px">
+            <img class="bootlogo" style="transition: opacity 2s linear;" src="./system/images/systemIcon.svg"
+                height="150px">
             <br>
             <br>
             <div class="slider userdefined" style="width:150px;border-radius: 3.5px;background-color:#333;height:7px;">

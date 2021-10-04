@@ -303,11 +303,12 @@ class ArcTermUserInterface {
 
 function initiateArcTerm() {
     document.getElementById("ArcTermBody").innerHTML = "";
-    let evaulationList = new ArcTermUserInterface().evaluateScripts(),
+    let evalList = new ArcTermUserInterface().evaluateScripts(),
         continueExec = true;
-    for (var i = 0; i < evaulationList.length; i++) {
-        if (!evaulationList[i]) {
+    for (var i = 0; i < evalList.length; i++) {
+        if (!evalList[i]) {
             new ArcTermUserInterface().outputColor(`[Error]: Script at index [${i}] not loaded!`);
+            errorLogic.bsod("ArcTerm Exception",`The ArcTerm system file at index [${i}] couldn't be found.`)
             continueExec = false;
         }
     }
@@ -319,7 +320,6 @@ function initiateArcTerm() {
     setInterval(() => {
         if (focusedWindow == "ArcTerm") {
             new ArcTermUserInterface().focusToInput();
-
         }
     }, 100)
 

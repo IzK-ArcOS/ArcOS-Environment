@@ -9,7 +9,7 @@
         <br>
         <p>With this application:</p>
         <button class="fullWidth folder big openWith" onclick="windowLogic.closewindow(document.getElementById('Open With'));openWithNotepad(document.getElementById('openWithFileInput').value);">
-            <img src="./system/images/notepad.svg">
+            <img src="./system/images/Notepad.svg">
             &nbsp;&nbsp;Notepad
         </button>
         <button class="fullWidth folder big openWith" onclick="windowLogic.closewindow(document.getElementById('Open With'));executeECS(document.getElementById('openWithFileInput').value);">

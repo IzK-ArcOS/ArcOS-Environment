@@ -4,7 +4,7 @@
         <br>File Manager</button>
     <br>
     <button class="icon" onclick="windowLogic.openWindow('ArcOS Notepad');">
-        <img src="./system/images/notepad.svg" />
+        <img src="./system/images/Notepad.svg" />
         <br>ArcOS Notepad</button>
     <br>
 </div>

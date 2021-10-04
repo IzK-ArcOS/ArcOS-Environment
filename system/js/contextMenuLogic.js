@@ -37,11 +37,10 @@ class ContextMenuLogic {
                 if (
                     e.path.includes(desktopIcons) ||
                     e.path.includes(wallpaper) ||
+                    e.path.includes(body) ||
                     e.target == wallpaper ||
                     e.target == desktopIcons ||
-                    e.target == body ||
-                    e.target == windowStore &&
-                    !desktopIconButtons.includes(e.target)
+                    e.target == body
                 ) {
                     contextMenu.style.display = 'block';
                     contextMenu.style.opacity = '1';

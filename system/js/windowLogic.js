@@ -101,13 +101,15 @@ class WindowLogic {
     }
 
     minimizeWindow(window) {
-        new consoleNotifier().notifyStartService("minimizeWindow: " + window);
-        window = document.getElementById(window);
-        window.style.opacity = '0';
         setTimeout(() => {
-            window.style.visibility = "hidden";
-            window.style.display = "none";
-        }, 300);
+            new consoleNotifier().notifyStartService("minimizeWindow: " + window);
+            window = document.getElementById(window);
+            window.style.opacity = '0';
+            setTimeout(() => {
+                window.style.visibility = "hidden";
+                window.style.display = "none";
+            }, 300);    
+        }, 50);
     }
 
     updateTaskBar() {

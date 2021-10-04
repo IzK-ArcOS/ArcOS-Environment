@@ -20,6 +20,7 @@
         <script src="system/js/toolbarLogic.js"></script>
         <script src="system/js/onloadLogic.js"></script>
         <script src="system/js/windowLogic.js"></script>
+        <script src="system/js/updateLogic.js"></script>
         <script src="system/applications/programdata/Open With/JS/openWith.js"></script>
         <script src="system/applications/programdata/File Manager/JS/fileexplorer.js"></script>
         <script src="system/applications/programdata/Calculator/js/calculator.js"></script>
@@ -40,7 +41,7 @@
     <link rel="stylesheet" href="./system/css/checkboxes.css">
     <link rel="stylesheet" href="./system/css/main.css" id="shellLoader">
     <link rel="stylesheet" href="" id="titlebarAddonLoader">
-    <link rel="stylesheet" href="" id="addonShellLoader">
+    <link rel="stylesheet" href="./system/css/terminal.css" id="addonShellLoader">
     <link rel="stylesheet" href="" id="animationsAddonLoader">
     <link rel="stylesheet" href="" id="taskbarAddonLoader">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -74,8 +75,19 @@
             <li onclick="windowLogic.openWindow('ArcTerm');"><a>ArcTerm</a></li>
             <hr>
             <li onclick="windowLogic.openWindow('Settings');"><a>Settings</a></li>
+            <hr>
             <li onclick="openSettingsPane('personalize',document.getElementsByClassName('controlPanelSidebar')[1]);windowLogic.openWindow('Settings');">
-                <a>Preferences</a></li>
+                <a>Personalization</a>
+            </li>
+            <li onclick="openSettingsPane('addapp',document.getElementsByClassName('controlPanelSidebar')[2]);windowLogic.openWindow('Settings');">
+                <a>Import App</a>
+            </li>
+            <li onclick="openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);windowLogic.openWindow('Settings');">
+                <a>User Settings</a>
+            </li>
+            <li onclick="openSettingsPane('about',document.getElementsByClassName('controlPanelSidebar')[4]);windowLogic.openWindow('Settings');">
+                <a>About</a>
+            </li>
         </ul>
     </div>
     <div class="block"></div>

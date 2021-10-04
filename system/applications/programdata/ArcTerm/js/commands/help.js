@@ -28,7 +28,7 @@ function help() {
                 break;
             case "ver":
                 new ArcTermUserInterface().outputColor(
-                    "Provides the current running build of NetcommandsClass.<br><br>" +
+                    "Provides the current running build of ArcTerm.<br><br>" +
                     "Usage: [VER]",
                     ``, `var(--blue)`, true
                 );
@@ -124,7 +124,7 @@ function help() {
                 break;
             case "intro":
                 new ArcTermUserInterface().outputColor(
-                    "Displays the intro text you see when you start NetcommandsClass.<br><br>" +
+                    "Displays the intro text you see when you start ArcTerm.<br><br>" +
                     "Usage: [INTRO]",
                     ``, `var(--blue)`, true
                 );
@@ -185,7 +185,7 @@ function help() {
                 break;
             case "exit":
                 new ArcTermUserInterface().outputColor(
-                    "Closes the current running instance of NetcommandsClass.<br><br>" +
+                    "Closes the current running instance of ArcTerm.<br><br>" +
                     "Usage: [EXIT]",
                     ``, `var(--blue)`, true
                 );

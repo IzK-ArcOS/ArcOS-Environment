@@ -15,7 +15,7 @@
             <p style="margin:0px;"><img src="./system/images/calculator.svg" height="20px" />Calculator</p>
         </div>
         <div class="startMenuAppTile" onclick="windowLogic.openWindow('ArcOS Notepad');">
-            <p style="margin:0px;"><img src="./system/images/notepad.svg" height="20px" />ArcOS Notepad
+            <p style="margin:0px;"><img src="./system/images/Notepad.svg" height="20px" />ArcOS Notepad
             </p>
         </div>
         <hr>

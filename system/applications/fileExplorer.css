@@ -53,8 +53,8 @@ div.window[id="File Manager"] {
 div.fileExplorerMainFrame {
     position: absolute;
     top: 75px;
-    left: 150px;
-    width: calc(100% - 150px);
+    left: 0px;
+    width: calc(100%);
     height: calc(100% - 75px);
     padding: 10px;
     overflow-y: scroll;

@@ -12,31 +12,6 @@
         <button onclick="windowLogic.minimizeWindow(this.parentNode.parentNode.id);" class="title"><span class="material-icons">minimize</span></button>
     </div>
     <div class="body" onclick="windowLogic.bringToFront(parentNode);">
-        <div class="fileExplorerLeftPane">
-            <div class="fileExplorerLeftPaneDiv" id="fileExplorerRecentLocations">
-                <button class="fileExplorerSideBar" onclick="windowLogic.openWindow('File Manager - Create File');">Create
-                    File</button><br>
-                <button class="fileExplorerSideBar" onclick="windowLogic.openWindow('File Manager - Delete File');">Delete
-                    File</button><br>
-                <button class="fileExplorerSideBar" onclick="windowLogic.openWindow('File Manager - Rename File');">Rename
-                    File</button><br>
-                <hr>
-                <button class="fileExplorerSideBar" onclick="windowLogic.openWindow('File Manager - Create Folder');">Create
-                    Folder</button><br>
-                <button class="fileExplorerSideBar" onclick="windowLogic.openWindow('File Manager - Delete Folder');">Delete
-                    Folder</button><br>
-                <button class="fileExplorerSideBar" onclick="windowLogic.openWindow('File Manager - Rename Folder');">Rename
-                    Folder</button><br>
-
-            </div>
-            <br>
-            <h4>Locations</h4>
-            <div class="fileExplorerLeftPaneDiv" id="fileExplorerRecentLocations">
-                <button class="fileExplorerSideBar" onclick="fileExplorerOpenDir(__dirname)">Root
-                    Folder</button><br>
-                <button class="fileExplorerSideBar" onclick="getDriveLetters()">Drives</button>
-            </div>
-        </div>
         <div class="fileExplorerTopPane">
             <button onclick="fileExplorerParentDir()">^</button>
             <input class="fullwidth" id="fileExplorerAddressBar">
