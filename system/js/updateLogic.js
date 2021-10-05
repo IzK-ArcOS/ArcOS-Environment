@@ -55,6 +55,7 @@ class UpdateLogic {
                         dir: path.join(path.resolve(__dirname, ".."))
                     });
                     updateLogic.moveUpdateFiles();
+                    document.getElementById("updateStatus").innerText = "Updates downloaded! restarting in 10 seconds...";
                     notificationLogic.notificationService("ArcOS Updater","ArcOS has installed the updates, and it will restart in 10 seconds.");
                     setTimeout(() => {
                         powerLogic.restart();
@@ -76,15 +77,22 @@ class UpdateLogic {
     }
 
     showProgress(received, total) {
+        document.getElementById("updateStatus").innerText = "Downloading updates...";
         let progressBar = document.getElementById("updateProgressBar");
         let fileSizeDisplay = document.getElementById("updateFileSizeDisplay");
         let progress = Math.floor((received * 100) / total);
         let totalFormat = formatBytes(total);
         let receivedFormat = formatBytes(received);
 
-        progressBar.setAttribute("max", total);
-        progressBar.setAttribute("value", received);
-        fileSizeDisplay.innerText = `${receivedFormat} of ${totalFormat} (${progress}%)`;
+        if (total) {
+            progressBar.setAttribute("max", total);
+            progressBar.setAttribute("value", received);
+            fileSizeDisplay.innerText = `${receivedFormat} of ${totalFormat} (${progress}%)`;
+        } else {
+            progressBar.removeAttribute("value");
+            progressBar.setAttribute("max", 0);
+            fileSizeDisplay.innerText = `${receivedFormat} (total filesize indeterminate)`;
+        }
     }
 }
 

@@ -156,6 +156,10 @@ progress {
     height:7px
 }
 
+progress::-webkit-progress-value:indeterminate {
+    background-color: gray;
+}
+
 
 /* All good till now. Now we'll style the background */
 progress::-webkit-progress-bar {
