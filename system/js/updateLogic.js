@@ -11,11 +11,13 @@ class UpdateLogic {
         if (latestVersionNumber > versionNumber) {
             new consoleNotifier().notifyStartService(`UpdateLogic.checkForUpdates: A new version is available: r${latestVersionNumber}`);
 
+            document.getElementById("updateStatus").innerText = "Updating ArcOS...";
             this.downloadFile(
                 "https://github.com/TWI-ArcOS/ArcOS-Environment/archive/refs/heads/main.zip",
                 path.join(path.resolve(__dirname, '..'), "update.zip")
             );
         } else {
+            document.getElementById("updateStatus").innerText = "ArcOS is up to date.";
             new consoleNotifier().notifyStartService(`UpdateLogic.checkForUpdates: Latest version already installed.`);
         }
     }
@@ -40,20 +42,11 @@ class UpdateLogic {
                 method: 'GET',
                 uri: file_url
             });
-
             let out = fs.createWriteStream(targetPath);
 
             req.pipe(out);
-
-            req.on('response', function (data) {
-                total_bytes = parseInt(data.headers['content-length']);
-            });
-
-            req.on('data', function (chunk) {
-                received_bytes += chunk.length;
-
-                updateLogic.showProgress(received_bytes, total_bytes);
-            });
+            req.on('response', function (data) { total_bytes = parseInt(data.headers['content-length']); });
+            req.on('data', function (chunk) { received_bytes += chunk.length; updateLogic.showProgress(received_bytes, total_bytes); });
 
             req.on('end', function () {
                 const extract = require('extract-zip')
@@ -62,6 +55,10 @@ class UpdateLogic {
                         dir: path.join(path.resolve(__dirname, ".."))
                     });
                     updateLogic.moveUpdateFiles();
+                    notificationLogic.notificationService("ArcOS Updater","ArcOS has installed the updates, and it will restart in 10 seconds.");
+                    setTimeout(() => {
+                        powerLogic.restart();
+                    }, 10000);
                 } catch (err) { }
             });
         } else {

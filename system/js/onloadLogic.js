@@ -340,7 +340,7 @@ class OnloadLogic {
             windowLogic.loadWindow("./system/applications/ArcTerm.app", 1);
             windowLogic.loadWindow("./system/applications/musicPlayer.app", 1, 0);
             windowLogic.loadWindow("./system/applications/lockScreen.app", 1, 0);
-            windowLogic.loadWindow("./system/applications/update.app", 0,0)
+            //windowLogic.loadWindow("./system/applications/update.app", 0,0)
             setTimeout(() => {
                 initiateArcTerm();
             }, 1000);

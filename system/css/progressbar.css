@@ -150,3 +150,21 @@
         transform: rotate(360deg)
     }
 }
+
+progress {
+    -webkit-appearance: none;
+    height:7px
+}
+
+
+/* All good till now. Now we'll style the background */
+progress::-webkit-progress-bar {
+	background: var(--buttonBackgroundColor);
+	border-radius: 50px;
+}
+
+/* Now the value part */
+progress::-webkit-progress-value {
+	border-radius: 50px;
+    background-color: deepskyblue;
+}
