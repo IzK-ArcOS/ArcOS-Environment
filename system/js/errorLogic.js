@@ -83,7 +83,7 @@ class ErrorLogic {
 }
 
 window.onerror = function errorVisualizer(errorMsg, url, lineNumber) {
-    notificationLogic.notificationService("ArcOS Exception", "ArcOS has encountered an internal exception:<br><br>" + errorMsg, 3000);
+    //notificationLogic.notificationService("ArcOS Exception", "ArcOS has encountered an internal exception:<br><br>" + errorMsg, 3000);
 }
 
 let errorLogic = new ErrorLogic();

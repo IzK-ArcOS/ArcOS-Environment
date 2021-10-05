@@ -1,0 +1,23 @@
+div.window[id*="ArcOS Updater"] div.body {
+    padding:20px;
+}
+
+div.window[id*="ArcOS Updater"] {
+    width:550px;
+    height:200px;
+    resize: none;
+}
+
+progress#updateProgressBar {
+    height:10px;
+    border-radius: 5px;
+    width:100%;
+    margin-top:10px;
+    margin-bottom:10px;
+}
+
+div.window[id*="ArcOS Updater"] div.body button {
+    position:absolute;
+    bottom:20px;
+    right:20px;
+}

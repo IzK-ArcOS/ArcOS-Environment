@@ -39,6 +39,7 @@
     </config>
 
     <link rel="stylesheet" href="./system/css/checkboxes.css">
+    <link rel="stylesheet" href="./system/css/progressbar.css">
     <link rel="stylesheet" href="./system/css/main.css" id="shellLoader">
     <link rel="stylesheet" href="" id="titlebarAddonLoader">
     <link rel="stylesheet" href="./system/css/terminal.css" id="addonShellLoader">
@@ -71,6 +72,7 @@
             </li>
             <hr>
             <li onclick="windowLogic.openWindow('Shut Down ArcOS')"><a>Shut Down</a></li>
+            <li><a><progress value="100" max="200">hello</progress></a></li>
             <hr>
             <li onclick="windowLogic.openWindow('ArcTerm');"><a>ArcTerm</a></li>
             <hr>
@@ -89,6 +91,7 @@
                 <a>About</a>
             </li>
         </ul>
+        
     </div>
     <div class="block"></div>
     <div class="notification" id="notificationService">

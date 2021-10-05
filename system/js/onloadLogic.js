@@ -2,7 +2,7 @@ new consoleNotifier().startModule("ArcOS.System.onloadLogic");
 
 
 
-onload = function() {
+onload = function () {
     if (!clientInformation.appVersion.includes("Electron")) { window.location.href = "invalidClient.html"; }
     setInterval(() => {
         try {
@@ -12,7 +12,7 @@ onload = function() {
                     errorLogic.bsod("OnloadLogic.onloadSetIntervals: USR_DATA_MISSING", "The user data corrupted while the session was running.");
                 }
             }
-        } catch {}
+        } catch { }
     }, 5);
     let ol = onloadLogic;
     ol.startTime();
@@ -28,7 +28,7 @@ onload = function() {
     }
 }
 
-onbeforeunload = function() {
+onbeforeunload = function () {
     if (!allowExit) {
         errorLogic.sendError("Access Denied", "The global variable <code>allowExit</code> is set to <code>false</code>, so you can't log off or shutdown.");
         return allowExit;
@@ -55,7 +55,7 @@ class OnloadLogic {
                     h + ":" + m;
                 document.getElementById("taskbarClockWidgetTime", 0).innerText =
                     h + ":" + m + ":" + s;
-            } catch {}
+            } catch { }
         }, 500);
     }
 
@@ -83,24 +83,24 @@ class OnloadLogic {
                             document.getElementById("animationsAddonLoader").href = "system/css/noAnimations.css";
                             break;
                     }
-                } catch {}
+                } catch { }
                 try {
                     if (stl != document.getElementById("preferencesTaskbarButtonLabelsSwitch").checked.toString()) {
                         switch (stl) {
                             case "false":
-                                try { document.getElementById("preferencesTaskbarButtonLabelsSwitch").checked = true; } catch {}
+                                try { document.getElementById("preferencesTaskbarButtonLabelsSwitch").checked = true; } catch { }
                                 userData.noTaskbarButtonLabels = false;
                                 windowLogic.updateTaskBar();
                                 break;
                             default:
-                                try { document.getElementById("preferencesTaskbarButtonLabelsSwitch").checked = false; } catch {}
+                                try { document.getElementById("preferencesTaskbarButtonLabelsSwitch").checked = false; } catch { }
                                 userData.noTaskbarButtonLabels = true;
                                 windowLogic.updateTaskBar();
                                 break;
                         }
                         localStorage.setItem(args.get("username"), JSON.stringify(userdata));
                     }
-                } catch {}
+                } catch { }
                 try {
                     switch (mtd) {
                         case "true":
@@ -111,7 +111,7 @@ class OnloadLogic {
                             localStorage.setItem(args.get("username"), JSON.stringify(userdata));
                             break;
                     }
-                } catch {}
+                } catch { }
             }, 100);
 
         } catch (e) {
@@ -168,13 +168,13 @@ class OnloadLogic {
                 document.getElementById("userSettingsProfilePicture", 0).src = newPicture
 
 
-            } catch (e) {}
-            try { document.getElementById("usernameStartMenu").innerHTML = args.get('username'); } catch (e) {}
+            } catch (e) { }
+            try { document.getElementById("usernameStartMenu").innerHTML = args.get('username'); } catch (e) { }
         }, 5);
         setInterval(() => {
             try {
                 new DOMLogic().getElemId("aboutScreenVersionNumber").innerText = version;
-            } catch {}
+            } catch { }
         }, 5);
     }
 
@@ -222,7 +222,7 @@ class OnloadLogic {
         });
 
         new consoleNotifier().notifyStartService("ArcOS.System.onloadLogic.EventListener.mousedown", "taskbarVolumeControl");
-        window.addEventListener('mousedown', function(event) {
+        window.addEventListener('mousedown', function (event) {
             try {
                 let center = document.getElementById('notificationCenter', 0);
                 let button = document.getElementById('notificationCenterButton', 0);
@@ -250,7 +250,7 @@ class OnloadLogic {
                 case "bottom":
                     document.getElementById("taskbarAddonLoader").href = "";
             }
-        } catch {}
+        } catch { }
     }
 
     loadTheme() {
@@ -277,7 +277,7 @@ class OnloadLogic {
                 userData.theme = "darkrounded";
                 localStorage.setItem(args.get("username"), JSON.stringify(userData));
             }
-        } catch {}
+        } catch { }
     }
 
     showBlock() {
@@ -340,6 +340,7 @@ class OnloadLogic {
             windowLogic.loadWindow("./system/applications/ArcTerm.app", 1);
             windowLogic.loadWindow("./system/applications/musicPlayer.app", 1, 0);
             windowLogic.loadWindow("./system/applications/lockScreen.app", 1, 0);
+            windowLogic.loadWindow("./system/applications/update.app", 0,0)
             setTimeout(() => {
                 initiateArcTerm();
             }, 1000);
@@ -354,7 +355,7 @@ class OnloadLogic {
             for (let i = 0; i < windows.length; i++) {
                 windows[i].style.position = "absolute";
             }
-        } catch {}
+        } catch { }
         //try { windowLogic.closeAllWindows(); } catch {}
     }
 
