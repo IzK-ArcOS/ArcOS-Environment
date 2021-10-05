@@ -1,10 +1,11 @@
 <div class="newStartMenu small" id="startMenu">
     <div class="bottomPane">
         <span class="h3" id="usernameStartMenu"></span>
-        <button class="transparent newStartMenuShutDownButton" onclick="windowLogic.openWindow('Shut Down ArcOS');"><span
-                class="material-icons" style="font-size:20px;">power_settings_new</span></button>
-        <button class="transparent newStartMenuShutDownButton" onclick="powerLogic.lock();"><span
-                class="material-icons" style="font-size:20px;">lock</span></button>
+        <button class="transparent newStartMenuShutDownButton"
+            onclick="windowLogic.openWindow('Shut Down ArcOS');"><span class="material-icons"
+                style="font-size:20px;">power_settings_new</span></button>
+        <button class="transparent newStartMenuShutDownButton" onclick="powerLogic.lock();"><span class="material-icons"
+                style="font-size:20px;">lock</span></button>
     </div>
     <div class="leftPane" id="startMenuAppList"></div>
     <div class="rightPane">
@@ -15,13 +16,16 @@
         <button class="transparent fullWidth textAlignLeft" onclick="windowLogic.openWindow('Settings');">
             <img src="./system/images/settings.svg">&nbsp;&nbsp;Settings
         </button><br>
-        <button class="transparent fullWidth textAlignLeft" onclick="openSettingsPane('personalize',document.getElementsByClassName('controlPanelSidebar')[1]);windowLogic.openWindow('Settings');">
+        <button class="transparent fullWidth textAlignLeft"
+            onclick="openSettingsPane('personalize',document.getElementsByClassName('controlPanelSidebar')[1]);windowLogic.openWindow('Settings');">
             <span class="material-icons">palette</span>&nbsp;&nbsp;Personalization
         </button><br>
-        <button class="transparent fullWidth textAlignLeft" onclick="openSettingsPane('addapp',document.getElementsByClassName('controlPanelSidebar')[2]);windowLogic.openWindow('Settings');">
+        <button class="transparent fullWidth textAlignLeft"
+            onclick="openSettingsPane('addapp',document.getElementsByClassName('controlPanelSidebar')[2]);windowLogic.openWindow('Settings');">
             <span class="material-icons">extension</span>&nbsp;&nbsp;Import App
         </button><br>
-        <button class="transparent fullWidth textAlignLeft" onclick="openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);windowLogic.openWindow('Settings');">
+        <button class="transparent fullWidth textAlignLeft"
+            onclick="openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);windowLogic.openWindow('Settings');">
             <span class="material-icons">account_circle</span>&nbsp;&nbsp;User Settings
         </button><br>
         <hr>
@@ -32,33 +36,39 @@
 </div>
 <div class="notificationCenter retracted" id="notificationCenter">
     <h2 class="notificationCenterHeader">
-        Notifications<button style="float:right;min-width:unset;" class="transparent" onclick="notificationList = [];">Clear</button></h2>
+        Notifications<button style="float:right;min-width:unset;" class="transparent"
+            onclick="notificationList = [];">Clear</button></h2>
     <div class="notifications" id="notificationCenterInline"></div>
     <div class="actions">
         <span style="display:flex">
             <div class="notificationCenterAction">
                 <h3 margin-top:10px;">Current Time</h3>
                 <h1 style="margin:0px;"><span id="taskbarClockWidgetTime"></span>
-        </h1>
-    </div>
-    <div class="notificationCenterAction">
-        <br>
-        <p style="margin-top:10px;">
-            <label for="volumeControlEnableSoundSwitch" style="vertical-align: middle;">Mute Sound</label>
-            <input type="checkbox" id="volumeControlEnableSoundSwitch" style="min-width: unset;vertical-align: middle;" onclick="changeVolumeState();">
-        </p>
-    </div>
-    </span>
-    <span style="display:flex">
+                </h1>
+            </div>
+            <div class="notificationCenterAction">
+                <br>
+                <p style="margin-top:10px;">
+                    <label for="volumeControlEnableSoundSwitch" style="vertical-align: middle;">Mute Sound</label>
+                    <input type="checkbox" id="volumeControlEnableSoundSwitch"
+                        style="min-width: unset;vertical-align: middle;" onclick="changeVolumeState();">
+                </p>
+            </div>
+        </span>
+        <span style="display:flex">
             <div class="notificationCenterAction">
                 <p style="margin-bottom:5px;">Volume:</p>
                 <input type="range" min="1" max="10" id="systemVolumeSlider" style="width:50%;padding:0px;"
                     class="slider" onchange="personalizationLogic.updateVolume(this);">
             </div>
             <div class="notificationCenterAction">
+                <h3 style="margin: 9px 0;">
+                    ArcOS Updates
+                </h3>
+                <button class="transparent" onclick="openSettingsPane('about',document.getElementsByClassName('controlPanelSidebar')[4]);windowLogic.openWindow('Settings');">Goto Settings</button>
             </div>
         </span>
-</div>
+    </div>
 </div>
 <div class="taskbar" id="taskbar">
     <button class="startButton" id="startButton" onclick="toggleStart();">
@@ -69,9 +79,10 @@
         <button class="startButton" style="height:100%;margin-right:10px;padding-top:12px;"
             id="notificationCenterButton" onclick="notificationLogic.toggleNotificationCenter();">
             <h3"><span class="material-icons"
-                    style="vertical-align: top;font-size:16px;">notifications</span>&nbsp;&nbsp;<span class="material-icons" style="vertical-align: top;font-size:15px;">volume_up</span>&nbsp;&nbsp;
-    <span id="taskbarClock" style="vertical-align: middle;">--:--</span></h3>
-    </button>
+                    style="vertical-align: top;font-size:16px;">notifications</span>&nbsp;&nbsp;<span
+                    class="material-icons" style="vertical-align: top;font-size:15px;">volume_up</span>&nbsp;&nbsp;
+                <span id="taskbarClock" style="vertical-align: middle;">--:--</span></h3>
+        </button>
     </span>
 </div>
 
