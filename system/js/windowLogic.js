@@ -2,51 +2,40 @@ new consoleNotifier().startModule("ArcOS.System.windowLogic");
 class WindowLogic {
     closewindow(window) {
         new consoleNotifier().notifyStartService("closewindow: closing " + window.id);
+
         try {
 
             try {
                 window.style.opacity = '0';
+
                 setTimeout(() => {
                     window.style.visibility = "hidden";
                     window.style.display = "none";
                     window.style.left = "60px";
                     window.style.top = "60px";
+
                     if (!noResize.includes(window.id)) {
                         window.style.width = "fit-content";
                         window.style.height = "fit-content";
                     }
+
                     window.style.top = '50%';
                     window.style.left = '50%';
+
                     this.unMaximizeWindow(window);
                 }, 300);
+
             } catch (e) {}
-            for (let i = 0; i < activeapps.length; i++) { if (window.id == activeapps[i]) { activeapps.splice(i, 1); } }
+
+            for (let i = 0; i < activeapps.length; i++) {
+                if (window.id == activeapps[i]) {
+                    activeapps.splice(i, 1);
+                }
+            }
+
             this.updateTaskBar();
         } catch {
-            try {
-                try {
-                    window = document.getElementById(window)
-                    window.style.opacity = '0';
-                    setTimeout(() => {
-                        window.style.visibility = "hidden";
-                        window.style.display = "none";
-                        window.style.left = "60px";
-                        window.style.top = "60px";
-                        if (!noResize.includes(window.id)) {
-                            window.style.width = "fit-content";
-                            window.style.height = "fit-content";
-                        }
-                        window.style.top = '50%';
-                        window.style.left = '50%';
-                        this.unMaximizeWindow(window);
-                    }, 300);
-                } catch (e) {}
-                for (let i = 0; i < activeapps.length; i++) { if (window.id == activeapps[i]) { activeapps.splice(i, 1); } }
-                this.updateTaskBar();
-
-            } catch {
-                notificationLogic.notificationService('Error closing window', "ArcOS was unable to close the window.<br><br>Please check the name and try again.");
-            }
+            notificationLogic.notificationService('Error closing window', "ArcOS was unable to close the window.<br><br>Please check the name and try again.");
         }
     }
 
@@ -108,7 +97,7 @@ class WindowLogic {
             setTimeout(() => {
                 window.style.visibility = "hidden";
                 window.style.display = "none";
-            }, 300);    
+            }, 300);
         }, 50);
     }
 
@@ -128,7 +117,7 @@ class WindowLogic {
             button.setAttribute("onclick", `windowLogic.openWindow("${activeapps[i]}");`);
             button.title = activeapps[i];
 
-            image.src = `./system/images/${(activeapps[i].includes("(") && activeapps[i].endsWith(")")) ? "errorMessage.svg" : activeapps[i]}.svg`;
+            image.src = `./system/images/${(activeapps[i].includes("(") && activeapps[i].endsWith(")")) ? "errorMessage" : activeapps[i]}.svg`;
             image.style.width = "20px";
             image.style.height = "20px";
             image.style.verticalAlign = "middle";
