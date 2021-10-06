@@ -38,6 +38,7 @@ let args = new URLSearchParams(window.location.search),
     path = require("path"),
     fs = require("fs"),
     request = require("request"),
+    { shell } = require("electron"),
     fileExtensions = [
         { ext: "svg", description: "Scalable Vector Image File" },
         { ext: "png", description: "Portable Network Graphics File" },

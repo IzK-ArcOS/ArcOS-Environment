@@ -15,7 +15,10 @@ if (!app.requestSingleInstanceLock()) {
 } else {
 
     app.on("ready", () => {
-        let { app, globalShortcut } = require('electron')
+
+        let { globalShortcut } = require('electron')
+
+
 
         globalShortcut.register("Alt+Enter", () => {
             if (BrowserWindow.getFocusedWindow().fullScreen == true) {
@@ -66,7 +69,6 @@ if (!app.requestSingleInstanceLock()) {
             }, 50);
         })
     });
-
 
     function loadStartPage() {
         switch (start) {

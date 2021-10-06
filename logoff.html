@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="./setupAssets/setupStyle.css">
     <link rel="stylesheet" href="./system/css/progressbar.css">
     <script src="system/js/consoleNotifier.js"></script>
-    
+
 
     <script src="system/js/toolbarLogic.js"></script>
     <script src="system/js/varDefinitions.js"></script>
@@ -40,14 +40,6 @@
 
 <body>
     <div class="blur"></div>
-    <div class="toolbar retracted" id="toolbar">
-        <button class="toolbar" style="margin-top:3px;padding-top:3px;padding-bottom:3px;" onclick="require('electron').remote.getCurrentWindow().toggleDevTools()">Developer Tools</button>
-        <span style="position:inherit;left:50%;top:10px;transform:translate(-50%,0);-webkit-transform: translate(-50%,0);">ArcOS</span>
-        <button class="toolbar right" onclick="require('electron').remote.getCurrentWindow().close();"><span class="material-icons">close</span></button>
-        <button class="toolbar right" onclick="require('electron').remote.getCurrentWindow().maximize();toggleFullscreenMode();"><span class="material-icons">crop_square</span></button>
-        <button class="toolbar right" onclick="require('electron').remote.getCurrentWindow().minimize();"><span class="material-icons">minimize</span></button>
-    </div>
-    <div class="toolbarHoverTrigger" id="toolbarHoverTrigger"></div>
     <div class="content" id="main" style="visibility: visible;display: unset;width:fit-content">
         <img src="./system/images/user.png" height="150px" style="border-radius:50%;" id="profilePicture">
         <h1 style="margin:0px;">Goodbye, <span id="username"></span>!</h1>
