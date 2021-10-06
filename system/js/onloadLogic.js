@@ -364,6 +364,7 @@ class OnloadLogic {
         windowLogic.updateTaskBar();
         hideStart();
         this.setStartMenuSize();
+        this.setTaskbarButtonLocation();
         openSettingsPane("home", document.getElementsByClassName("controlPanelSidebar")[0]);
         contextMenuLogic.hideMenu();
         notificationLogic.startNotificationCenterPopulator();
@@ -401,6 +402,18 @@ class OnloadLogic {
             document.getElementById("startMenu").classList.add("small");
         } else {
             document.getElementById("startMenu").classList.remove("small");
+        }
+    }
+
+    setTaskbarButtonLocation() {
+        let userData = getCurrentUserData();
+
+        let checked = userData.centeredTaskbarButtons;
+
+        if (checked) {
+            document.getElementById("taskbarButtons").classList.add("center");
+        } else {
+            document.getElementById("taskbarButtons").classList.remove("center");
         }
     }
 }

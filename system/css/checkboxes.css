@@ -173,10 +173,6 @@ input[type="checkbox"].transparent {
     background-color: none;;
 }
 
-input[type="checkbox"].transparent:after {
-
-}
-
 input[type="checkbox"].right {
     float: right;
     margin-left: 15px;

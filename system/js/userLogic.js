@@ -259,6 +259,7 @@ function hotSwapUserAccount(username) {
                 generalLogic.updateDesktopIcons();
                 personalizationLogic.setAnimations(false);
                 onloadLogic.setStartMenuSize();
+                onloadLogic.setTaskbarButtonLocation();
 
                 openSettingsPane("home", document.getElementsByClassName("controlPanelSidebar")[0]);
                 initiateArcTerm();
@@ -384,7 +385,8 @@ const userTemplate = {
     titlebarButtonsLeft: false,
     profilePicture: null,
     isAdmin: false,
-    smallStart: false
+    smallStart: false,
+    centeredTaskbarButtons: false
 };
 
 function getCurrentUserData() {

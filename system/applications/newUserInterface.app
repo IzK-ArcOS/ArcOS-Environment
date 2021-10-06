@@ -24,6 +24,9 @@
         <button class="transparent fullWidth textAlignLeft" onclick="openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);windowLogic.openWindow('Settings');">
             <span class="material-icons">account_circle</span>&nbsp;&nbsp;User Settings
         </button><br>
+        <button class="transparent fullWidth textAlignLeft" onclick="openSettingsPane('updates',document.getElementsByClassName('controlPanelSidebar')[5]);windowLogic.openWindow('Settings');">
+            <span class="material-icons">autorenew</span>&nbsp;&nbsp;Updates
+        </button><br>
         <hr>
         <button class="transparent fullWidth textAlignLeft" onclick="windowLogic.openWindow('Execute Command');">
             <img src="./system/images/execute command.svg">&nbsp;&nbsp;Execute Command
@@ -59,7 +62,7 @@
                 <h3 style="margin: 9px 0;">
                     ArcOS Updates
                 </h3>
-                <button class="transparent" onclick="openSettingsPane('about',document.getElementsByClassName('controlPanelSidebar')[4]);windowLogic.openWindow('Settings');">Goto Settings</button>
+                <button class="transparent" onclick="openSettingsPane('updates',document.getElementsByClassName('controlPanelSidebar')[5]);windowLogic.openWindow('Settings');">Goto Settings</button>
             </div>
         </span>
 </div>

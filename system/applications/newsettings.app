@@ -34,10 +34,10 @@
                 &nbsp;&nbsp;
                 <span class="caption">About</span>
             </button><br>
-            <button class="fullWidth controlPanelSidebar" onclick="shell.openExternal('https://github.com/TWI-ArcOS/ArcOS-Environment/issues');">
-                <span class="material-icons">bug_report</span>
+            <button class="fullWidth controlPanelSidebar" onclick="openSettingsPane('updates',this);">
+                <span class="material-icons">autorenew</span>
                 &nbsp;&nbsp;
-                <span class="caption">Report bugs</span>
+                <span class="caption">Updates</span>
             </button><br>
         </div>
         <div class="controlPanelMainFrame" id="controlPanelContent">

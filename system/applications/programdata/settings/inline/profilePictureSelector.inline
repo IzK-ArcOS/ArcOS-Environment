@@ -7,7 +7,7 @@
         <span class="material-icons" style="vertical-align: bottom;">
             chevron_right
         </span> Change Profile Picture
-    </h2><br><br>
+    </h2><br>
 
 </div>
 <p style="margin-top:40px;">Enter the <b>relative</b> path below to load that application.</p>

@@ -1,9 +1,9 @@
 <div style="position: absolute;left:0px;width:100%;padding:30px;padding-top:0px;">
     <h2 style="margin:0px;margin-bottom:10px;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-weight: 100;margin:0px;">
         Home
-    </h2><br><br>
+    </h2><br>
 </div>
-<h3 class="controlPanelSubHeader" style="margin-top:50px;"></h3>
+<h3 class="controlPanelSubHeader" style="margin-top:48px;"></h3>
 <p>Select a catagory to continue:</p>
 <button class="controlPanelHomePageAction" onclick="openSettingsPane('personalize',document.getElementsByClassName('controlPanelSidebar')[1]);">
             <span class="material-icons">palette</span>
@@ -24,4 +24,9 @@
             <span class="material-icons">info</span>
             &nbsp;&nbsp;
             <span class="caption">About</span>
+        </button><br>
+        <button class="controlPanelHomePageAction" onclick="openSettingsPane('updates',document.getElementsByClassName('controlPanelSidebar')[5]);">
+            <span class="material-icons">autorenew</span>
+            &nbsp;&nbsp;
+            <span class="caption">Updates</span>
         </button><br>

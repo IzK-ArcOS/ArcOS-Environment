@@ -1,3 +1,6 @@
+const mergedirs = require("merge-dirs");
+const extract = require('extract-zip');
+
 new consoleNotifier().startModule("ArcOS.System.updateLogic");
 
 class UpdateLogic {
@@ -12,12 +15,14 @@ class UpdateLogic {
             new consoleNotifier().notifyStartService(`UpdateLogic.checkForUpdates: A new version is available: r${latestVersionNumber}`);
 
             document.getElementById("updateStatus").innerText = "Updating ArcOS...";
+
             this.downloadFile(
                 "https://github.com/TWI-ArcOS/ArcOS-Environment/archive/refs/heads/main.zip",
                 path.join(path.resolve(__dirname, '..'), "update.zip")
             );
         } else {
             document.getElementById("updateStatus").innerText = "ArcOS is up to date.";
+            
             new consoleNotifier().notifyStartService(`UpdateLogic.checkForUpdates: Latest version already installed.`);
         }
     }
@@ -34,8 +39,10 @@ class UpdateLogic {
         let progressBar = document.getElementById("updateProgressBar");
         let destinationDisplay = document.getElementById("updateDestinationDisplay");
         let fileSizeDisplay = document.getElementById("updateFileSizeDisplay");
+
         if (progressBar && destinationDisplay && fileSizeDisplay) {
             destinationDisplay.innerText = targetPath;
+
             let received_bytes = 0;
             let total_bytes = 0;
             let req = request({
@@ -47,16 +54,18 @@ class UpdateLogic {
             req.pipe(out);
             req.on('response', function (data) { total_bytes = parseInt(data.headers['content-length']); });
             req.on('data', function (chunk) { received_bytes += chunk.length; updateLogic.showProgress(received_bytes, total_bytes); });
-
             req.on('end', function () {
-                const extract = require('extract-zip')
                 try {
                     extract(targetPath, {
                         dir: path.join(path.resolve(__dirname, ".."))
                     });
+
                     updateLogic.moveUpdateFiles();
+
                     document.getElementById("updateStatus").innerText = "Updates downloaded! restarting in 10 seconds...";
-                    notificationLogic.notificationService("ArcOS Updater","ArcOS has installed the updates, and it will restart in 10 seconds.");
+                    
+                    notificationLogic.notificationService("ArcOS Updater", "ArcOS has installed the updates, and it will restart in 10 seconds.");
+                    
                     setTimeout(() => {
                         powerLogic.restart();
                     }, 10000);
@@ -68,10 +77,8 @@ class UpdateLogic {
     }
 
     async moveUpdateFiles() {
-
         let oldPath = path.join(path.resolve(__dirname, '..'), 'ArcOS-Environment-main/');
         let newPath = path.join(__dirname, "/");
-        let mergedirs = require("merge-dirs");
 
         mergedirs.default(oldPath, newPath, 'overwrite');
     }

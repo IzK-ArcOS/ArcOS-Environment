@@ -141,6 +141,32 @@ class PersonalizationLogic {
             document.getElementById("startMenu").classList.remove("small");
         }
     }
+
+    setTaskbarButtonLocation(updateLS) {
+        new consoleNotifier().notifyStartService("PersonalizationLogic.setTaskbarButtonLocation");
+
+        let checked;
+        let userData = getCurrentUserData();
+
+        if (updateLS) {
+            checked = document.getElementById("preferencesCenteredTaskbarButtonsSwitch").checked;
+
+            userData.centeredTaskbarButtons = checked;
+
+            localStorage.setItem(args.get("username"), JSON.stringify(userData));
+
+        } else {
+
+            checked = userData.centeredTaskbarButtons
+
+        }
+
+        if (checked) {
+            document.getElementById("taskbarButtons").classList.add("center");
+        } else {
+            document.getElementById("taskbarButtons").classList.remove("center");
+        }
+    }
 }
 
 let personalizationLogic = new PersonalizationLogic();

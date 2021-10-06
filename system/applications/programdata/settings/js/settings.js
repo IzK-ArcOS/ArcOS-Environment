@@ -11,9 +11,11 @@ function switchControlPanelPage(pageFile) {
                 document.getElementById("preferencesTaskbarButtonLabelsSwitch").checked = !userData.noTaskbarButtonLabels;
                 document.getElementById("preferencesTitlebarButtonsSwitch").checked = userData.titlebarButtonsLeft;
                 document.getElementById("preferencesSmallStartSwitch").checked = userData.smallStart;
+                document.getElementById("preferencesCenteredTaskbarButtonsSwitch").checked = userData.centeredTaskbarButtons;
 
                 onloadLogic.loadTitlebarButtonPos();
                 onloadLogic.setStartMenuSize();
+                onloadLogic.setTaskbarButtonLocation();
             } catch (e) {}
         }
     })
@@ -47,6 +49,9 @@ function openSettingsPane(name, buttonNode) {
             break;
         case `about`:
             switchControlPanelPage(path.join(__dirname, `system/applications/programdata/settings/inline/about.inline`));
+            break;
+        case 'updates':
+            switchControlPanelPage(path.join(__dirname, 'system/applications/programdata/settings/inline/updates.inline'));
             break;
     }
     try { buttonNode.classList.add(`active`); } catch {}

@@ -21,6 +21,7 @@ body {
 
 * {
     font-weight: let(--global-font-weight);
+    cursor:none;
 }
 
 img.bootlogo {
