@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <meta charset="utf-8">
     <link rel="preload" href="./system/wallpaper/img12.png" as="image">
     <link rel="preload" href="./system/wallpaper/img13.png" as="image">
     <config id="javascriptLoader">
@@ -63,7 +64,7 @@
 
     <div id="windowStore"></div>
     <div id="contextMenu" class="context-menu">
-    <ul>
+        <ul>
             <li class="contextMenuSwitch" onclick="generalLogic.updateDesktopIcons();">
                 <input type="checkbox" class="transparent right" id="showDesktopIconsSwitch" style="min-width: unset;" onclick="generalLogic.updateDesktopIcons();">
                 <label for="showDesktopIconsSwitch" onclick="generalLogic.updateDesktopIcons();">
@@ -93,7 +94,7 @@
                 <a>Updates</a>
             </li>
         </ul>
-        
+
     </div>
     <div class="block"></div>
     <div class="notification" id="notificationService">
