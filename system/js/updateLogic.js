@@ -10,6 +10,7 @@ class UpdateLogic {
             let dir = path.join(app.getPath('userData'), 'updates');
             if (!fs.existsSync(dir))
                 fs.mkdirSync(dir);
+            
         }
         new consoleNotifier().notifyStartService("UpdateLogic.checkForUpdates: Checking for updates...");
 
@@ -21,7 +22,7 @@ class UpdateLogic {
 
             document.getElementById("updateStatus").innerText = "Updating ArcOS...";
 
-            this.downloadFile(
+            await this.downloadFile(
                 "https://github.com/TWI-ArcOS/ArcOS-Environment/archive/refs/heads/main.zip",
                 path.join(process.platform === "win32" ? path.resolve(path.join(app.getPath('userData'), 'updates'), '..') : path.resolve(__dirname, '..'), "update.zip")
             );
@@ -61,11 +62,12 @@ class UpdateLogic {
             req.on('data', function (chunk) { received_bytes += chunk.length; updateLogic.showProgress(received_bytes, total_bytes); });
             req.on('end', function () {
                 try {
+                    document.getElementById("updateStatus").innerText = "Updates downloaded, extracting...";
                     await extract(targetPath, {
                         dir: process.platform === "win32" ? path.resolve(path.join(app.getPath('userData'), 'updates'), '..') : path.resolve(__dirname, '..')
                     });
-
                     setTimeout(() => {
+                        document.getElementById("updateStatus").innerText = "Extracted, moving to system directory...";
                         updateLogic.moveUpdateFiles();
 
                         document.getElementById("updateStatus").innerText = "Updates downloaded! restarting in 10 seconds...";
@@ -75,7 +77,7 @@ class UpdateLogic {
                         setTimeout(() => {
                             powerLogic.restart();
                         }, 10000);
-                    }, 1000);
+                    }, 10000);
 
 
                 } catch (err) { }
