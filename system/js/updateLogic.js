@@ -1,6 +1,6 @@
 const mergedirs = require("merge-dirs");
 const extract = require('extract-zip');
-
+const { app } = require("electron").remote;
 new consoleNotifier().startModule("ArcOS.System.updateLogic");
 
 class UpdateLogic {
@@ -18,11 +18,11 @@ class UpdateLogic {
 
             this.downloadFile(
                 "https://github.com/TWI-ArcOS/ArcOS-Environment/archive/refs/heads/main.zip",
-                path.join(path.resolve(__dirname, '..'), "update.zip")
+                path.join(process.platform === "win32" ? path.join(app.getPath('userData'), 'updates') : path.resolve(__dirname, '..'), "update.zip")
             );
         } else {
             document.getElementById("updateStatus").innerText = "ArcOS is up to date.";
-            
+
             new consoleNotifier().notifyStartService(`UpdateLogic.checkForUpdates: Latest version already installed.`);
         }
     }
@@ -63,9 +63,9 @@ class UpdateLogic {
                     updateLogic.moveUpdateFiles();
 
                     document.getElementById("updateStatus").innerText = "Updates downloaded! restarting in 10 seconds...";
-                    
+
                     notificationLogic.notificationService("ArcOS Updater", "ArcOS has installed the updates, and it will restart in 10 seconds.");
-                    
+
                     setTimeout(() => {
                         powerLogic.restart();
                     }, 10000);
@@ -77,8 +77,8 @@ class UpdateLogic {
     }
 
     async moveUpdateFiles() {
-        let oldPath = path.join(path.resolve(__dirname, '..'), 'ArcOS-Environment-main/');
-        let newPath = path.join(__dirname, "/");
+        let oldPath = path.join(process.platform === "win32" ? path.join(app.getPath('userData'), 'updates') : path.resolve(__dirname, '..'), 'ArcOS-Environment-main' + path.sep());
+        let newPath = path.join(__dirname, path.sep());
 
         mergedirs.default(oldPath, newPath, 'overwrite');
     }
