@@ -23,7 +23,6 @@ div.clockMainPage {
     width: calc(100% - 200px - 20px);
     height: calc(100% - 35px - 20px);
     padding: 10px;
-    background-color: #f0f;
 }
 
 div.clockSidebar button {

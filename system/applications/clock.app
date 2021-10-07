@@ -6,13 +6,13 @@
     </div>
     <div class="body">
         <div class="clockSidebar">
-            <button>Home</button><br>
+            <button onclick="clockSwitchPage('home')">Home</button><br>
             <hr>
-            <button>Timer</button><br>
-            <button>Stopwatch</button><br>
-            <button>Clock</button>
+            <button onclick="clockSwitchPage('timer')">Timer</button><br>
+            <button onclick="clockSwitchPage('stopwatch')">Stopwatch</button><br>
+            <button onclick="clockSwitchPage('clock')">Clock</button>
         </div>
-        <div class="clockMainPage">
+        <div class="clockMainPage" id="clockOutput">
             <h1>bruh</h1>
         </div>
     </div>
