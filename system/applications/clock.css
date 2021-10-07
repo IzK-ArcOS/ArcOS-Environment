@@ -35,6 +35,15 @@ div.clockSidebar button {
     text-align: left;
 }
 
+div.clockSidebar button>* {
+    vertical-align: middle;
+}
+
+div.clockSidebar button>span.material-icons {
+    font-size:18px;
+    margin-right:10px;
+}
+
 div.clockSidebar button:hover {
     background-color: var(--controlPanelSecoBackgroundColor);
     border-left: deepskyblue 2px solid;

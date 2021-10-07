@@ -22,7 +22,6 @@ class ContextMenuLogic {
     }
 
     rightClick(e) {
-        console.log("oop");
         if (!lockScreenActive) {
             try {
                 let contextMenu = document.getElementById("contextMenu"),
@@ -32,8 +31,6 @@ class ContextMenuLogic {
                     body = document.body,
                     windowStore = document.getElementById("windowStore"),
                     desktopIconButtons = document.querySelectorAll("button.icon");
-                console.log(e.path);
-                console.log(e);
                 if (
                     e.path.includes(desktopIcons) ||
                     e.path.includes(wallpaper) ||

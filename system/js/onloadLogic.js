@@ -343,6 +343,7 @@ class OnloadLogic {
             windowLogic.loadWindow("./system/applications/clock.app", 0, 0)
             setTimeout(() => {
                 initiateArcTerm();
+                //clockSwitchPage("home",0);
             }, 1000);
         }, 100);
     }
