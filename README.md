@@ -20,4 +20,10 @@ If you do decide to clone the repository to your local drive, please follow thes
 > cd ..\.. && npm start
 > ```
 
-We at the ArcOS team of passionate developers hope that you enjoy your time in ArcOS, let us know what you think!
+## ArcOS Updater
+
+Since r17, you can now download and install updates through Settings.
+
+There is one issue that we discovered during testing: you NEED to run ArcOS as administrator on Windows in order to extract the update package properly.
+
+We are working to solve this issue.
