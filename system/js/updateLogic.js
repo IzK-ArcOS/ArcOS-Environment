@@ -63,7 +63,7 @@ class UpdateLogic {
             req.on('end', function () {
                 try {
                     document.getElementById("updateStatus").innerText = "Updates downloaded, extracting...";
-                    await extract(
+                    extract(
                         targetPath, {
                         dir: process.platform === "win32" ? path.resolve(path.join(app.getPath('userData'), 'updates'), '..') : path.resolve(__dirname, '..')
                     }, () => {
