@@ -23,7 +23,7 @@ class UpdateLogic {
 
             this.downloadFile(
                 "https://github.com/TWI-ArcOS/ArcOS-Environment/archive/refs/heads/main.zip",
-                path.join(process.platform === "win32" ? path.join(app.getPath('userData'), 'updates') : path.resolve(__dirname, '..'), "update.zip")
+                path.join(process.platform === "win32" ? path.resolve(path.join(app.getPath('userData'), 'updates'),'..') : path.resolve(__dirname, '..'), "update.zip")
             );
         } else {
             document.getElementById("updateStatus").innerText = "ArcOS is up to date.";
@@ -62,7 +62,7 @@ class UpdateLogic {
             req.on('end', function () {
                 try {
                     extract(targetPath, {
-                        dir: path.join(path.resolve(__dirname, ".."))
+                        dir: process.platform === "win32" ? path.resolve(path.join(app.getPath('userData'), 'updates'),'..') : path.resolve(__dirname, '..')
                     });
 
                     updateLogic.moveUpdateFiles();
@@ -82,7 +82,7 @@ class UpdateLogic {
     }
 
     async moveUpdateFiles() {
-        let oldPath = path.join(process.platform === "win32" ? path.join(app.getPath('userData'), 'updates') : path.resolve(__dirname, '..'), 'ArcOS-Environment-main' + path.sep));
+        let oldPath = path.join(process.platform === "win32" ? path.resolve(path.join(app.getPath('userData'), 'updates'),'..') : path.resolve(__dirname, '..'), 'ArcOS-Environment-main' + path.sep);
         let newPath = path.join(__dirname, path.sep);
 
         mergedirs.default(oldPath, newPath, 'overwrite');
