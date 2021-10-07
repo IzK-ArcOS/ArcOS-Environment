@@ -82,8 +82,8 @@ class UpdateLogic {
     }
 
     async moveUpdateFiles() {
-        let oldPath = path.join(process.platform === "win32" ? path.join(app.getPath('userData'), 'updates') : path.resolve(__dirname, '..'), 'ArcOS-Environment-main' + path.sep());
-        let newPath = path.join(__dirname, path.sep());
+        let oldPath = path.join(process.platform === "win32" ? path.join(app.getPath('userData'), 'updates') : path.resolve(__dirname, '..'), 'ArcOS-Environment-main' + path.sep));
+        let newPath = path.join(__dirname, path.sep);
 
         mergedirs.default(oldPath, newPath, 'overwrite');
     }
