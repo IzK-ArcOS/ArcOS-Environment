@@ -8,14 +8,12 @@
     <script src="system/js/consoleNotifier.js"></script>
 
 
-    <script src="system/js/toolbarLogic.js"></script>
     <script src="system/js/varDefinitions.js"></script>
 
     <script>
         var params = new URLSearchParams(window.location.search);
         onload = function() {
             setTimeout(() => {
-                setToolbarTrigger();
                 document.body.style.opacity = "1";
                 setTimeout(() => {
                     document.body.style.opacity = "0";

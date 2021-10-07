@@ -6,6 +6,11 @@ new consoleNotifier().startModule("ArcOS.System.updateLogic");
 class UpdateLogic {
 
     async checkForUpdates() {
+        if (process.platform === "win32") {
+            let dir = path.join(app.getPath('userData'),'updates');
+            if (!fs.existsSync(dir))
+                fs.mkdirSync(dir);
+        }
         new consoleNotifier().notifyStartService("UpdateLogic.checkForUpdates: Checking for updates...");
 
         let latestVersionNumber = parseInt(await this.getVersionNumber());
