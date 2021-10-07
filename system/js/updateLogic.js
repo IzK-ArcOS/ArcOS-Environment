@@ -10,7 +10,7 @@ class UpdateLogic {
             let dir = path.join(app.getPath('userData'), 'updates');
             if (!fs.existsSync(dir))
                 fs.mkdirSync(dir);
-            
+
         }
         new consoleNotifier().notifyStartService("UpdateLogic.checkForUpdates: Checking for updates...");
 
@@ -63,10 +63,10 @@ class UpdateLogic {
             req.on('end', function () {
                 try {
                     document.getElementById("updateStatus").innerText = "Updates downloaded, extracting...";
-                    await extract(targetPath, {
+                    await extract(
+                        targetPath, {
                         dir: process.platform === "win32" ? path.resolve(path.join(app.getPath('userData'), 'updates'), '..') : path.resolve(__dirname, '..')
-                    });
-                    setTimeout(() => {
+                    }, () => {
                         document.getElementById("updateStatus").innerText = "Extracted, moving to system directory...";
                         updateLogic.moveUpdateFiles();
 
@@ -77,9 +77,7 @@ class UpdateLogic {
                         setTimeout(() => {
                             powerLogic.restart();
                         }, 10000);
-                    }, 10000);
-
-
+                    });
                 } catch (err) { }
             });
         } else {
