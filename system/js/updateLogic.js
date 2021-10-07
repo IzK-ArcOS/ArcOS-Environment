@@ -7,7 +7,7 @@ class UpdateLogic {
 
     async checkForUpdates() {
         if (process.platform === "win32") {
-            let dir = path.join(app.getPath('userData'),'updates');
+            let dir = path.join(app.getPath('userData'), 'updates');
             if (!fs.existsSync(dir))
                 fs.mkdirSync(dir);
         }
@@ -23,7 +23,7 @@ class UpdateLogic {
 
             this.downloadFile(
                 "https://github.com/TWI-ArcOS/ArcOS-Environment/archive/refs/heads/main.zip",
-                path.join(process.platform === "win32" ? path.resolve(path.join(app.getPath('userData'), 'updates'),'..') : path.resolve(__dirname, '..'), "update.zip")
+                path.join(process.platform === "win32" ? path.resolve(path.join(app.getPath('userData'), 'updates'), '..') : path.resolve(__dirname, '..'), "update.zip")
             );
         } else {
             document.getElementById("updateStatus").innerText = "ArcOS is up to date.";
@@ -61,19 +61,23 @@ class UpdateLogic {
             req.on('data', function (chunk) { received_bytes += chunk.length; updateLogic.showProgress(received_bytes, total_bytes); });
             req.on('end', function () {
                 try {
-                    extract(targetPath, {
-                        dir: process.platform === "win32" ? path.resolve(path.join(app.getPath('userData'), 'updates'),'..') : path.resolve(__dirname, '..')
+                    await extract(targetPath, {
+                        dir: process.platform === "win32" ? path.resolve(path.join(app.getPath('userData'), 'updates'), '..') : path.resolve(__dirname, '..')
                     });
 
-                    updateLogic.moveUpdateFiles();
-
-                    document.getElementById("updateStatus").innerText = "Updates downloaded! restarting in 10 seconds...";
-
-                    notificationLogic.notificationService("ArcOS Updater", "ArcOS has installed the updates, and it will restart in 10 seconds.");
-
                     setTimeout(() => {
-                        powerLogic.restart();
-                    }, 10000);
+                        updateLogic.moveUpdateFiles();
+
+                        document.getElementById("updateStatus").innerText = "Updates downloaded! restarting in 10 seconds...";
+
+                        notificationLogic.notificationService("ArcOS Updater", "ArcOS has installed the updates, and it will restart in 10 seconds.");
+
+                        setTimeout(() => {
+                            powerLogic.restart();
+                        }, 10000);
+                    }, 1000);
+
+
                 } catch (err) { }
             });
         } else {
@@ -82,7 +86,7 @@ class UpdateLogic {
     }
 
     async moveUpdateFiles() {
-        let oldPath = path.join(process.platform === "win32" ? path.resolve(path.join(app.getPath('userData'), 'updates'),'..') : path.resolve(__dirname, '..'), 'ArcOS-Environment-main' + path.sep);
+        let oldPath = path.join(process.platform === "win32" ? path.resolve(path.join(app.getPath('userData'), 'updates'), '..') : path.resolve(__dirname, '..'), 'ArcOS-Environment-main' + path.sep);
         let newPath = path.join(__dirname, path.sep);
 
         mergedirs.default(oldPath, newPath, 'overwrite');
