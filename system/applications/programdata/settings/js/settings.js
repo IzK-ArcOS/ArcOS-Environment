@@ -1,4 +1,4 @@
-function switchControlPanelPage(pageFile) {
+async function switchControlPanelPage(pageFile) {
     fs.readFile(pageFile, 'utf8', (error, data) => {
         if (error) {
             errorLogic.sendError(`Unable to open settings applet`, `The settings applet specified is invalid. Please check the path to the applet and try again.<br><br>Details: ` + error)
@@ -21,7 +21,7 @@ function switchControlPanelPage(pageFile) {
     })
 }
 
-function openSettingsPane(name, buttonNode) {
+async function openSettingsPane(name, buttonNode) {
     for (let i = 0; i < document.getElementsByClassName(`controlPanelSidebar`).length; i++) {
         document.getElementsByClassName(`controlPanelSidebar`)[i].classList.remove(`active`);
     }
@@ -51,7 +51,11 @@ function openSettingsPane(name, buttonNode) {
             switchControlPanelPage(path.join(__dirname, `system/applications/programdata/settings/inline/about.inline`));
             break;
         case 'updates':
-            switchControlPanelPage(path.join(__dirname, 'system/applications/programdata/settings/inline/updates.inline'));
+            if (process.platform !== "win32") {
+                await switchControlPanelPage(path.join(__dirname, 'system/applications/programdata/settings/inline/noupdates.inline'));
+            } else {
+                await switchControlPanelPage(path.join(__dirname, 'system/applications/programdata/settings/inline/updates.inline'));
+            }
             break;
     }
     try { buttonNode.classList.add(`active`); } catch {}

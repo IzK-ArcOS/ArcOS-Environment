@@ -12,7 +12,7 @@
         <span class="material-icons right" style="vertical-align: middle;">arrow_forward_ios</span>
     </p>
 </button><br>
-<button class="folder big controlPanel">
+<button class="folder big controlPanel" id="updateMainDiv">
     <p id="updateStatus">Update status unknown</p><hr>
     <p>Update Download Progress:</p>
     <progress id="updateProgressBar" max="100" value="0"></progress>

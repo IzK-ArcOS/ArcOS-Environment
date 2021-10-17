@@ -301,3 +301,14 @@ div.centeredFixed {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+.noDisplay {
+    display: none;
+}
+
+span.material-icons.warning {
+    color: orange;
+    vertical-align: middle;
+    font-size: 20px;
+    margin-right: 5px;
+}
