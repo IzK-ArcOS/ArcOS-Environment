@@ -51,7 +51,7 @@ async function openSettingsPane(name, buttonNode) {
             switchControlPanelPage(path.join(__dirname, `system/applications/programdata/settings/inline/about.inline`));
             break;
         case 'updates':
-            if (process.platform !== "win32") {
+            if (process.platform == "win32") {
                 await switchControlPanelPage(path.join(__dirname, 'system/applications/programdata/settings/inline/noupdates.inline'));
             } else {
                 await switchControlPanelPage(path.join(__dirname, 'system/applications/programdata/settings/inline/updates.inline'));

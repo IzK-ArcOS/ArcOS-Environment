@@ -14,21 +14,21 @@ class ArcTermUserInterface {
     }
 
     clearScreen() {
-        document.getElementById("ArcTermBody").innerHTML = "";
+        ArcTermOutputDiv.innerHTML = "";
     }
 
     output(str, color = "") {
         const elmnt = document.createElement("p");
         elmnt.innerText = str;
         elmnt.style.color = color;
-        document.getElementById("ArcTermBody").append(elmnt);
+        ArcTermOutputDiv.append(elmnt);
     }
 
     outputHTML(str, color = "") {
         const elmnt = document.createElement("p");
         elmnt.innerHTML = str;
         elmnt.style.color = color;
-        document.getElementById("ArcTermBody").append(elmnt);
+        ArcTermOutputDiv.append(elmnt);
     }
 
     evaluateCommand(override = "") {
@@ -118,7 +118,12 @@ class ArcTermUserInterface {
                 cmd.bsod();
                 break;
             case "license":
-                openWithNotepad("./LICENSE");
+                if (!ArcTermOnly) {
+                    openWithNotepad("./LICENSE");
+                } else {
+                    this.outputColor(`[Error]: ArcOS Desktop is not loaded!`);
+                }
+                
                 this.prompt();
                 break;
             case "close":
@@ -199,7 +204,7 @@ class ArcTermUserInterface {
 
         dvdiv.append(input);
 
-        document.getElementById("ArcTermBody").append(dvdiv);
+        ArcTermOutputDiv.append(dvdiv);
 
     }
 
@@ -301,40 +306,44 @@ class ArcTermUserInterface {
     }
 }
 
-function initiateArcTerm() {
-    document.getElementById("ArcTermBody").innerHTML = "";
-    let evalList = new ArcTermUserInterface().evaluateScripts(),
-        continueExec = true;
-    for (var i = 0; i < evalList.length; i++) {
-        if (!evalList[i]) {
-            new ArcTermUserInterface().outputColor(`[Error]: Script at index [${i}] not loaded!`);
-            errorLogic.bsod("ArcTerm Exception",`The ArcTerm system file at index [${i}] couldn't be found.`)
-            continueExec = false;
-        }
-    }
-
-    setTimeout(() => {
-        new ArcTermCommands().intro();
-    }, 100);
-
-    setInterval(() => {
-        if (focusedWindow == "ArcTerm") {
-            new ArcTermUserInterface().focusToInput();
-        }
-    }, 100)
-
-    document.addEventListener("keydown", (e) => {
-        if (!lockScreenActive) {
-            let key = e.key.toLowerCase();
-
-            if (key == "enter") {
-                if (focusedWindow == "ArcTerm") {
-                    new ArcTermUserInterface().evaluateCommand();
-                    e.stopImmediatePropagation();
-                    e.stopPropagation();
-                }
+function initiateArcTerm(target) {
+    if(target) {
+        ArcTermOutputDiv = target;
+        target.innerHTML = "";
+        let evalList = new ArcTermUserInterface().evaluateScripts(),
+            continueExec = true;
+        for (var i = 0; i < evalList.length; i++) {
+            if (!evalList[i]) {
+                new ArcTermUserInterface().outputColor(`[Error]: Script at index [${i}] not loaded!`);
+                errorLogic.bsod("ArcTerm Exception",`The ArcTerm system file at index [${i}] couldn't be found.`)
+                continueExec = false;
             }
         }
-    })
-
+    
+        setTimeout(() => {
+            new ArcTermCommands().intro();
+        }, 100);
+    
+        setInterval(() => {
+            if (focusedWindow == "ArcTerm") {
+                new ArcTermUserInterface().focusToInput();
+            }
+        }, 100)
+    
+        document.addEventListener("keydown", (e) => {
+            if (!lockScreenActive) {
+                let key = e.key.toLowerCase();
+    
+                if (key == "enter") {
+                    if (focusedWindow == "ArcTerm") {
+                        new ArcTermUserInterface().evaluateCommand();
+                        e.stopImmediatePropagation();
+                        e.stopPropagation();
+                    }
+                }
+            }
+        })
+    
+    }
+    
 };

@@ -67,3 +67,14 @@ div.clockSidebar button.selected {
     border-bottom-left-radius: 0;
     color: dodgerblue
 }
+
+#clockPageDateDisp {
+    opacity: 0.5;
+    margin:0;
+    font-weight: 100;
+}
+
+#clockPageTimeDisp {
+    font-size:3em;
+    margin:0px;
+}

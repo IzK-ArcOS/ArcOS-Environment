@@ -2,7 +2,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 class ArcTermCommands {
-    default () {
+    default() {
         new ArcTermUserInterface().outputColor(`[Error]: "${globalCommandList[0]}" was not recognized.`, ``, "var(--red)");
     }
 
@@ -55,7 +55,12 @@ class ArcTermCommands {
     }
 
     logoff() {
-        powerLogic.logoff();
+        if (!ArcTermOnly) {
+            powerLogic.logoff();
+        } else {
+            new ArcTermUserInterface().outputColor(`[Error]: ArcOS Desktop is not loaded!`);
+            new ArcTermUserInterface().prompt();
+        }
     }
 
     dir() {
@@ -263,10 +268,14 @@ class ArcTermCommands {
     }
 
     exit() {
-        new ArcTermUserInterface().outputColor("[█] Now stopping ArcTerm . . .", "", 'var(--green)');
-        document.getElementById(inputId).setAttribute("disabled", "");
-        windowLogic.closewindow(document.getElementById("ArcTerm"));
-        initiateArcTerm();
+        if (!ArcTermOnly) {
+            new ArcTermUserInterface().outputColor("[█] Now stopping ArcTerm . . .", "", 'var(--green)');
+            document.getElementById(inputId).setAttribute("disabled", "");
+            windowLogic.closewindow(document.getElementById("ArcTerm"));
+            initiateArcTerm(ArcTermOutputDiv);
+        } else {
+            window.location.href = "main.html";
+        }
     }
 
     crusr() {
@@ -298,15 +307,18 @@ class ArcTermCommands {
     }
 
     open() {
-        let program = this.getAllCommandArgs(1, false);
+        if (!ArcTermOnly) {
+            let program = this.getAllCommandArgs(1, false);
 
-        if (loadedApps.includes(program) && program) {
-            new ArcTermUserInterface().outputColor(`Program [${program}] opened.`, ``, `var(--blue)`);
-            windowLogic.openWindow(program);
+            if (loadedApps.includes(program) && program) {
+                new ArcTermUserInterface().outputColor(`Program [${program}] opened.`, ``, `var(--blue)`);
+                windowLogic.openWindow(program);
+            } else {
+                new ArcTermUserInterface().outputColor(`[Error]: program not found or entry empty.`);
+            }
         } else {
-            new ArcTermUserInterface().outputColor(`[Error]: program not found or entry empty.`);
+            new ArcTermUserInterface().outputColor(`[Error]: ArcOS Desktop is not loaded!`);
         }
-
         new ArcTermUserInterface().prompt();
     }
 
@@ -322,15 +334,18 @@ class ArcTermCommands {
     }
 
     close() {
-        let program = this.getAllCommandArgs(1, false);
+        if (!ArcTermOnly) {
+            let program = this.getAllCommandArgs(1, false);
 
-        if (activeapps.includes(program) && program) {
-            new ArcTermUserInterface().outputColor(`Program [${program}] closed.`, ``, `var(--blue)`);
-            windowLogic.closewindow(document.getElementById(program));
+            if (activeapps.includes(program) && program) {
+                new ArcTermUserInterface().outputColor(`Program [${program}] closed.`, ``, `var(--blue)`);
+                windowLogic.closewindow(document.getElementById(program));
+            } else {
+                new ArcTermUserInterface().outputColor(`[Error]: program not opnened or entry empty.`);
+            }
         } else {
-            new ArcTermUserInterface().outputColor(`[Error]: program not opnened or entry empty.`);
+            new ArcTermUserInterface().outputColor(`[Error]: ArcOS Desktop is not loaded!`);
         }
-
         new ArcTermUserInterface().prompt();
     }
 
@@ -369,90 +384,121 @@ class ArcTermCommands {
     }
 
     notifications() {
-        if (notificationList.length) {
-            for (let i = 0; i < notificationList.length; i++) {
-                let title = notificationList[i].title,
-                    message = notificationList[i].message;
+        if (!ArcTermOnly) {
+            if (notificationList.length) {
+                for (let i = 0; i < notificationList.length; i++) {
+                    let title = notificationList[i].title,
+                        message = notificationList[i].message;
 
-                new ArcTermUserInterface().outputColor(`[Index ${i} | ${title}]<br>${message}<br><br>`, ``, `var(--yellow)`);
+                    new ArcTermUserInterface().outputColor(`[Index ${i} | ${title}]<br>${message}<br><br>`, ``, `var(--yellow)`);
+                }
+            } else {
+                new ArcTermUserInterface().outputColor(`[NotificationService]: there are no notifications`, ``, `var(--yellow)`);
             }
-        } else {
-            new ArcTermUserInterface().outputColor(`[NotificationService]: there are no notifications`, ``, `var(--yellow)`);
-        }
 
+        } else {
+            new ArcTermUserInterface().outputColor(`[Error]: ArcOS Desktop is not loaded!`);
+        }
         new ArcTermUserInterface().prompt();
     }
 
     delnotification() {
-        let index = parseInt(this.getAllCommandArgs(1));
+        if (!ArcTermOnly) {
+            let index = parseInt(this.getAllCommandArgs(1));
 
-        console.log(`"${index}"`);
-        if (index >= 0 && notificationList[index]) {
-            notificationList.splice(index, 1);
-            new ArcTermUserInterface().outputColor(`[NotificationService]: Notification at index ${index} deleted.`, ``, `var(--yellow)`);
+            console.log(`"${index}"`);
+            if (index >= 0 && notificationList[index]) {
+                notificationList.splice(index, 1);
+                new ArcTermUserInterface().outputColor(`[NotificationService]: Notification at index ${index} deleted.`, ``, `var(--yellow)`);
+            } else {
+                new ArcTermUserInterface().outputColor(`[Error]: The specified index was invalid or there was no notification at the index.`, ``);
+            }
+
         } else {
-            new ArcTermUserInterface().outputColor(`[Error]: The specified index was invalid or there was no notification at the index.`, ``);
+            new ArcTermUserInterface().outputColor(`[Error]: ArcOS Desktop is not loaded!`);
         }
         new ArcTermUserInterface().prompt();
     }
 
     run() {
-        let file = currentDir + "/" + this.getAllCommandArgs(1);
+        if (!ArcTermOnly) {
+            let file = currentDir + "/" + this.getAllCommandArgs(1);
 
-        if (this.isFile(file)) {
-            new ArcTermUserInterface().outputColor(`Opening [${file.replace("\\", "/")}]...`, ``, `var(--yellow)`);
+            if (this.isFile(file)) {
+                new ArcTermUserInterface().outputColor(`Opening [${file.replace("\\", "/")}]...`, ``, `var(--yellow)`);
 
-            fileExplorerOpenFile(file);
+                fileExplorerOpenFile(file);
+            } else {
+                new ArcTermUserInterface().outputColor(`[Error]: The specified file is invalid.`, ``, `var(--red)`);
+            }
         } else {
-            new ArcTermUserInterface().outputColor(`[Error]: The specified file is invalid.`, ``, `var(--red)`);
+            new ArcTermUserInterface().outputColor(`[Error]: ArcOS Desktop is not loaded!`);
         }
         new ArcTermUserInterface().prompt();
 
     }
 
     runwith() {
-        let file = currentDir + "/" + this.getAllCommandArgs(1);
+        if (!ArcTermOnly) {
+            let file = currentDir + "/" + this.getAllCommandArgs(1);
 
-        if (this.isFile(file)) {
-            new ArcTermUserInterface().outputColor(`Opening [Open With] for [${file.replace("\\", "/")}]...`, ``, `var(--yellow)`);
-            openWith(file);
+            if (this.isFile(file)) {
+                new ArcTermUserInterface().outputColor(`Opening [Open With] for [${file.replace("\\", "/")}]...`, ``, `var(--yellow)`);
+                openWith(file);
+            }
+        } else {
+            new ArcTermUserInterface().outputColor(`[Error]: ArcOS Desktop is not loaded!`);
         }
         new ArcTermUserInterface().prompt();
     }
 
     resui() {
-        let shellLoader = document.getElementById("shellLoader");
-        let shellPath = shellLoader.href;
+        if (!ArcTermOnly) {
+            let shellLoader = document.getElementById("shellLoader");
+            let shellPath = shellLoader.href;
 
-        shellLoader.href = "";
-        setTimeout(() => {
-            document.getElementById("shellLoader").href = shellPath;
-        }, 100);
-        new ArcTermUserInterface().outputColor(`[Success]: ArcOS shell has been reloaded.`, ``, `var(--green)`);
+            shellLoader.href = "";
+            setTimeout(() => {
+                document.getElementById("shellLoader").href = shellPath;
+            }, 100);
+            new ArcTermUserInterface().outputColor(`[Success]: ArcOS shell has been reloaded.`, ``, `var(--green)`);
+        } else {
+            new ArcTermUserInterface().outputColor(`[Error]: ArcOS Desktop is not loaded!`);
+        }
         new ArcTermUserInterface().prompt();
+
     }
 
     openapps() {
-        new ArcTermUserInterface().outputColor(`List of [active] applications:`, ``, `var(--yellow)`);
-        for (let i = 0; i < activeapps.length; i++) {
-            new ArcTermUserInterface().outputColor(`[${i.toString().padEnd(3, ' ')}] ${activeapps[i]}`, ``, `var(--yellow)`, true);
+        if (!ArcTermOnly) {
+            new ArcTermUserInterface().outputColor(`List of [active] applications:`, ``, `var(--yellow)`);
+            for (let i = 0; i < activeapps.length; i++) {
+                new ArcTermUserInterface().outputColor(`[${i.toString().padEnd(3, ' ')}] ${activeapps[i]}`, ``, `var(--yellow)`, true);
+            }
+        } else {
+            new ArcTermUserInterface().outputColor(`[Error]: ArcOS Desktop is not loaded!`);
         }
         new ArcTermUserInterface().prompt();
     }
 
     lock() {
-        let userData = getCurrentUserData();
+        if (!ArcTermOnly) {
+            let userData = getCurrentUserData();
 
-        if (userData.pswd) {
-            document.getElementById("lockScreenUsername").innerText = args.get("username");
-            document.getElementsByClassName("lockScreen")[0].classList.remove("hidden");
-            lockScreenActive = true;
-            new consoleNotifier().notifyStartService("powerLogic.lock: locked ArcOS Desktop")
-            new ArcTermUserInterface().outputColor(`[Lock]: ArcOS Desktop is now locked.`, ``, `var(--yellow)`);
+            if (userData.pswd) {
+                document.getElementById("lockScreenUsername").innerText = args.get("username");
+                document.getElementsByClassName("lockScreen")[0].classList.remove("hidden");
+                lockScreenActive = true;
+                new consoleNotifier().notifyStartService("powerLogic.lock: locked ArcOS Desktop")
+                new ArcTermUserInterface().outputColor(`[Lock]: ArcOS Desktop is now locked.`, ``, `var(--yellow)`);
+            } else {
+                new ArcTermUserInterface().outputColor(`[Error]: Unable to lock: user account doesn't have a password.`);
+            }
+
+
         } else {
-            new ArcTermUserInterface().outputColor(`[Error]: Unable to lock: user account doesn't have a password.`);
+            new ArcTermUserInterface().outputColor(`[Error]: ArcOS Desktop is not loaded!`);
         }
-
         new ArcTermUserInterface().prompt();
     }
 
@@ -487,20 +533,25 @@ class ArcTermCommands {
     }
 
     swapusr() {
-        let username = this.getAllCommandArgs(1);
-        if (localStorage.getItem(username)) {
-            let userData = JSON.parse(localStorage.getItem(username));
-            if (!userData.pswd) {
-                new ArcTermUserInterface().outputColor(`[Swap User]: Swapping to user account [${username}]...`, ``, `var(--blue)`);
-                setTimeout(() => {
-                    hotSwapUserAccount(username);
-                }, 2000);
+        if (!ArcTermOnly) {
+            let username = this.getAllCommandArgs(1);
+            if (localStorage.getItem(username)) {
+                let userData = JSON.parse(localStorage.getItem(username));
+                if (!userData.pswd) {
+                    new ArcTermUserInterface().outputColor(`[Swap User]: Swapping to user account [${username}]...`, ``, `var(--blue)`);
+                    setTimeout(() => {
+                        hotSwapUserAccount(username);
+                    }, 2000);
+                } else {
+                    new ArcTermUserInterface().outputColor(`[Error]: Requested user account is password-protected.`);
+                }
             } else {
-                new ArcTermUserInterface().outputColor(`[Error]: Requested user account is password-protected.`);
+                new ArcTermUserInterface().outputColor(`[Error]: Requested user account doesn't exist.`);
             }
         } else {
-            new ArcTermUserInterface().outputColor(`[Error]: Requested user account doesn't exist.`);
+            new ArcTermUserInterface().outputColor(`[Error]: ArcOS Desktop is not loaded!`);
         }
+        new ArcTermUserInterface().prompt();
     }
 
     arcutil() {

@@ -73,7 +73,9 @@ let args = new URLSearchParams(window.location.search),
     notificationList = [],
     oldNotificationList = [],
     mediaPlayerInterval = null,
-    lockScreenActive = false;
+    lockScreenActive = false,
+    ArcTermOnly = false,
+    ArcTermOutputDiv = null;
 
 
 try {

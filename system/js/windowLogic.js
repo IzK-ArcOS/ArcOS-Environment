@@ -45,7 +45,7 @@ class WindowLogic {
         win = document.getElementById(win);
         if (win) {
             if (!activeapps.includes(win.id)) {
-                if (win.id === "ArcTerm") initiateArcTerm();
+                if (win.id === "ArcTerm") initiateArcTerm(document.getElementById("ArcTermBody"));
                 win.style.visibility = "visible";
                 win.style.display = "";
                 setTimeout(() => {
@@ -144,7 +144,7 @@ class WindowLogic {
         } catch (e) {}
     }
 
-    loadWindow(appFile, userImport = 0, register = 1) {
+    async loadWindow(appFile, userImport = 0, register = 1) {
         new consoleNotifier().notifyLoadApp(appFile);
         let x = fetch(appFile).then(response => response.text()).then(text => {
 

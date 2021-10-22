@@ -3,7 +3,7 @@ new consoleNotifier().startModule("ArcOS.System.powerLogic");
 class PowerLogic {
 
     shutdown() {
-
+        if (ArcTermOnly) window.close();
         new consoleNotifier().notifyStartService("PowerLogic.shutdown");
 
         document.getElementsByClassName("block")[0].style.visibility = "visible";
@@ -12,7 +12,7 @@ class PowerLogic {
     }
 
     logoff() {
-
+        if (ArcTermOnly) window.location.href = "log.html";
         new consoleNotifier().notifyStartService("PowerLogic.logoff");
 
         document.getElementsByClassName("block")[0].style.visibility = "visible";
@@ -21,7 +21,7 @@ class PowerLogic {
     }
 
     restart() {
-
+        if (ArcTermOnly) window.location.href = "main.html";
         new consoleNotifier().notifyStartService("PowerLogic.restart");
 
         document.getElementsByClassName("block")[0].style.visibility = "visible";
@@ -31,7 +31,7 @@ class PowerLogic {
 
 
     fts() {
-
+        if (ArcTermOnly) window.location.href = "firsttimesetup.html";
         new consoleNotifier().notifyStartService("PowerLogic.fts");
 
         document.getElementsByClassName("block")[0].style.visibility = "visible";

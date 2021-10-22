@@ -1,7 +1,9 @@
 <div class="centeredFixed">
     <center>
-        <h1><img src="./system/images/Clock.svg" style="margin-right: 10px;vertical-align: middle;" height="40px"><span
-                style="vertical-align: middle;">Clock</span></h1>
+        <h1>
+            <img src="./system/images/Clock.svg" style="margin-right: 10px;vertical-align: middle;" height="40px">
+            <span style="vertical-align: middle;">Clock</span>
+        </h1>
         <button class="transparent" onclick="clockSwitchPage('timer',1);">
             <span class="material-icons">hourglass_bottom</span><br>
             Timer

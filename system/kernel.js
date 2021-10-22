@@ -4,11 +4,12 @@
 // 0 - Start at the bootscreen (main.html)                         //
 // 1 - Start at the login (login.html)                            //
 // 2 - Start at the ArcOS Desktop (ArcOS.html)                   //
-//////////////////////////////////////////////////////////////////
+// 3 - Start in the ArcTerm-only mode                           //
+/////////////////////////////////////////////////////////////////
 let start = 0;
 
 let win;
-let { app, BrowserWindow, webContents } = require('electron')
+let { app, BrowserWindow, webContents } = require('electron');
 
 if (!app.requestSingleInstanceLock()) {
     app.quit();
@@ -16,32 +17,36 @@ if (!app.requestSingleInstanceLock()) {
 
     app.on("ready", () => {
 
-        let { globalShortcut } = require('electron')
-
-
+        let { globalShortcut } = require('electron');
 
         globalShortcut.register("Alt+Enter", () => {
-            if (BrowserWindow.getFocusedWindow().fullScreen == true) {
-                BrowserWindow.getFocusedWindow().fullScreen = false;
-            } else {
-                BrowserWindow.getFocusedWindow().fullScreen = true;
+            if (win.isFocused()) {
+                if (BrowserWindow.getFocusedWindow().fullScreen == true) {
+                    BrowserWindow.getFocusedWindow().fullScreen = false;
+                } else {
+                    BrowserWindow.getFocusedWindow().fullScreen = true;
+                }
             }
         })
 
         globalShortcut.register('Control+Shift+I', () => {
-            win.toggleDevTools();
-        })
-        globalShortcut.register("F4", () => {
-            return false;
+            if (win.isFocused()) {
+                win.toggleDevTools();
+            }
         })
 
         globalShortcut.register("Control+Alt+Shift+R", () => {
-            win.loadFile("main.html")
+            if (win.isFocused()) {
+                loadStartPage();
+            }
         })
 
         globalShortcut.register("Control+R", () => {
-            win.webContents.reload();
+            if (win.isFocused()) {
+                win.webContents.reload();
+            }
         })
+
         win = new BrowserWindow({
             width: 800,
             height: 600,
@@ -56,7 +61,7 @@ if (!app.requestSingleInstanceLock()) {
                 devTools: true
             },
             backgroundColor: "#000",
-        })
+        });
 
         win.removeMenu();
 
@@ -80,6 +85,9 @@ if (!app.requestSingleInstanceLock()) {
                 break;
             case 2:
                 win.loadFile("arcos.html");
+                break;
+            case 3:
+                win.loadFile("arcterm.html");
                 break;
         }
     }

@@ -15,7 +15,7 @@ function clockSwitchPage(index, buttonIndex = 0) {
                 }
 
                 target.innerHTML = data;
-                
+
                 sideBarButtons[buttonIndex].classList.add(selectedClass);
             } else {
                 errorLogic.sendError("Clock Error", "Unable to switch the clock page, the file was not found or is invalid.");
@@ -46,3 +46,27 @@ let clockPages = {
 }
 
 let clockCurrentPage = '';
+
+setInterval(() => {
+    if (clockCurrentPage) {
+        switch (clockCurrentPage) {
+            case "clock":
+                updateClockPage();
+        }
+    }
+}, 100);
+
+function updateClockPage() {
+    let clockPageTimeDisp = document.getElementById("clockPageTimeDisp");
+    let clockPageDateDisp = document.getElementById("clockPageDateDisp");
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, '0');
+    let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    let yyyy = today.getFullYear();
+    let hour = today.getHours().toString();
+    let minute = today.getMinutes().toString();
+    let second = today.getSeconds().toString();
+
+    clockPageTimeDisp.innerText = `${hour.padStart(2,'0')}:${minute.padStart(2,'0')}:${second.padStart(2,'0')}`;
+    clockPageDateDisp.innerText = `${mm}/${dd}/${yyyy}`;
+}

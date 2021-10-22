@@ -45,6 +45,10 @@
                     localStorage.clear();
                     document.getElementById("statusText").innerHTML = "Resetting ArcOS"
                 }
+
+                if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'a') {
+                    window.location.href = "arcterm.html";
+                }
             });
         }
     </script>
