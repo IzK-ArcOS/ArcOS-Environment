@@ -307,7 +307,7 @@ class ArcTermUserInterface {
 }
 
 function initiateArcTerm(target) {
-    if(target) {
+    if(target && target instanceof Element) {
         ArcTermOutputDiv = target;
         target.innerHTML = "";
         let evalList = new ArcTermUserInterface().evaluateScripts(),
@@ -344,6 +344,7 @@ function initiateArcTerm(target) {
             }
         })
     
+    } else {
+        throw `ArcTermError: expected type "element" but got "${typeof target}"`;
     }
-    
 };

@@ -55,12 +55,10 @@ class ArcTermCommands {
     }
 
     logoff() {
-        if (!ArcTermOnly) {
-            powerLogic.logoff();
-        } else {
-            new ArcTermUserInterface().outputColor(`[Error]: ArcOS Desktop is not loaded!`);
-            new ArcTermUserInterface().prompt();
-        }
+        new ArcTermUserInterface().outputColor("[Note]: redirecting to login in 5 seconds...",``,`var(--orange)`);
+        setTimeout(() => {
+            powerLogic.logoff();            
+        }, 5000);
     }
 
     dir() {

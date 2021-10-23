@@ -30,32 +30,32 @@
         <script src="system/applications/programdata/ArcTerm/js/etc.js"></script>
         <script src="system/applications/programdata/ArcTerm/js/ui.js"></script>
         <script src="system/applications/programdata/ArcTerm/js/env.js"></script>
-        
+
     </config>
-    
+
     <script>
         // Initiate ArcTerm
         initiateArcTerm(document.body);
 
-new ArcTermUserInterface().outputColor("[ArcOS]: Normal startup interrupted<br><br>",``,`var(--aqua)`);
+        new ArcTermUserInterface().outputColor("[ArcOS]: Normal startup interrupted<br><br>", ``, `var(--aqua)`);
 
         // Define the event listeners
         new ArcTermUserInterface().defineDOMHooks();
 
         // Create a temporary user account to enable Admin rights
         focusedWindow = "ArcTerm";
-        createUserData("ArcTerm",true,false);
-        setAdmin("ArcTerm",true);
-        args.set("username","ArcTerm");
+        createUserData("ArcTerm", true, false);
+        setAdmin("ArcTerm", true);
+        args.set("username", "ArcTerm");
 
         // Enable the ArcTermOnly mode
         ArcTermOnly = true;
 
         // Notify that ArcTermOnly mode is enabled
-        new ArcTermUserInterface().outputColor("[=== ArcOS System ===] <br>You are running ArcOS in 'ArcTermOnly' mode.<br>This means that you are not logged in as any account,<br>and that the ArcOS Desktop is disabled.<br><br>",``,`var(--yellow)`);
+        new ArcTermUserInterface().outputColor("[=== ArcOS System ===] <br>You are running ArcOS in 'ArcTermOnly' mode.<br>This means that you are not logged in as any account,<br>and that the ArcOS Desktop is disabled.<br><br>", ``, `var(--yellow)`);
 
-        onbeforeunload = function() {
-            deleteUserData("ArcTerm",false,true);
+        onbeforeunload = function () {
+            deleteUserData("ArcTerm", false, true);
         }
     </script>
 </head>

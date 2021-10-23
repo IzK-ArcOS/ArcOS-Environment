@@ -262,7 +262,7 @@ function hotSwapUserAccount(username) {
                 onloadLogic.setTaskbarButtonLocation();
 
                 openSettingsPane("home", document.getElementsByClassName("controlPanelSidebar")[0]);
-                initiateArcTerm();
+                initiateArcTerm(ArcTermOutputDiv);
 
                 notifications = [];
                 oldNotificationsList = [];

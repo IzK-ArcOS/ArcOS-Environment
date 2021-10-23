@@ -53,7 +53,7 @@ class PersonalizationLogic {
         } else {
             userData.enableAnimations = false;
             localStorage.setItem(args.get("username"), JSON.stringify(userData));
-            document.getElementById("animationsAddonLoader").href = "system/css/noanimations.css";
+            document.getElementById("animationsAddonLoader").href = "system/css/noAnimations.css";
         }
     }
 

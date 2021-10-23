@@ -12,7 +12,7 @@ class PowerLogic {
     }
 
     logoff() {
-        if (ArcTermOnly) window.location.href = "log.html";
+        if (ArcTermOnly) window.location.href = "login.html";
         new consoleNotifier().notifyStartService("PowerLogic.logoff");
 
         document.getElementsByClassName("block")[0].style.visibility = "visible";
@@ -39,7 +39,7 @@ class PowerLogic {
         setTimeout(() => { window.location.href = 'firsttimesetup.html'; }, 1000);
     }
 
-    lock() {
+    lock() {    
         let userData = getCurrentUserData();
 
         if (userData.pswd) {
