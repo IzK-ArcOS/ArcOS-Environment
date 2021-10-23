@@ -14,13 +14,15 @@
 
 * {
     background-color: var(--bg);
-    color:var(--fg);
-    font-family: 'Ubuntu Mono',monospace;
-    border:none;
-    outline:none !important;
-    margin:0px;
-    padding:0px;
-    font-size:1em;
+    color: var(--fg);
+    font-family: 'Ubuntu Mono', monospace;
+    border: none;
+    outline: none !important;
+    margin: 0px;
+    padding: 0px;
+    font-size: 1em;
+    user-select: none !important;
+    cursor: none;
 }
 
 body {
@@ -28,7 +30,7 @@ body {
 }
 
 ::-webkit-scrollbar {
-    display:none;
+    display: none;
 }
 
 span.material-icons {
@@ -36,10 +38,14 @@ span.material-icons {
     margin: 0px;
     padding: 0px;
     font-size: calc(var(--fontSize) - 4px);
-    color: var(--color);
+    color: var(--gray);
     font-family: 'Material Icons';
 }
 
-clspan.material-icons.folder {
-    color: var(--yellow)
+span.material-icons.folder {
+    color: var(--orange);
+}
+
+input {
+    width: calc(100% - 2em);
 }
