@@ -280,6 +280,14 @@ class WindowLogic {
             }
         }
     }
+
+    loadJSFile(file) {
+        let x = document.createElement("script");
+        x.async = true;
+        x.src = file;
+
+        document.body.append(x);
+    }
 }
 
 let windowLogic = new WindowLogic();

@@ -47,3 +47,4 @@
 </div>
 
 <link rel="stylesheet" href="./system/applications/newsettings.css">
+<script src="./system/applications/programdata/settings/js/settings.js" async></script>

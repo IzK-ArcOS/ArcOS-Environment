@@ -271,8 +271,20 @@ class OnloadLogic {
     }
 
     loadDefaultApps() {
+        /**Application Script Loading */
+        windowLogic.loadJSFile("system/applications/programdata/Open With/JS/openWith.js");
+        windowLogic.loadJSFile("system/applications/programdata/File Manager/JS/fileexplorer.js");
+        windowLogic.loadJSFile("system/applications/programdata/Calculator/js/calculator.js");
+        windowLogic.loadJSFile("system/applications/programdata/Notepad/js/notepadFileLogic.js");
+        windowLogic.loadJSFile("system/applications/programdata/User Settings/js/userSettings.js");
+        windowLogic.loadJSFile("system/applications/programdata/Image Viewer/JS/imageViewer.js");
+        windowLogic.loadJSFile("system/applications/programdata/App Manager/JS/appManager.js");
+        windowLogic.loadJSFile("system/applications/programdata/settings/js/settings.js");
+        windowLogic.loadJSFile("system/applications/programdata/Media Player/JS/mediaplayer.js");
+        windowLogic.loadJSFile("system/applications/programdata/Clock/JS/clock.js");
         windowLogic.loadWindow("./system/applications/newUserInterface.app", 1, 0);
         setTimeout(() => {
+            /**Application Files Loading */
             windowLogic.loadWindow("./system/applications/calculator.app", 1);
             windowLogic.loadWindow("./system/applications/shutdown.app", 1);
             windowLogic.loadWindow("./system/applications/runCommand.app", 1);
@@ -315,7 +327,7 @@ class OnloadLogic {
     loadSafemodeDependingFunctions() {
         getDriveLetters();
         hideStart();
-        openSettingsPane("home", document.getElementsByClassName("controlPanelSidebar")[0]);
+        //openSettingsPane("home", document.getElementsByClassName("controlPanelSidebar")[0]);
         setToolbarTrigger();
         populateAppManager();
         startUserDataUpdateCycle();

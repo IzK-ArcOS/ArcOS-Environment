@@ -55,9 +55,9 @@ class ArcTermCommands {
     }
 
     logoff() {
-        new ArcTermUserInterface().outputColor("[Note]: redirecting to login in 5 seconds...",``,`var(--orange)`);
+        new ArcTermUserInterface().outputColor("[Note]: redirecting to login in 5 seconds...", ``, `var(--orange)`);
         setTimeout(() => {
-            powerLogic.logoff();            
+            powerLogic.logoff();
         }, 5000);
     }
 
@@ -156,6 +156,7 @@ class ArcTermCommands {
             } else {
                 new ArcTermUserInterface().outputColor(`Reading file: [${file}]<br><br><hr>`, ``, `var(--blue)`);
                 new ArcTermUserInterface().outputHTML(data);
+                ArcTermOutputDiv.children[ArcTermOutputDiv.children.length - 1].style.whiteSpace = "pre";
                 new ArcTermUserInterface().outputHTML(`<br><hr>`);
                 new ArcTermUserInterface().prompt();
             }
@@ -199,7 +200,6 @@ class ArcTermCommands {
     ls() {
         new ArcTermUserInterface().outputColor("Showing contents of [localStorage]<br><br>", ``, `var(--blue)`);
         for (let i = 0; i < localStorage.length; i++) {
-            console.log(localStorage.key(i), isUser(localStorage.key(i)));
             if (!isUser(localStorage.key(i))) {
                 new ArcTermUserInterface().outputColor(`[${localStorage.key(i)}]: ${localStorage.getItem(localStorage.key(i))}`, ``, `var(--yellow)`);
             }

@@ -222,7 +222,6 @@ class ArcTermUserInterface {
         });
 
         document.addEventListener("keydown", (e) => {
-            console.log(e.key);
             if (e.key === "Enter") {
                 new ArcTermUserInterface().evaluateCommand();
             }
