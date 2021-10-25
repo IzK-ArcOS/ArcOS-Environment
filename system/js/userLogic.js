@@ -386,7 +386,8 @@ const userTemplate = {
     profilePicture: null,
     isAdmin: false,
     smallStart: false,
-    centeredTaskbarButtons: false
+    centeredTaskbarButtons: false,
+    customThemeColor: ""
 };
 
 function getCurrentUserData() {

@@ -7,21 +7,22 @@ async function switchControlPanelPage(pageFile) {
             controlPanelContent.classList.add("slide-out-right");
             setTimeout(() => {
                 controlPanelContent.innerHTML = data;    
+                try {
+                    let userData = getCurrentUserData();
+    
+                    document.getElementById("preferencesAnimationsSwitch").checked = userData.enableAnimations;
+                    document.getElementById("preferencesTaskbarButtonLabelsSwitch").checked = !userData.noTaskbarButtonLabels;
+                    document.getElementById("preferencesTitlebarButtonsSwitch").checked = userData.titlebarButtonsLeft;
+                    document.getElementById("preferencesSmallStartSwitch").checked = userData.smallStart;
+                    document.getElementById("preferencesCenteredTaskbarButtonsSwitch").checked = userData.centeredTaskbarButtons;
+    
+                    onloadLogic.loadTitlebarButtonPos();
+                    onloadLogic.setStartMenuSize();
+                    onloadLogic.setTaskbarButtonLocation();
+                } catch (e) {}
                 controlPanelContent.classList.remove("slide-out-right");
-            }, 700);
-            try {
-                let userData = getCurrentUserData();
+            }, getCurrentUserData().enableAnimations ? 700 : 0);
 
-                document.getElementById("preferencesAnimationsSwitch").checked = userData.enableAnimations;
-                document.getElementById("preferencesTaskbarButtonLabelsSwitch").checked = !userData.noTaskbarButtonLabels;
-                document.getElementById("preferencesTitlebarButtonsSwitch").checked = userData.titlebarButtonsLeft;
-                document.getElementById("preferencesSmallStartSwitch").checked = userData.smallStart;
-                document.getElementById("preferencesCenteredTaskbarButtonsSwitch").checked = userData.centeredTaskbarButtons;
-
-                onloadLogic.loadTitlebarButtonPos();
-                onloadLogic.setStartMenuSize();
-                onloadLogic.setTaskbarButtonLocation();
-            } catch (e) {}
         }
     })
 }

@@ -167,6 +167,32 @@ class PersonalizationLogic {
             document.getElementById("taskbarButtons").classList.remove("center");
         }
     }
+
+    startCustomColorInterval() {
+        setInterval(() => {
+            let userData = getCurrentUserData();
+
+            if (userData.customThemeColor) {
+                document.documentElement.style.setProperty('--controlPanelMainBackgroundColor', userData.customThemeColor);
+            } else {
+                document.documentElement.style.setProperty('--controlPanelMainBackgroundColor', '');
+            }
+        }, 100);
+    }
+
+    setCustomThemeColor() {
+        let color = document.getElementById("preferencesCustomThemeColorInputField");
+        let uData = getCurrentUserData();
+
+        if (color.value) {
+            uData.customThemeColor = color.value;
+        } else {
+            errorLogic.sendError("Custom color reset","The entered color value was invalid, so it was reset to default");
+            uData.customThemeColor = "";
+        }
+
+        localStorage.setItem(args.get("username"), JSON.stringify(uData));
+    }
 }
 
 let personalizationLogic = new PersonalizationLogic();

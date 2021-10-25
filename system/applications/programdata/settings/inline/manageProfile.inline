@@ -18,7 +18,7 @@
         onclick="changeUserDataName(args.get('username'),document.getElementById('changeUsernameInputField').value,true,true);processNewUsername();"
         class="folder big controlPanel">
         <p>Change Username<span class="material-icons right">arrow_forward_ios</span></p>
-    </button>
+    </button><br>
     <button class="folder big controlPanel" id="noUpdatesOnWindowsStatus">
         <p>
             <span class="material-icons warning">warning</span>

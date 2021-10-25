@@ -331,6 +331,7 @@ class OnloadLogic {
         notificationLogic.startNotificationCenterPopulator();
         personalizationLogic.setTitlebarButtonLocations(false, false)
         personalizationLogic.setAnimations(false);
+        personalizationLogic.startCustomColorInterval();
         generalLogic.updateDesktopIcons();
 
         this.setStartMenuSize();

@@ -156,7 +156,7 @@ div.controlPanelMainFrame>h1 {
 }
 
 button.controlPanelSidebar {
-    background-color: transparent;
+    background-color: transparent !important;
     color: var(--windowColor);
     margin: 10px 0;
     text-align: left;
