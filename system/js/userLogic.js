@@ -392,3 +392,10 @@ const userTemplate = {
 function getCurrentUserData() {
     return JSON.parse(localStorage.getItem(args.get("username")));
 }
+
+function processNewUsername() {
+    onloadLogic.showBlock();
+    setTimeout(() => {
+        window.location.href = `arcos.html?username=${args.get("username")}`
+    }, 1000);
+}

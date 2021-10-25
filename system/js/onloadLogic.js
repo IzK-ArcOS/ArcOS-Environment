@@ -3,17 +3,9 @@ new consoleNotifier().startModule("ArcOS.System.onloadLogic");
 
 
 onload = function () {
-    setInterval(() => {
-        if (this.localStorage.getItem("safeMode") != "1") {
-            let usrEnabled = getCurrentUserData();
-            if (!usrEnabled || !usrEnabled.enabled) {
-                errorLogic.bsod("OnloadLogic.onloadSetIntervals: USR_DATA_MISSING", "The user data corrupted while the session was running.");
-            }
-        }
-    }, 5);
-
     onloadLogic.startTime();
     onloadLogic.loadDefaultApps();
+
     setTimeout(() => {
         initiateArcTerm(document.getElementById("ArcTermBody"));
         clockSwitchPage("home", 0);
@@ -307,7 +299,7 @@ class OnloadLogic {
             windowLogic.loadWindow("./system/applications/ArcTerm.app", 1);
             windowLogic.loadWindow("./system/applications/musicPlayer.app", 1, 0);
             windowLogic.loadWindow("./system/applications/lockScreen.app", 1, 0);
-            windowLogic.loadWindow("./system/applications/clock.app", 0, 0)
+            windowLogic.loadWindow("./system/applications/clock.app", 1, 0)
         }, 100);
     }
 
