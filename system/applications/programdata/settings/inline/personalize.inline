@@ -1,3 +1,4 @@
+<div class="slide-in-left">
 <h2
     style="margin:0px;margin-bottom:10px;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-weight: 100;margin:0px;">
     Personalization</h2><br>
@@ -57,3 +58,4 @@
         onclick="personalizationLogic.setTitlebarButtonLocations(true);">
     <label for="preferencesTitlebarButtonsSwitch">Titlebar buttons on the left side</label>
 </button>
+</div>

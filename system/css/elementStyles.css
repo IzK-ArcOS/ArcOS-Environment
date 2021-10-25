@@ -15,22 +15,19 @@ button:active {
     background-color: var(--buttonBackgroundColorActive);
 }
 
-.taskbarButtons>button:not(.startButton),
-.taskbar>button:not(.startButton) {
+.taskbarButtons>button:not(.startButton), .taskbar>button:not(.startButton) {
     border-radius: 0px;
     min-width: unset;
     background-color: transparent;
 }
 
-.taskbarButtons>button:hover:not(.startButton),
-.taskbar>button:hover:not(.startButton) {
+.taskbarButtons>button:hover:not(.startButton), .taskbar>button:hover:not(.startButton) {
     border-radius: 0px;
     min-width: unset;
     background-color: var(--taskbarAppButtonBackgroundColor);
 }
 
-.taskbarButtons>button:active:not(.startButton),
-.taskbar>button:hover:not(.startButton) {
+.taskbarButtons>button:active:not(.startButton), .taskbar>button:hover:not(.startButton) {
     border-radius: 0px;
     min-width: unset;
     background-color: transparent;
@@ -64,7 +61,6 @@ div#taskbarButtons.center {
     cursor: default;
 }
 
-
 /* Handle */
 
 .taskbarButtons>::-webkit-scrollbar-thumb {
@@ -72,7 +68,6 @@ div#taskbarButtons.center {
     transition: none;
     cursor: default;
 }
-
 
 /* Handle on hover */
 
@@ -123,10 +118,7 @@ div.clockWidget {
     z-index: 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000002;
 }
 
-div.clockWidget>h1,
-h2,
-h3,
-h4 {
+div.clockWidget>h1, h2, h3, h4 {
     color: var(--windowColor);
 }
 
@@ -175,8 +167,7 @@ a {
     transition: color 0.25s;
 }
 
-a:hover,
-a:active {
+a:hover, a:active {
     color: var(--linkColorHover);
 }
 
@@ -311,4 +302,36 @@ span.material-icons.warning {
     vertical-align: middle;
     font-size: 20px;
     margin-right: 5px;
+}
+
+.slide-in-left {
+    animation: slide-in-left forwards;
+    animation-duration: 0.7s;
+}
+
+.slide-out-right {
+    animation: slide-out-right forwards;
+    animation-duration: 0.7s;
+}
+
+@keyframes slide-in-left {
+    from {
+        opacity: 0;
+        margin-left: -20px;
+    }
+    to {
+        opacity: unset;
+        margin-left: initial;
+    }
+}
+
+@keyframes slide-out-right {
+    from {
+        opacity: 1;
+        margin-left: 0;
+    }
+    to {
+        opacity: 0;
+        margin-left: 20px;
+    }
 }

@@ -1,4 +1,4 @@
-<div style="position: absolute;left:0px;width:100%;padding:30px;padding-top:0px;">
+<div class="slide-in-left" style="position: absolute;left:0px;width:100%;padding:30px;padding-top:0px;">
     <h2
         style="margin:0px;margin-bottom:10px;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-weight: 100;margin:0px;">
         <a style="padding-left:-10px;"
@@ -10,8 +10,8 @@
     </h2><br>
 
 </div>
-<p style="margin-top:40px;">Enter the <b>relative</b> path below to load that application.</p>
-<table>
+<p class="slide-in-left" style="margin-top:40px;">Enter the <b>relative</b> path below to load that application.</p>
+<table class="slide-in-left">
     <tr>
         <td>
             <button

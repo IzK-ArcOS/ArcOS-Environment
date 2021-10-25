@@ -1,9 +1,14 @@
 async function switchControlPanelPage(pageFile) {
+    let controlPanelContent = document.getElementById("controlPanelContent");
     fs.readFile(pageFile, 'utf8', (error, data) => {
         if (error) {
             errorLogic.sendError(`Unable to open settings applet`, `The settings applet specified is invalid. Please check the path to the applet and try again.<br><br>Details: ` + error)
         } else {
-            document.getElementById(`controlPanelContent`).innerHTML = data;
+            controlPanelContent.classList.add("slide-out-right");
+            setTimeout(() => {
+                controlPanelContent.innerHTML = data;    
+                controlPanelContent.classList.remove("slide-out-right");
+            }, 700);
             try {
                 let userData = getCurrentUserData();
 

@@ -1,15 +1,19 @@
-<div class="controlPanelUserSettingsHeader">
-    <h2 style="margin:0px;margin-bottom:10px;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-weight: 100;margin:0px;">
-        User Settings</h2><br>
-    <img src="./system/images/user.png" height="100px" style="border-radius: 13px;" onclick="windowLogic.openWindow('Change Profile Picture');" id="userSettingsProfilePicture"><br>
+<div class="controlPanelUserSettingsHeader slide-in-left">
+        <h2
+            style=" margin:0px;margin-bottom:10px;font-family: 'Segoe UI' , Tahoma, Geneva, Verdana,
+    sans-serif;font-weight: 100;margin:0px;">
+    User Settings</h2><br>
+    <img src="./system/images/user.png" height="100px" style="border-radius: 13px;"
+        onclick="windowLogic.openWindow('Change Profile Picture');" id="userSettingsProfilePicture"><br>
 
 </div>
-<div style="position: absolute;left:140px;padding:30px;padding:5px;margin-top:20px;">
-    <h1 style="vertical-align: middle;margin-bottom:5px;"><span id="usernameDisplay" style="vertical-align: bottom;"></span></h1>
+<div class="slide-in-left" style="position: absolute;left:140px;padding:30px;padding:5px;margin-top:20px;">
+    <h1 style="vertical-align: middle;margin-bottom:5px;"><span id="usernameDisplay"
+            style="vertical-align: bottom;"></span></h1>
     <p style="margin:0px;">Local Account</p>
     <p style="margin:0px;" id="userSettingsPasswordStatusDisplay">Retrieving...</p>
 </div>
-<div style="margin-top:170px">
+<div style="margin-top:170px" class="slide-in-left">
     <button class="folder big controlPanel" onclick="openSettingsPane('profpicsel',null)">
         <p>
             Change Profile Picture
