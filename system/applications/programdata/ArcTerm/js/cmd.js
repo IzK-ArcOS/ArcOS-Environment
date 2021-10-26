@@ -155,7 +155,7 @@ class ArcTermCommands {
                 new ArcTermUserInterface().prompt();
             } else {
                 new ArcTermUserInterface().outputColor(`Reading file: [${file}]<br><br><hr>`, ``, `var(--blue)`);
-                new ArcTermUserInterface().outputHTML(data);
+                new ArcTermUserInterface().output(data);
                 ArcTermOutputDiv.children[ArcTermOutputDiv.children.length - 1].style.whiteSpace = "pre";
                 new ArcTermUserInterface().outputHTML(`<br><hr>`);
                 new ArcTermUserInterface().prompt();
