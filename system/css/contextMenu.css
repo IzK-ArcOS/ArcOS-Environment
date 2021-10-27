@@ -10,6 +10,7 @@
     z-index: 1000000003;
     display: block;
     padding-right: 5px;
+    min-width:200px;
 }
 
 .context-menu ul {
@@ -30,6 +31,8 @@
     background-color: transparent;
     transition: var(--buttonTransition);
     margin: 0px;
+    padding-left: 10px;
+    color: var(--windowColor)
 }
 
 .context-menu ul li a {

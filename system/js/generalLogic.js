@@ -11,29 +11,6 @@ class GeneralLogic {
         windowLogic.loadWindow(document.getElementById("addAppInputField").value, open, open);
     }
 
-    updateDesktopIcons() {
-
-        if (localStorage.getItem("safeMode") != "1") {
-            let elmnt = document.getElementById("showDesktopIconsSwitch").checked;
-
-            if (elmnt) {
-                document.getElementById("desktopIcons").style.visibility = "visible";
-
-                let userData = getCurrentUserData();
-                userData.showDesktopIcons = 1;
-
-                localStorage.setItem(args.get("username"), JSON.stringify(userData));
-
-            } else {
-                document.getElementById("desktopIcons").style.visibility = "hidden";
-                let userData = getCurrentUserData();
-                userData.showDesktopIcons = 0;
-                localStorage.setItem(args.get("username"), JSON.stringify(userData));
-            }
-        }
-    }
-
-
     replaceAllCharsInStr(s, from, to) {
 
         new consoleNotifier().notifyStartService("GeneralLogic.replaceAllCharsInStr")
@@ -167,7 +144,6 @@ let generalLogic = new GeneralLogic();
 window.addEventListener("click", e => {
     if (!lockScreenActive) {
         windowLogic.updateTitlebar(e);
-        generalLogic.updateDesktopIcons();
         //personalizationLogic.setTitlebarButtonLocations(false, false);
         let userData = getCurrentUserData();
         try { document.getElementById("systemVolumeSlider").value = userData.globalVolume * 10; } catch {}
@@ -177,5 +153,4 @@ window.addEventListener("click", e => {
 
 window.addEventListener("contextmenu", e => {
     //windowLogic.updateTitlebar(e);
-    generalLogic.updateDesktopIcons();
 })

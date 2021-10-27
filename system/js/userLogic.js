@@ -256,7 +256,6 @@ function hotSwapUserAccount(username) {
                 onloadLogic.loadTheme();
                 onloadLogic.loadTaskbarPos();
                 personalizationLogic.setTitlebarButtonLocations(false, false)
-                generalLogic.updateDesktopIcons();
                 personalizationLogic.setAnimations(false);
                 onloadLogic.setStartMenuSize();
                 onloadLogic.setTaskbarButtonLocation();

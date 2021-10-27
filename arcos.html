@@ -55,37 +55,6 @@
 
     <div id="windowStore"></div>
     <div id="contextMenu" class="context-menu">
-        <ul>
-            <li class="contextMenuSwitch" onclick="generalLogic.updateDesktopIcons();">
-                <input type="checkbox" class="transparent right" id="showDesktopIconsSwitch" style="min-width: unset;" onclick="generalLogic.updateDesktopIcons();">
-                <label for="showDesktopIconsSwitch" onclick="generalLogic.updateDesktopIcons();">
-                    <p style="margin:0px;">Show Desktop Icons</p>
-                </label>
-            </li>
-            <hr>
-            <li onclick="windowLogic.openWindow('Shut Down ArcOS')"><a>Shut Down</a></li>
-            <hr>
-            <li onclick="windowLogic.openWindow('ArcTerm');"><a>ArcTerm</a></li>
-            <hr>
-            <li onclick="windowLogic.openWindow('Settings');"><a>Settings</a></li>
-            <hr>
-            <li onclick="openSettingsPane('personalize',document.getElementsByClassName('controlPanelSidebar')[1]);windowLogic.openWindow('Settings');">
-                <a>Personalization</a>
-            </li>
-            <li onclick="openSettingsPane('addapp',document.getElementsByClassName('controlPanelSidebar')[2]);windowLogic.openWindow('Settings');">
-                <a>Import App</a>
-            </li>
-            <li onclick="openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);windowLogic.openWindow('Settings');">
-                <a>User Settings</a>
-            </li>
-            <li onclick="openSettingsPane('about',document.getElementsByClassName('controlPanelSidebar')[4]);windowLogic.openWindow('Settings');">
-                <a>About</a>
-            </li>
-            <li onclick="openSettingsPane('updates',document.getElementsByClassName('controlPanelSidebar')[5]);windowLogic.openWindow('Settings');">
-                <a>Updates</a>
-            </li>
-        </ul>
-
     </div>
     <div class="block"></div>
     <div class="notification" id="notificationService">

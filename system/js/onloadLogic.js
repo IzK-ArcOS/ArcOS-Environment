@@ -96,7 +96,6 @@ class OnloadLogic {
             let show = userData.showDesktopIcons;
 
             document.getElementById("desktopIcons").style.visibility = (show == 0) ? 'hidden' : 'visible';
-            document.getElementById("showDesktopIconsSwitch").setAttribute('checked', (show == 0) ? 'false' : 'true');
 
             userData.showDesktopIcons = (show == 1 || show == 0) ? show : 1;
 
@@ -332,7 +331,6 @@ class OnloadLogic {
         personalizationLogic.setTitlebarButtonLocations(false, false)
         personalizationLogic.setAnimations(false);
         personalizationLogic.startCustomColorInterval();
-        generalLogic.updateDesktopIcons();
 
         this.setStartMenuSize();
         this.setTaskbarButtonLocation();
