@@ -68,3 +68,15 @@ div.notificationCenterAction {
     margin: 5px;
     display: block;
 }
+
+button.transparent.newStartMenuShutDownButton span.material-icons {
+    font-size:20px;
+}
+
+button#notificationCenterClearButton {
+    float:right;min-width:unset;
+}
+
+div.notificationCenter div.actions span.row {
+    display:flex;
+}

@@ -42,7 +42,7 @@ class ArcTermUserInterface {
         if (!hist.includes(command)) hist.push(command);
         const commandList = command.split(" ");
         globalCommandList = commandList;
-        new ArcTermUserInterface().output("\n");
+        ArcTermUI.output("\n");
         const cmd = new ArcTermCommands();
         switch (commandList[0].toLowerCase()) {
             case "echo":
@@ -163,11 +163,11 @@ class ArcTermUserInterface {
                 cmd.arcutil();
                 break;
             case "":
-                new ArcTermUserInterface().prompt();
+                ArcTermUI.prompt();
                 break;
             default:
                 cmd.default();
-                new ArcTermUserInterface().prompt();
+                ArcTermUI.prompt();
                 break;
         }
     }
@@ -218,12 +218,12 @@ class ArcTermUserInterface {
 
     defineDOMHooks() {
         document.addEventListener("click", () => {
-            new ArcTermUserInterface().focusToInput();
+            ArcTermUI.focusToInput();
         });
 
         document.addEventListener("keydown", (e) => {
             if (e.key === "Enter") {
-                new ArcTermUserInterface().evaluateCommand();
+                ArcTermUI.evaluateCommand();
             }
             if (e.key === "ArrowUp") {
                 if (hist.length !== 0) {
@@ -250,11 +250,11 @@ class ArcTermUserInterface {
         });
 
         console.error = (e) => {
-            new ArcTermUserInterface().output(`[ERROR_INTERNAL] ${e}`, "var(--red)");
+            ArcTermUI.output(`[ERROR_INTERNAL] ${e}`, "var(--red)");
         }
 
         window.onerror = (e) => {
-            new ArcTermUserInterface().output(`[ERROR_JSDOMEXC] ${e}`, "var(--red)");
+            ArcTermUI.output(`[ERROR_JSDOMEXC] ${e}`, "var(--red)");
         }
     }
 
@@ -305,15 +305,17 @@ class ArcTermUserInterface {
     }
 }
 
+const ArcTermUI = ArcTermUI;
+
 function initiateArcTerm(target) {
     if(target && target instanceof Element) {
         ArcTermOutputDiv = target;
         target.innerHTML = "";
-        let evalList = new ArcTermUserInterface().evaluateScripts(),
+        let evalList = ArcTermUI.evaluateScripts(),
             continueExec = true;
         for (var i = 0; i < evalList.length; i++) {
             if (!evalList[i]) {
-                new ArcTermUserInterface().outputColor(`[Error]: Script at index [${i}] not loaded!`);
+                ArcTermUI.outputColor(`[Error]: Script at index [${i}] not loaded!`);
                 errorLogic.bsod("ArcTerm Exception",`The ArcTerm system file at index [${i}] couldn't be found.`)
                 continueExec = false;
             }
@@ -325,7 +327,7 @@ function initiateArcTerm(target) {
     
         setInterval(() => {
             if (focusedWindow == "ArcTerm") {
-                new ArcTermUserInterface().focusToInput();
+                ArcTermUI.focusToInput();
             }
         }, 100)
     
@@ -335,7 +337,7 @@ function initiateArcTerm(target) {
     
                 if (key == "enter") {
                     if (focusedWindow == "ArcTerm") {
-                        new ArcTermUserInterface().evaluateCommand();
+                        ArcTermUI.evaluateCommand();
                         e.stopImmediatePropagation();
                         e.stopPropagation();
                     }

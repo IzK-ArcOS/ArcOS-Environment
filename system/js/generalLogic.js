@@ -1,10 +1,10 @@
-new consoleNotifier().startModule("ArcOS.System.generalLogic");
+ConsoleNotifier.startModule("ArcOS.System.generalLogic");
 
 class GeneralLogic {
 
     addNewApp() {
 
-        new consoleNotifier().notifyStartService("GeneralLogic.addNewApp")
+        ConsoleNotifier.notifyStartService("GeneralLogic.addNewApp")
 
         let open = document.getElementById("startAppAfterAddCheckBox").checked ? 1 : 0;
 
@@ -13,7 +13,7 @@ class GeneralLogic {
 
     replaceAllCharsInStr(s, from, to) {
 
-        new consoleNotifier().notifyStartService("GeneralLogic.replaceAllCharsInStr")
+        ConsoleNotifier.notifyStartService("GeneralLogic.replaceAllCharsInStr")
 
         let out = "";
         for (let i = 0; i < s.length; i++) {
@@ -28,7 +28,7 @@ class GeneralLogic {
 
     countOccurrences(string, subString, allowOverlapping) {
 
-        new consoleNotifier().notifyStartService("GeneralLogic.countOccurrences")
+        ConsoleNotifier.notifyStartService("GeneralLogic.countOccurrences")
 
         string += "";
         subString += "";
@@ -50,7 +50,7 @@ class GeneralLogic {
 
     executeWindowsShellCommand(command, args) {
 
-        new consoleNotifier().notifyStartService("GeneralLogic.executeWindowsShellCommand")
+        ConsoleNotifier.notifyStartService("GeneralLogic.executeWindowsShellCommand")
 
         const { spawn } = require("child_process");
 
@@ -77,21 +77,21 @@ class GeneralLogic {
 
     disableExit() {
 
-        new consoleNotifier().notifyStartService("GeneralLogic.disableExit")
+        ConsoleNotifier.notifyStartService("GeneralLogic.disableExit")
 
         allowExit = false;
     }
 
     enableExit() {
 
-        new consoleNotifier().notifyStartService("GeneralLogic.enableExit")
+        ConsoleNotifier.notifyStartService("GeneralLogic.enableExit")
 
         allowExit = true;
     }
 
     getAllFunctions() {
 
-        new consoleNotifier().notifyStartService("GeneralLogic.getAllFunctions")
+        ConsoleNotifier.notifyStartService("GeneralLogic.getAllFunctions")
 
         let myfunctions = [];
         for (let l in this) {
@@ -106,7 +106,7 @@ class GeneralLogic {
 
     reloadShell() {
 
-        new consoleNotifier().notifyStartService("GeneralLogic.reloadShell")
+        ConsoleNotifier.notifyStartService("GeneralLogic.reloadShell")
 
         document.getElementById("shellLoader").href = "";
         setTimeout(() => {
@@ -116,7 +116,7 @@ class GeneralLogic {
 
     reloadApplications() {
 
-        new consoleNotifier().notifyStartService("GeneralLogic.reloadApplications")
+        ConsoleNotifier.notifyStartService("GeneralLogic.reloadApplications")
 
         let tempList = activeapps;
         let tempFocusedWindow = focusedWindow;

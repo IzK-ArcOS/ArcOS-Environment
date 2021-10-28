@@ -12,7 +12,7 @@
 let windowName = window;
     try {
         if (window != "Welcome!") {
-            new consoleNotifier().notifyStartService("ArcOS.System.windowLogic.windowLogic.openWindow: " + window);
+            ConsoleNotifier.notifyStartService("ArcOS.System.windowLogic.windowLogic.openWindow: " + window);
             let focused = focusedWindow;
             window = document.getElementById(window);
             //windowLogic.bringToFront(window);
@@ -52,7 +52,7 @@ let windowName = window;
                     } else { windowLogic.minimizeWindow(windowName); }
                 }
             } else {
-                new consoleNotifier().notifyStartService("ArcOS.System.windowLogic.windowLogic.openWindow: " + window);
+                ConsoleNotifier.notifyStartService("ArcOS.System.windowLogic.windowLogic.openWindow: " + window);
                 window = document.getElementById("Welcome!");
 
                 window.style.opacity = '0'
@@ -82,7 +82,7 @@ let windowName = window;
 
 let { globalShortcut } = require("electron");
 
-new consoleNotifier().startModule("ArcOS.System.onloadLogic");
+ConsoleNotifier.startModule("ArcOS.System.onloadLogic");
 
 onload = function WebOSOnload() {
 
@@ -205,7 +205,7 @@ onbeforeunload = function() {
     deleteUserData("ArcOS Safe Mode");
 }
 
-new consoleNotifier().notifyStartService("ArcOS.System.onloadLogic.startTime service");
+ConsoleNotifier.notifyStartService("ArcOS.System.onloadLogic.startTime service");
 
 function startTime() {
     try {
@@ -228,8 +228,8 @@ function checkTime(i) {
     return i;
 }
 
-new consoleNotifier().notifyStartService("ArcOS.System.startMenuLogic.EventListener.mousedown", "startMenu")
-new consoleNotifier().notifyStartService("ArcOS.System.onloadLogic.EventListener.mousedown", "taskbarClockWidget");
+ConsoleNotifier.notifyStartService("ArcOS.System.startMenuLogic.EventListener.mousedown", "startMenu")
+ConsoleNotifier.notifyStartService("ArcOS.System.onloadLogic.EventListener.mousedown", "taskbarClockWidget");
 window.addEventListener('mousedown', function(event) {
     try {
         clockWidget = document.getElementById('taskbarClockWidget');
@@ -250,7 +250,7 @@ window.addEventListener('mousedown', function(event) {
     }
 });
 
-new consoleNotifier().notifyStartService("ArcOS.System.onloadLogic.EventListener.mousedown", "taskbarVolumeControl");
+ConsoleNotifier.notifyStartService("ArcOS.System.onloadLogic.EventListener.mousedown", "taskbarVolumeControl");
 window.addEventListener('mousedown', function(event) {
     try {
         volumeControl = document.getElementById('taskbarVolumeControl');
@@ -272,7 +272,7 @@ window.addEventListener('mousedown', function(event) {
 
 function onloadSetWindowControls() {
     try {
-        new consoleNotifier().notifyStartService("ArcOS.System.onloadLogic.onloadSetWindowControls");
+        ConsoleNotifier.notifyStartService("ArcOS.System.onloadLogic.onloadSetWindowControls");
         if (localStorage.getItem(args.get("username") + "_enableAnimations") == "false") {
             document.getElementById("preferencesAnimationsSwitch").checked = false;
             document.getElementById("animationsAddonLoader").href = "system/css/noanimations.css";
@@ -299,7 +299,7 @@ function onloadSetWindowControls() {
 }
 
 function onloadSetDesktopIcons() {
-    new consoleNotifier().notifyStartService("ArcOS.System.onloadLogic.onloadDesktopIcons");
+    ConsoleNotifier.notifyStartService("ArcOS.System.onloadLogic.onloadDesktopIcons");
     let show = localStorage.getItem(args.get("username") + "_showDesktopIcons");
     if (show == 0) {
         document.getElementById("desktopIcons").style.visibility = 'hidden';
@@ -346,7 +346,7 @@ setInterval(() => {
 
 *** DISPLAYLOGIC.JS ***
 
-new consoleNotifier().startModule("ArcOS.System.displayLogic");
+ConsoleNotifier.startModule("ArcOS.System.displayLogic");
 
 function startResolutionUpdateCycle(interval) {
     setInterval(() => {

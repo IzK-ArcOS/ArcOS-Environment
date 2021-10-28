@@ -1,9 +1,9 @@
-new consoleNotifier().startModule("ArcOS.System.personalizationLogic");
+ConsoleNotifier.startModule("ArcOS.System.personalizationLogic");
 
 class PersonalizationLogic {
     applyTheme() {
 
-        new consoleNotifier().notifyStartService("PersonalizationLogic.applyTheme");
+        ConsoleNotifier.notifyStartService("PersonalizationLogic.applyTheme");
 
         let userData = getCurrentUserData();
         userData.theme = document.getElementById("themeSelect").value;
@@ -22,7 +22,7 @@ class PersonalizationLogic {
 
     applyTaskbarPos() {
 
-        new consoleNotifier().notifyStartService("PersonalizationLogic.applyTaskbarPos");
+        ConsoleNotifier.notifyStartService("PersonalizationLogic.applyTaskbarPos");
 
         let userData = getCurrentUserData();
         userData.taskbarpos = document.getElementById("taskbarPosSelect").value;
@@ -37,7 +37,7 @@ class PersonalizationLogic {
 
     setAnimations(updateLS) {
 
-        new consoleNotifier().notifyStartService("PersonalizationLogic.setAnimations");
+        ConsoleNotifier.notifyStartService("PersonalizationLogic.setAnimations");
 
         let checked;
         let userData = getCurrentUserData();
@@ -59,7 +59,7 @@ class PersonalizationLogic {
 
     setTitlebarButtonLocations(updateLS) {
 
-        new consoleNotifier().notifyStartService("PersonalizationLogic.setTitlebarButtonLocations");
+        ConsoleNotifier.notifyStartService("PersonalizationLogic.setTitlebarButtonLocations");
 
         let checked;
         let userData = getCurrentUserData();
@@ -86,7 +86,7 @@ class PersonalizationLogic {
 
     toggleTaskbarButtonLabels() {
 
-        new consoleNotifier().notifyStartService("PersonalizationLogic.toggleTaskbarButtonLabels");
+        ConsoleNotifier.notifyStartService("PersonalizationLogic.toggleTaskbarButtonLabels");
 
         let userData = getCurrentUserData();
         userData.taskbarButtonLabels = !userData.taskbarButtonLabels;
@@ -96,7 +96,7 @@ class PersonalizationLogic {
 
     setTaskbarButtonLabels(obj) {
 
-        new consoleNotifier().notifyStartService("PersonalizationLogic.setTaskbarButtonLabels");
+        ConsoleNotifier.notifyStartService("PersonalizationLogic.setTaskbarButtonLabels");
 
         let checked = !obj.checked;
         let userData = getCurrentUserData();
@@ -107,7 +107,7 @@ class PersonalizationLogic {
 
     updateVolume(obj) {
 
-        new consoleNotifier().notifyStartService("PersonalizationLogic.updateVolume");
+        ConsoleNotifier.notifyStartService("PersonalizationLogic.updateVolume");
 
         let userData = getCurrentUserData();
         userData.globalVolume = obj.value / 10;
@@ -117,7 +117,7 @@ class PersonalizationLogic {
     }
 
     setStartmenuSize(updateLS) {
-        new consoleNotifier().notifyStartService("PersonalizationLogic.setStartmenuSize");
+        ConsoleNotifier.notifyStartService("PersonalizationLogic.setStartmenuSize");
 
         let checked;
         let userData = getCurrentUserData();
@@ -143,7 +143,7 @@ class PersonalizationLogic {
     }
 
     setTaskbarButtonLocation(updateLS) {
-        new consoleNotifier().notifyStartService("PersonalizationLogic.setTaskbarButtonLocation");
+        ConsoleNotifier.notifyStartService("PersonalizationLogic.setTaskbarButtonLocation");
 
         let checked;
         let userData = getCurrentUserData();

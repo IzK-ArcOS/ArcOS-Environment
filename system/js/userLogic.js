@@ -1,10 +1,10 @@
 const argon2 = require("argon2")
 
-new consoleNotifier().startModule("ArcOS.System.userLogic");
+ConsoleNotifier.startModule("ArcOS.System.userLogic");
 
 function createUserData(user, override = false, notify = false) {
 
-    new consoleNotifier().notifyStartService("createUserData");
+    ConsoleNotifier.notifyStartService("createUserData");
 
     if (user) {
         if (isAdmin(args.get("username")) || override) {
@@ -29,7 +29,7 @@ function createUserData(user, override = false, notify = false) {
 
 function deleteUserData(user, override = false, notify = false) {
 
-    new consoleNotifier().notifyStartService("deleteUserData");
+    ConsoleNotifier.notifyStartService("deleteUserData");
 
     if (user) {
         if (isAdmin(args.get("username")) || override) {
@@ -55,7 +55,7 @@ function deleteUserData(user, override = false, notify = false) {
 
 function resetUserData(user, override = false, notify = false) {
 
-    new consoleNotifier().notifyStartService("resetUserData");
+    ConsoleNotifier.notifyStartService("resetUserData");
 
     if (user) {
         if (isAdmin(args.get("username")) || override) {
@@ -81,7 +81,7 @@ function resetUserData(user, override = false, notify = false) {
 
 function changeUserDataName(oldname, newname, override = false, notify = false) {
 
-    new consoleNotifier().notifyStartService("changeUserDataName");
+    ConsoleNotifier.notifyStartService("changeUserDataName");
     if (oldname && newname) {
         if (isAdmin(args.get("username")) || oldname == args.get("username") || override) {
             if (oldname && newname) {
@@ -112,7 +112,7 @@ function changeUserDataName(oldname, newname, override = false, notify = false) 
 
 function toggleUserData(user, override = false, notify = false) {
 
-    new consoleNotifier().notifyStartService("toggleUserData");
+    ConsoleNotifier.notifyStartService("toggleUserData");
     if (isAdmin(args.get("username")) || override) {
         if (localStorage.getItem(user) && JSON.parse(localStorage.getItem(user))) {
             let userData = JSON.parse(localStorage.getItem(user));
@@ -136,7 +136,7 @@ function toggleUserData(user, override = false, notify = false) {
 
 function setUserProfilePicture(user, x) {
 
-    new consoleNotifier().notifyStartService("setUserProfilePicture");
+    ConsoleNotifier.notifyStartService("setUserProfilePicture");
 
     if (user && localStorage.getItem(user) && x) {
         let userData = JSON.parse(localStorage.getItem(user));
@@ -150,7 +150,7 @@ function setUserProfilePicture(user, x) {
 
 function startUserDataUpdateCycle() {
 
-    new consoleNotifier().notifyStartService("startUserDataUpdateCycle");
+    ConsoleNotifier.notifyStartService("startUserDataUpdateCycle");
 
     setInterval(() => {
         localStorage.setItem("userAmount", 0);
@@ -178,7 +178,7 @@ function startUserDataUpdateCycle() {
 
 function convertUserAccount(user) {
 
-    new consoleNotifier().notifyStartService("convertUserAccount");
+    ConsoleNotifier.notifyStartService("convertUserAccount");
 
     let template = userTemplate,
         original = [],
@@ -227,7 +227,7 @@ function convertUserAccount(user) {
 
 function isBoolOrInt(str) {
 
-    new consoleNotifier().notifyStartService("isBoolOrInt");
+    ConsoleNotifier.notifyStartService("isBoolOrInt");
 
     let isBool = (str.valueOf() === "true" || str.valueOf() === "false");
     let isInt = isNumeric(str);
@@ -236,7 +236,7 @@ function isBoolOrInt(str) {
 
 function isNumeric(str) {
 
-    new consoleNotifier().notifyStartService("isNumeric");
+    ConsoleNotifier.notifyStartService("isNumeric");
 
     if (typeof str != "string") return false // we only process strings!  
     return !isNaN(str) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
@@ -245,7 +245,7 @@ function isNumeric(str) {
 
 function hotSwapUserAccount(username) {
 
-    new consoleNotifier().notifyStartService("hotSwapUserAccount");
+    ConsoleNotifier.notifyStartService("hotSwapUserAccount");
 
     if (localStorage.getItem(username)) {
         let userData = JSON.parse(localStorage.getItem(username));
@@ -282,7 +282,7 @@ function hotSwapUserAccount(username) {
 
 async function verifyPassword(user, password) {
 
-    new consoleNotifier().notifyStartService("verifyPassword");
+    ConsoleNotifier.notifyStartService("verifyPassword");
 
     let userData = JSON.parse(localStorage.getItem(user));
     let reqpswd = userData.pswd;
@@ -295,7 +295,7 @@ async function verifyPassword(user, password) {
 
 async function encryptPassword(password) {
 
-    new consoleNotifier().notifyStartService("encryptPassword");
+    ConsoleNotifier.notifyStartService("encryptPassword");
 
     return await argon2.hash(password, {
         type: argon2.argon2i,
@@ -307,7 +307,7 @@ async function encryptPassword(password) {
 
 async function setPassword(user, password) {
 
-    new consoleNotifier().notifyStartService("setPassword");
+    ConsoleNotifier.notifyStartService("setPassword");
 
     if (localStorage.getItem(user)) {
         let userData = JSON.parse(localStorage.getItem(user));
@@ -320,7 +320,7 @@ async function setPassword(user, password) {
 
 async function convertPassword(user) {
 
-    new consoleNotifier().notifyStartService("convertPassword");
+    ConsoleNotifier.notifyStartService("convertPassword");
 
     let userData = JSON.parse(localStorage.getItem(user));
 
@@ -338,7 +338,7 @@ async function convertPassword(user) {
 }
 
 function isUser(user) {
-    new consoleNotifier().notifyStartService("isUser");
+    ConsoleNotifier.notifyStartService("isUser");
 
     user = localStorage.getItem(user);
     try {

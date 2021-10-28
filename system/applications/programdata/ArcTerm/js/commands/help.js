@@ -3,7 +3,7 @@ function help() {
     if (article) {
         switch (article) {
             case "echo":
-                new ArcTermUserInterface().outputColor(
+                ArcTermUI.outputColor(
                     "Echoes the provided string back.<br><br>" +
                     "Usage: [ECHO ]{[STRING]}<br><br>" +
                     "[STRING]      Required - The string that gets echoed back.",
@@ -11,7 +11,7 @@ function help() {
                 );
                 break;
             case "rmusr":
-                new ArcTermUserInterface().outputColor(
+                ArcTermUI.outputColor(
                     "Deletes a user account<br><br>" +
                     "Usage: [RMUSR ]{[USERNAME]}<br><br>" +
                     "[USERNAME]    Required - The name of the user to be deleted.",
@@ -19,7 +19,7 @@ function help() {
                 );
                 break;
             case "crusr":
-                new ArcTermUserInterface().outputColor(
+                ArcTermUI.outputColor(
                     "Creates a user account<br><br>" +
                     "Usage: [CRUSR ]{[USERNAME]}<br><br>" +
                     "[USERNAME]    Required - The name of the user to be created.",
@@ -27,14 +27,14 @@ function help() {
                 );
                 break;
             case "ver":
-                new ArcTermUserInterface().outputColor(
+                ArcTermUI.outputColor(
                     "Provides the current running build of ArcTerm.<br><br>" +
                     "Usage: [VER]",
                     ``, `var(--blue)`, true
                 );
                 break;
             case "prompt":
-                new ArcTermUserInterface().outputColor(
+                ArcTermUI.outputColor(
                     "Decides if the prompt is ON or OFF.<br><br>" +
                     "Usage: [PROMPT] {[TOGGLE]}<br><br>" +
                     "[TOGGLE]      Optional - Accepts two values: ON and OFF. This value desides the state of the prompt output.",
@@ -42,42 +42,42 @@ function help() {
                 );
                 break;
             case "error":
-                new ArcTermUserInterface().outputColor(
+                ArcTermUI.outputColor(
                     "For testing - Sends out an error message.<br><br>" +
                     "Usage: [ERROR]",
                     ``, `var(--blue)`, true
                 );
                 break;
             case "cls":
-                new ArcTermUserInterface().outputColor(
+                ArcTermUI.outputColor(
                     "Clears the screen.<br><br>" +
                     "Usage: [CLS]",
                     ``, `var(--blue)`, true
                 );
                 break;
             case "restart":
-                new ArcTermUserInterface().outputColor(
+                ArcTermUI.outputColor(
                     "Restarts ArcOS.<br><br>" +
                     "Usage: [RESTART]",
                     ``, `var(--blue)`, true
                 );
                 break;
             case "shutdown":
-                new ArcTermUserInterface().outputColor(
+                ArcTermUI.outputColor(
                     "Shuts down ArcOS.<br><br>" +
                     "Usage: [RESTART]",
                     ``, `var(--blue)`, true
                 );
                 break;
             case "logoff":
-                new ArcTermUserInterface().outputColor(
+                ArcTermUI.outputColor(
                     "Logs off the current user.<br><br>" +
                     "Usage: [RESTART]",
                     ``, `var(--blue)`, true
                 );
                 break;
             case "delnot":
-                new ArcTermUserInterface().outputColor(
+                ArcTermUI.outputColor(
                     "Deletes a notification.<br><br>" +
                     "Usage: [DELNOT] {[INDEX]}<br><br>" +
                     "[INDEX]       Required - The index of the notification to be deleted.",
@@ -85,14 +85,14 @@ function help() {
                 );
                 break;
             case "notif":
-                new ArcTermUserInterface().outputColor(
+                ArcTermUI.outputColor(
                     "Display a list of notifications.<br><br>" +
                     "Usage: [NOTIF]",
                     ``, `var(--blue)`, true
                 );
                 break;
             case "dir":
-                new ArcTermUserInterface().outputColor(
+                ArcTermUI.outputColor(
                     "Shows the contents of the current or specified directory.<br><br>" +
                     "Usage: [DIR] {[DIRECTORY]}<br><br>" +
                     "[DIRECTORY]   Optional - The specified directory that will be read.",
@@ -100,7 +100,7 @@ function help() {
                 );
                 break;
             case "cd":
-                new ArcTermUserInterface().outputColor(
+                ArcTermUI.outputColor(
                     "Changes the currenDir to the specified directory.<br><br>" +
                     "Usage: [CD] {[DIRECTORY]}<br><br>" +
                     "[DIRECTORY]   Required - The specified directory that will be changed to.",
@@ -108,7 +108,7 @@ function help() {
                 );
                 break;
             case "rf":
-                new ArcTermUserInterface().outputColor(
+                ArcTermUI.outputColor(
                     "Prints out the contents of a specified file.<br><br>" +
                     "Usage: [RF] {[FILE]}<br><br>" +
                     "[FILE]        Required - The relative path the file to be read.",
@@ -116,21 +116,21 @@ function help() {
                 );
                 break;
             case "colors":
-                new ArcTermUserInterface().outputColor(
+                ArcTermUI.outputColor(
                     "For testing - displays an example string in every color.<br><br>" +
                     "Usage: [COLORS]",
                     ``, `var(--blue)`, true
                 );
                 break;
             case "intro":
-                new ArcTermUserInterface().outputColor(
+                ArcTermUI.outputColor(
                     "Displays the intro text you see when you start ArcTerm.<br><br>" +
                     "Usage: [INTRO]",
                     ``, `var(--blue)`, true
                 );
                 break;
             case "theme":
-                new ArcTermUserInterface().outputColor(
+                ArcTermUI.outputColor(
                     "Changes the theme to a pre-made theme file.<br><br>" +
                     "Usage: [THEME] {[NAME]}<br><br>" +
                     "[NAME]        Required - The name of the theme that will be applied.",
@@ -138,14 +138,14 @@ function help() {
                 );
                 break;
             case "ls":
-                new ArcTermUserInterface().outputColor(
+                ArcTermUI.outputColor(
                     "For testing - shows every localStorage item under each other.<br><br>" +
                     "Usage: [LS]",
                     ``, `var(--blue)`, true
                 );
                 break;
             case "help":
-                new ArcTermUserInterface().outputColor(
+                ArcTermUI.outputColor(
                     "Gives detailed information about a command, or shows available built-in commands.<br><br>" +
                     "Usage: [HELP ]{[COMMAND]}<br><br>" +
                     "[COMMAND]     Optional - If recognized gives detailed information about a command.",
@@ -153,7 +153,7 @@ function help() {
                 );
                 break;
             case "open":
-                new ArcTermUserInterface().outputColor(
+                ArcTermUI.outputColor(
                     "Open a specified program<br><br>" +
                     "Usage: [OPEN ]{[PROGRAM]}<br><br>" +
                     "[PROGRAM]     Required - The program to be opened.",
@@ -161,7 +161,7 @@ function help() {
                 );
                 break;
             case "user":
-                new ArcTermUserInterface().outputColor(
+                ArcTermUI.outputColor(
                     "Displays preference information about the specified user.<br><br>" +
                     "Usage: [USER ]{[USERNAME]}<br><br>" +
                     "[USERNAME]    Required - The username of the account to view the information about.",
@@ -169,7 +169,7 @@ function help() {
                 );
                 break;
             case "rand":
-                new ArcTermUserInterface().outputColor(
+                ArcTermUI.outputColor(
                     "Gives back a random number with a max of the number specified.<br><br>" +
                     "Usage: [RAND ]{[MAX]}<br><br>" +
                     "[MAX]         Required - The highest possible value.",
@@ -177,21 +177,21 @@ function help() {
                 );
                 break;
             case "history":
-                new ArcTermUserInterface().outputColor(
+                ArcTermUI.outputColor(
                     "Shows a list of all the commands you entered.<br><br>" +
                     "Usage: [HISTORY]",
                     ``, `var(--blue)`, true
                 );
                 break;
             case "exit":
-                new ArcTermUserInterface().outputColor(
+                ArcTermUI.outputColor(
                     "Closes the current running instance of ArcTerm.<br><br>" +
                     "Usage: [EXIT]",
                     ``, `var(--blue)`, true
                 );
                 break;
             case "setls":
-                new ArcTermUserInterface().outputColor(
+                ArcTermUI.outputColor(
                     "Sets the specified localStorage item to the specified value.<br><br>" +
                     "Usage: [SETLS] {[ITEM]} {[VALUE]}<br><br>" +
                     "[ITEM]        Required - The name of the item to be set<br>" +
@@ -200,7 +200,7 @@ function help() {
                 );
                 break;
             case "remls":
-                new ArcTermUserInterface().outputColor(
+                ArcTermUI.outputColor(
                     "Removes the specified localStorage item.<br><br>" +
                     "Usage: [REMLS] {[ITEM]}<br><br>" +
                     "[ITEM]        Required - The name of the item to be removed<br>",
@@ -208,7 +208,7 @@ function help() {
                 );
                 break;
             case "close":
-                new ArcTermUserInterface().outputColor(
+                ArcTermUI.outputColor(
                     "Closes the specified program.<br><br>" +
                     "Usage: [CLOSE] {[PROGRAM]}<br><br>" +
                     "[PROGRAM]     Required - The name of the program to be closed<br>",
@@ -216,7 +216,7 @@ function help() {
                 );
                 break;
             case "bsod":
-                new ArcTermUserInterface().outputColor(
+                ArcTermUI.outputColor(
                     "Crashes ArcOS with a custom BSOD message.<br><br>" +
                     "Usage: [BSOD ]{[MESSAGE]}<br><br>" +
                     "[PROGRAM]     Required - The message of the BSOD.",
@@ -224,14 +224,14 @@ function help() {
                 );
                 break;
             case "lock":
-                new ArcTermUserInterface().outputColor(
+                ArcTermUI.outputColor(
                     "Locks the ArcOS Desktop if the user has a password.<br><br>" +
                     "Usage: [LOCK]",
                     ``, `var(--blue)`, true
                 );
                 break;
             case "run":
-                new ArcTermUserInterface().outputColor(
+                ArcTermUI.outputColor(
                     "Runs the specified file with it's default application.<br><br>" +
                     "Usage: [RUN] {[FILE]}<br><br>" +
                     "[FILE]        Required - The specified file to be opened.",
@@ -239,7 +239,7 @@ function help() {
                 );
                 break;
             case "swapusr":
-                new ArcTermUserInterface().outputColor(
+                ArcTermUI.outputColor(
                     "hot-swaps the current user without having to log off.<br><br>" +
                     "Usage: [SWAPUSR] {[USER]}<br><br>" +
                     "[USER]        Required - The specified user to be swapped to.",
@@ -247,21 +247,21 @@ function help() {
                 );
                 break;
             case "resui":
-                new ArcTermUserInterface().outputColor(
+                ArcTermUI.outputColor(
                     "Restarts the ArcOS user interface.<br><br>" +
                     "Usage: [RESUI]<br><br>",
                     ``, `var(--blue)`, true
                 );
                 break;
             case "openapps":
-                new ArcTermUserInterface().outputColor(
+                ArcTermUI.outputColor(
                     "Displays a list of all active apps.<br><br>" +
                     "Usage: [OPENAPPS]<br><br>",
                     ``, `var(--blue)`, true
                 );
                 break;
             case "admin":
-                new ArcTermUserInterface().outputColor(
+                ArcTermUI.outputColor(
                     "Allows or denies admin rights for a user account.<br><br>" +
                     "Usage: [ADMIN] {[TYPE]} {[USER]}<br><br>" +
                     '[TYPE]        Required - "allow" or "deny", specifies if the user will get admin rights.<br>' +
@@ -270,13 +270,13 @@ function help() {
                 );
                 break;
             default:
-                new ArcTermUserInterface().outputColor(
+                ArcTermUI.outputColor(
                     "[Error]: The specified command could not be found. For a list of commands, enter \"HELP\" without arguments."
                 )
                 break;
         }
     } else {
-        new ArcTermUserInterface().outputColor(
+        ArcTermUI.outputColor(
             `[ADMIN]      Allows or denies admin rights for a user account.<br>` +
             `[BSOD]       Crashes ArcOS with a custom BSOD message.<br>` +
             `[CD]         Changes the current directory.<br>` +
@@ -315,5 +315,5 @@ function help() {
             ``, `var(--blue)`, true
         );
     }
-    new ArcTermUserInterface().prompt();
+    ArcTermUI.prompt();
 }

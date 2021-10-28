@@ -1,4 +1,4 @@
-try { new consoleNotifier().startModule("ArcOS.System.toolbarLogic"); } catch (e) { };
+try { ConsoleNotifier.startModule("ArcOS.System.toolbarLogic"); } catch (e) { };
 
 function setToolbarTrigger() {
     document.getElementById("toolbarHoverTrigger").addEventListener("mouseover", () => {
@@ -87,7 +87,7 @@ function setToolbarTrigger() {
 
 function toggleFullscreenMode() {
 
-    new consoleNotifier().notifyStartService("toggleFullscreenMode");
+    ConsoleNotifier.notifyStartService("toggleFullscreenMode");
 
     let { BrowserWindow } = require("electron").remote;
     if (BrowserWindow.getFocusedWindow().fullScreen == true) {

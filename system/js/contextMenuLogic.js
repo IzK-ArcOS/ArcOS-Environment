@@ -1,4 +1,4 @@
-new consoleNotifier().startModule("ArcOS.System.contextMenuLogic");
+ConsoleNotifier.startModule("ArcOS.System.contextMenuLogic");
 
 class ContextMenuLogic {
 

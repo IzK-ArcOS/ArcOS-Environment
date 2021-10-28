@@ -8,6 +8,8 @@
 @import url("./toolbar.css");
 @import url("./userInterface.css");
 @import url("./windowMetrics.css");
+@import url("./errorMessage.css");
+
 :root {
     /*ArcTerm*/
     --fontSize: 14px;

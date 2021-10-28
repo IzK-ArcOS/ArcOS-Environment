@@ -45,7 +45,7 @@ function loadNotepad() {
                 document.getElementById("notepadTextField").value = "";
             } else {
 
-                new consoleNotifier().notifyStartService("ArcOS.System.programdata.notepad.notepadFileLogic.loadNotepad: " + document.getElementById("notepadLoadFileInput").value)
+                ConsoleNotifier.notifyStartService("ArcOS.System.programdata.notepad.notepadFileLogic.loadNotepad: " + document.getElementById("notepadLoadFileInput").value)
                 for (let i = 0; i < 200; i++) {
 
                     document.getElementById("notepadTextField").value = data;

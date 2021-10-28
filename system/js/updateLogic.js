@@ -1,7 +1,7 @@
 const mergedirs = require("merge-dirs");
 const extract = require('extract-zip');
 const { app } = require("electron").remote;
-new consoleNotifier().startModule("ArcOS.System.updateLogic");
+ConsoleNotifier.startModule("ArcOS.System.updateLogic");
 
 class UpdateLogic {
 
@@ -12,13 +12,13 @@ class UpdateLogic {
                 fs.mkdirSync(dir);
 
         }
-        new consoleNotifier().notifyStartService("UpdateLogic.checkForUpdates: Checking for updates...");
+        ConsoleNotifier.notifyStartService("UpdateLogic.checkForUpdates: Checking for updates...");
 
         let latestVersionNumber = parseInt(await this.getVersionNumber());
         let versionNumber = parseInt(version.replace("r", ""));
 
         if (latestVersionNumber > versionNumber) {
-            new consoleNotifier().notifyStartService(`UpdateLogic.checkForUpdates: A new version is available: r${latestVersionNumber}`);
+            ConsoleNotifier.notifyStartService(`UpdateLogic.checkForUpdates: A new version is available: r${latestVersionNumber}`);
 
             document.getElementById("updateStatus").innerText = "Updating ArcOS...";
 
@@ -29,7 +29,7 @@ class UpdateLogic {
         } else {
             document.getElementById("updateStatus").innerText = "ArcOS is up to date.";
 
-            new consoleNotifier().notifyStartService(`UpdateLogic.checkForUpdates: Latest version already installed.`);
+            ConsoleNotifier.notifyStartService(`UpdateLogic.checkForUpdates: Latest version already installed.`);
         }
     }
 

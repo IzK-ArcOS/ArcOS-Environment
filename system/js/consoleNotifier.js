@@ -10,7 +10,7 @@ console.warn = (e, c) => {
 
 }
 
-window.onerror = function(e, c) {
+window.onerror = function (e, c) {
     let today = new Date();
     let hour = today.getHours().toString().padStart(2, "0");
     let minute = today.getMinutes().toString().padStart(2, "0");
@@ -88,4 +88,7 @@ class consoleNotifier {
         );
     }
 }
-new consoleNotifier().startModule("ArcOS.System.consoleNotifier");
+
+const ConsoleNotifier = ConsoleNotifier;
+
+ConsoleNotifier.startModule("ArcOS.System.consoleNotifier");

@@ -37,10 +37,10 @@
         // Initiate ArcTerm
         initiateArcTerm(document.body);
 
-        new ArcTermUserInterface().outputColor("[ArcOS]: Normal startup interrupted<br><br>", ``, `var(--aqua)`);
+        ArcTermUI.outputColor("[ArcOS]: Normal startup interrupted<br><br>", ``, `var(--aqua)`);
 
         // Define the event listeners
-        new ArcTermUserInterface().defineDOMHooks();
+        ArcTermUI.defineDOMHooks();
 
         // Create a temporary user account to enable Admin rights
         focusedWindow = "ArcTerm";
@@ -52,7 +52,7 @@
         ArcTermOnly = true;
 
         // Notify that ArcTermOnly mode is enabled
-        new ArcTermUserInterface().outputColor("[=== ArcOS System ===] <br>You are running ArcOS in 'ArcTermOnly' mode.<br>This means that you are not logged in as any account,<br>and that the ArcOS Desktop is disabled.<br><br>", ``, `var(--yellow)`);
+        ArcTermUI.outputColor("[=== ArcOS System ===] <br>You are running ArcOS in 'ArcTermOnly' mode.<br>This means that you are not logged in as any account,<br>and that the ArcOS Desktop is disabled.<br><br>", ``, `var(--yellow)`);
 
         onbeforeunload = function () {
             deleteUserData("ArcTerm", false, true);

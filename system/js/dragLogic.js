@@ -1,10 +1,7 @@
-new consoleNotifier().startModule("ArcOS.System.dragLogic");
+ConsoleNotifier.startModule("ArcOS.System.dragLogic");
 
 class DragLogic {
     dragElement(elmnt, titlebar) {
-
-        //new consoleNotifier().notifyStartService("DragLogic.dragElement")
-
         let pos1 = 0,
             pos2 = 0,
             pos3 = 0,

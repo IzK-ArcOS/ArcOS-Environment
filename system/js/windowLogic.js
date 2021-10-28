@@ -1,7 +1,7 @@
-new consoleNotifier().startModule("ArcOS.System.windowLogic");
+ConsoleNotifier.startModule("ArcOS.System.windowLogic");
 class WindowLogic {
     closewindow(window) {
-        new consoleNotifier().notifyStartService("closewindow: closing " + window.id);
+        ConsoleNotifier.notifyStartService("closewindow: closing " + window.id);
 
         try {
 
@@ -41,7 +41,7 @@ class WindowLogic {
 
 
     openWindow(win) {
-        new consoleNotifier().notifyStartService("openWindow: opening " + win);
+        ConsoleNotifier.notifyStartService("openWindow: opening " + win);
         win = document.getElementById(win);
         if (win) {
             if (!activeapps.includes(win.id)) {
@@ -91,7 +91,7 @@ class WindowLogic {
 
     minimizeWindow(window) {
         setTimeout(() => {
-            new consoleNotifier().notifyStartService("minimizeWindow: " + window);
+            ConsoleNotifier.notifyStartService("minimizeWindow: " + window);
             window = document.getElementById(window);
             window.style.opacity = '0';
             setTimeout(() => {
@@ -145,7 +145,7 @@ class WindowLogic {
     }
 
     async loadWindow(appFile, userImport = 0, register = 1) {
-        new consoleNotifier().notifyLoadApp(appFile);
+        ConsoleNotifier.notifyLoadApp(appFile);
         let x = fetch(appFile).then(response => response.text()).then(text => {
 
             document.getElementById("temp").innerHTML = text;
@@ -217,7 +217,7 @@ class WindowLogic {
     }
 
     maximizeWindow(win) {
-        new consoleNotifier().notifyStartService("maximizeWindow: " + win.id)
+        ConsoleNotifier.notifyStartService("maximizeWindow: " + win.id)
         setTimeout(() => {
             this.bringToFront(win);
         }, 100);
@@ -241,7 +241,7 @@ class WindowLogic {
     }
 
     unMaximizeWindow(win) {
-        new consoleNotifier().notifyStartService("unMaximizeWindow: " + win.id)
+        ConsoleNotifier.notifyStartService("unMaximizeWindow: " + win.id)
         setTimeout(() => {
             this.bringToFront(win);
         }, 100);

@@ -27,6 +27,7 @@ body {
 img.bootlogo {
     height: let(--bootlogo-size);
     width: let(--bootlogo-size);
+    transition: opacity 2s linear;
 }
 
 div.centered {
@@ -52,6 +53,26 @@ div.status {
     font-family: let(--font-family);
     color: white;
     font-weight: 100;
+}
+
+div.slider.userdefined {
+    width:150px;border-radius: 3.5px;background-color:#333;height:7px;
+}
+
+div.line.dark {
+    background-color: transparent;border-radius: 3.5px;height:7px;
+}
+
+div.subline.dark.inc {
+    background-color: #ccc;border-radius: 3.5px;height:7px;
+}
+
+div.subline.dark.dec {
+    background-color: #ccc;border-radius: 3.5px;height:7px;
+}
+
+h4#statusText {
+    margin-top:300px
 }
 
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Inter&display=swap');

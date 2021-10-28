@@ -1,4 +1,4 @@
-new consoleNotifier().startModule("ArcOS.System.onloadLogic");
+ConsoleNotifier.startModule("ArcOS.System.onloadLogic");
 
 
 
@@ -90,7 +90,7 @@ class OnloadLogic {
 
     onloadSetDesktopIcons() {
         try {
-            new consoleNotifier().notifyStartService("ArcOS.System.onloadLogic.onloadDesktopIcons");
+            ConsoleNotifier.notifyStartService("ArcOS.System.onloadLogic.onloadDesktopIcons");
 
             let userData = getCurrentUserData();
             let show = userData.showDesktopIcons;
@@ -191,7 +191,7 @@ class OnloadLogic {
             }
         });
 
-        new consoleNotifier().notifyStartService("ArcOS.System.onloadLogic.EventListener.mousedown", "taskbarVolumeControl");
+        ConsoleNotifier.notifyStartService("ArcOS.System.onloadLogic.EventListener.mousedown", "taskbarVolumeControl");
         window.addEventListener('mousedown', function (event) {
             try {
                 let center = document.getElementById('notificationCenter', 0);

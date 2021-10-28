@@ -1,8 +1,8 @@
-new consoleNotifier().startModule("ArcOS.System.startMenuLogic");
+ConsoleNotifier.startModule("ArcOS.System.startMenuLogic");
 
 function toggleStart() {
 
-    new consoleNotifier().notifyStartService("toggleStart");
+    ConsoleNotifier.notifyStartService("toggleStart");
 
     try {
         if (document.getElementById('startMenu').style.visibility === 'visible') {
@@ -38,7 +38,7 @@ window.addEventListener('mousedown', function(event) {
 
 function populateStartMenuAppList(appListId) {
 
-    //new consoleNotifier().notifyStartService("populateStartMenuAppList");
+    //ConsoleNotifier.notifyStartService("populateStartMenuAppList");
 
     let div = document.getElementById(appListId);
     div.innerHTML = "";

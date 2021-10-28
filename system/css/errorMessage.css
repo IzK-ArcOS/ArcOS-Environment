@@ -12,6 +12,8 @@ div.window[name="confirm"] {
 div.window[name="error"] div.body,
 div.window[name="confirm"] div.body {
     text-align: center;
+    padding:10px 20px;
+    padding-bottom:20px;
 }
 
 div.window[name="confirm"] div.body button {

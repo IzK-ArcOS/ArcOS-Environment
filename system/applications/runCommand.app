@@ -9,7 +9,7 @@
         <p class="runDialog">Enter command to execute: </p><br>
         <center>
             <input id="runDialogInput" spellcheck="false">
-            <button class="runDialogExecute" onclick="new ArcTermUserInterface().executeProgram([document.getElementById('runDialogInput').value])">Execute</button>
+            <button class="runDialogExecute" onclick="ArcTermUI.executeProgram([document.getElementById('runDialogInput').value])">Execute</button>
         </center>
     </div>
 </div>
