@@ -392,3 +392,30 @@ div.block {
     background: #000;
     transition: opacity 0.3s;
 }
+
+.half-transparent {
+    opacity: 0.5;
+}
+
+div.centeredAbsolute.executeCommand#comExec {
+    min-width: 600px;
+    min-height: 150px;
+}
+
+input#comExecInp {
+    font-family: 'Ubuntu Mono', monospace;
+    font-size: 16px;
+}
+
+div#executeCommandOutput {
+    margin: 20px 0;
+    background-color: #272727;
+    padding: 10px;
+    font-family: monospace;
+    height: 300px;
+    overflow-y: scroll;
+}
+
+.float-right {
+    float:right;
+}

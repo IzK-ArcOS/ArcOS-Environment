@@ -13,7 +13,7 @@
             <button onclick="clockSwitchPage('clock',3)"><span class="material-icons">schedule</span>Clock</button>
         </div>
         <div class="clockMainPage" id="clockOutput">
-            <div class="centeredFixed"><i style="opacity: 0.5;">ERR_NO_LOADED_FILE</i></div>
+            <div class="centeredFixed"></div>
         </div>
     </div>
 </div>

@@ -28,12 +28,12 @@
     </div>
 
     <div id="page2" style="visibility: hidden;">
-        <img src="./system/images/user.png" height="150px" style="border-radius:50%;" id="profilePicture">
-        <h1 style="margin:0px;">Hi, <span id="username"></span>!</h1>
-        <h3 style="margin:0px;margin-top:5px;">Enter your password:</h3>
+        <img src="./system/images/user.png" height="150px" id="profilePicture">
+        <h1 class="passwordHeader">Hi, <span id="username"></span>!</h1>
+        <h3 class="passwordSubHeader">Enter your password:</h3>
         <br>
         <p class="passwordInputFieldHolder">
-            <input id="passwordInputField" type="password" style="width:260px">
+            <input id="passwordInputField" type="password">
             <button class="buttonLoginField" onclick="continueLoginAs(document.getElementById('passwordInputField'));">
                 <span class="material-icons">arrow_forward_ios</span>
             </button>
@@ -44,34 +44,23 @@
     </div>
 
     <div id="page6" style="visibility: hidden;">
-        <img src="./system/images/user.png" height="150px" style="border-radius:50%;" id="profilePicture">
-        <h1 style="margin:0px;">Hi, <span id="username"></span>!</h1>
-        <h3 style="margin:0px;margin-top:5px;">Hang on...</h3>
+        <img src="./system/images/user.png" height="150px" id="profilePicture">
+        <h1 class="passwordHeader">Hi, <span id="username"></span>!</h1>
+        <h3 class="passwordSubHeader">Hang on...</h3>
         <br>
         <img src="./system/images/spinner.svg" height="50px">
-    </div>
-
-    <div id="page7" style="visibility: hidden;">
-        <center>
-            <h1>Password Incorrect</h1>
-        </center>
-        <p>The password you entered is incorrect. Please try again.
-            <br><br><i style="color:#555">ERR_PSWD_WRONG</i>
-        </p>
-        <button onclick="loginAs(username);" id="passwordIncorrectButton">Back</button>
     </div>
 
     <div class="lockScreen" onclick="revealLogin();">
         <div class="heightCenteredAbsolute">
             <h1 class="big lockScreenClock">
                 <span id="lockScreenTime">--:--:--</span><br>
-                <p style="margin:0px;font-size:28px;font-weight: normal;" id="lockScreenDate">--/--/----</p>
+                <p id="lockScreenDate">--/--/----</p>
             </h1>
-
         </div>
         <div class="centerBottom">
             <span class="material-icons">expand_less</span><br>
-            <p style="margin-top:0px;">Click to unlock</p>
+            <p>Click to unlock</p>
         </div>
     </div>
 </body>

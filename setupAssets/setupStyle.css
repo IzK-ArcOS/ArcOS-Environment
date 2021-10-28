@@ -398,3 +398,27 @@ div.blur.hidden {
     background-color: #0000;
     backdrop-filter: unset;
 }
+
+img#profilePicture {
+    border-radius: 50%;
+}
+
+input#passwordInputField {
+    width:260px;
+}
+
+.passwordHeader {
+    margin:0px;
+}
+
+.passwordSubHeader {
+    margin:0px;margin-top:5px;
+}
+
+#lockScreenDate {
+    margin:0px;font-size:28px;font-weight: normal;
+}
+
+div.lockScreen div.centerBottom p {
+    margin-top:0;
+}

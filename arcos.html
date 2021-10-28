@@ -47,9 +47,12 @@
     <div class="wallpaper" id="wallpaper"></div>
     <div class="toolbar retracted" id="toolbar">
         <span class="toolbarTitle">ArcOS</span>
-        <button class="toolbar right" onclick="require('electron').remote.getCurrentWindow().close();"><span class="material-icons">close</span></button>
-        <button class="toolbar right" onclick="toggleFullscreenMode();"><span class="material-icons">crop_square</span></button>
-        <button class="toolbar right" onclick="require('electron').remote.getCurrentWindow().minimize();"><span class="material-icons">minimize</span></button>
+        <button class="toolbar right" onclick="require('electron').remote.getCurrentWindow().close();"><span
+                class="material-icons">close</span></button>
+        <button class="toolbar right" onclick="toggleFullscreenMode();"><span
+                class="material-icons">crop_square</span></button>
+        <button class="toolbar right" onclick="require('electron').remote.getCurrentWindow().minimize();"><span
+                class="material-icons">minimize</span></button>
     </div>
     <div class="toolbarHoverTrigger" id="toolbarHoverTrigger"></div>
 
@@ -60,47 +63,46 @@
     <div class="notification" id="notificationService">
         <h3>
             <span id="notificationTitle">arcos.System.notificationLogic.notificationTitle</span>
-            <button onclick="notificationLogic.closeNotification();" class="title close"><span class="material-icons">close</span></button>
+            <button onclick="notificationLogic.closeNotification();" class="title close"><span
+                    class="material-icons">close</span></button>
         </h3>
         <p id="notificationMessage">arcos.System.notificationLogic.notificationMessage</p>
     </div>
 
     <noscript id="errorMessageTemplate">
-        <div class="window" id="errorMessageBox" onclick="windowLogic.bringToFront(this);"
-            style="height:unset;visibility:hidden;opacity: 0;resize: none;height:calc(fit-content + 5px);min-height:unset;max-height:unset">
+        <div class="window" id="errorMessageBox" name="error" onclick="windowLogic.bringToFront(this);">
             <div class="windowTitle" id="errorMessageBoxWindowTitle">
-                <p id="errorMessageBoxTitle" style="margin:0px;"></p>
-                <button onclick="windowLogic.closewindow(this.parentNode.parentNode);" class="title close"><span class="material-icons">close</span></button>
+                <p id="errorMessageBoxTitle"></p>
+                <button onclick="windowLogic.closewindow(this.parentNode.parentNode);" class="title close">
+                    <span class="material-icons">close</span>
+                </button>
             </div>
             <div class="body" onclick="windowLogic.bringToFront(parentNode);">
                 <br>
-                <p id="errorMessageMsg" style="padding-left:20px;padding-right:20px;"></p>
-                <center>
-                    <button onclick="windowLogic.closewindow(this.parentNode.parentNode.parentNode);"
-                        style="margin-top:10px;">OK</button><br><br>
-                </center>
+                <p id="errorMessageMsg"></p>
+                <button id="errorMessageCloseButton"
+                    onclick="windowLogic.closewindow(this.parentNode.parentNode.parentNode);">OK</button>
+                <br><br>
             </div>
     </noscript>
     <noscript id="confirmationTemplate">
-        <div class="window" id="confirmationMessageBox" onclick="windowLogic.bringToFront(this);"
-            style="height:unset;visibility:hidden;opacity: 0;resize: none;height:calc(fit-content + 5px);min-height:unset;max-height:unset">
+        <div class="window" id="confirmationMessageBox" onclick="windowLogic.bringToFront(this);" name="confirm">
             <div class="windowTitle" id="confirmationMessageBoxWindowTitle">
-                <p id="confirmationMessageBoxTitle" style="margin:0px;"></p>
-                <button onclick="windowLogic.closewindow(this.parentNode.parentNode);" class="title close"><span class="material-icons">close</span></button>
+                <p id="confirmationMessageBoxTitle"></p>
+                <button onclick="windowLogic.closewindow(this.parentNode.parentNode);" class="title close">
+                    <span class="material-icons">close</span></button>
             </div>
             <div class="body" onclick="windowLogic.bringToFront(parentNode);">
                 <br>
-                <p id="confirmationMessageMsg" style="padding-left:20px;padding-right:20px;"></p>
-                <center>
-                    <button style="margin-top:10px;" id="confirmationMessageButton">OK</button>
-                    <button onclick="windowLogic.closewindow(this.parentNode.parentNode.parentNode);"
-                        style="margin-top:10px;">Cancel</button><br><br>
-                </center>
+                <p id="confirmationMessageMsg"></p>
+                <span>
+                    <button id="confirmationMessageButton">OK</button>
+                    <button
+                        onclick="windowLogic.closewindow(this.parentNode.parentNode.parentNode);">Cancel</button><br><br>
+                </span>
             </div>
     </noscript>
-    <div style="display:none;visibility: hidden;opacity:0;position:fixed;bottom:0px;left:0px;" id="temp">
-
-    </div>
+    <div id="temp"></div>
 </body>
 
 </html>

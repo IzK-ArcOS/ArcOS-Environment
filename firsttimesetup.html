@@ -35,7 +35,7 @@
             <li>A create user account page</li>
             <li>A page to set a password for the new account</li>
         </ul>
-        <br><i style="opacity:0.5;">Click next to continue.</i>
+        <br><i>Click next to continue.</i>
         <span class="bottomRight">
             <button class="" disabled>Back</button>
             <button class="suggested" onclick="setPage('license');">Next</button>
@@ -64,9 +64,9 @@
         </center>
         <p>Because the user you just created is the first user and therefore has Admin rights, it is strongly
             recommended that you set a password for it now, to prevent unwanted access to Admin rights.</p><br>
-        <i style="opacity: 0.5;">Password:</i><br>
+        <i class="half-transparent">Password:</i><br>
         <input type="password" id="passwordInputField">
-        <i style="opacity: 0.5;">Confirm:</i><br>
+        <i class="half-transparent">Confirm:</i><br>
         <input type="password" id="passwordConfirmInputField">
         <span class="bottomRight">
             <button class="" onclick="setPage('finish');">Skip</button>
@@ -107,22 +107,30 @@
         </span>
     </noscript>
     <noscript id="license">
-        <center><h1>License Agreement</h1></center>
+        <center>
+            <h1>License Agreement</h1>
+        </center>
         <p>Below you will find the license agreement, which you need to agree to if you want to be able to use ArcOS.
         </p>
-        <center><button onclick="document.getElementsByClassName('license')[0].classList.remove('hidden');">License</button></center>
+        <center>
+            <button onclick="document.getElementsByClassName('license')[0].classList.remove('hidden');">License</button>
+        </center>
         <span class="bottomRight">
             <button class="" onclick="setPage('home');">Back</button>
             <button class="suggested" onclick="setPage('userSetup');">Agree</button>
         </span>
     </noscript>
-    <div class="centeredAbsolute executeCommand" style="min-width:600px;min-height:150px;" id="comExec">
+    <div class="centeredAbsolute executeCommand" id="comExec">
         <p>Enter command to execute:</p>
-        <input style="font-family: 'Ubuntu Mono', monospace;font-size:16px;" spellcheck="false" id="comExecInp"><br>
-        <div id="executeCommandOutput" style="margin: 20px 0;background-color: #272727;padding:10px;font-family:monospace;height:300px;overflow-y:scroll;">
+        <input spellcheck="false" id="comExecInp"><br>
+        <div id="executeCommandOutput">
         </div>
-        <button onclick="document.getElementById('executeCommandOutput').innerHTML = '';">Clear Log</button><span style="float:right;;"><button onclick="closeExecuteCommand();">Close</button>&nbsp;&nbsp;<button
-                class="suggested" onclick="execCom();">Execute</button></span>
+        <button onclick="document.getElementById('executeCommandOutput').innerHTML = '';">Clear Log</button>
+        <span class="float-right">
+            <button onclick="closeExecuteCommand();">Close</button>
+            &nbsp;&nbsp;
+            <button class="suggested" onclick="execCom();">Execute</button>
+        </span>
     </div>
 
     <div class="license hidden">
@@ -807,7 +815,8 @@ https://www.gnu.org/licenses/why-not-lgpl.html.
 
         </textarea>
         <span class="bottomRight">
-            <button style="float:right;" class="suggested" onclick="this.parentNode.parentNode.classList.add('hidden')">OK</button>
+            <button class="float-right" class="suggested"
+                onclick="this.parentNode.parentNode.classList.add('hidden')">OK</button>
         </span>
 
     </div>

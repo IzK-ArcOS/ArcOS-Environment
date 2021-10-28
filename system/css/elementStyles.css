@@ -335,3 +335,7 @@ span.material-icons.warning {
         margin-left: 20px;
     }
 }
+
+div#temp {
+    display:none;visibility: hidden;opacity:0;position:fixed;bottom:0px;left:0px;
+}
