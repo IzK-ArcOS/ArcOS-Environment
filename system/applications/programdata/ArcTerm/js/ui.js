@@ -305,7 +305,7 @@ class ArcTermUserInterface {
     }
 }
 
-const ArcTermUI = ArcTermUI;
+const ArcTermUI = new ArcTermUserInterface();
 
 function initiateArcTerm(target) {
     if(target && target instanceof Element) {

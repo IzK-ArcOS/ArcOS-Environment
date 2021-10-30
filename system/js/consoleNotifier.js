@@ -37,6 +37,7 @@ console.info(
     "/_/    \\_\\_|  \\___|\\____/|_____/\n" +
     "                                    ", "color:#83a598  ;");
 
+let loadedModules = [];
 
 class consoleNotifier {
     notifyStartService(name, forControl = "") {
@@ -80,8 +81,9 @@ class consoleNotifier {
         let minute = today.getMinutes().toString().padStart(2, "0");
         let second = today.getSeconds().toString().padStart(2, "0");
         let milisecond = today.getMilliseconds().toString().padStart(3, "0");
+        loadedModules.push(mod);
         console.info(
-            `%c${hour}:${minute}:${second}.${milisecond}%cJS%c ${mod}`,
+            `%c${hour}:${minute}:${second}.${milisecond}%cJS%c Module registered: ${mod}`,
             "color: #fff;padding:2.5px 5px;border-radius:2.5px;background-color:#666;margin-right:10px",
             "color: #000;padding:2.5px 5px;border-radius:2.5px;background-color:#fabd2f;",
             "color: #fabd2f"
@@ -89,6 +91,6 @@ class consoleNotifier {
     }
 }
 
-const ConsoleNotifier = ConsoleNotifier;
+const ConsoleNotifier = new consoleNotifier();
 
 ConsoleNotifier.startModule("ArcOS.System.consoleNotifier");

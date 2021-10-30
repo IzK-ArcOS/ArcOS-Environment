@@ -47,6 +47,6 @@ div.startMenu>.leftPane {
 }
 
 div.notificationCenter {
-    top: 55px;
+    top: 55px !important;
     bottom: 10px;
 }
