@@ -80,3 +80,7 @@ button#notificationCenterClearButton {
 div.notificationCenter div.actions span.row {
     display:flex;
 }
+
+div.notificationCenterItem p {
+    overflow-x:auto;
+}

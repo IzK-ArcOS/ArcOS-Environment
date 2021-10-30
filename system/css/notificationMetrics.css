@@ -2,14 +2,11 @@
     top: 15px;
     left: 50%;
     transform: translate(-50%, 0);
-    -o-transform: translate(-50%, 0);
-    -ms-transform: translate(-50%, 0);
-    -moz-transform: translate(-50%, 0);
-    -webkit-transform: translate(-50%, 0);
     position: fixed;
     max-width: 600px;
     word-wrap: break-word;
-    background: var(--notificationBackgroundColor);
+    background: var(--controlPanelMainBackgroundColor);
+    backdrop-filter: blur(30px);
     color: var(--windowColor);
     border-radius: var(--notificationBorderRadius);
     padding: 15px;
@@ -22,6 +19,48 @@
     z-index: 1000000000004;
 }
 
+.notification.animation-appear {
+    visibility: visible;
+    animation: notification-slide-in-top forwards ease;
+    animation-duration: 0.4s;
+}
+
+.notification.animation-disappear {
+    opacity: 1;
+    visibility: visible;
+    animation: notification-slide-out-top forwards ease;
+    animation-duration: 0.4s;
+}
+
+@keyframes notification-slide-in-top {
+    from {
+        opacity: 0;
+        margin-top: -50px;
+    }
+    to {
+        opacity: 1;
+        margin-top: initial;
+    }
+}
+
+@keyframes notification-slide-out-top {
+    from {
+        opacity: 1;
+        margin-top:initial;
+    }
+
+    to {
+        opacity: 0;
+        margin-top:-50px;
+    }
+}
+
+.notification.alignRight {
+    left:unset;
+    transform:unset;
+    right:15px;
+}
+
 .notification>h1,
 h2,
 h3,
@@ -30,12 +69,21 @@ h5 {
     margin: 0px;
 }
 
-.notification>h3>button.close {
-    background: transparent;
+.notification button.close {
+    opacity: 0.75;
+    transition: var(--windowTransition)
 }
 
-.notification>h3>button.close:hover {
-    background: var(--notificationCloseButtonBackgroundColor)
+.notification button.close:hover {
+    opacity: 1;
+}
+
+.notification button.close:active {
+    opacity: 0.5;
+}
+
+.notification button.close span.material-icons {
+    font-size:20px;
 }
 
 p#notificationMessage {

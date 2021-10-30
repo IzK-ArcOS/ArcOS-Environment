@@ -8,12 +8,24 @@ class NotificationLogic {
         clearTimeout(tmo);
         if (title) {
             if (message) {
-                document.getElementById('notificationMessage').innerHTML = message;
-                document.getElementById('notificationService').style.opacity = '0'
-                document.getElementById('notificationService').style.visibility = 'visible';
-                document.getElementById('notificationService').style.opacity = '1';
-                document.getElementById('notificationTitle').innerHTML = title;
+                let notificationService = document.getElementById("notificationService");
+                let notificationMessage = document.getElementById("notificationMessage");
+                let notificationTitle = document.getElementById("notificationTitle");
+                let userData = getCurrentUserData();
+
+                notificationMessage.innerHTML = message;
+                notificationTitle.innerHTML = title;
+
+                if (userData.enableAnimations) {
+                    notificationService.classList.add("animation-appear");
+                } else {
+                    notificationService.style.opacity = '0';
+                    notificationService.style.visibility = 'visible';
+                    notificationService.style.opacity = '1';
+                }
+
                 playSystemSound("./system/sounds/notification.mp3");
+
                 notificationList.push({ title, message })
             } else {
                 errorLogic.sendError('Notification Error', "The notification message is invalid and the notification can't start.<br>Please check the command and try again.")
@@ -32,12 +44,17 @@ class NotificationLogic {
 
         ConsoleNotifier.notifyStartService("NotificationLogic.closeNotification")
 
-        document.getElementById('notificationService').style.opacity = '0';
+        let notificationService = document.getElementById("notificationService");
+        let notificationMessage = document.getElementById("notificationMessage");
+        let notificationTitle = document.getElementById("notificationTitle");
+
+        notificationService.classList.remove("animation-appear");
+        notificationService.classList.add("animation-disappear");
+
         setTimeout(() => {
-            document.getElementById('notificationService').style.visibility = 'hidden';
-            document.getElementById('notificationTitle').innerHTML = 'Notification Title';
-            document.getElementById('notificationMessage').innerHTML = 'Notification Message';
-        }, 200);
+            notificationService.classList.remove("animation-appear");
+            notificationService.classList.remove("animation-disappear");
+        }, 1000);
     }
 
     startNotificationCenterPopulator() {
@@ -58,7 +75,7 @@ class NotificationLogic {
                     document.getElementById("notificationCenterInline").innerHTML = "<center><p style='color:let(--windowColor);'>You have no new notifications</p></center>";
                 }
 
-            } catch {}
+            } catch { }
         }, 50);
     }
 
