@@ -12,6 +12,7 @@ onload = function () {
 
         onloadLogic.loadSafemodeDependingFunctions();
         onloadLogic.hideBlock();
+        try { document.getElementById("volumeControlEnableSoundSwitch").checked = getCurrentUserData().muted == 1 } catch {}
     }, 1000);
 
     if (this.localStorage.getItem("safeMode") == "1") {
@@ -77,8 +78,8 @@ class OnloadLogic {
 
                 windowLogic.updateTaskBar();
 
-                document.getElementById("volumeControlEnableSoundSwitch").checked = (mtd == 'true');
-                if (mtd != 'true') userData.muted = 0;
+                //document.getElementById("volumeControlEnableSoundSwitch").checked = (mtd == 'true');
+                //if (mtd != 'true') userData.muted = 0;
 
                 localStorage.setItem(args.get("username"), JSON.stringify(userData));
 
@@ -102,6 +103,7 @@ class OnloadLogic {
             localStorage.setItem(args.get("username"), JSON.stringify(userData));
         } catch {
             onloadDesktopIconsRetryCount++;
+
             if (onloadDesktopIconsRetryCount >= 3) {
                 errorLogic.bsod("OnloadLogic.onloadSetDesktopIcons: OSDIRC_OVERFLOW", "process couldn't be started.")
             } else {
@@ -193,21 +195,15 @@ class OnloadLogic {
 
         ConsoleNotifier.notifyStartService("ArcOS.System.onloadLogic.EventListener.mousedown", "taskbarVolumeControl");
         window.addEventListener('mousedown', function (event) {
-            try {
-                let center = document.getElementById('notificationCenter', 0);
-                let button = document.getElementById('notificationCenterButton', 0);
+            let center = document.getElementById('notificationCenter', 0);
+            let button = document.getElementById('notificationCenterButton', 0);
 
-                if (!event.path.includes(center) &&
-                    !event.path.includes(button)) {
-                    if (!center.classList.contains("retracted")) {
-                        center.classList.add("retracted");
-                    }
+            if (!event.path.includes(center) &&
+                !event.path.includes(button)) {
+                if (!center.classList.contains("retracted")) {
+                    center.classList.add("retracted");
                 }
-            } catch (e) {
-                throw e;
-                //errorLogic.bsod("OnloadLogic.onloadSetEventListeners: TVC_MISSING", "The taskbarVolumeControl couldn't be found.")
             }
-
         });
     }
 
@@ -215,6 +211,7 @@ class OnloadLogic {
         try {
             let userData = getCurrentUserData();
             let pos = userData.taskbarpos;
+
             switch (pos) {
                 case "top":
                     document.getElementById("taskbarAddonLoader").href = "./system/css/taskbarontop.css";
@@ -229,6 +226,7 @@ class OnloadLogic {
             if (getCurrentUserData().theme !== "") {
                 let userData = getCurrentUserData();
                 let theme = userData.theme;
+
                 switch (theme) {
                     case "darkrounded":
                         document.getElementById("addonShellLoader").href = "";
@@ -245,7 +243,9 @@ class OnloadLogic {
                 }
             } else {
                 let userData = getCurrentUserData();
+
                 userData.theme = "darkrounded";
+                
                 localStorage.setItem(args.get("username"), JSON.stringify(userData));
             }
         } catch { }
@@ -318,7 +318,7 @@ class OnloadLogic {
     loadSafemodeDependingFunctions() {
         getDriveLetters();
         hideStart();
-        //openSettingsPane("home", document.getElementsByClassName("controlPanelSidebar")[0]);
+        openSettingsPane("home", document.getElementsByClassName("controlPanelSidebar")[0]);
         setToolbarTrigger();
         populateAppManager();
         startUserDataUpdateCycle();

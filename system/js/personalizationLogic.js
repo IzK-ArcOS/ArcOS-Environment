@@ -2,13 +2,16 @@ ConsoleNotifier.startModule("ArcOS.System.personalizationLogic");
 
 class PersonalizationLogic {
     applyTheme() {
-
         ConsoleNotifier.notifyStartService("PersonalizationLogic.applyTheme");
 
         let userData = getCurrentUserData();
+
         userData.theme = document.getElementById("themeSelect").value;
+
         localStorage.setItem(args.get("username"), JSON.stringify(userData));
+
         let theme = document.getElementById("themeSelect").value;
+
         if (theme === "darkrounded") {
             document.getElementById("addonShellLoader").href = "";
         } else if (theme === "darksharp") {
@@ -21,18 +24,17 @@ class PersonalizationLogic {
     }
 
     applyTaskbarPos() {
-
         ConsoleNotifier.notifyStartService("PersonalizationLogic.applyTaskbarPos");
 
         let userData = getCurrentUserData();
+
         userData.taskbarpos = document.getElementById("taskbarPosSelect").value;
+
         localStorage.setItem(args.get("username"), JSON.stringify(userData));
+
         let pos = document.getElementById("taskbarPosSelect").value;
-        if (pos === "top") {
-            document.getElementById("taskbarAddonLoader").href = "./system/css/taskbarontop.css";
-        } else if (pos === "bottom") {
-            document.getElementById("taskbarAddonLoader").href = "";
-        }
+
+        document.getElementById("taskbarAddonLoader").href = pos === "top" ? "./system/css/taskbarontop.css" : "";
     }
 
     setAnimations(updateLS) {
@@ -41,11 +43,13 @@ class PersonalizationLogic {
 
         let checked;
         let userData = getCurrentUserData();
+
         if (updateLS) {
             checked = document.getElementById("preferencesAnimationsSwitch").checked;
         } else {
             checked = userData.enableAnimations
         }
+
         if (checked) {
             userData.enableAnimations = true;
             localStorage.setItem(args.get("username"), JSON.stringify(userData));
@@ -58,7 +62,6 @@ class PersonalizationLogic {
     }
 
     setTitlebarButtonLocations(updateLS) {
-
         ConsoleNotifier.notifyStartService("PersonalizationLogic.setTitlebarButtonLocations");
 
         let checked;
@@ -70,11 +73,8 @@ class PersonalizationLogic {
             userData.titlebarButtonsLeft = checked;
 
             localStorage.setItem(args.get("username"), JSON.stringify(userData));
-
         } else {
-
             checked = userData.titlebarButtonsLeft
-
         }
 
         if (checked) {
@@ -85,35 +85,40 @@ class PersonalizationLogic {
     }
 
     toggleTaskbarButtonLabels() {
-
         ConsoleNotifier.notifyStartService("PersonalizationLogic.toggleTaskbarButtonLabels");
 
         let userData = getCurrentUserData();
+
         userData.taskbarButtonLabels = !userData.taskbarButtonLabels;
+
         localStorage.setItem(args.get("username"), JSON.stringify(userData));
+
         windowLogic.updateTaskBar();
     }
 
     setTaskbarButtonLabels(obj) {
-
         ConsoleNotifier.notifyStartService("PersonalizationLogic.setTaskbarButtonLabels");
 
         let checked = !obj.checked;
         let userData = getCurrentUserData();
+
         userData.noTaskbarButtonLabels = checked;
+
         localStorage.setItem(args.get("username"), JSON.stringify(userData));
+
         windowLogic.updateTaskBar();
     }
 
     updateVolume(obj) {
-
         ConsoleNotifier.notifyStartService("PersonalizationLogic.updateVolume");
 
         let userData = getCurrentUserData();
+
         userData.globalVolume = obj.value / 10;
-        console.log("LOCAL:", userData);
+
         localStorage.setItem(args.get("username"), JSON.stringify(userData));
-        console.log("LS:", getCurrentUserData());
+
+        globalVolume = userData.globalVolume;
     }
 
     setStartmenuSize(updateLS) {
@@ -128,11 +133,8 @@ class PersonalizationLogic {
             userData.smallStart = checked;
 
             localStorage.setItem(args.get("username"), JSON.stringify(userData));
-
         } else {
-
             checked = userData.smallStart
-
         }
 
         if (checked) {
@@ -154,11 +156,8 @@ class PersonalizationLogic {
             userData.centeredTaskbarButtons = checked;
 
             localStorage.setItem(args.get("username"), JSON.stringify(userData));
-
         } else {
-
             checked = userData.centeredTaskbarButtons
-
         }
 
         if (checked) {
@@ -187,7 +186,7 @@ class PersonalizationLogic {
         if (color.value) {
             uData.customThemeColor = color.value;
         } else {
-            errorLogic.sendError("Custom color reset","The entered color value was invalid, so it was reset to default");
+            errorLogic.sendError("Custom color reset", "The entered color value was invalid, so it was reset to default");
             uData.customThemeColor = "";
         }
 

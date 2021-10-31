@@ -4,53 +4,41 @@ class ContextMenuLogic {
 
     hideMenu() {
         if (!lockScreenActive) {
-            try {
-                let contextMenu = document.getElementById("contextMenu");
+            let contextMenu = document.getElementById("contextMenu");
 
-                contextMenu.style.display = 'none';
-                contextMenu.style.opacity = "0";
-                contextMenu.style.visibility = "hidden";
-            } catch (e) {
-
-                //errorLogic.bsod("ContextMenuLogic.hideMenu: CONTEXT_MENU_INVALID", "The ArcOS context menu module or one of the modules inheriting it couldn't be found.");
-
-            }
+            contextMenu.style.display = 'none';
+            contextMenu.style.opacity = "0";
+            contextMenu.style.visibility = "hidden";
         }
     }
 
     rightClick(e) {
         if (!lockScreenActive) {
-            try {
-                let contextMenu = document.getElementById("contextMenu"),
-                    username = args.get("username"),
-                    desktopIcons = document.getElementById("desktopIcons"),
-                    wallpaper = document.getElementsByClassName("wallpaper")[0],
-                    body = document.body,
-                    windowStore = document.getElementById("windowStore"),
-                    desktopIconButtons = document.querySelectorAll("button.icon");
-                if (
-                    e.path.includes(desktopIcons) ||
-                    e.path.includes(wallpaper) ||
-                    e.path.includes(body) ||
-                    e.target == wallpaper ||
-                    e.target == desktopIcons ||
-                    e.target == body
-                ) {
-                    contextMenu.style.display = 'block';
-                    contextMenu.style.opacity = '1';
-                    contextMenu.style.visibility = "visible";
-                    contextMenu.style.display = 'block';
-                    contextMenu.style.left = e.pageX + "px";
-                    contextMenu.style.top = e.pageY + "px";
-                } else {
-                    contextMenuLogic.hideMenu();
-                }
-                e.preventDefault();
-            } catch (e) {
-
-                //errorLogic.bsod("ContextMenuLogic.rightClick: CONTEXT_MENU_INVALID", "The ArcOS context menu module or one of the modules inheriting it couldn't be found.");
-                //throw e;
+            let contextMenu = document.getElementById("contextMenu"),
+                username = args.get("username"),
+                desktopIcons = document.getElementById("desktopIcons"),
+                wallpaper = document.getElementsByClassName("wallpaper")[0],
+                body = document.body,
+                windowStore = document.getElementById("windowStore"),
+                desktopIconButtons = document.querySelectorAll("button.icon");
+            if (
+                e.path.includes(desktopIcons) ||
+                e.path.includes(wallpaper) ||
+                e.path.includes(body) ||
+                e.target == wallpaper ||
+                e.target == desktopIcons ||
+                e.target == body
+            ) {
+                contextMenu.style.display = 'block';
+                contextMenu.style.opacity = '1';
+                contextMenu.style.visibility = "visible";
+                contextMenu.style.display = 'block';
+                contextMenu.style.left = e.pageX + "px";
+                contextMenu.style.top = e.pageY + "px";
+            } else {
+                contextMenuLogic.hideMenu();
             }
+            e.preventDefault();
         }
     }
 
@@ -89,7 +77,6 @@ class ContextMenuLogic {
 
         if (rightClickValid) {
             contextMenu.innerHTML = "";
-            console.log(rightClickType);
 
             let ul = document.createElement("ul");
 
@@ -216,4 +203,3 @@ let contextMenuLogic = new ContextMenuLogic();
 
 document.onclick = contextMenuLogic.hideMenu;
 document.oncontextmenu = contextMenuLogic.overrideRightClick;
-//document.oncontextmenu = contextMenuLogic.rightClick;

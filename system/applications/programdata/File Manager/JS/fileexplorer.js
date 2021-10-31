@@ -4,7 +4,7 @@ function fileExplorerOpenDir(dirName) {
 
     dirName = generalLogic.replaceAllCharsInStr(dirName, "\\", "/");
 
-    fs.readdir(dirName, { encoding: "ascii" }, function(err, files) {
+    fs.readdir(dirName, { encoding: "ascii" }, function (err, files) {
 
         if (files == undefined || err) {
             errorLogic.sendError("File Manager", "File Manager failed to open the folder. Please check the path and try again.<br><br>Path: " + dirName);
@@ -74,7 +74,7 @@ function fileExplorerOpenDir(dirName) {
         document.getElementById("fileExplorerMainFrameOut").append(foldspan);
         document.getElementById("fileExplorerMainFrameOut").append(filespan);
 
-        fileExplorerCurrentDir = generalLogic.replaceAllCharsInStr(dirName, "//", "/");
+        fileExplorerCurrentDir = dirName.replace("//", "/");
 
         document.getElementById("fileExplorerAddressBar").value = fileExplorerCurrentDir;
 
@@ -187,7 +187,7 @@ async function getDriveLetters() {
             button.append(sizeAlloc);
 
 
-            canWrite(drives[i].mountpoints[j].path, function(err, isWritable) {
+            canWrite(drives[i].mountpoints[j].path, function (err, isWritable) {
                 if (isWritable)
                     document.getElementById("fileExplorerMainFrameOut").append(button);
             });
@@ -209,7 +209,7 @@ function fileExplorerParentDir() {
 
 function createFile(filePath) {
 
-    fs.writeFile(filePath, "", function(err) {
+    fs.writeFile(filePath, "", function (err) {
         if (err) {
             errorLogic.sendError("File Manager - unable to create file", "File Manager was unable to save the requested file. You might not have permission to do so. Please check that the name is valid and try again.");
         }
@@ -223,7 +223,7 @@ function createFile(filePath) {
 
 function deleteFile(filePath) {
 
-    fs.unlink(filePath, function(err) {
+    fs.unlink(filePath, function (err) {
         if (err) {
             errorLogic.sendError("File Manager - unable to delete file", "File Manager was unable to delete the requested file. You might not have permission to do so. Please check that the name is valid and try again.");
         }
@@ -236,7 +236,7 @@ function deleteFile(filePath) {
 
 function renameFile(path, file, name) {
 
-    fs.rename(path + "/" + file, path + "/" + name, function(err) {
+    fs.rename(path + "/" + file, path + "/" + name, function (err) {
         if (err) {
             errorLogic.sendError("File Manager - unable to rename file", "File Manager was unable to rename the requested file. You might not have permission to do so. Please check that the name is valid and try again.");
         } else {
@@ -269,7 +269,7 @@ function renameFolder(folderPath, newName) {
     const currPath = folderPath
     const newPath = newName
 
-    fs.rename(currPath, newPath, function(err) {
+    fs.rename(currPath, newPath, function (err) {
         if (err) {
             errorLogic.sendError("File Manager - unable to rename folder", "File Manager was unable to rename the requested folder. You might not have permission to do so. Please check that the name is valid and try again.");
         } else {
@@ -303,7 +303,7 @@ function openWithNotepad(file) {
     let path = file;
     notepadLoadedFile = path;
 
-    fs.readFile(path, 'utf8', function(err, data) {
+    fs.readFile(path, 'utf8', function (err, data) {
         if (err) {
             notificationLogic.notificationService("ArcOS Notepad", "There was an error loading \"" + document.getElementById("notepadLoadFileInput").value + "\". The file might not exist or you don't have the permission to access it. Please verify the name and try again.");
             document.getElementById("notepadTextField").value = "";
@@ -326,7 +326,7 @@ function openWithNotepad(file) {
 }
 
 function executeECS(filepath) {
-    fs.readFile(filepath, 'utf8', function(err, data) {
+    fs.readFile(filepath, 'utf8', function (err, data) {
         if (err) {
             notificationLogic.notificationService("Execute Command Shortcut", "The ECS file is invalid. No commands were executed.");
         } else {
@@ -350,7 +350,7 @@ function formatBytes(bytes) {
 }
 
 function canWrite(path, callback) {
-    fs.access(path, fs.R_OK, function(err) {
+    fs.access(path, fs.R_OK, function (err) {
         callback(null, !err);
     });
 }

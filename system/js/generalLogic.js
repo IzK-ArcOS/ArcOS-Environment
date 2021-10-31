@@ -16,6 +16,7 @@ class GeneralLogic {
         ConsoleNotifier.notifyStartService("GeneralLogic.replaceAllCharsInStr")
 
         let out = "";
+
         for (let i = 0; i < s.length; i++) {
             if (s.charAt(i) === from) {
                 out += to;
@@ -23,6 +24,7 @@ class GeneralLogic {
                 out += s.charAt(i);
             }
         }
+
         return out;
     }
 
@@ -32,6 +34,7 @@ class GeneralLogic {
 
         string += "";
         subString += "";
+
         if (subString.length <= 0) return (string.length + 1);
 
         let n = 0,
@@ -45,34 +48,8 @@ class GeneralLogic {
                 pos += step;
             } else break;
         }
+
         return n;
-    }
-
-    executeWindowsShellCommand(command, args) {
-
-        ConsoleNotifier.notifyStartService("GeneralLogic.executeWindowsShellCommand")
-
-        const { spawn } = require("child_process");
-
-        const ls = spawn(command, args);
-
-        console.log(command, args);
-
-        ls.stdout.on("data", data => {
-            console.log(`stdout: ${data}`);
-        });
-
-        ls.stderr.on("data", data => {
-            console.log(`stderr: ${data}`);
-        });
-
-        ls.on('error', (error) => {
-            console.log(`error: ${error.message}`);
-        });
-
-        ls.on("close", code => {
-            console.log(`child process exited with code ${code}`);
-        });
     }
 
     disableExit() {
@@ -89,26 +66,12 @@ class GeneralLogic {
         allowExit = true;
     }
 
-    getAllFunctions() {
-
-        ConsoleNotifier.notifyStartService("GeneralLogic.getAllFunctions")
-
-        let myfunctions = [];
-        for (let l in this) {
-            if (this.hasOwnProperty(l) &&
-                this[l] instanceof Function &&
-                !/myfunctions/i.test(l)) {
-                myfunctions.push(this[l]);
-            }
-        }
-        return myfunctions;
-    }
-
     reloadShell() {
 
         ConsoleNotifier.notifyStartService("GeneralLogic.reloadShell")
 
         document.getElementById("shellLoader").href = "";
+
         setTimeout(() => {
             document.getElementById("shellLoader").href = "./system/css/main.css";
         }, 100);
@@ -120,17 +83,23 @@ class GeneralLogic {
 
         let tempList = activeapps;
         let tempFocusedWindow = focusedWindow;
+
         loadedApps = [];
         applications = [];
         activeapps = [];
         focusedWindow = "";
+        
         document.getElementById("windowStore").innerHTML = "";
+        
         setTimeout(() => {
             onloadLogic.loadDefaultApps();
+
             setTimeout(() => {
+            
                 for (let i = 0; i < tempList.length; i++) {
                     windowLogic.openWindow(tempList[i]);
                 }
+            
                 setTimeout(() => {
                     windowLogic.bringToFront(document.getElementById(tempFocusedWindow));
                 }, 1000);
@@ -144,13 +113,10 @@ let generalLogic = new GeneralLogic();
 window.addEventListener("click", e => {
     if (!lockScreenActive) {
         windowLogic.updateTitlebar(e);
-        //personalizationLogic.setTitlebarButtonLocations(false, false);
+
         let userData = getCurrentUserData();
+        
         try { document.getElementById("systemVolumeSlider").value = userData.globalVolume * 10; } catch {}
-        try { document.getElementById("volumeControlEnableSoundSwitch").checked = userData.muted } catch {}
+        try { document.getElementById("volumeControlEnableSoundSwitch").checked = userData.muted == 1 } catch {}
     }
 });
-
-window.addEventListener("contextmenu", e => {
-    //windowLogic.updateTitlebar(e);
-})
