@@ -5,13 +5,15 @@
     "main": "./system/kernel.js",
     "scripts": {
         "start": "electron .",
-        "build": "electron-packager . ArcOS"
+        "build": "electron-packager . ArcOS",
+        "lint": "eslint '{system,fts,setupAssets,bsod}/**/*.js'"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "devDependencies": {
-        "electron": "^11.4.11"
+        "electron": "^11.4.11",
+        "eslint": "^8.1.0"
     },
     "dependencies": {
         "argon2": "^0.28.2",
