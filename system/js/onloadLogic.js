@@ -12,7 +12,9 @@ onload = function () {
 
         onloadLogic.loadSafemodeDependingFunctions();
         onloadLogic.hideBlock();
-        try { document.getElementById("volumeControlEnableSoundSwitch").checked = getCurrentUserData().muted == 1 } catch {}
+        try { document.getElementById("volumeControlEnableSoundSwitch").checked = getCurrentUserData().muted == 1 } catch {
+            //
+        }
     }, 1000);
 
     if (this.localStorage.getItem("safeMode") == "1") {
@@ -51,12 +53,14 @@ class OnloadLogic {
 
                 taskbarClock.innerText = `${h}:${m}`;
                 taskbarClockWidgetTime.innerText = `${h}:${m}:${s}`;
-            } catch { }
+            } catch {
+                //
+            }
         }, 500);
     }
 
     checkTime(i) {
-        if (i < 10) { i = "0" + i };
+        if (i < 10) { i = "0" + i }
         return i;
     }
 
@@ -68,11 +72,15 @@ class OnloadLogic {
                 let mtd = userData.muted.toString();
                 let stl = userData.noTaskbarButtonLabels.toString();
 
-                try { document.getElementById("preferencesAnimationsSwitch").checked = (eas == 'true'); } catch { }
+                try { document.getElementById("preferencesAnimationsSwitch").checked = (eas == 'true'); } catch {
+                    //
+                }
 
                 document.getElementById("animationsAddonLoader").href = eas == 'true' ? "" : "system/css/noAnimations.css";
 
-                try { document.getElementById("preferencesTaskbarButtonLabelsSwitch").checked = (stl == 'false') } catch { }
+                try { document.getElementById("preferencesTaskbarButtonLabelsSwitch").checked = (stl == 'false') } catch {
+                    //
+                }
 
                 userData.noTaskbarButtonLabels = (stl == 'true');
 
@@ -131,17 +139,23 @@ class OnloadLogic {
                 let newPicture = "./system/images/profilePictures/" + pfp + ".png";
 
                 document.getElementById("userSettingsProfilePicture", 0).src = newPicture
-            } catch (e) { }
+            } catch (e) {
+                //
+            }
 
             try {
                 document.getElementById("usernameStartMenu").innerHTML = args.get('username');
-            } catch (e) { }
+            } catch (e) {
+                console.error("Unable to update usernameStartMenu");
+            }
         }, 5);
 
         setInterval(() => {
             try {
                 new DOMLogic().getElemId("aboutScreenVersionNumber").innerText = version;
-            } catch { }
+            } catch {
+                //
+            }
         }, 5);
     }
 
@@ -215,10 +229,14 @@ class OnloadLogic {
             switch (pos) {
                 case "top":
                     document.getElementById("taskbarAddonLoader").href = "./system/css/taskbarontop.css";
+                    break;
                 case "bottom":
                     document.getElementById("taskbarAddonLoader").href = "";
+                    break;
             }
-        } catch { }
+        } catch {
+            //
+        }
     }
 
     loadTheme() {
@@ -248,7 +266,9 @@ class OnloadLogic {
                 
                 localStorage.setItem(args.get("username"), JSON.stringify(userData));
             }
-        } catch { }
+        } catch {
+            //
+        }
     }
 
     showBlock() {
@@ -312,7 +332,9 @@ class OnloadLogic {
             for (let i = 0; i < windows.length; i++) {
                 windows[i].style.position = "absolute";
             }
-        } catch { }
+        } catch {
+            //
+        }
     }
 
     loadSafemodeDependingFunctions() {
@@ -340,9 +362,7 @@ class OnloadLogic {
         this.onloadSetEventListeners();
         this.loadTheme();
         this.loadTaskbarPos();
-        if (localStorage.getItem("safeMode") != 1) {
-
-        } else {
+        if (localStorage.getItem("safeMode") == 1) {
             document.getElementsByClassName("block")[0].style.backgroundImage = "unset";
             document.getElementById("addonShellLoader").href = "./system/css/darkModeSharp.css";
             document.getElementById("animationsAddonLoader").href = "system/css/noanimations.css";

@@ -20,6 +20,7 @@
         "drivelist": "^9.2.4",
         "electron-packager": "^15.2.0",
         "electron-rebuild": "^2.3.5",
+        "merge-dirs": "^0.2.1",
         "node-gyp": "^8.1.0",
         "python": "0.0.4",
         "request": "^2.88.2",

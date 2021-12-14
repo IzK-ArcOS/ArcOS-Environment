@@ -25,7 +25,10 @@ class WindowLogic {
                     this.unMaximizeWindow(window);
                 }, 300);
 
-            } catch (e) {}
+            } catch (e) 
+            {
+                //
+            }
 
             for (let i = 0; i < activeapps.length; i++) {
                 if (window.id == activeapps[i]) {
@@ -83,7 +86,10 @@ class WindowLogic {
                         document.getElementById('startMenu').style.display = 'none';
                     }, 200);
                 }, 200);
-            } catch {}
+            } catch 
+            {
+                //
+            }
         } else {
             errorLogic.sendError("ArcOS Program Manager", "The requested applcation couldn't be opened: Cannot read propoerty 'id' of null.");
         }
@@ -141,7 +147,9 @@ class WindowLogic {
             maxamount += 1;
             window.style.zIndex = maxamount;
             focusedWindow = window.id;
-        } catch (e) {}
+        } catch (e) {
+            //
+        }
     }
 
     async loadWindow(appFile, userImport = 0, register = 1) {

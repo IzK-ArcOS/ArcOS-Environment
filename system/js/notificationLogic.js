@@ -77,7 +77,9 @@ class NotificationLogic {
                     document.getElementById("notificationCenterInline").innerHTML = "<center><p style='color:let(--windowColor);'>You have no new notifications</p></center>";
                 }
 
-            } catch { }
+            } catch {
+                console.error("Unable to make a function call in startNotificationCenterPopulator");
+            }
         }, 50);
     }
 

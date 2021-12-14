@@ -170,7 +170,9 @@ function startUserDataUpdateCycle() {
                     localStorage.setItem("userAmount", parseInt(localStorage.getItem("userAmount")) + 1);
                     tempUsrList.push(localStorage.key(i));
                 }
-            } catch {}
+            } catch {
+                //
+            }
             localStorage.setItem("userList", tempUsrList);
         }
     }, 500);
@@ -188,7 +190,7 @@ function convertUserAccount(user) {
     for (let key in template) {
         converted.push(key);
         original.push(key);
-    };
+    }
 
     for (let i = 1; i < converted.length; i++) {
         if (localStorage.getItem(`${user}_${converted[i]}`)) {
@@ -344,7 +346,7 @@ function isUser(user) {
     try {
         let json = JSON.parse(user);
         return (!!json && (json.enabled == 1 || json.enabled == 0));
-    } catch (e) { return false };
+    } catch (e) { return false }
 }
 
 function isOldUser(user) {

@@ -41,7 +41,7 @@ class GeneralLogic {
             pos = 0,
             step = allowOverlapping ? 1 : subString.length;
 
-        while (true) {
+        for (;;) {
             pos = string.indexOf(subString, pos);
             if (pos >= 0) {
                 ++n;
@@ -116,7 +116,11 @@ window.addEventListener("click", e => {
 
         let userData = getCurrentUserData();
         
-        try { document.getElementById("systemVolumeSlider").value = userData.globalVolume * 10; } catch {}
-        try { document.getElementById("volumeControlEnableSoundSwitch").checked = userData.muted == 1 } catch {}
+        try { document.getElementById("systemVolumeSlider").value = userData.globalVolume * 10; } catch {
+            console.error("Unable to update systemVolumeSlider!");
+        }
+        try { document.getElementById("volumeControlEnableSoundSwitch").checked = userData.muted == 1 } catch {
+            console.error("Unable to update volumeControlEnableSoundSwitch!");
+        }
     }
 });

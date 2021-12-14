@@ -78,7 +78,9 @@ class UpdateLogic {
                             powerLogic.restart();
                         }, 10000);
                     });
-                } catch (err) { }
+                } catch (err) {
+                    console.error(err);
+                }
             });
         } else {
             errorLogic.sendError("Unable to update", "The update application is not loaded. Please restart and try again.")
