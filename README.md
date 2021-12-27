@@ -21,6 +21,7 @@ If you do decide to clone the repository to your local drive, please follow thes
 > cd .\node_modules\drivelist && ..\.bin\electron-rebuild
 > cd ..\.. && npm start
 > ```
+> Note: on windows you'll need vs2015 or newer installed with "Desktop Development with C++"
 
 ## ArcOS Updater
 
