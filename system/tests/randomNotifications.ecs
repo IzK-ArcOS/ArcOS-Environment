@@ -1,3 +1,0 @@
-for (let i = 0; i < 10; i++) {
-    new NotificationLogic().notificationService("Random Error #" + Math.floor(Math.random() * i), "Hihi");
-}

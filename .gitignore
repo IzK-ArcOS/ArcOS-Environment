@@ -1,6 +1,6 @@
 node_modules/
-system/applications/programdata/notepad/save/
-system/tests/
-system/applications/prototype game.ecs
+../apps/res/notepad/save/
+src/sys/tests/
+../apps/prototype game.ecs
 .vscode/settings.json
 ArcOS-*/
