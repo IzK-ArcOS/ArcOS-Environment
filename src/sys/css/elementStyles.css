@@ -1,0 +1,341 @@
+button {
+    background-color: var(--buttonBackgroundColor);
+    color: var(--windowColor);
+    border-radius: var(--buttonBorderRadius);
+    padding: 10px;
+    min-width: 80px;
+    transition: var(--buttonTransition);
+}
+
+button:hover {
+    background-color: var(--buttonBackgroundColorHover);
+}
+
+button:active {
+    background-color: var(--buttonBackgroundColorActive);
+}
+
+.taskbarButtons>button:not(.startButton), .taskbar>button:not(.startButton) {
+    border-radius: 0px;
+    min-width: unset;
+    background-color: transparent;
+}
+
+.taskbarButtons>button:hover:not(.startButton), .taskbar>button:hover:not(.startButton) {
+    border-radius: 0px;
+    min-width: unset;
+    background-color: var(--taskbarAppButtonBackgroundColor);
+}
+
+.taskbarButtons>button:active:not(.startButton), .taskbar>button:hover:not(.startButton) {
+    border-radius: 0px;
+    min-width: unset;
+    background-color: transparent;
+}
+
+.taskbarButtons {
+    max-width: calc(100% - 155px);
+    overflow-wrap: none;
+    overflow-y: scroll;
+    position: absolute;
+    top: 0px;
+    left: 43px;
+    max-height: 100%;
+}
+
+div#taskbarButtons.center {
+    left: 50%;
+    transform: translate(-50%, 0);
+    margin-right: 0;
+    padding-right: 0;
+    margin-left: 10px;
+}
+
+.taskbarButtons>::-webkit-scrollbar {
+    width: 0px;
+    visibility: hidden;
+}
+
+.taskbarButtons>::-webkit-scrollbar-track {
+    background-color: transparent;
+    cursor: default;
+}
+
+/* Handle */
+
+.taskbarButtons>::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    transition: none;
+    cursor: default;
+}
+
+/* Handle on hover */
+
+.taskbarButtons>::-webkit-scrollbar-thumb:hover {
+    background-color: transparent;
+    cursor: default;
+}
+
+.startMenuAppTile {
+    border-radius: var(--buttonBorderRadius);
+    background-color: var(--startMenuAppTileBackgroundColor);
+    color: var(--windowColor);
+    text-align: bottom left;
+    width: 95%;
+    margin: 5px;
+    padding: 5px;
+}
+
+.startMenuUsername {
+    border-radius: 5px;
+    background-color: transparent;
+    color: var(--windowColor);
+    text-align: center;
+    width: 95%;
+    margin: 5px;
+    margin-right: unset;
+    padding: 10px;
+}
+
+.startMenuAppTile:hover {
+    background-color: var(--startMenuAppTileBackgroundColorHover);
+}
+
+.startMenuAppTile:active {
+    background-color: var(--startMenuAppTileBackgroundColorActive);
+}
+
+div.clockWidget {
+    position: fixed;
+    right: 10px;
+    bottom: 55px;
+    border-radius: var(--clockWidgetBorderRadius);
+    background-color: var(--clockWidgetBackgroundColor);
+    width: 150px;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--windowTransition);
+    z-index: 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000002;
+}
+
+div.clockWidget>h1, h2, h3, h4 {
+    color: var(--windowColor);
+}
+
+input {
+    background-color: var(--buttonBackgroundColor);
+    color: var(--windowColor);
+    border-radius: var(--buttonBorderRadius);
+    padding: 10px;
+    min-width: 80px;
+    transition: var(--buttonTransition);
+}
+
+input:hover {
+    background-color: var(--buttonBackgroundColorHover);
+}
+
+select {
+    background-color: var(--buttonBackgroundColor);
+    color: var(--windowColor);
+    border-radius: var(--buttonBorderRadius);
+    padding: 10px;
+    min-width: 80px;
+    transition: var(--buttonTransition);
+}
+
+select:hover {
+    background-color: var(--buttonBackgroundColorHover);
+}
+
+hr {
+    border: var(--separatorBackgroundColor) 1px solid;
+    opacity: var(--separatorOpacity);
+}
+
+label {
+    color: var(--windowColor);
+}
+
+input.bright {
+    background-color: var(--buttonBackgroundColorHover);
+}
+
+a {
+    text-decoration: none;
+    color: var(--linkColor);
+    transition: color 0.25s;
+}
+
+a:hover, a:active {
+    color: var(--linkColorHover);
+}
+
+button.transparent {
+    background-color: transparent;
+}
+
+button.transparent:hover {
+    background-color: var(--buttonBackgroundColor);
+}
+
+button.transparent:active {
+    background-color: var(--buttonBackgroundColorHover);
+}
+
+.h3 {
+    font-size: 18.72px;
+    color: var(--windowColor);
+    font-family: "IBM Plex Sans" sans-serif;
+    font-weight: bold;
+}
+
+.textAlignLeft {
+    text-align: left;
+}
+
+button.newStartMenuShutDownButton {
+    padding: 0px;
+    min-width: unset;
+    float: right;
+    border-radius: 50%;
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-top: -5px;
+    width: 30px;
+    height: 30px;
+}
+
+.centerBottom {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    -o-transform: translate(-50%, 0);
+    -ms-transform: translate(-50%, 0);
+    -moz-transform: translate(-50%, 0);
+    -webkit-transform: translate(-50%, 0);
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 5px;
+    background: var(--sliderBackgroundColor);
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 10px;
+    height: 10px;
+    background: var(--sliderThumbBackgroundcolor);
+    cursor: pointer;
+    border-radius: var(--windowBorderRadius);
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: var(--sliderThumbBackgroundcolor);
+    cursor: pointer;
+}
+
+textarea#notepadTextField {
+    font-family: 'Ubuntu Mono', monospace;
+    font-size: 16px;
+}
+
+code {
+    font-family: 'Ubuntu Mono', monospace;
+    padding: 2.5px 5px;
+    border-radius: 5px;
+    background-color: var(--startMenuBackgroundColor);
+}
+
+.centerText {
+    text-align: center;
+}
+
+.fullWidth {
+    width: 100%;
+}
+
+.noMax {
+    max-width: unset;
+    max-height: unset;
+}
+
+.noFixedWidth {
+    width: unset;
+}
+
+.centeredAbsolute {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+div.centeredFixed {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.noDisplay {
+    display: none;
+}
+
+span.material-icons.warning {
+    color: orange;
+    vertical-align: middle;
+    font-size: 20px;
+    margin-right: 5px;
+}
+
+.slide-in-left {
+    animation: slide-in-left forwards;
+    animation-duration: 0.7s;
+}
+
+.slide-out-right {
+    animation: slide-out-right forwards;
+    animation-duration: 0.7s;
+}
+
+@keyframes slide-in-left {
+    from {
+        opacity: 0;
+        margin-left: -20px;
+    }
+    to {
+        opacity: unset;
+        margin-left: initial;
+    }
+}
+
+@keyframes slide-out-right {
+    from {
+        opacity: 1;
+        margin-left: 0;
+    }
+    to {
+        opacity: 0;
+        margin-left: 20px;
+    }
+}
+
+div#temp {
+    display:none;visibility: hidden;opacity:0;position:fixed;bottom:0px;left:0px;
+}

@@ -1,0 +1,420 @@
+html,
+body {
+    height: 100%;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    background-color: black;
+    overflow: hidden;
+    height: 100%;
+    user-select: none;
+    padding: 0px;
+    margin: 0px;
+    transition: opacity 0.5s;
+}
+
+body {
+    background-image: url("../bg/img16.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0;
+}
+
+/*div.content {
+    padding: 30px;
+    background-color: #1b1b1b85;
+    color: white;
+    border: none;
+    border-radius: 13px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    width: 370px;
+    height: 370px;
+    box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+}*/
+
+div.content {
+    padding: 0px;
+    background-color: transparent;
+    color: white;
+    border: none;
+    border-radius: 13px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    /*width: 370px;
+    height: 370px;*/
+    /*box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);*/
+    /*width:242px;*/
+    height: 268px;
+    text-align: center;
+}
+
+* {
+    outline: none !important;
+    /*transition: all 0.25s;*/
+    transition: all 0.25s, transform 0s;
+    /*cursor: url("../../imgs/cursor.png"), default!important;*/
+}
+
+html {
+    height: 100%;
+}
+
+button {
+    background-color: rgba(104, 104, 104, 0.1);
+    border: none;
+    color: white;
+    vertical-align: middle;
+    border-bottom: rgba(0, 0, 0, 0.055) 2px solid;
+    font-size: unset;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 0px;
+    margin-top: 5px;
+    position: inherit;
+    bottom: 30px;
+    right: 30px;
+}
+
+button:hover {
+    border-bottom: dodgerblue 2px solid;
+}
+
+button:active {
+    border-bottom: dodgerblue 2px solid;
+}
+
+input {
+    background-color: rgba(255, 255, 255, 0.055);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: x-large;
+    width: calc(100% - 17px);
+    padding: 5px 10px;
+    margin-bottom: 0px;
+    margin: 0px;
+    vertical-align: -webkit-baseline-middle;
+}
+
+input:hover,
+button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    margin-bottom: 0px;
+}
+
+input:focus,
+button:active {
+    background-color: rgba(255, 255, 255, 0.219);
+    margin-bottom: 0px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-weight: 500;
+}
+
+/*div.content>div.frameLeft {
+    position: fixed;
+    left: 30px;
+    top: 30px;
+    width: 40%;
+}
+
+div.content>div.frameRight {
+    position: fixed;
+    right: 30px;
+    top: 30px;
+    width: 55%;
+}
+
+div.content>div.frameBottom {
+    position: fixed;
+    left: 30px;
+    bottom: 30px;
+    height: 56%;
+    width: calc(100% - 60px);
+}*/
+
+div.userSelector {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+}
+
+button.user {
+    width: 150px;
+    height: 150px;
+    padding: 20px;
+    background-color: transparent;
+    border: none;
+    margin: 0px;
+    border-radius: 13px;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-size: unset;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+button.user:hover,
+button.user:focus {
+    background-color: #1b1b1b3a;
+}
+
+button.user:active {
+    background-color: #00000077;
+}
+
+button.user > img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    /*box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.5);*/
+    margin-bottom: 10px;
+}
+
+button.user > p {
+    max-width: 160px;
+    overflow-x: hidden;
+    margin: 0px;
+}
+
+a {
+    color: rgb(106, 180, 255);
+}
+
+a:hover {
+    color: rgb(187, 229, 255);
+}
+
+a:active {
+    color: rgb(0, 84, 168);
+}
+
+button.suggested {
+    background-color: rgb(0, 89, 179);
+    color: white;
+}
+
+button.suggested:hover {
+    background-color: dodgerblue;
+}
+
+button.suggested:active {
+    background-color: rgb(0, 60, 119);
+}
+
+button.bottomRightOfScreen {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+}
+
+button.shutdown {
+    border-bottom: none;
+    border-radius: 25px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: end;
+    background-color: rgba(0, 0, 0, 0.425);
+}
+
+div.lockScreen {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    /*backdrop-filter: blur(30px);*/
+    transition: top 0.4s;
+    background-image: url("../bg/img17.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+div.lockScreen.revealed {
+    top: -100%;
+}
+
+.centeredAbsolute {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+}
+
+.heightCenteredAbsolute {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    -o-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    -moz-transform: translate(0, -50%);
+    -webkit-transform: translate(0, -50%);
+}
+
+h1.big {
+    font-size: 72px;
+    font-weight: bolder;
+}
+
+h1.lockScreenClock {
+    margin-left: 200px;
+}
+
+.centerBottom {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    -o-transform: translate(-50%, 0);
+    -ms-transform: translate(-50%, 0);
+    -moz-transform: translate(-50%, 0);
+    -webkit-transform: translate(-50%, 0);
+    text-align: center;
+}
+
+button.circular {
+    padding: 10px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    border-bottom: none;
+}
+
+button.buttonLoginField > span.material-icons {
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+button.buttonLoginField {
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 10px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    margin: 0px;
+    vertical-align: -webkit-baseline-middle;
+    margin-left: -4px;
+}
+
+div#userSelectorInner {
+    max-width: 900px;
+    max-height: 500px;
+    overflow-y: scroll;
+}
+
+p.passwordInputFieldHolder {
+    margin: 0px;
+    padding: 0px;
+}
+
+p.passwordInputFieldHolder input {
+    margin-right: 0px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+/*///////scrollbars for days*/
+
+/* width */
+
+::-webkit-scrollbar {
+    width: 5px;
+    cursor: default;
+    height: 5px;
+}
+
+/* Track */
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+    cursor: default;
+}
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+    background-color: #00000022;
+    transition: background-color 0.25s;
+    cursor: default;
+    opacity: 0.5;
+}
+
+/* Handle on hover */
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #00000055;
+    cursor: default;
+}
+
+div.blur {
+    position: fixed;
+    z-index: 0;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(2.5px);
+    background-color: #0000007a;
+    transition: background-color 0.5s, backdrop-filter 0.5s;
+}
+
+div.blur.hidden {
+    background-color: #0000;
+    backdrop-filter: unset;
+}
+
+img#profilePicture {
+    border-radius: 50%;
+}
+
+input#passwordInputField {
+    width: 260px;
+}
+
+.passwordHeader {
+    margin: 0px;
+}
+
+.passwordSubHeader {
+    margin: 0px;
+    margin-top: 5px;
+}
+
+#lockScreenDate {
+    margin: 0px;
+    font-size: 28px;
+    font-weight: normal;
+}
+
+div.lockScreen div.centerBottom p {
+    margin-top: 0;
+}

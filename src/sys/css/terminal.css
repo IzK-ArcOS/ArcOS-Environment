@@ -1,0 +1,153 @@
+:root {
+    --color: #0f0;
+    --red: #0f0;
+    --green: #0f0;
+    --yellow: #0f0;
+    --blue: #0f0;
+    --purple: #0f0;
+    --aqua: #0f0;
+    --gray: #0f0;
+    --orange: #0f0;
+    /*Body*/
+    --bodyBackgroundColor: #000;
+    /*Window*/
+    --windowBackground: #000;
+    --windowBorder: #0f0 1px solid;
+    --windowBorderRadius: 0px;
+    --windowColor: #0f0;
+    /*Window Titlebar*/
+    --titlebarColor: #0f0;
+    --titlebarButtonBackgroundHover: #174417;
+    --titlebarCloseButtonBackgroundHover: #174417;
+    --titlebarButtonBorderRadius: 0px;
+    /*Taskbar*/
+    --taskbarBackground: #000;
+    --taskbarButtonBackground: #000;
+    --taskbarAppButtonBackgroundColor: #000;
+    /*Global*/
+    --dark2: #174417;
+    --dark1: #174417;
+    /*start Menu Button*/
+    --startMenuButtonBackgroundColor: rgba(0, 0, 0, 0.123);
+    --startMenuButtonBackgroundColorHover: rgba(0, 0, 0, 0.33);
+    --startMenuButtonBackgroundColorActive: rgba(0, 0, 0, 0.308);
+    --startMenuButtonBorderRadius: 0px;
+    --startMenuBorderRadius: 0px;
+    /*Desktop*/
+    --desktopButtonBackgroundColorHover: #020;
+    --desktopButtonBorderColorHover: #0f0;
+    --desktopButtonBorderColor: #020;
+    /*Start Menu*/
+    --startMenuBackgroundColor: rgba(255, 255, 255, 0.856);
+    --startMenuLeftPaneBackgroundColr: rgba(216, 216, 216, 0.246);
+    --startMenuAppTileBackgroundColor: rgba(182, 182, 182, 0.11);
+    --startMenuAppTileBackgroundColorHover: rgba(0, 100, 255, 0.22);
+    --startMenuAppTileBackgroundColorActive: rgba(0, 100, 255, 0.40);
+    /*button*/
+    --buttonBackgroundColor: #174417;
+    --buttonBackgroundColorHover: #0c240c;
+    --buttonBackgroundColorActive: #000;
+    --buttonBorderRadius: 0px;
+    /*clockWidget*/
+    --clockWidgetBackgroundColor: rgba(255, 255, 255, 0.856);
+    --clockWidgetBorderRadius: 0px;
+    /*separator*/
+    --separatorBackgroundColor: #000;
+    --separatorOpacity: 0.125;
+    /*Notification*/
+    --notificationBackgroundColor: #000;
+    --notificationCloseButtonBackgroundColor: #000;
+    --notificationBorderRadius: 0px;
+    /*Links*/
+    --linkColor: #0a0;
+    --linkColorHover: #0f0;
+    /*Scrollbar*/
+    --scrollbarHandleBackgroundColor: #0f0;
+    --scrollbarHandleBackgroundColorHover: #0f0;
+    /*File Manager*/
+    --folderButtonBackgroundHoverColor: rgba(0, 217, 255, 0.246);
+    --folderButtonBackgroundActiveColor: rgba(0, 132, 155, 0.246);
+    --folderButtonBorderRadius: 0px;
+    --bigFolderButtonBackgroundColor: var(--buttonBackgroundColor);
+    --bigFolderButtonBackgroundColorHover: var(--buttonBackgroundColorHover);
+    --bigFolderButtonBackgroundColorActive: var(--buttonBackgroundColorActive);
+    --fileExplorerSidebarButtonBackgroundColorHover: var(--buttonBackgroundColorHover);
+    --fileExplorerSidebarButtonBackgroundColorActive: var(--buttonBackgroundColorActive);
+    --fileExplorerSidebarButtonBorderRadius: 0px;
+    /*context menu*/
+    --contextMenuBorderRadius: 0px;
+    /*Background*/
+    --backgroundImage: unset;
+    /*New Start Menu*/
+    --newStartMenuLeftPaneBackgroundColor: transparent;
+    --newSTartMenuRightPaneBackgroundColor: #d0d0d04d;
+    --newSTartMenuBottomPaneBackgroundColor: #d0d0d07c;
+    /*Control Panel*/
+    --controlPanelMainBackgroundColor: #000;
+    --controlPanelSecoBackgroundColor: #000;
+    --controlPanelThrdBackgroundColor: #000;
+}
+
+button.icon {
+    color: #0f0;
+}
+
+@supports (-webkit-appearance: none) or (-moz-appearance: none) {
+    input[type=checkbox],
+    input[type=radio] {
+        --active: #0f0;
+        --active-inner: #000;
+        --focus: 2px #090;
+        --border: #0f0;
+        --border-hover: #0a0;
+        --background: #000;
+        --disabled: #111;
+        --disabled-inner: #000000;
+    }
+}
+
+@supports (-webkit-appearance: none) or (-moz-appearance: none) {
+    input[type=checkbox]:not(.switch) {
+        border-radius: unset;
+    }
+    input[type=checkbox].switch {
+        width: 38px;
+        border-radius: unset;
+    }
+    input[type=checkbox].switch:after {
+        border-radius: unset;
+    }
+    input[type=radio] {
+        border-radius: unset;
+    }
+    input[type=radio]:after {
+        border-radius: unset;
+    }
+}
+
+button.controlPanelSidebar.active {
+    color: #0a0;
+}
+
+button.controlPanelSidebar:hover,
+button.controlPanelSidebar.active:hover {
+    color: #090
+}
+
+div.context-menu,
+div.menuBar,
+button,
+input,
+select,
+textarea,
+div.taskbar {
+    border: #0f0 1px solid;
+}
+
+img {
+    opacity: 0;
+}
+
+* {
+    font-family: 'Ubuntu Mono', monospace;
+}

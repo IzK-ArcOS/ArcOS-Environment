@@ -1,0 +1,35 @@
+p[id*="errorMessageMsg"] {
+    text-align: left;
+}
+
+div.window[name="error"],
+div.window[name="confirm"] {
+    height: unset;
+    visibility: hidden;
+    opacity: 0;
+    resize: none;
+    height: calc(fit-content + 5px);
+    min-height: unset;
+    max-height: unset;
+}
+
+div.window[name="error"] div.body,
+div.window[name="confirm"] div.body {
+    text-align: center;
+    padding: 10px 20px;
+    padding-bottom: 20px;
+}
+
+div.window[name="confirm"] div.body button {
+    margin-top: 10px;
+}
+
+p#errorMessageMsg,
+p#confirmationMessageMsg {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+button#errorMessageCloseButton {
+    margin-top: 15px;
+}

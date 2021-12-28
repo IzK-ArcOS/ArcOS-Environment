@@ -1,0 +1,80 @@
+div.window[id*="Clock"] {
+    resize: none;
+    width: 800px;
+    height: 500px;
+    background-color: var(--controlPanelMainBackgroundColor);
+    backdrop-filter: blur(30px);
+}
+
+div.clockSidebar {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: calc(200px - 20px);
+    height: calc(100% - 10px - 30px);
+    padding: 10px;
+    padding-top: 35px;
+}
+
+div.clockMainPage {
+    position: absolute;
+    top: 35px;
+    left: 200px;
+    width: calc(100% - 200px - 20px);
+    height: calc(100% - 35px - 20px);
+    padding: 10px;
+}
+
+div.clockSidebar button {
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    margin-bottom: 5px;
+    background: transparent;
+    border-left: transparent 2px solid;
+    text-align: left;
+}
+
+div.clockSidebar button>* {
+    vertical-align: middle;
+}
+
+div.clockSidebar button>span.material-icons {
+    font-size:18px;
+    margin-right:10px;
+}
+
+div.clockSidebar button:hover {
+    background-color: var(--controlPanelSecoBackgroundColor);
+    border-left: deepskyblue 2px solid;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    color: deepskyblue
+}
+
+div.clockSidebar button:active {
+    background-color: var(--controlPanelThrdBackgroundColor);
+    border-left: dodgerblue 2px solid;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    color: dodgerblue
+}
+
+div.clockSidebar button.selected {
+    background-color: var(--controlPanelThrdBackgroundColor);
+    border-left: dodgerblue 2px solid;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    color: dodgerblue
+}
+
+#clockPageDateDisp {
+    opacity: 0.5;
+    margin:0;
+    font-weight: 100;
+}
+
+#clockPageTimeDisp {
+    font-size:3em;
+    margin:0px;
+}

@@ -1,0 +1,81 @@
+:root {
+    --color: #000;
+    --red: #cc241d;
+    --green: #98971a;
+    --yellow: #d79921;
+    --blue: #458588;
+    --purple: #b16286;
+    --aqua: #689d6a;
+    --gray: #7c6f64;
+    --orange: #d65d0e;
+    /*Body*/
+    --bodyBackgroundColor: #000;
+    /*Window*/
+    --windowBackground: #eee;
+    --windowBorder: rgb(160, 160, 160) 1px solid;
+    --windowColor: #000;
+    /*Window Titlebar*/
+    --titlebarColor: #000;
+    --titlebarButtonBackgroundHover: rgba(226, 226, 226, 0.512);
+    --titlebarCloseButtonBackgroundHover: rgb(255, 159, 159);
+    --taskbarBackground: rgba(255, 255, 255, 0.856);
+    --taskbarButtonBackground: rgba(167, 167, 167, 0.856);
+    --taskbarAppButtonBackgroundColor: rgb(223, 223, 223);
+    --dark2: #e6e6e6;
+    --dark1: rgb(208, 208, 208);
+    --startMenuButtonBackgroundColor: rgba(150, 150, 150, 0.123);
+    --startMenuButtonBackgroundColorHover: rgba(172, 172, 172, 0.33);
+    --startMenuButtonBackgroundColorActive: rgba(95, 95, 95, 0.308);
+    --desktopButtonBackgroundColorHover: rgba(155, 155, 155, 0.616);
+    --desktopButtonBorderColorHover: rgb(182, 182, 182);
+    --desktopButtonBorderColor: rgba(68, 155, 255, 0);
+    --startMenuBackgroundColor: rgba(255, 255, 255, 0.856);
+    --startMenuLeftPaneBackgroundColr: rgba(216, 216, 216, 0.246);
+    --startMenuAppTileBackgroundColor: rgba(182, 182, 182, 0.11);
+    --startMenuAppTileBackgroundColorHover: rgba(0, 100, 255, 0.22);
+    --startMenuAppTileBackgroundColorActive: rgba(0, 100, 255, 0.40);
+    --clockWidgetBackgroundColor: rgba(255, 255, 255, 0.856);
+    --separatorBackgroundColor: #000;
+    --notificationBackgroundColor: rgba(255, 255, 255, 0.856);
+    --notificationCloseButtonBackgroundColor: rgba(225, 225, 225, 0.185);
+    --linkColor: deepskyblue;
+    --linkColorHover: dodgerblue;
+    --scrollbarHandleBackgroundColor: rgb(219, 219, 219);
+    --scrollbarHandleBackgroundColorHover: rgb(201, 201, 201);
+    --folderButtonBackgroundHoverColor: rgba(0, 217, 255, 0.246);
+    --folderButtonBackgroundActiveColor: rgba(0, 132, 155, 0.246);
+    --bigFolderButtonBackgroundColor: var(--buttonBackgroundColor);
+    --bigFolderButtonBackgroundColorHover: var(--buttonBackgroundColorHover);
+    --bigFolderButtonBackgroundColorActive: var(--buttonBackgroundColorActive);
+    --fileExplorerSidebarButtonBackgroundColorHover: var(--buttonBackgroundColorHover);
+    --fileExplorerSidebarButtonBackgroundColorActive: var(--buttonBackgroundColorActive);
+    --fileExplorerMainFrameBackgroundColor: #f5f5f5;
+    --backgroundImage: url("../bg/img13.png");
+    /*New Start Menu*/
+    --newStartMenuLeftPaneBackgroundColor: transparent;
+    --newSTartMenuRightPaneBackgroundColor: #d0d0d04d;
+    --newSTartMenuBottomPaneBackgroundColor: #d0d0d07c;
+    --sliderBackgroundColor: #bdbdbdc8;
+    /*Control Panel*/
+    --controlPanelMainBackgroundColor: #ffffff9a;
+    --controlPanelSecoBackgroundColor: #ffffff13;
+    --controlPanelThrdBackgroundColor: #ffffff33;
+}
+
+button.icon {
+    color: white;
+}
+
+@supports (-webkit-appearance: none) or (-moz-appearance: none) {
+    input[type=checkbox],
+    input[type=radio] {
+        --active: #275EFE;
+        --active-inner: #fff;
+        --focus: 2px rgba(39, 94, 254, .3);
+        --border: #cfcfcf;
+        --border-hover: #275EFE;
+        --background: rgb(255, 255, 255);
+        --disabled: #dddddd;
+        --disabled-inner: #000000;
+    }
+}

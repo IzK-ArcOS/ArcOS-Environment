@@ -1,0 +1,63 @@
+body {
+    background-color: #003769;
+    color: #DBDBED;
+    overflow: hidden;
+    word-break: break-all;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* * {
+    cursor: none;
+} */
+
+code {
+    font-family: 'Ubuntu Mono', monospace;
+}
+
+h1 {
+    font-size: 2vw;
+    font-weight: lighter;
+    margin-bottom:0px;
+}
+
+div.content {
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+}
+
+div.content>H1>img {
+    position:absolute;
+    left:-9vw;
+    top:2vw;
+    height: 7vw;
+}
+
+i.details {
+    opacity: 0.5;
+    font-size: 20px;
+    line-height: normal;
+}
+
+
+p.errorDetails {
+    opacity:0.5;
+    font-style: italic;
+    font-family: 'Ubuntu Mono', monospace;
+    margin:0px;
+    font-size:1vw;
+}
+
+table {
+    margin-top:1vw;
+}
+
+td#message,td#title {
+    vertical-align: top;
+}
+
+td {
+    max-width: 30vw;
+    vertical-align: top;
+}

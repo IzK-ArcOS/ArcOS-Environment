@@ -1,0 +1,74 @@
+div.toolbar {
+    padding: 10px;
+    background-color: #0000007c;
+    color: white;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    position: fixed;
+    height: 40px;
+    width: 500px;
+    left: 50%;
+    top: 0px;
+    transform: translate(-50%, 0);
+    -webkit-transform: translate(-50%, 0);
+    transition: top 0.15s;
+    padding-top: 5px;
+    z-index: 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000006;
+    box-shadow: var(--boxShadow);
+}
+
+div.toolbar * {
+    vertical-align: middle;
+}
+
+div.toolbar.retracted {
+    top: -40px;
+}
+
+div.toolbarHoverTrigger {
+    background-color: transparent;
+    color: white;
+    position: fixed;
+    height: 5px;
+    width: 520px;
+    left: 50%;
+    top: 0px;
+    transform: translate(-50%, 0);
+    -webkit-transform: translate(-50%, 0);
+    z-index: 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000007;
+}
+
+button.toolbar {
+    background-color: transparent;
+    color: white;
+    min-width: unset;
+    padding: 0px;
+    padding-left: 4px;
+    padding-right: 4px;
+    vertical-align: middle;
+}
+
+button.toolbar span.material-icons {
+    font-size:14px;
+}
+
+button.toolbar:hover {
+    background-color: #00000046;
+}
+
+button.toolbar:active {
+    background-color: #00000093;
+}
+
+button.toolbar.right {
+    margin-top: 5px;
+    float: right;
+}
+
+span.toolbarTitle {
+    position: inherit;
+    left: 50%;
+    top: 10px;
+    transform: translate(-50%, 0);
+    -webkit-transform: translate(-50%, 0);
+}

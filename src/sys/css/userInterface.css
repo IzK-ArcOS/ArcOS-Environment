@@ -1,0 +1,192 @@
+div.taskbar {
+    position: fixed;
+    bottom: 10px;
+    width: calc(100% - 20px);
+    left: 10px;
+    max-height: 45px;
+    background: var(--controlPanelMainBackgroundColor);
+    backdrop-filter: blur(20px);
+    transition: var(--taskbarTransition);
+    z-index: 1000000000;
+    border-radius: var(--windowBorderRadius);
+}
+
+.startMenuButton {
+    border-radius: var(--windowBorderRadius);
+    border: none;
+    width: 40px;
+    height: 40px;
+    word-wrap: break-word;
+    background-color: var(--startMenuButtonBackgroundColor);
+    color: var(--windowColor);
+    float: right;
+    min-width: unset;
+    padding: 0px;
+}
+
+.startMenuButton>* {
+    margin: 0px;
+}
+
+.taskbarButton {
+    background-color: var(--taskbarButtonBackground);
+    color: var(--windowColor);
+    border: none;
+    height: 43px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: var(--startMenuButtonBorderRadius);
+    margin-bottom: 0px;
+    vertical-align: top;
+}
+
+.taskbarButton>* {
+    margin: 0px;
+}
+
+.startButton {
+    background-color: transparent;
+    color: var(--windowColor);
+    border: none;
+    height: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: var(--windowBorderRadius);
+    MARGIN-bottom: 0px;
+    vertical-align: top;
+    padding: 10px;
+    padding-bottom:9px;
+    min-width: unset;
+    width: 40px;
+}
+
+.startButton#notificationCenterButton {
+    width: unset;
+    min-width: unset;
+}
+
+.startButton>p {
+    margin: 0px;
+}
+
+.startButton>img {
+    margin-top: 2.5px;
+}
+
+.startButton:hover {
+    background-color: var(--startMenuButtonBackgroundColorHover);
+}
+
+.startButton:active {
+    background-color: var(--startMenuButtonBackgroundColorActive);
+}
+
+div.startMenu {
+    backdrop-filter: blur(6px);
+    box-sizing: border-box;
+    display: flex;
+    position: fixed;
+    bottom: 40px;
+    left: 0px;
+    width: 300px;
+    height: 400px;
+    background-color: var(--startMenuBackgroundColor);
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--windowTransition);
+    border-radius: var(--startMenuBorderRadius);
+    border-bottom-left-radius: 0px;
+    z-index: 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000001;
+}
+
+div.startMenu>.leftPane {
+    display: flex;
+    justify-content: center;
+    flex: 10%;
+    height: 100%;
+    background-color: var(--startMenuLeftPaneBackgroundColr);
+    border-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: var(--startMenuBorderRadius);
+}
+
+div.startMenu>.rightPane {
+    flex: 90%;
+    height: 100%;
+}
+
+svg.taskbarSoundControlIcon {
+    width: 20px;
+    height: 20px;
+    fill: var(--windowColor);
+    transition: fill 0.25s;
+}
+
+.startMenuAppTile>p {
+    margin: 0px;
+}
+
+.startMenuAppTile>p>img {
+    vertical-align: bottom;
+    margin-right: 5px;
+}
+
+.newStartMenu {
+    position: fixed;
+    bottom: 65px;
+    left: 10px;
+    border-radius: var(--startMenuBorderRadius);
+    padding: 40px;
+    background-color: var(--controlPanelMainBackgroundColor);
+    backdrop-filter: blur(20px);
+    color: var(--windowColor);
+    border: var(--windowBorder);
+    box-shadow: var(--boxShadow);
+    width: 500px;
+    height: 600px;
+    opacity: 0;
+    z-index: 1000000003;
+}
+
+.newStartMenu>div.bottomPane {
+    position: absolute;
+    background-color: var(--controlPanelSecoBackgroundColor);
+    height: 75px;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    border-bottom-left-radius: var(--startMenuBorderRadius);
+    border-bottom-right-radius: var(--startMenuBorderRadius);
+    padding: 30px;
+}
+
+.newStartMenu>div.leftPane {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 300px;
+    height: calc(100% - 75px);
+    border-top-left-radius: var(--startMenuBorderRadius);
+    padding: 20px;
+    overflow-y: scroll;
+}
+
+.newStartMenu>div.rightPane {
+    background-color: var(--controlPanelSecoBackgroundColor);
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 200px;
+    height: calc(100% - 75px);
+    border-top-right-radius: var(--startMenuBorderRadius);
+    padding: 20px;
+}
+
+div.newStartMenu.small {
+    width: 405px;
+    height: 405px;
+}
+
+div.newStartMenu.small>div.leftPane {
+    width: 203px;
+}

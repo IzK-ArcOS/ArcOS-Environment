@@ -1,0 +1,96 @@
+.notification {
+    top: 15px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    position: fixed;
+    max-width: 600px;
+    word-wrap: break-word;
+    background: var(--controlPanelMainBackgroundColor);
+    backdrop-filter: blur(30px);
+    color: var(--windowColor);
+    border-radius: var(--notificationBorderRadius);
+    padding: 15px;
+    border: none;
+    visibility: hidden;
+    opacity: 0;
+    transition: var(--windowTransition);
+    font-style: normal;
+    font-weight: unset;
+    z-index: 1000000000004;
+}
+
+.notification.animation-appear {
+    visibility: visible;
+    animation: notification-slide-in-top forwards ease;
+    animation-duration: 0.4s;
+}
+
+.notification.animation-disappear {
+    opacity: 1;
+    visibility: visible;
+    animation: notification-slide-out-top forwards ease;
+    animation-duration: 0.4s;
+}
+
+@keyframes notification-slide-in-top {
+    from {
+        opacity: 0;
+        margin-top: -50px;
+    }
+    to {
+        opacity: 1;
+        margin-top: initial;
+    }
+}
+
+@keyframes notification-slide-out-top {
+    from {
+        opacity: 1;
+        margin-top:initial;
+    }
+
+    to {
+        opacity: 0;
+        margin-top:-50px;
+    }
+}
+
+.notification.alignRight {
+    left:unset;
+    transform:unset;
+    right:15px;
+}
+
+.notification>h1,
+h2,
+h3,
+h4,
+h5 {
+    margin: 0px;
+}
+
+.notification button.close {
+    opacity: 0.75;
+    transition: var(--windowTransition)
+}
+
+.notification button.close:hover {
+    opacity: 1;
+}
+
+.notification button.close:active {
+    opacity: 0.5;
+}
+
+.notification button.close span.material-icons {
+    font-size:20px;
+}
+
+p#notificationMessage {
+    margin-bottom: 5px;
+    margin-top: 20px
+}
+
+.window[id*="Error Message"] {
+    resize: none;
+}

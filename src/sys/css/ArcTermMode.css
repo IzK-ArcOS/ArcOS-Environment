@@ -1,0 +1,51 @@
+:root {
+    --bg: #000;
+    --fg: #fff;
+    --bodyPadding: 1em;
+    --red: #f00;
+    --green: #0f0;
+    --yellow: #ff0;
+    --blue: #00f;
+    --purple: #a0f;
+    --aqua: #0ff;
+    --gray: #aaa;
+    --orange: #fa0;
+}
+
+* {
+    background-color: var(--bg);
+    color: var(--fg);
+    font-family: 'Ubuntu Mono', monospace;
+    border: none;
+    outline: none !important;
+    margin: 0px;
+    padding: 0px;
+    font-size: 1em;
+    user-select: none !important;
+    cursor: none;
+}
+
+body {
+    padding: var(--bodyPadding)
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+span.material-icons {
+    outline: none !important;
+    margin: 0px;
+    padding: 0px;
+    font-size: calc(var(--fontSize) - 4px);
+    color: var(--gray);
+    font-family: 'Material Icons';
+}
+
+span.material-icons.folder {
+    color: var(--orange);
+}
+
+input {
+    width: calc(100% - 2em);
+}

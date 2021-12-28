@@ -1,0 +1,183 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Inter&display=swap');
+@import url("./contextMenu.css");
+@import url("./desktopIcons.css");
+@import url("./elementStyles.css");
+@import url("./lockScreen.css");
+@import url("./notificationMetrics.css");
+@import url("./scrollbars.css");
+@import url("./toolbar.css");
+@import url("./userInterface.css");
+@import url("./windowMetrics.css");
+@import url("./errorMessage.css");
+
+:root {
+    /*ArcTerm*/
+    --fontSize: 14px;
+    --cursor: initial;
+    --backgroundColor: transparent;
+    --color: #ebdbb2;
+    --bodyPadding: 1em;
+    --red: #fb4934;
+    --green: #98971a;
+    --yellow: #fabd2f;
+    --blue: #83a598;
+    --purple: #d3869b;
+    --aqua: #8ec07c;
+    --gray: #a89984;
+    --orange: #fe8019;
+    /*Body*/
+    --bodyBackgroundColor: #000;
+    /*Window*/
+    --windowBackground: #111;
+    --windowBorder: #333 1px solid;
+    --windowBorderRadius: 10px;
+    --windowTransition: opacity 0.2s, background-color 0.2s ease, border-radius 0.3s, border-top-left-radius 0.3s, border-top-right-radius 0.3s, border-bottom-left-radius 0.3s, border-bottom-right-radius 0.3s;
+    --windowColor: #fff;
+    --boxShadow: 0px 0px 40px rgba(0, 0, 0, 0.5);
+    /*Window Titlebar*/
+    --titlebarBackground: transparent;
+    --titlebarColor: #fff;
+    --titlebarButtonBackgroundHover: rgba(100, 100, 100, 0.512);
+    --titlebarCloseButtonBackground: rgba(95, 81, 81, 0);
+    --titlebarCloseButtonBackgroundHover: rgb(255, 80, 80);
+    --titlebarButtonBorderRadius: 5px;
+    /*Taskbar*/
+    --taskbarBackground: rgba(0, 0, 0, 0.856);
+    --taskbarTransition: top 0.3s, bottom 0.3s, background 0.3s, position 0.3s;
+    --taskbarButtonBackground: rgba(255, 255, 255, 0.05);
+    --taskbarAppButtonBackgroundColor: rgb(30, 30, 30);
+    /*Global*/
+    --globalTransition: all 0.25s;
+    --globalTransitionTwo: background 0.2;
+    --globalTransitionThree: background-color: 0.2s;
+    --dark2: #000;
+    --dark1: #111;
+    /*start Menu Button*/
+    --startMenuButtonBackgroundColor: rgba(0, 0, 0, 0.123);
+    --startMenuButtonBackgroundColorHover: rgba(255, 255, 255, 0.123);
+    --startMenuButtonBackgroundColorActive: rgba(255, 255, 255, 0.041);
+    --startMenuButtonBorderRadius: 5px;
+    --startMenuBorderRadius: 10px;
+    /*Desktop*/
+    --desktopButtonBackgroundColorHover: rgba(155, 155, 155, 0.616);
+    --desktopButtonBorderColorHover: rgba(182, 182, 182, 1);
+    --desktopButtonBorderColor: rgba(68, 155, 255, 0);
+    --desktopButtonBackgroundColor: transparent;
+    /*Start Menu*/
+    --startMenuBackgroundColor: rgb(30, 30, 30, 0.706);
+    --startMenuLeftPaneBackgroundColr: rgba(0, 0, 0, 0.246);
+    --startMenuAppTileBackgroundColor: rgba(0, 0, 0, 0.11);
+    --startMenuAppTileBackgroundColorHover: rgba(0, 100, 255, 0.22);
+    --startMenuAppTileBackgroundColorActive: rgba(0, 100, 255, 0.40);
+    /*button*/
+    --buttonBackgroundColor: var(--controlPanelSecoBackgroundColor);
+    --buttonBackgroundColorHover: var(--controlPanelThrdBackgroundColor);
+    --buttonBackgroundColorActive: var(--controlPanelMainBackgroundColor);
+    --buttonTransition: background-color 0.3s, border-radius 0.3s, color 0.1s;
+    --buttonBorderRadius: 5px;
+    /*clockWidget*/
+    --clockWidgetBackgroundColor: rgba(30, 30, 30, 0.856);
+    --clockWidgetBorderRadius: 5px;
+    /*separator*/
+    --separatorBackgroundColor: #fff;
+    --separatorOpacity: 0.125;
+    /*Notification*/
+    --notificationBackgroundColor: rgba(0, 0, 0, 0.8);
+    --notificationCloseButtonBackgroundColor: rgba(0, 0, 0, 0.185);
+    --notificationBorderRadius: 10px;
+    /*Links*/
+    --linkColor: deepskyblue;
+    --linkColorHover: dodgerblue;
+    /*Scrollbar*/
+    --scrollbarHandleBackgroundColor: #444;
+    --scrollbarHandleBackgroundColorHover: #555;
+    /*File Manager*/
+    --folderButtonBackgroundHoverColor: rgba(0, 217, 255, 0.246);
+    --folderButtonBackgroundActiveColor: rgba(0, 132, 155, 0.246);
+    --folderButtonBorderRadius: 7.5px;
+    --bigFolderButtonBackgroundColor: #00000025;
+    --bigFolderButtonBackgroundColorHover: #40404035;
+    --bigFolderButtonBackgroundColorActive: #00000045;
+    --fileExplorerSidebarButtonBackgroundColorHover: #444;
+    --fileExplorerSidebarButtonBackgroundColorActive: #222;
+    --fileExplorerSidebarButtonBorderRadius: 2px;
+    --fileExplorerMainFrameBackgroundColor: #1c1c1c;
+    /*context menu*/
+    --contextMenuBorderRadius: 7px;
+    /*Background*/
+    --backgroundImage: url("../bg/img12.png");
+    /*Menu Bar*/
+    --menubarBackgroundColor: var(--titlebarBackground);
+    /*New Start Menu*/
+    --newStartMenuLeftPaneBackgroundColor: transparent;
+    --newSTartMenuRightPaneBackgroundColor: #2222224d;
+    --newSTartMenuBottomPaneBackgroundColor: #2222227c;
+    /*wallpaper*/
+    --wallpaperTransition: var(--globalTransition);
+    /*notification center*/
+    --notificationCenterTransition: right 0.3s;
+    /*slider*/
+    --sliderBackgroundColor: #3333337b;
+    --sliderThumbBackgroundcolor: var(--linkColor);
+    /*Control Panel*/
+    --controlPanelMainBackgroundColor: #00091d9a;
+    --controlPanelSecoBackgroundColor: #00000025;
+    --controlPanelThrdBackgroundColor: #00000044;
+}
+
+* {
+    border: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -o-user-select: none;
+    transition: var(--globalTransition);
+    outline: none !important;
+}
+
+body {
+    height: 100%;
+    font-family: 'IBM Plex Sans', sans-serif;
+    overflow: hidden;
+    height: 100%;
+    margin: 0px;
+    background-color: var(--bodyBackgroundColor);
+}
+
+html {
+    height: 100%;
+}
+
+div.block {
+    background-color: var(--bodyBackgroundColor);
+    height: 100%;
+    color: var(--windowColor);
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    visibility: visible;
+    opacity: 1;
+    z-index: 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000003;
+}
+
+div.wallpaper {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: var(--wallpaperTransition);
+    background-image: var(--backgroundImage);
+}
+
+@font-face {
+    font-family: 'webdings';
+    src: url('../fonts/webdings.ttf') format('ttf');
+}
