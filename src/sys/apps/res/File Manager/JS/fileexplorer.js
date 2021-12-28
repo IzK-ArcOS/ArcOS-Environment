@@ -1,5 +1,3 @@
-const { platform } = require("os");
-
 function fileExplorerOpenDir(dirName) {
 
     dirName = generalLogic.replaceAllCharsInStr(dirName, "\\", "/");
