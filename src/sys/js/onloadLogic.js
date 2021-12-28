@@ -324,12 +324,12 @@ class OnloadLogic {
         this.loadTaskbarPos();
 
         if (localStorage.getItem("safeMode") == 1) {
-            document.getElementsByClassName("block")[0].style.backgroundImage = "unset";
+            document.getElementsByClassName("block")[0].style.backgroundImage = "none !important";
             document.getElementById("addonShellLoader").href = "../css/darkModeSharp.css";
             document.getElementById("animationsAddonLoader").href = "../css/noanimations.css";
-            document.getElementById("wallpaper").style.backgroundImage = "unset";
+            document.getElementById("wallpaper").style.display = "none";
 
-            errorLogic.sendError("Safe Mode", "ArcOS is running in Safe Mode, which means that you are in a temporary account.<br> Please note that any and all changes you make to this account <b>will not</b> be saved", 1)
+            errorLogic.sendError("Safe Mode", "ArcOS is running in safe mode.<br><br>- If this was your intention, use this instance <b>only to repair ArcOS</b><br>-If this was not your intention, restart via the start menu.", 1)
         }
     }
 

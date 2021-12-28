@@ -43,18 +43,34 @@ async function openSettingsPane(name, buttonNode) {
             switchControlPanelPage(path.join(__dirname, `../apps/res/settings/inline/user.inline`));
             break;
         case `personalize`:
+            if (localStorage.getItem("safeMode") == "1") {
+                errorLogic.sendError("ArcOS Safe Mode", "Access is denied to <b>Personalization</b> because Safe Mode is a temporary account.");
+                return;
+            }
             switchControlPanelPage(path.join(__dirname, `../apps/res/settings/inline/personalize.inline`));
             break;
         case `addapp`:
             switchControlPanelPage(path.join(__dirname, `../apps/res/settings/inline/addapp.inline`));
             break;
         case `profpicsel`:
+            if (localStorage.getItem("safeMode") == "1") {
+                errorLogic.sendError("ArcOS Safe Mode", "Access is denied to <b>Change Profile Picture</b> because Safe Mode is a temporary account.");
+                return;
+            }
             switchControlPanelPage(path.join(__dirname, `../apps/res/settings/inline/profilePictureSelector.inline`));
             break;
         case `manusers`:
+            if (localStorage.getItem("safeMode") == "1") {
+                errorLogic.sendError("ArcOS Safe Mode", "Operation not permitted: Safe Mode is not an authorized user");
+                return;
+            }
             switchControlPanelPage(path.join(__dirname, `../apps/res/settings/inline/manageOtherUsers.inline`));
             break;
         case `manacc`:
+            if (localStorage.getItem("safeMode") == "1") {
+                errorLogic.sendError("ArcOS Safe Mode", "Access is denied to <b>Manage Profile</b> because Safe Mode is a temporary account.");
+                return;
+            }
             switchControlPanelPage(path.join(__dirname, `../apps/res/settings/inline/manageProfile.inline`));
             break;
         case `about`:

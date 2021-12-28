@@ -2,23 +2,22 @@ div.window[id*="ArcOS Notepad"] {
     /*resize:none;*/
     width: fit-content;
     height: fit-content;
-    min-width: unset;
-    min-height: unset;
     min-width: 794px;
     min-height: 537px;
+    height: 538px;
 }
 
 div.window[id*="ArcOS Notepad"] div.body {
     padding: 0px;
-    height: 100%;
-    width: 100%;
+    height: calc(100% - 40px);
+    width: calc(100%);
 }
 
 textarea#notepadTextField {
     resize: none;
     width: 100%;
-    height: 507px;
-    min-width: 794px;
+    height: 100%;
+    max-height: calc(100% - 20px);
     min-height: calc(100% - 55px);
     background-color: transparent;
     color: var(--windowColor);

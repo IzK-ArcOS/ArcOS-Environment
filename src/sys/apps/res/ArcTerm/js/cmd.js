@@ -452,13 +452,7 @@ class ArcTermCommands {
 
     resui() {
         if (!ArcTermOnly) {
-            let shellLoader = document.getElementById("shellLoader");
-            let shellPath = shellLoader.href;
-
-            shellLoader.href = "";
-            setTimeout(() => {
-                document.getElementById("shellLoader").href = shellPath;
-            }, 100);
+            generalLogic.reloadShell();
             ArcTermUI.outputColor(`[Success]: ArcOS shell has been reloaded.`, ``, `var(--green)`);
         } else {
             ArcTermUI.outputColor(`[Error]: ArcOS Desktop is not loaded!`);

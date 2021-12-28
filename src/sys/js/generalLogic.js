@@ -63,6 +63,20 @@ class GeneralLogic {
     reloadShell() {
         ConsoleNotifier.notifyStartService("GeneralLogic.reloadShell")
 
+        const links = document.getElementsByTagName("link");
+
+        for (let i = 0; i < links.length; i++) {
+            const link = links[i];
+
+            if (link.rel == "stylesheet") {
+                const href = link.href;
+                link.href = "";
+                setTimeout(() => {
+                    link.href = href;
+                }, 350);
+            }
+        }
+
         document.getElementById("shellLoader").href = "";
 
         setTimeout(() => {
