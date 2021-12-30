@@ -1,0 +1,222 @@
+@import url("./sharp.css");
+
+.window {
+    background-color: silver;
+    color:black;
+    border-radius: 0;
+    box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px silver, inset -2px -2px grey, inset 2px 2px #fff !important;
+    padding:3px;
+}
+
+.window * {
+    color:black;
+}
+
+button.icon {
+    box-shadow: none !important;
+    background-color: transparent !important;
+}
+
+.windowTitle {
+    background-color: #008;
+    padding:2px;
+    height:24px;
+    padding-top:0;
+}
+
+.windowTitle p * {
+    vertical-align: middle;
+}
+
+.windowTitle p.titleText {
+    padding-top:2.1px;
+}
+
+.windowTitle button.title span.material-icons{
+    color:black;
+}
+.windowTitle button.title {
+    padding-top:0;
+    margin-top:2px;
+}
+
+.windowTitle * {
+    color:white;
+    vertical-align: middle;
+}
+
+div.taskbar {
+    width:100%;
+    bottom:0;
+    left:0;
+    border-radius: 0;
+    background-color: silver;
+}
+
+div.taskbar * {
+    color:rgb(0, 0, 0)
+}
+
+div.controlPanelLeftPane {
+    top: 27px !important;
+    left:3px !important;
+    background-color: transparent !important;
+    padding:5px;
+}
+
+div.controlPanelLeftPane button {
+    box-shadow: unset;
+    padding: 5px 10px;
+    margin:0;
+    font-size: initial;
+}
+
+div.controlPanelMainFrame {
+    background: #fff !important;
+    box-shadow: inset -1px -1px #fff, inset 1px 1px grey, inset -2px -2px #dfdfdf, inset 2px 2px #0a0a0a;
+    color:black !important;
+    width: calc(100% - 225px) !important;
+    height: calc(100% - 35px) !important;
+}
+
+div.wallpaper#wallpaper {
+    background-image:unset !important;
+    background-color: #208c71;
+}
+
+
+.newStartMenu {
+    bottom: 45px;
+    left: 0px;
+    border-radius: 0;
+    width: 250px;
+    height:405px;
+    border-left:#008 30px solid;
+}
+
+.newStartMenu * {
+    color:black;
+}
+
+.newStartMenu>div.bottomPane {
+    background-color: transparent;
+    height: 50px;
+    width: 100%;
+    border-bottom-right-radius: 0;
+    padding: 13px;
+}
+
+.newStartMenu>div.leftPane {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    height: calc(100% - 75px);
+    border-top-left-radius: 0;
+    padding: 0px;
+    width:calc(100% + 5px);
+}
+
+.newStartMenu>div.rightPane {
+    display:none;
+}
+
+.newStartMenu div.leftPane button {
+    border-radius: 0;
+    box-shadow: none !important;
+}
+
+.newStartMenu div.leftPane button:hover{ 
+    background-color: #008 !important;
+    color:white;
+}
+
+div.ArcTermBodyOutline {
+    height: calc(100% - 30px) !important;
+    max-height: calc(100% - 30px) !important;
+
+    top: 26px !important;
+    margin:3px;
+    margin-left:0px;
+    width: calc(100% - 6px) !important;
+}
+
+div.ArcTermBody#ArcTermBody {
+    height:calc(100% - 3px);
+}
+
+.taskbarButtons>button:hover:not(.startButton) {
+    background-color: transparent;
+}
+
+div.menuBar button {
+    box-shadow: none !important;
+    color:black !important;
+}
+
+div.menuBar button:hover {
+    background: #008 !important;
+    color:white !important;
+}
+
+button,select {
+    background: silver !important;
+    box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, inset -2px -2px grey, inset 2px 2px #dfdfdf;
+}
+
+button:active {
+    box-shadow: inset -1px -1px #fff, inset 1px 1px #0a0a0a, inset -2px -2px #dfdfdf, inset 2px 2px grey;
+}
+
+input,textarea {
+    background: #fff !important;
+    box-shadow: inset -1px -1px #fff, inset 1px 1px grey, inset -2px -2px #dfdfdf, inset 2px 2px #0a0a0a;
+    color:black !important;
+    padding:3px;
+}
+button.titlesettings {
+    border-radius: 0;
+    min-width: unset !important;
+    min-height: unset !important;
+    word-wrap: break-word !important;
+    float: right !important;
+    padding-top: 2px !important;
+    margin-top: 2px !important;
+    max-height:20px;
+    max-width:20px;
+    padding-left:3px !important
+}
+
+button.titlesettings * {
+    color:black;
+}
+
+div.ArcTermBody#ArcTermBody * {
+    box-shadow: none !important;
+    background-color:transparent !important;
+    padding:0 !important;
+    color:white !important
+}
+
+* {
+    transition:none !important;
+    animation: none !important;
+}
+
+:root {
+    --backgroundColor: #000;
+    --color: #ccc;
+    --bodyPadding: 1em;
+    --red: #ccc;
+    --green: #ccc;
+    --yellow: #ccc;
+    --blue: #ccc;
+    --purple: #ccc;
+    --aqua: #ccc;
+    --gray: #ccc;
+    --orange: #ccc;
+
+    --controlPanelThrdBackgroundColor:silver;
+    --controlPanelScndBackgroundColor:silver;
+
+    --controlPanelMainBackgroundColor:silver;
+}
