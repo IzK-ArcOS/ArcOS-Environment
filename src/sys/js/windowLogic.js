@@ -149,7 +149,7 @@ class WindowLogic {
                     let image = document.createElement("img");
 
                     image.style.height = "15px"
-                    image.src = `./../img/${document.getElementById("temp").childNodes[0].id}.svg`;
+                    image.src = `./../img/${document.getElementById("temp").childNodes[0].id.toLowerCase()}.svg`;
                     image.style.marginRight = "5px"
                     image.style.verticalAlign = "middle"
                     tB.insertAdjacentElement("afterbegin", image);

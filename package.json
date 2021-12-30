@@ -19,9 +19,9 @@
         "argon2": "^0.28.2",
         "drivelist": "^9.2.4",
         "electron-packager": "^15.2.0",
-        "electron-rebuild": "^2.3.5",
+        "electron-rebuild": "3.2.5",
         "merge-dirs": "^0.2.1",
-        "node-gyp": "^8.1.0",
+        "node-gyp": "^8.4.1",
         "python": "0.0.4",
         "request": "^2.88.2",
         "strip-color": "^0.1.0"
