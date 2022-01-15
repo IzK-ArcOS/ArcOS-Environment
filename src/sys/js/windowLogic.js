@@ -136,11 +136,30 @@ class WindowLogic {
         }
     }
 
-    async loadWindow(appFile, userImport = 0, register = 1) {
-        ConsoleNotifier.notifyLoadApp(appFile);
+    loadCSSFile(file) {
+        let x = document.createElement("link");
 
-        let x = fetch(appFile).then(response => response.text()).then(text => {
-            document.getElementById("temp").innerHTML = text;
+        if (fs.existsSync(path.join(__dirname,file))) {
+            x.href = file;
+            x.rel = "stylesheet";
+    
+            document.head.append(x);
+        }
+    }
+
+    async loadWindow(importPath, userImport = 0, register = 1) {
+        ConsoleNotifier.notifyLoadApp(importPath);
+
+        const html = `${importPath}/index.app`;
+        const stle = `${importPath}/style.css`;
+        const scpt = `${importPath}/index.js`;
+
+        if (fs.existsSync(path.join(__dirname,html))) {
+            const customConfig = `${importPath}/config.json`;
+
+            const index = await(await fetch(html)).text();
+
+            document.getElementById("temp").innerHTML = index;
 
             if (document.getElementById("temp").childNodes[0].id) {
                 const tB = document.getElementById("temp").childNodes[0].getElementsByTagName("p")[0];
@@ -162,18 +181,41 @@ class WindowLogic {
                 }
 
                 if (userImport == 0) {
-                    this.openWindow(document.getElementById("windowStore").childNodes[0].id);
+                    setTimeout(() => {
+                        this.openWindow(document.getElementById("windowStore").childNodes[0].id);    
+                    }, 100);
                 }
 
                 if (register == 1) {
                     loadedApps.push(document.getElementById("windowStore").childNodes[0].id);
                 }
 
-                populateStartMenuAppList("startMenuAppList");
+                try{populateStartMenuAppList("startMenuAppList");}catch{/** */}
             } else {
                 errorLogic.sendError("System Error", "The app file specified does not contain a valid application. Please check the name and try again.<br>File: " + appFile);
             }
-        }).catch((e) => { errorLogic.sendError("System Error", "The system cannot find the application specified.<br>Please check the name and try again<br><br>File: " + appFile + "<br><br>" + e); });
+
+            if (fs.existsSync(path.join(__dirname,customConfig))) {
+                const config = await(await fetch(customConfig)).json();
+    
+                if (config.js) {
+                    for (let i=0; i<config.js.length; i++){
+                        this.loadJSFile(`${importPath}/${config["js"][i]}`);
+                    }
+                }
+    
+                if (config.css) {
+                    for (let i=0; i<config.css.length; i++){
+                        this.loadCSSFile(`${importPath}/${config["css"][i]}`);
+                    }
+                }
+            }
+
+            setTimeout(() => {
+            this.loadJSFile(scpt);
+            this.loadCSSFile(stle);
+            }, 50);
+        }
     }
 
     updateTitlebar(e) {
@@ -271,11 +313,14 @@ class WindowLogic {
     }
 
     loadJSFile(file) {
-        let x = document.createElement("script");
-        x.async = true;
-        x.src = file;
-
-        document.body.append(x);
+        if (file && fs.existsSync(path.join(__dirname,file))) {
+            let x = document.createElement("script");
+            x.async = true;
+            x.src = file;
+    
+            document.body.append(x);
+        }
+        
     }
 }
 

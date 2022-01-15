@@ -246,7 +246,7 @@ div.lockScreen {
     left: 0px;
     height: 100%;
     width: 100%;
-    /*backdrop-filter: blur(30px);*/
+    /*backdrop-filter: blur(10px);*/
     transition: top 0.4s;
     background-image: url("../bg/img17.png");
     background-position: center;

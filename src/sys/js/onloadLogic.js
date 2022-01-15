@@ -7,10 +7,8 @@ onload = function () {
     onloadLogic.loadDefaultApps();
 
     setTimeout(() => {
-        initiateArcTerm(document.getElementById("ArcTermBody"));
-        clockSwitchPage("home", 0);
-
         onloadLogic.loadSafemodeDependingFunctions();
+        
         setTimeout(() => {
             onloadLogic.hideBlock();
 
@@ -243,43 +241,35 @@ class OnloadLogic {
 
     loadDefaultApps() {
         /**Application Script Loading */
-        windowLogic.loadJSFile("../apps/res/Open With/JS/openWith.js");
-        windowLogic.loadJSFile("../apps/res/File Manager/JS/fileexplorer.js");
-        windowLogic.loadJSFile("../apps/res/Calculator/js/calculator.js");
-        windowLogic.loadJSFile("../apps/res/Notepad/js/notepadFileLogic.js");
-        windowLogic.loadJSFile("../apps/res/User Settings/js/userSettings.js");
-        windowLogic.loadJSFile("../apps/res/Image Viewer/JS/imageViewer.js");
-        windowLogic.loadJSFile("../apps/res/App Manager/JS/appManager.js");
-        windowLogic.loadJSFile("../apps/res/settings/js/settings.js");
-        windowLogic.loadJSFile("../apps/res/Media Player/JS/mediaplayer.js");
-        windowLogic.loadJSFile("../apps/res/Clock/JS/clock.js");
-        windowLogic.loadWindow("../apps/newUserInterface.app", 1, 0);
+        windowLogic.loadWindow("./../apps/newUserInterface", 1, 0);
         setTimeout(() => {
-            /**Application Files Loading */
-            windowLogic.loadWindow("./../apps/calculator.app", 1);
-            windowLogic.loadWindow("./../apps/shutdown.app", 1);
-            windowLogic.loadWindow("./../apps/runCommand.app", 1);
-            windowLogic.loadWindow("./../apps/notepad.app", 1);
-            windowLogic.loadWindow("./../apps/res/Notepad/utils/loadFile.app", 1, 0);
-            windowLogic.loadWindow("./../apps/res/Notepad/utils/saveFile.app", 1, 0);
-            windowLogic.loadWindow("./../apps/res/Notepad/utils/delFile.app", 1, 0);
-            windowLogic.loadWindow("./../apps/desktopIcons.app", 1, 0);
-            windowLogic.loadWindow("./../apps/fileExplorer.app", 1);
-            windowLogic.loadWindow("./../apps/res/File Manager/utils/createFile.app", 1, 0);
-            windowLogic.loadWindow("./../apps/res/File Manager/utils/deleteFile.app", 1, 0);
-            windowLogic.loadWindow("./../apps/res/File Manager/utils/renameFile.app", 1, 0);
-            windowLogic.loadWindow("./../apps/res/File Manager/utils/renameFolder.app", 1, 0);
-            windowLogic.loadWindow("./../apps/res/File Manager/utils/deleteFolder.app", 1, 0);
-            windowLogic.loadWindow("./../apps/res/File Manager/utils/createFolder.app", 1, 0);
-            windowLogic.loadWindow("./../apps/imageViewer.app", 1, 0);
-            windowLogic.loadWindow("./../apps/appManager.app", 1);
-            windowLogic.loadWindow("./../apps/openWith.app", 1, 0);
-            windowLogic.loadWindow("./../apps/newsettings.app", 1);
-            windowLogic.loadWindow("./../apps/ArcTerm.app", 1);
-            windowLogic.loadWindow("./../apps/musicPlayer.app", 1, 0);
-            windowLogic.loadWindow("./../apps/lockScreen.app", 1, 0);
-            windowLogic.loadWindow("./../apps/clock.app", 1, 0)
+            //Application Files Loading
+            windowLogic.loadWindow("./../apps/calculator", 1);
+            windowLogic.loadWindow("./../apps/shutdown", 1);
+            windowLogic.loadWindow("./../apps/runCommand", 1);
+            windowLogic.loadWindow("./../apps/notepad", 1);
+            windowLogic.loadWindow("./../apps/loadFile", 1, 0);
+            windowLogic.loadWindow("./../apps/saveFile", 1, 0);
+            windowLogic.loadWindow("./../apps/delFile", 1, 0);
+            windowLogic.loadWindow("./../apps/desktopIcons", 1, 0);
+            windowLogic.loadWindow("./../apps/fileExplorer", 1);
+            windowLogic.loadWindow("./../apps/createFile", 1, 0);
+            windowLogic.loadWindow("./../apps/deleteFile", 1, 0);
+            windowLogic.loadWindow("./../apps/renameFile", 1, 0);
+            windowLogic.loadWindow("./../apps/renameFolder", 1, 0);
+            windowLogic.loadWindow("./../apps/deleteFolder", 1, 0);
+            windowLogic.loadWindow("./../apps/createFolder", 1, 0);
+            windowLogic.loadWindow("./../apps/imageViewer", 1, 0);
+            windowLogic.loadWindow("./../apps/appManager", 1);
+            windowLogic.loadWindow("./../apps/openWith", 1, 0);
+            windowLogic.loadWindow("./../apps/newSettings", 1);
+            windowLogic.loadWindow("./../apps/ArcTerm", 1);
+            windowLogic.loadWindow("./../apps/musicPlayer", 1, 0);
+            windowLogic.loadWindow("./../apps/lockscreen", 1, 0);
+            windowLogic.loadWindow("./../apps/clock", 1, 0)
         }, 100);
+
+
     }
 
     noShell() {
@@ -297,14 +287,10 @@ class OnloadLogic {
     }
 
     loadSafemodeDependingFunctions() {
-        getDriveLetters();
-        hideStart();
-        openSettingsPane("home", document.getElementsByClassName("controlPanelSidebar")[0]);
+        
         setToolbarTrigger();
-        populateAppManager();
         startUserDataUpdateCycle();
         initiateArcTerm(document.getElementById("ArcTermBody"));
-        clockSwitchPage("home", 0);
 
         windowLogic.updateTaskBar();
         contextMenuLogic.hideMenu();

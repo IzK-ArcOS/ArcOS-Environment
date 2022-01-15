@@ -120,7 +120,7 @@
     --sliderBackgroundColor: #3333337b;
     --sliderThumbBackgroundcolor: var(--linkColor);
     /*Control Panel*/
-    --controlPanelMainBackgroundColor: #00091d9a;
+    --controlPanelMainBackgroundColor: #00091dd2;
     --controlPanelSecoBackgroundColor: #00000025;
     --controlPanelThrdBackgroundColor: #00000044;
 }

@@ -6,7 +6,7 @@
     max-width: 600px;
     word-wrap: break-word;
     background: var(--controlPanelMainBackgroundColor);
-    backdrop-filter: blur(30px);
+    backdrop-filter: blur(10px);
     color: var(--windowColor);
     border-radius: var(--notificationBorderRadius);
     padding: 15px;

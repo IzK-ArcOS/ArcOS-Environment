@@ -346,7 +346,7 @@ div.license {
     width: 840px;
     height: 540px;
     background-color: #00000055;
-    backdrop-filter: blur(30px);
+    backdrop-filter: blur(10px);
     transition: opacity 0.3s, visibility 0.3s;
     padding: 20px;
     color: white;

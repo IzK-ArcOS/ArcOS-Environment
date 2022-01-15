@@ -1,7 +1,7 @@
 .context-menu {
     position: absolute;
     background-color: var(--controlPanelMainBackgroundColor);
-    backdrop-filter: blur(30px);
+    backdrop-filter: blur(10px);
     border: none;
     border-radius: var(--contextMenuBorderRadius);
     transition: background 0.2s, opacity 0.2s;
