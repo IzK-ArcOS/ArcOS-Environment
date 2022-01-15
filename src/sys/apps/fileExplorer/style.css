@@ -1,0 +1,121 @@
+div.window[id="File Manager"] {
+    min-width: 948px;
+    min-height: 514px;
+}
+
+div.window[id="File Manager"] div.body {
+    padding: 0px;
+}
+
+div.fileExplorerTopPane button {
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    min-width: unset;
+    background-color: var(--controlPanelThrdBackgroundColor);
+}
+
+input#fileExplorerAddressBar {
+    padding: 15px 15px;
+    display: flex;
+    flex: 2;
+    background-color: var(--controlPanelThrdBackgroundColor);
+    margin: 0 10px;
+}
+
+div.fileExplorerLeftPane {
+    position: absolute;
+    top: 72px;
+    left: 0px;
+    height: calc(100% - 72px);
+    width: 150px;
+    padding: 10px;
+    background-color: transparent;
+}
+
+div.fileExplorerTopPane {
+    position: absolute;
+    display: flex;
+    top: 30px;
+    left: 0px;
+    width: calc(100%);
+    height: 50px;
+    background-color: var(--titlebarBackground);
+    padding: 10px;
+    text-align: right;
+}
+
+div.fileExplorerMainFrame {
+    position: absolute;
+    top: 75px;
+    left: 0px;
+    width: calc(100%);
+    height: calc(100% - 75px);
+    padding: 10px;
+    overflow-y: scroll;
+}
+
+div.fileExplorerLeftPaneDiv {
+    width: 100%;
+    background-color: transparent;
+    min-height: 60px;
+}
+
+button.folder {
+    padding: 5px;
+    border-radius: var(--folderButtonBorderRadius);
+    width: 100%;
+    text-align: left;
+    vertical-align: middle;
+    margin-bottom: 5px;
+    word-wrap: break-word;
+    background-color: transparent;
+}
+
+button.folder:hover {
+    background-color: var(--folderButtonBackgroundHoverColor);
+}
+
+button.folder:active {
+    background-color: var(--folderButtonBackgroundActiveColor);
+}
+
+button.folder.big,
+input.folder.big {
+    padding: 20px;
+}
+
+button.folder.big:hover,
+input.folder.big:hover {
+    background-color: var(--controlPanelSecoBackgroundColor);
+}
+
+button.folder.big:active,
+input.folder.big:active {
+    background-color: var(--controlPanelMainBackgroundColor);
+}
+
+input.folder.big {
+    padding: 0 5px;
+}
+
+button.fileExplorerSideBar {
+    width: 100%;
+    margin: 0px;
+    padding: 5px 0px;
+    text-align: left;
+    border-radius: var(--fileExplorerSidebarButtonBorderRadius);
+    background-color: transparent;
+}
+
+button.fileExplorerSideBar:disabled {
+    opacity: 0.5;
+}
+
+button.fileExplorerSideBar:hover {
+    background-color: var(--fileExplorerSidebarButtonBackgroundColorHover);
+}
+
+button.fileExplorerSideBar:active {
+    background-color: var(--fileExplorerSidebarButtonBackgroundColorActive);
+}

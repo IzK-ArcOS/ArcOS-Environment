@@ -1,0 +1,83 @@
+div.window[id*="ArcTerm"] {
+    /*resize:none;*/
+    width: fit-content;
+    height: fit-content;
+    min-width: unset;
+    min-height: unset;
+    min-width: 794px;
+    min-height: 537px;
+}
+
+div.window[id*="ArcTerm"] div.ArcTermBodyOutline {
+    padding: 0px;
+    width: 100%;
+    max-width: 100%;
+    height: calc(100% - 40px);
+    max-height: calc(100% - 40px);
+    position: absolute;
+    top: 40px
+}
+
+div#ArcOSTerminalBody {
+    position: absolute;
+    top: 40px;
+    left: 0px;
+    width: 100%;
+    height: calc(100% - 40px);
+    padding: 1em;
+    overflow-y: scroll;
+    font-family: 'Ubuntu Mono', monospace;
+}
+
+div.ArcTermBody,
+div#ArcTermBody {
+    overflow-y: scroll;
+    max-height: 100%;
+    height: 100%;
+    font-family: 'Ubuntu Mono', monospace;
+    background-color: var(--backgroundColor);
+    color: var(--color);
+    padding: var(--bodyPadding);
+    cursor: text
+}
+
+div.ArcTermBody * {
+    outline: none !important;
+    margin: 0px;
+    padding: 0px;
+    font-family: var(--fontFamily);
+    font-size: var(--fontSize);
+    color: var(--color);
+    background-color: var(--backgroundColor);
+    border: none;
+    cursor: var(--cursor);
+    word-wrap: break-word;
+    font-weight: 200;
+}
+
+div.ArcTermBody p input hr {
+    font-family: 'Ubuntu Mono', monospace;
+}
+
+div.ArcTermBody input {
+    width: calc(100% - 2em);
+}
+
+div.ArcTermBody hr {
+    width: 100%;
+    border: var(--color) 1px solid;
+    margin: calc(1em / 2) 0;
+}
+
+div.ArcTermBody span.material-icons {
+    outline: none !important;
+    margin: 0px;
+    padding: 0px;
+    font-size: calc(var(--fontSize) - 4px);
+    color: var(--color);
+    font-family: 'Material Icons';
+}
+
+div.ArcTermBody span.material-icons.folder {
+    color: var(--yellow)
+}

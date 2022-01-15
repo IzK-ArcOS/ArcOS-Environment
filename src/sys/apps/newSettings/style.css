@@ -1,0 +1,182 @@
+div.window[id*="Settings"] {
+    min-width: 800px;
+    min-height: 600px;
+}
+
+div.window[id*="Settings"] div.body {
+    padding: 0px;
+}
+
+h2.settingsHeader {
+    font-weight: 300;
+    margin-bottom: 20px;
+}
+
+h2.settingsHeader img {
+    height: 25px;
+    margin-top: 30px;
+    vertical-align: bottom;
+}
+
+button.fullWidth.controlPanelSidebar span.caption {
+    vertical-align: top;
+}
+
+div.window#Settings div.controlPanelMainFrame button,
+div.window#Settings div.controlPanelMainFrame select,
+div.window#Settings div.controlPanelMainFrame input.inp {
+    background-color: var(--controlPanelSecoBackgroundColor);
+}
+
+div.window#Settings div.controlPanelMainFrame button:hover,
+div.window#Settings div.controlPanelMainFrame select:hover,
+div.window#Settings div.controlPanelMainFrame input.inp:hover {
+    background-color: var(--controlPanelThrdBackgroundColor);
+}
+
+div.window#Settings div.controlPanelMainFrame button:active,
+div.window#Settings div.controlPanelMainFrame select:active,
+div.window#Settings div.controlPanelMainFrame input.inp:active {
+    background-color: var(--controlPanelMainBackgroundColor);
+}
+
+button.titlesettings {
+    border-radius: var(--titlebarButtonBorderRadius);
+    border: none;
+    min-width: 30px;
+    min-height: 30px;
+    word-wrap: break-word;
+    background-color: transparent;
+    color: var(--windowColor);
+    float: right;
+    margin-left: 5px;
+    padding-top: 0px;
+    padding: 5px;
+}
+
+h2.controlPanelAppletHeader {
+    margin: 0px;
+    margin-bottom: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 100;
+    margin: 0px;
+}
+
+div.controlPanelUserSettingsHeader {
+    position: absolute;
+    left: 0px;
+    width: 100%;
+    padding: 30px;
+    padding-top: 0px;
+}
+
+div.controlPanelUserSettingsHeader>h2 {
+    margin: 0px;
+    margin-bottom: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 100;
+    margin: 0px;
+}
+
+h3.controlPanelSubHeader {
+    margin: 0px;
+    margin-bottom: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 100;
+    margin: 0px;
+}
+
+.controlPanelElementWidth {
+    width: 390px;
+    max-width: unset;
+}
+
+hr.controlPanelBody {
+    width: 390px;
+    margin-block-start: unset;
+    margin: 10px 0
+}
+
+button.folder.big.controlPanel,
+input.folder.big.controlPanel {
+    max-width: unset;
+    max-height: unset;
+    width: 390px;
+    padding-left: 30px;
+}
+
+button.folder.big.controlPanel>p,
+input.folder.big.controlPanel>p {
+    margin: 10px 0;
+}
+
+button.folder.big.controlPanel span.material-icons.right,
+input.folder.big.controlPanel span.material-icons.right {
+    float: right;
+    font-size: 14px;
+    padding-right: 10px;
+}
+
+button.controlPanelSidebar.active {
+    color: rgb(27, 113, 199);
+}
+
+button.controlPanelSidebar.active:hover {
+    color: deepskyblue;
+}
+
+div.controlPanelLeftPane {
+    width: 220px;
+    height: 100%;
+    top: 0px;
+    position: absolute;
+    left: 0px;
+    background-color: var(--controlPanelSecoBackgroundColor);
+}
+
+div.controlPanelMainFrame {
+    position: absolute;
+    top: 30px;
+    left: 220px;
+    width: calc(100% - 220px);
+    height: calc(100% - 30px);
+    background-color: transparent;
+    padding: 35px;
+    padding-top: 15px;
+    overflow-y: auto;
+}
+
+div.controlPanelMainFrame>h1 {
+    margin: 0px;
+}
+
+button.controlPanelSidebar {
+    background-color: transparent !important;
+    color: var(--windowColor);
+    margin: 10px 0;
+    text-align: left;
+    padding: 0 30px;
+    font-size: 17px;
+    font-weight: 100;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+button.controlPanelSidebar:hover {
+    color: deepskyblue;
+}
+
+button.controlPanelSidebar:active {
+    color: rgb(27, 113, 199);
+}
+
+button.controlPanelHomePageAction {
+    width: 100%;
+    padding: 20px;
+    text-align: left;
+    width: 400px;
+    margin-bottom: 5px;
+}
+
+button.controlPanelHomePageAction * {
+    vertical-align: middle;
+}

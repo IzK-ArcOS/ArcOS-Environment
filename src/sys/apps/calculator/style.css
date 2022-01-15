@@ -1,0 +1,15 @@
+div.window[id*="Calculator"] {
+    width: 360px;
+    height: 250px;
+    min-height: unset;
+    resize: none;
+}
+
+div.window[id*="Calculator"] div.body {
+    padding: 10px;
+}
+
+input#calculatorOutput {
+    width: 100%;
+    font-family: 'Ubuntu Mono', monospace;
+}

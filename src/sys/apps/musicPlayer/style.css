@@ -1,0 +1,91 @@
+div.window[id*="Music Player"] {
+    min-width: 458px;
+    min-height: 164px;
+    resize: none;
+}
+
+div.window[id*="Music Player"] div.body {
+    padding: 20px;
+}
+
+audio#ArcOSMediaPlayerAudioObj {
+    display: none;
+}
+
+div.musicPlayerControlsDiv {
+    padding: 0px;
+    position: absolute;
+    top: 45px;
+    left: 30px;
+}
+
+div.musicPlayerControlsDiv button {
+    width: 40px;
+    height: 40px;
+    min-width: unset;
+    min-height: unset;
+    padding: 8px;
+    margin: 0px;
+}
+
+div.musicPlayerControlsDiv button.play {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+div.musicPlayerControlsDiv button.play.selected,
+div.musicPlayerControlsDiv button.pause.selected {
+    background-color: var(--buttonBackgroundColorHover);
+}
+
+div.musicPlayerControlsDiv button.pause {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    margin-left: -3px;
+}
+
+div.musicPlayerControlsDiv button.rewind {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+div.musicPlayerControlsDiv button.forward {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    margin-left: -3px;
+}
+
+div.musicPlayerProgressBarOutline {
+    position: absolute;
+    top: 100px;
+    left: 30px;
+    width: 400px;
+    height: 8px;
+    border-radius: 4px;
+    background-color: var(--buttonBackgroundColorActive);
+}
+
+div.musicPlayerProgressBarOutline div.progressIndicator {
+    top: 0px;
+    left: 0px;
+    height: 8px;
+    border-radius: 4px;
+    min-width: 8px;
+    width: 8px;
+    background-color: deepskyblue;
+    transition: none;
+}
+
+p.mediaPlayerPath {
+    position: absolute;
+    top: 123px;
+    left: 30px;
+    max-width: 400px;
+    overflow: hidden;
+}
+
+p#musicPlayerCurrentTimeDisplay {
+    position: fixed;
+    right: 30px;
+    bottom: 15px;
+}

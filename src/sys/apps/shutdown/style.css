@@ -1,0 +1,45 @@
+.window[id*='Shut Down ArcOS'] {
+    min-width: 320px;
+    max-width: 320px;
+    min-height: 245px;
+    max-height: 245px;
+}
+
+.window[id*='Shut Down ArcOS'] {
+    background-color: transparent;
+}
+
+.window[id*='Shut Down ArcOS']>.body>center>h3 {
+    padding: 0px;
+    margin: 10px;
+}
+
+.window[id*='Shut Down ArcOS']>.windowTitle>center>h3 {
+    padding: 0px;
+    margin: 10px;
+    margin: 30px 0
+}
+
+.window[id*='Shut Down ArcOS']>.body {
+    padding: 0px;
+}
+
+.window[id*='Shut Down ArcOS']>.windowTitle {
+    padding: 0px;
+}
+
+button.transparent.shutdownOption span.material-icons {
+    font-size: 60px;
+}
+
+div.window[id="Shut Down ArcOS"] button {
+    background-color: var(--controlPanelSecoBackgroundColor);
+}
+
+div.window[id="Shut Down ArcOS"] button:hover {
+    background-color: var(--controlPanelThrdBackgroundColor);
+}
+
+div.window[id="Shut Down ArcOS"] button:active {
+    background-color: var(--controlPanelMainBackgroundColor);
+}
