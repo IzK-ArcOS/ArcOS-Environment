@@ -17,6 +17,7 @@ class UpdateLogic {
         let latestVersionNumber = parseInt(await this.getVersionNumber());
         let versionNumber = parseInt(version.replace("r", ""));
 
+        console.warn(latestVersionNumber,versionNumber)
         if (latestVersionNumber > versionNumber) {
             ConsoleNotifier.notifyStartService(
                 `UpdateLogic.checkForUpdates: A new version is available: r${latestVersionNumber}`
