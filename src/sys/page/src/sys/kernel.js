@@ -9,15 +9,13 @@
 let start = 0;
 
 let win;
-let { app, BrowserWindow, webContents } = require('electron');
+let { app, BrowserWindow, webContents } = require("electron");
 
 if (!app.requestSingleInstanceLock()) {
     app.quit();
 } else {
-
     app.on("ready", () => {
-
-        let { globalShortcut } = require('electron');
+        let { globalShortcut } = require("electron");
 
         globalShortcut.register("Alt+Enter", () => {
             if (win.isFocused()) {
@@ -27,25 +25,25 @@ if (!app.requestSingleInstanceLock()) {
                     BrowserWindow.getFocusedWindow().fullScreen = true;
                 }
             }
-        })
+        });
 
-        globalShortcut.register('Control+Shift+I', () => {
+        globalShortcut.register("Control+Shift+I", () => {
             if (win.isFocused()) {
                 win.toggleDevTools();
             }
-        })
+        });
 
         globalShortcut.register("Control+Alt+Shift+R", () => {
             if (win.isFocused()) {
                 loadStartPage();
             }
-        })
+        });
 
         globalShortcut.register("Control+R", () => {
             if (win.isFocused()) {
                 win.webContents.reload();
             }
-        })
+        });
 
         win = new BrowserWindow({
             width: 800,
@@ -58,7 +56,7 @@ if (!app.requestSingleInstanceLock()) {
                 nodeIntegration: true,
                 contextIsolation: false,
                 enableRemoteModule: true,
-                devTools: true
+                devTools: true,
             },
             backgroundColor: "#000",
         });
@@ -72,7 +70,7 @@ if (!app.requestSingleInstanceLock()) {
             setTimeout(() => {
                 win.fullScreen = true;
             }, 50);
-        })
+        });
     });
 
     function loadStartPage() {

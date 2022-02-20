@@ -129,11 +129,16 @@ class UpdateLogic {
     async moveUpdateFiles() {
         const oldPath = path.join(
             path.resolve(path.join(app.getPath("userData"), "updates")),
-            "ArcOS-Environment-main" + path.sep
+            "ArcOS-Environment-main"
         );
         const newPath = path.join(__dirname, path.sep);
 
-        exec();
+        exec(`attrib -R ${__dirname}`, (err,stdout,stderr) => {
+            if (err) throw err;
+
+            console.log(stdout, stderr);
+        });
+        
         mergedirs.default(oldPath, newPath, "overwrite");
     }
 
