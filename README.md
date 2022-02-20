@@ -24,8 +24,10 @@ If you do decide to clone the repository to your local drive, please follow thes
 
 ## ArcOS Updater
 
-Since r17, you can now download and install updates through Settings.
+> ⚠️ **The ArcOS Updater has been forcefully disabled because of issues with file changes**
 
-There is one issue that we discovered during testing: you NEED to run ArcOS as administrator on Windows in order to extract the update package properly.
+~~Since r17, you can now download and install updates through Settings.~~
 
-We are working to solve this issue.
+~~There is one issue that we discovered during testing: you NEED to run ArcOS as administrator on Windows in order to extract the update package properly.~~
+
+~~We are working to solve this issue.~~

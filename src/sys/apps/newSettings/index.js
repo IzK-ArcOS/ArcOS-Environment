@@ -144,8 +144,8 @@ async function openSettingsPane(name, buttonNode) {
             } else {
                 await switchControlPanelPage(path.join(__dirname, '../apps/settings/inline/updates.inline'));
             } */
-            switchControlPanelPage(
-                path.join(__dirname, "../apps/newSettings/inline/updates.inline")
+            await switchControlPanelPage(
+                path.join(__dirname, "../apps/settings/inline/noupdates.inline")
             );
             break;
     }

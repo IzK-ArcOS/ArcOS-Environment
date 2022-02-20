@@ -8,7 +8,7 @@
             ArcOS Updater Disabled
         </h3>
         <p style="vertical-align: middle;">
-            The ArcOS Updater is disabled of Windows because of permission issues. We are working to fix this problem.
+            The ArcOS Updater is disabled because of permission issues. We are working to fix this problem.
             <br><br>Instead, please check the releases page of ArcOS:<br><br>
             <a onclick="electronRemote.shell.openExternal('https://www.github.com/TWI-ArcOS/ArcOS-Releases/releases');">ArcOS
                 Releases</a>
