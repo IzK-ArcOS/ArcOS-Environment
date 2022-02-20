@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <link rel="preload" href="./../bg/img12.png" as="image">
+        <link rel="preload" href="./../bg/img13.png" as="image">
+        <config id="javascriptLoader">
+            <script src="../js/consoleNotifier.js"></script>
+            <Script src="../js/userLogic.js"></script>
+            <script src="../js/varDefinitions.js"></script>
+            <script src="../js/soundLogic.js"></script>
+            <script src="../js/personalizationLogic.js"></script>
+            <script src="../js/generalLogic.js"></script>
+            <script src="../js/dragLogic.js"></script>
+            <script src="../js/errorLogic.js"></script>
+            <script src="../js/notificationLogic.js"></script>
+            <script src="../js/powerLogic.js"></script>
+            <script src="../js/contextMenuLogic.js"></script>
+            <script src="../js/toolbarLogic.js"></script>
+            <script src="../js/onloadLogic.js"></script>
+            <script src="../js/windowLogic.js"></script>
+            <script src="../js/updateLogic.js"></script>
+        </config>
+
+        <link rel="stylesheet" href="./../css/checkboxes.css">
+        <link rel="stylesheet" href="./../css/progressbar.css">
+        <link rel="stylesheet" href="./../css/main.css" id="shellLoader">
+        <link rel="stylesheet" href="" id="titlebarAddonLoader">
+        <link rel="stylesheet" href="" id="addonShellLoader">
+        <link rel="stylesheet" href="" id="animationsAddonLoader">
+        <link rel="stylesheet" href="" id="taskbarAddonLoader">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+
+    <body id="bdy">
+        <div class="wallpaper" id="wallpaper"></div>
+        <div class="toolbar retracted" id="toolbar">
+            <span class="toolbarTitle">ArcOS</span>
+            <button class="toolbar right" onclick="require('electron').remote.getCurrentWindow().close();"><span
+                    class="material-icons">close</span></button>
+            <button class="toolbar right" onclick="toggleFullscreenMode();"><span
+                    class="material-icons">crop_square</span></button>
+            <button class="toolbar right" onclick="require('electron').remote.getCurrentWindow().minimize();"><span
+                    class="material-icons">minimize</span></button>
+        </div>
+        <div class="toolbarHoverTrigger" id="toolbarHoverTrigger"></div>
+
+        <div id="windowStore"></div>
+        <div id="contextMenu" class="context-menu">
+        </div>
+        <div class="block"></div>
+        <div class="notification" id="notificationService">
+            <h3>
+                <span id="notificationTitle">arcos.System.notificationLogic.notificationTitle</span>
+                <button onclick="notificationLogic.closeNotification();" class="title close"><span
+                        class="material-icons">close</span></button>
+            </h3>
+            <p id="notificationMessage">arcos.System.notificationLogic.notificationMessage</p>
+        </div>
+
+        <noscript id="errorMessageTemplate">
+            <div class="window" id="errorMessageBox" name="error" onclick="windowLogic.bringToFront(this);">
+                <div class="windowTitle" id="errorMessageBoxWindowTitle">
+                    <p id="errorMessageBoxTitle"></p>
+                    <button onclick="windowLogic.closewindow(this.parentNode.parentNode);" class="title close">
+                        <span class="material-icons">close</span>
+                    </button>
+                </div>
+                <div class="body" onclick="windowLogic.bringToFront(parentNode);">
+                    <p id="errorMessageMsg"></p>
+                    <button id="errorMessageCloseButton"
+                        onclick="windowLogic.closewindow(this.parentNode.parentNode);">OK</button>
+                    <br>
+                </div>
+        </noscript>
+        <noscript id="confirmationTemplate">
+            <div class="window" id="confirmationMessageBox" onclick="windowLogic.bringToFront(this);" name="confirm">
+                <div class="windowTitle" id="confirmationMessageBoxWindowTitle">
+                    <p id="confirmationMessageBoxTitle"></p>
+                    <button onclick="windowLogic.closewindow(this.parentNode.parentNode);" class="title close">
+                        <span class="material-icons">close</span></button>
+                </div>
+                <div class="body" onclick="windowLogic.bringToFront(parentNode);">
+                    <p id="confirmationMessageMsg"></p>
+                    <span>
+                        <button id="confirmationMessageButton">OK</button>
+                        <button onclick="windowLogic.closewindow(this.parentNode.parentNode);">Cancel</button><br>
+                    </span>
+                </div>
+        </noscript>
+        <div id="temp"></div>
+    </body>
+
+</html>

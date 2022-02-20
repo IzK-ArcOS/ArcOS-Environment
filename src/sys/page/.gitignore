@@ -1,0 +1,6 @@
+node_modules/
+../apps/res/notepad/save/
+src/sys/tests/
+../apps/prototype game.ecs
+.vscode/settings.json
+ArcOS-*/

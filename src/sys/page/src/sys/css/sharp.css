@@ -1,0 +1,26 @@
+@supports (-webkit-appearance: none) or (-moz-appearance: none) {
+    input[type=checkbox]:not(.switch) {
+        border-radius: unset;
+    }
+    input[type=checkbox].switch {
+        width: 38px;
+        border-radius: unset;
+    }
+    input[type=checkbox].switch:after {
+        border-radius: unset;
+    }
+    input[type=radio] {
+        border-radius: unset;
+    }
+    input[type=radio]:after {
+        border-radius: unset;
+    }
+}
+
+* {
+    border-radius: unset !important;
+    border-bottom-left-radius: unset !important;
+    border-bottom-right-radius: unset !important;
+    border-top-left-radius: unset !important;
+    border-top-right-radius: unset !important;
+}

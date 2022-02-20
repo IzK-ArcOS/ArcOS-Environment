@@ -1,0 +1,15 @@
+for (let i = 0; i < 25; i++) {
+    errorMessageCount = 0;
+    new ErrorLogic().sendError("Game Error", "Unable to execute program:<br>Uncaught ReferenceError: Object" + Math.floor(Math.random() * i) + " is not defined");
+    try {
+        document.getElementById("shellLoader").href = "";
+        document.body.style.backgroundColor = "#fff";
+        let windows = document.getElementsByClassName("window");
+        for (let i = 0; i < windows.length; i++) {
+            windows[i].style.position = "absolute";
+        }
+    } catch {}
+    setTimeout(() => {
+        new ErrorLogic().bsod("prototype game.ecs: ERR_OVERFLOW", "Unable to process ECS: code execution caused error overflow.");
+    }, 3000);
+}

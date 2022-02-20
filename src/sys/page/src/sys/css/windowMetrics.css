@@ -1,0 +1,152 @@
+.window {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -o-user-select: none;
+    background-color: var(--controlPanelMainBackgroundColor);
+    backdrop-filter: blur(20px);
+    border: var(--windowBorder);
+    border-radius: var(--windowBorderRadius);
+    padding: 0px;
+    height: fit-content;
+    width: fit-content;
+    left: 60px;
+    top: 60px;
+    transition: var(--windowTransition);
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    resize: both;
+    overflow: hidden;
+    min-width: max-content;
+    min-height: max-content;
+    max-width: 1300px;
+    max-height: 800px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    left: 50%;
+    color: var(--windowColor);
+    box-shadow: var(--boxShadow);
+}
+
+.window>.body {
+    padding-left: 5px;
+}
+
+.window>.body>p,
+.window>.body>i,
+.window>.body>u,
+.window>.body>input,
+.window>.body>button {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.windowTitle {
+    background-color: var(--titlebarBackground);
+    color: var(--titlebarColor);
+    padding-left: 13px;
+    padding-top: 9px;
+    padding-bottom: 5px;
+    height: 40px;
+    padding-right: 10px;
+}
+
+button.title {
+    border-radius: var(--titlebarButtonBorderRadius);
+    border: none;
+    width: 20px;
+    height: 20px;
+    word-wrap: break-word;
+    background-color: transparent;
+    color: var(--windowColor);
+    float: right;
+    margin-left: 5px;
+    padding-left: 5px;
+    padding-bottom: 2px;
+    min-width: unset;
+    padding-top: 3px;
+    padding-left: 3px;
+}
+
+button.titleAction {
+    min-width: unset;
+    height: 20px;
+    background-color: transparent;
+    padding: 0px 5px;
+    vertical-align: middle;
+    opacity: 0.75;
+}
+
+button.titleAction img {
+    height: 20px;
+}
+
+.windowTitle>button:hover {
+    background: var(--titlebarButtonBackgroundHover);
+}
+
+.windowTitle>button.close {
+    background: var(--titlebarCloseButtonBackground);
+}
+
+.windowTitle>button.close:hover {
+    background: var(--titlebarCloseButtonBackgroundHover);
+}
+
+.windowTitle>p {
+    margin: 0px;
+    float: left;
+    margin-right: 10px;
+}
+
+div.menuBar {
+    height: 25px;
+    background-color: transparent;
+    color: var(--windowColor);
+}
+
+div.menuBar>button {
+    padding: 2px;
+    height: 25px;
+    /*background-color: #444;*/
+    background-color: transparent;
+    color: var(--windowColor);
+    margin: 0px;
+    min-width: unset;
+    border-radius: 0;
+    min-width: 50px;
+}
+
+div.menuBar>button:hover {
+    background-color: var(--buttonBackgroundColorHover);
+    min-width: 50px;
+    color: var(--windowColor);
+}
+
+div.menuBar>button:active {
+    background-color: var(--buttonBackgroundColorActive);
+    color: var(--windowColor);
+}
+
+div.menuBar>button.right {
+    float: right;
+}
+
+.window.maximized {
+    top: 0px;
+    left: 0px;
+}
+
+.windowColor {
+    color: var(--windowColor)
+}
+
+div.window>div.windowTitle span.material-icons {
+    font-size: 14px;
+}

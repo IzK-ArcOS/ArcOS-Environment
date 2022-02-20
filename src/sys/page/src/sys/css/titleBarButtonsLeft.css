@@ -1,0 +1,14 @@
+button.title {
+    float:left;
+    margin-left:0px;
+    margin-right:5px;
+}
+
+div.windowTitle>p {
+    float:right;
+    margin-right:5px;
+}
+
+div.windowTitle {
+    padding-left:5px;
+}

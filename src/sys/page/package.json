@@ -1,0 +1,29 @@
+{
+    "name": "ArcOS",
+    "version": "1.0.0",
+    "description": "",
+    "main": "./src/sys/kernel.js",
+    "scripts": {
+        "start": "electron .",
+        "build": "electron-packager . ArcOS",
+        "lint": "eslint '{system,fts,setupAssets,bsod}/**/*.js'"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "electron": "^11.4.11",
+        "eslint": "^8.1.0"
+    },
+    "dependencies": {
+        "argon2": "^0.28.2",
+        "drivelist": "^9.2.4",
+        "electron-packager": "^15.2.0",
+        "electron-rebuild": "3.2.5",
+        "merge-dirs": "^0.2.1",
+        "node-gyp": "^8.4.1",
+        "python": "0.0.4",
+        "request": "^2.88.2",
+        "strip-color": "^0.1.0"
+    }
+}

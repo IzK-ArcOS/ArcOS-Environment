@@ -1,0 +1,9 @@
+{
+    "js": [
+        "cmd.js",
+        "commands/help.js",
+        "etc.js",
+        "ui.js",
+        "env.js"
+    ]
+}

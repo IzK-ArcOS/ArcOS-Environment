@@ -1,0 +1,421 @@
+:root {
+    /*Body*/
+    --bodyBackgroundColor: #000;
+    /*Window*/
+    --windowBackground: #2c2c2c;
+    --windowBorder: #4c4c4c 1px solid;
+    --windowBorderRadius: 10px;
+    --windowTransition: opacity 0.2s, background-color 0.2s ease, border-radius 0.3s, border-top-left-radius 0.3s, border-top-right-radius 0.3s, border-bottom-left-radius 0.3s, border-bottom-right-radius 0.3s;
+    --windowColor: #fff;
+    --boxShadow: 0px 0px 40px rgba(0, 0, 0, 0.5);
+    /*Window Titlebar*/
+    --titlebarBackground: rgba(30, 30, 30, 0.384);
+    --titlebarColor: #fff;
+    --titlebarButtonBackgroundHover: rgba(100, 100, 100, 0.512);
+    --titlebarCloseButtonBackground: rgba(95, 81, 81, 0);
+    --titlebarCloseButtonBackgroundHover: rgb(255, 80, 80);
+    --titlebarButtonBorderRadius: 5px;
+    /*Taskbar*/
+    --taskbarBackground: rgba(0, 0, 0, 0.856);
+    --taskbarTransition: top 0.3s, bottom 0.3s, background 0.3s, position 0.3s;
+    --taskbarButtonBackground: rgba(255, 255, 255, 0.05);
+    --taskbarAppButtonBackgroundColor: rgb(30, 30, 30);
+    /*Global*/
+    --globalTransition: all 0.25s;
+    --globalTransitionTwo: background 0.2;
+    --globalTransitionThree: background-color: 0.2s;
+    --dark2: #333;
+    --dark1: #222;
+    /*start Menu Button*/
+    --startMenuButtonBackgroundColor: rgba(0, 0, 0, 0.123);
+    --startMenuButtonBackgroundColorHover: rgba(255, 255, 255, 0.123);
+    --startMenuButtonBackgroundColorActive: rgba(255, 255, 255, 0.041);
+    --startMenuButtonBorderRadius: 5px;
+    --startMenuBorderRadius: 10px;
+    /*Desktop*/
+    --desktopButtonBackgroundColorHover: rgba(155, 155, 155, 0.616);
+    --desktopButtonBorderColorHover: rgba(182, 182, 182, 1);
+    --desktopButtonBorderColor: rgba(68, 155, 255, 0);
+    --desktopButtonBackgroundColor: transparent;
+    /*Start Menu*/
+    --startMenuBackgroundColor: rgb(30, 30, 30, 0.706);
+    --startMenuLeftPaneBackgroundColr: rgba(0, 0, 0, 0.246);
+    --startMenuAppTileBackgroundColor: rgba(0, 0, 0, 0.11);
+    --startMenuAppTileBackgroundColorHover: rgba(0, 100, 255, 0.22);
+    --startMenuAppTileBackgroundColorActive: rgba(0, 100, 255, 0.40);
+    /*button*/
+    --buttonBackgroundColor: #444;
+    --buttonBackgroundColorHover: #555;
+    --buttonBackgroundColorActive: #333;
+    --buttonTransition: background-color 0.3s, border-radius 0.3s, color 0.1s;
+    --buttonBorderRadius: 5px;
+    /*clockWidget*/
+    --clockWidgetBackgroundColor: rgba(30, 30, 30, 0.856);
+    --clockWidgetBorderRadius: 5px;
+    /*separator*/
+    --separatorBackgroundColor: #fff;
+    --separatorOpacity: 0.125;
+    /*Notification*/
+    --notificationBackgroundColor: rgba(0, 0, 0, 0.8);
+    --notificationCloseButtonBackgroundColor: rgba(0, 0, 0, 0.185);
+    --notificationBorderRadius: 10px;
+    /*Links*/
+    --linkColor: deepskyblue;
+    --linkColorHover: dodgerblue;
+    /*Scrollbar*/
+    --scrollbarHandleBackgroundColor: #444;
+    --scrollbarHandleBackgroundColorHover: #555;
+    /*File Manager*/
+    --folderButtonBackgroundHoverColor: rgba(0, 217, 255, 0.246);
+    --folderButtonBackgroundActiveColor: rgba(0, 132, 155, 0.246);
+    --folderButtonBorderRadius: 7.5px;
+    --bigFolderButtonBackgroundColor: #00000025;
+    --bigFolderButtonBackgroundColorHover: #40404035;
+    --bigFolderButtonBackgroundColorActive: #00000045;
+    --fileExplorerSidebarButtonBackgroundColorHover: #444;
+    --fileExplorerSidebarButtonBackgroundColorActive: #222;
+    --fileExplorerSidebarButtonBorderRadius: 2px;
+    /*context menu*/
+    --contextMenuBorderRadius: 5px;
+    /*Background*/
+    --backgroundImage: url("../../bg/img04.jpg");
+    /*Menu Bar*/
+    --menubarBackgroundColor: var(--titlebarBackground);
+    /*New Start Menu*/
+    --newStartMenuLeftPaneBackgroundColor: transparent;
+    --newSTartMenuRightPaneBackgroundColor: #2222224d;
+    --newSTartMenuBottomPaneBackgroundColor: #2222227c;
+    /*Control Panel*/
+    --controlPanelMainBackgroundColor: #00091d9a;
+    --controlPanelSecoBackgroundColor: #00000025;
+    --controlPanelThrdBackgroundColor: #00000044;
+}
+
+body {
+    background-image: url("../../bg/img17.png");
+    backdrop-filter: brightness(1%);
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    opacity: 0;
+    transition: opacity 0.5s;
+    user-select: none;
+}
+
+html {
+    background-color: #000;
+    height: 100%;
+}
+
+div.content {
+    width: 800px;
+    height: 500px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    padding: 40px;
+    color: white;
+    background-color: var(--controlPanelMainBackgroundColor);
+    border-radius: 20px;
+    box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+div.content>div.leftPane {
+    text-align: center;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    height: calc(100% - 140px);
+    width: calc(50% - 130px);
+    border-radius: 20px;
+    padding: 50px;
+    opacity: 0;
+    animation: fadein forwards 0.75s;
+    animation-delay: 1.75s;
+}
+
+div.content>div.leftPane>img {
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    width: 50%;
+}
+
+div.content>div.rightPane {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    height: calc(100% - 140px);
+    width: calc(50% - 120px);
+    padding: 50px;
+    background-color: var(--controlPanelSecoBackgroundColor);
+    border-radius: 20px;
+    opacity: 0;
+    animation: fadein forwards 1.25s;
+    animation-delay: 2s;
+}
+
+h1 {
+    margin: 0px;
+    font-weight: 500;
+}
+
+h2,
+h3,
+h4,
+h5 {
+    margin: 0px;
+}
+
+h3.title {
+    opacity: 0.5;
+    font-weight: 200;
+}
+
+button {
+    background-color: #00000011;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    transition: background-color 0.25s;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+button.suggested {
+    background-color: rgba(30, 143, 255, 0.801);
+    padding: 10px 30px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    transition: background-color 0.25s;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+button.suggested:hover {
+    background-color: rgb(30, 143, 255);
+}
+
+button.suggested:active {
+    background-color: rgba(30, 143, 255, 0.309);
+}
+
+button:hover {
+    background-color: #6b6b6b4d;
+}
+
+button:active {
+    background-color: #1111114d;
+}
+
+button:disabled {
+    background-color: transparent;
+    opacity: 0.5;
+}
+
+.bottomRight {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+* {
+    outline: none !important;
+    /*transition: all 0.25s;*/
+    transition: all 0.25s, transform 0s;
+    /*cursor: url("../../img/cursor.png"), default!important;*/
+}
+
+input {
+    background-color: rgba(255, 255, 255, 0.055);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: x-large;
+    width: calc(100% - 17px);
+    padding: 5px 10px;
+    margin-bottom: 0px;
+    margin: 0px;
+    border-bottom: rgba(0, 0, 0, 0.055) 2px solid;
+}
+
+input:hover {
+    background-color: rgba(255, 255, 255, 0.118);
+    border-bottom: dodgerblue 2px solid;
+    margin-bottom: 0px;
+}
+
+input:focus {
+    background-color: rgba(255, 255, 255, 0.07);
+    border-bottom: dodgerblue 2px solid;
+    margin-bottom: 0px;
+}
+
+.centeredAbsolute {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+}
+
+.fullWidth {
+    width: 100%;
+}
+
+.noMax {
+    max-width: unset;
+    max-height: unset;
+}
+
+.noFixedWidth {
+    width: unset;
+}
+
+.executeCommand {
+    background-color: #242424;
+    color: white;
+    padding: 30px;
+    border-radius: 20px;
+    transition: opacity 0.3s, visibility 0.3s, display 0.3s;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    cursor: default;
+    height: 5px;
+}
+
+
+/* Track */
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+    cursor: default;
+}
+
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbarHandleBackgroundColor);
+    transition: background-color 0.25s;
+    cursor: default;
+    opacity: 0.5
+}
+
+
+/* Handle on hover */
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--scrollbarHandleBackgroundColorHover);
+    cursor: default;
+}
+
+div.license {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    width: 840px;
+    height: 540px;
+    background-color: #00000055;
+    backdrop-filter: blur(10px);
+    transition: opacity 0.3s, visibility 0.3s;
+    padding: 20px;
+    color: white;
+    border-radius: 15px;
+}
+
+div.license h1,
+div.license p {
+    margin: 0px;
+}
+
+div.license>textarea {
+    width: calc(100% - 20px);
+    height: calc(100% - 150px);
+    padding: 10px;
+    border-radius: 15px;
+    background-color: #00000025;
+    border: none;
+    resize: none;
+    color: white;
+    font-family: 'Ubuntu Mono', monospace;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+div.license.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.topRight {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+div.block {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    transition: opacity 0.3s;
+}
+
+.half-transparent {
+    opacity: 0.5;
+}
+
+div.centeredAbsolute.executeCommand#comExec {
+    min-width: 600px;
+    min-height: 150px;
+}
+
+input#comExecInp {
+    font-family: 'Ubuntu Mono', monospace;
+    font-size: 16px;
+}
+
+div#executeCommandOutput {
+    margin: 20px 0;
+    background-color: #272727;
+    padding: 10px;
+    font-family: monospace;
+    height: 300px;
+    overflow-y: scroll;
+}
+
+.float-right {
+    float:right;
+}

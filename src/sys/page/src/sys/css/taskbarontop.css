@@ -1,0 +1,52 @@
+div.clockWidget {
+    top: 55px;
+    bottom: unset;
+}
+
+div.startMenu {
+    top: 40px;
+    bottom: unset;
+    left: 0px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 10px;
+}
+
+div.desktopicons {
+    bottom: unset;
+    left: 0px;
+    top: 55px;
+}
+
+div.taskbar {
+    bottom: unset;
+    position: fixed;
+    top: 0px;
+}
+
+hr.context-menu {
+    width: 80%;
+}
+
+.notification {
+    top: 55px;
+}
+
+div.startMenu>.leftPane {
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 0px;
+}
+
+.window.maximized {
+    margin-top: 45px;
+    left: 0px;
+}
+
+.newStartMenu {
+    bottom: unset;
+    top: 55px;
+}
+
+div.notificationCenter {
+    top: 55px !important;
+    bottom: 10px;
+}

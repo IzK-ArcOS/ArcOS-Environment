@@ -1,0 +1,4 @@
+<div class="centeredFixed centerText">
+    <h1 id="clockPageTimeDisp"></h1>
+    <h4 id="clockPageDateDisp"></h1>
+</div>
