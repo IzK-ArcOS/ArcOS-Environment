@@ -20,7 +20,7 @@ div.desktopicons {
 div.taskbar {
     bottom: unset;
     position: fixed;
-    top: 0px;
+    top: 10px;
 }
 
 hr.context-menu {

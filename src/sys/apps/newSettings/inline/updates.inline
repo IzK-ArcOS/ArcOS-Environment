@@ -22,4 +22,3 @@
         <p>File Size: <span id="updateFileSizeDisplay">0 B</span></p>
     </button>
 </div>
-<link rel="stylesheet" href="./../apps/update.css">

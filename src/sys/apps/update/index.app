@@ -15,5 +15,3 @@
         <button>Close</button>
     </div>
 </div>
-
-<link rel="stylesheet" href="./../apps/update.css">

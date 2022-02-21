@@ -196,11 +196,6 @@ let desktopContextMenuJson = [
         title: "About",
         action: "openSettingsPane('about',document.getElementsByClassName('controlPanelSidebar')[4]);windowLogic.openWindow('Settings');",
         type: "action"
-    },
-    {
-        title: "Updates",
-        action: "openSettingsPane('updates',document.getElementsByClassName('controlPanelSidebar')[5]);windowLogic.openWindow('Settings');",
-        type: "action"
     }
 ];
 

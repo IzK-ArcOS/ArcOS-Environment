@@ -29,8 +29,8 @@
     --bodyBackgroundColor: #000;
     /*Window*/
     --windowBackground: #111;
-    --windowBorder: #333 1px solid;
-    --windowBorderRadius: 10px;
+    --windowBorder: #fff3 1px solid;
+    --windowBorderRadius: 7.5px;
     --windowTransition: opacity 0.2s, background-color 0.2s ease, border-radius 0.3s, border-top-left-radius 0.3s, border-top-right-radius 0.3s, border-bottom-left-radius 0.3s, border-bottom-right-radius 0.3s;
     --windowColor: #fff;
     --boxShadow: 0px 0px 40px rgba(0, 0, 0, 0.5);

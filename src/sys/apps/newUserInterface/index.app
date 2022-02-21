@@ -34,10 +34,6 @@
             onclick="openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);windowLogic.openWindow('Settings');">
             <span class="material-icons">account_circle</span>&nbsp;&nbsp;User Settings
         </button><br>
-        <button class="transparent fullWidth textAlignLeft"
-            onclick="openSettingsPane('updates',document.getElementsByClassName('controlPanelSidebar')[5]);windowLogic.openWindow('Settings');">
-            <span class="material-icons">autorenew</span>&nbsp;&nbsp;Updates
-        </button><br>
         <hr>
         <button class="transparent fullWidth textAlignLeft" onclick="windowLogic.openWindow('Execute Command');">
             <img src="./../img/execute command.svg">&nbsp;&nbsp;Execute Command
@@ -74,14 +70,7 @@
                 <input type="range" min="1" max="10" id="systemVolumeSlider" style="width:50%;padding:0px;"
                     class="slider" onchange="personalizationLogic.updateVolume(this);">
             </div>
-            <div class="notificationCenterAction">
-                <h3 style="margin: 9px 0;">
-                    ArcOS Updates
-                </h3>
-                <button class="transparent"
-                    onclick="openSettingsPane('updates',document.getElementsByClassName('controlPanelSidebar')[5]);windowLogic.openWindow('Settings');">Goto
-                    Settings</button>
-            </div>
+            <div class="notificationCenterAction"></div>
         </span>
     </div>
 </div>

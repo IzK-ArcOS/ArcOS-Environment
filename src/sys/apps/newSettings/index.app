@@ -35,12 +35,7 @@
                 <span class="material-icons">info</span>
                 &nbsp;
                 <span class="caption">About</span>
-            </button><br>
-            <button class="fullWidth controlPanelSidebar" onclick="openSettingsPane('updates',this);">
-                <span class="material-icons">autorenew</span>
-                &nbsp;
-                <span class="caption">Updates</span>
-            </button><br>
+            </button>
         </div>
         <div class="controlPanelMainFrame" id="controlPanelContent">
 

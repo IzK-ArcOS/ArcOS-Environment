@@ -23,7 +23,8 @@ button.icon {
 }
 
 button.icon img {
-    height: 45px
+    height: 45px;
+    margin-bottom:5px;
 }
 
 button.icon:hover {
