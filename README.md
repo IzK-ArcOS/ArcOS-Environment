@@ -1,5 +1,7 @@
 # ArcOS Environment Repository (repo 1)
 
+> ⚠️ **IMPORTANT NOTE** ArcOS itself is undergoing a rewrite in a private repository in this organization. You can expect it to come online sooner or later, once the core parts of the codebase are figured out and polished.
+
 > ⚠️ ArcOS will be undertaking some huge codebase changes in the coming months
 
 WARNING: any code in this repository can and will have bugs, because that code will still be in development. Please take note of this, because it can result in corruption of your ArcOS user account, depending on what code is actually in development.
