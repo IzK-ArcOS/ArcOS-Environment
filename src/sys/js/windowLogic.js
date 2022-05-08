@@ -4,7 +4,7 @@ class WindowLogic {
         ConsoleNotifier.notifyStartService("closewindow: closing " + window.id);
 
         if (window) {
-            window.style.opacity = '0';
+            window.style.opacity = "0";
 
             setTimeout(() => {
                 window.style.visibility = "hidden";
@@ -17,8 +17,8 @@ class WindowLogic {
                     window.style.height = "fit-content";
                 }
 
-                window.style.top = '50%';
-                window.style.left = '50%';
+                window.style.top = "50%";
+                window.style.left = "50%";
 
                 this.unMaximizeWindow(window);
             }, 300);
@@ -27,19 +27,22 @@ class WindowLogic {
                 if (window.id == activeapps[i]) activeapps.splice(i, 1);
             }
         } else {
-            notificationLogic.notificationService('Error closing window', "ArcOS was unable to close the window.<br><br>Please check the name and try again.");
+            notificationLogic.notificationService(
+                "Error closing window",
+                "ArcOS was unable to close the window.<br><br>Please check the name and try again."
+            );
         }
 
         this.updateTaskBar();
     }
-
 
     openWindow(win) {
         ConsoleNotifier.notifyStartService("openWindow: opening " + win);
         win = document.getElementById(win);
         if (win) {
             if (!activeapps.includes(win.id)) {
-                if (win.id === "ArcTerm") initiateArcTerm(document.getElementById("ArcTermBody"));
+                if (win.id === "ArcTerm")
+                    initiateArcTerm(document.getElementById("ArcTermBody"));
                 win.style.visibility = "visible";
                 win.style.display = "";
                 setTimeout(() => {
@@ -48,7 +51,11 @@ class WindowLogic {
                 }, 250);
                 activeapps.push(win.id);
             } else {
-                if (win.style.opacity == "0" && win.style.visibility == "hidden" && win.style.display == "none") {
+                if (
+                    win.style.opacity == "0" &&
+                    win.style.visibility == "hidden" &&
+                    win.style.display == "none"
+                ) {
                     win.style.visibility = "visible";
                     win.style.display = "";
                     setTimeout(() => {
@@ -72,12 +79,19 @@ class WindowLogic {
 
             const sM = document.getElementById("startMenu");
 
-            if (sM) sM.style.opacity = '0';
+            if (sM) sM.style.opacity = "0";
 
-            setTimeout(() => { if (sM) sM.style.visibility = 'hidden'; }, 200);
-            setTimeout(() => { if (sM) sM.style.display = 'none'; }, 400);
+            setTimeout(() => {
+                if (sM) sM.style.visibility = "hidden";
+            }, 200);
+            setTimeout(() => {
+                if (sM) sM.style.display = "none";
+            }, 400);
         } else {
-            errorLogic.sendError("ArcOS Program Manager", "The requested applcation couldn't be opened: Cannot read propoerty 'id' of null.");
+            errorLogic.sendError(
+                "ArcOS Program Manager",
+                "The requested applcation couldn't be opened: Cannot read propoerty 'id' of null."
+            );
         }
     }
 
@@ -85,7 +99,7 @@ class WindowLogic {
         setTimeout(() => {
             ConsoleNotifier.notifyStartService("minimizeWindow: " + window);
             window = document.getElementById(window);
-            window.style.opacity = '0';
+            window.style.opacity = "0";
             setTimeout(() => {
                 window.style.visibility = "hidden";
                 window.style.display = "none";
@@ -101,21 +115,32 @@ class WindowLogic {
         for (let i = 0; i < activeapps.length; i++) {
             let button = document.createElement("button"),
                 textSpan = document.createElement("span"),
-                textSpanContent = document.createTextNode(userData.noTaskbarButtonLabels ? "" : activeapps[i]),
+                textSpanContent = document.createTextNode(
+                    userData.noTaskbarButtonLabels ? "" : activeapps[i]
+                ),
                 image = document.createElement("img");
 
             button.id = activeapps[i];
             button.className = "taskbarButton";
-            button.setAttribute("onclick", `windowLogic.openWindow("${activeapps[i]}");`);
+            button.setAttribute(
+                "onclick",
+                `windowLogic.openWindow("${activeapps[i]}");`
+            );
             button.title = activeapps[i];
 
-            image.src = `./../img/${(activeapps[i].includes("(") && activeapps[i].endsWith(")")) ? "errormessage" : activeapps[i].toLowerCase()}.svg`;
+            image.src = `./../img/${
+                activeapps[i].includes("(") && activeapps[i].endsWith(")")
+                    ? "errormessage"
+                    : activeapps[i].toLowerCase()
+            }.svg`;
             image.style.width = "20px";
             image.style.height = "20px";
             image.style.verticalAlign = "middle";
 
             textSpan.append(textSpanContent);
-            textSpan.style.marginLeft = !userData.noTaskbarButtonLabels ? "10px" : "";
+            textSpan.style.marginLeft = !userData.noTaskbarButtonLabels
+                ? "10px"
+                : "";
 
             button.append(image);
             button.append(textSpan);
@@ -139,10 +164,10 @@ class WindowLogic {
     loadCSSFile(file) {
         let x = document.createElement("link");
 
-        if (fs.existsSync(path.join(__dirname,file))) {
+        if (fs.existsSync(path.join(__dirname, file))) {
             x.href = file;
             x.rel = "stylesheet";
-    
+
             document.head.append(x);
         }
     }
@@ -154,66 +179,95 @@ class WindowLogic {
         const stle = `${importPath}/style.css`;
         const scpt = `${importPath}/index.js`;
 
-        if (fs.existsSync(path.join(__dirname,html))) {
+        if (fs.existsSync(path.join(__dirname, html))) {
             const customConfig = `${importPath}/config.json`;
 
-            const index = await(await fetch(html)).text();
+            const index = await (await fetch(html)).text();
 
             document.getElementById("temp").innerHTML = index;
 
             if (document.getElementById("temp").childNodes[0].id) {
-                const tB = document.getElementById("temp").childNodes[0].getElementsByTagName("p")[0];
+                const tB = document
+                    .getElementById("temp")
+                    .childNodes[0].getElementsByTagName("p")[0];
 
                 if (tB && tB.className == "titleText") {
                     let image = document.createElement("img");
 
-                    image.style.height = "15px"
-                    image.src = `./../img/${document.getElementById("temp").childNodes[0].id.toLowerCase()}.svg`;
-                    image.style.marginRight = "5px"
-                    image.style.verticalAlign = "middle"
+                    image.style.height = "15px";
+                    image.src = `./../img/${document
+                        .getElementById("temp")
+                        .childNodes[0].id.toLowerCase()}.svg`;
+                    image.style.marginRight = "5px";
+                    image.style.verticalAlign = "middle";
                     tB.insertAdjacentElement("afterbegin", image);
                 }
 
-                document.getElementById("windowStore").insertAdjacentHTML("afterbegin", document.getElementById("temp").innerHTML);
+                document
+                    .getElementById("windowStore")
+                    .insertAdjacentHTML(
+                        "afterbegin",
+                        document.getElementById("temp").innerHTML
+                    );
 
-                for (let i = 0; i < document.getElementsByClassName("window").length; i++) {
-                    dragLogic.dragElement(document.getElementsByClassName("window")[i], document.getElementsByClassName("windowTitle")[i]);
+                for (
+                    let i = 0;
+                    i < document.getElementsByClassName("window").length;
+                    i++
+                ) {
+                    dragLogic.dragElement(
+                        document.getElementsByClassName("window")[i],
+                        document.getElementsByClassName("windowTitle")[i]
+                    );
                 }
 
                 if (userImport == 0) {
                     setTimeout(() => {
-                        this.openWindow(document.getElementById("windowStore").childNodes[0].id);    
+                        this.openWindow(
+                            document.getElementById("windowStore").childNodes[0]
+                                .id
+                        );
                     }, 100);
                 }
 
                 if (register == 1) {
-                    loadedApps.push(document.getElementById("windowStore").childNodes[0].id);
+                    loadedApps.push(
+                        document.getElementById("windowStore").childNodes[0].id
+                    );
                 }
 
-                try{populateStartMenuAppList("startMenuAppList");}catch{/** */}
+                try {
+                    populateStartMenuAppList("startMenuAppList");
+                } catch {
+                    /** */
+                }
             } else {
-                errorLogic.sendError("System Error", "The app file specified does not contain a valid application. Please check the name and try again.<br>File: " + appFile);
+                errorLogic.sendError(
+                    "System Error",
+                    "The app file specified does not contain a valid application. Please check the name and try again.<br>File: " +
+                        appFile
+                );
             }
 
-            if (fs.existsSync(path.join(__dirname,customConfig))) {
-                const config = await(await fetch(customConfig)).json();
-    
+            if (fs.existsSync(path.join(__dirname, customConfig))) {
+                const config = await (await fetch(customConfig)).json();
+
                 if (config.js) {
-                    for (let i=0; i<config.js.length; i++){
+                    for (let i = 0; i < config.js.length; i++) {
                         this.loadJSFile(`${importPath}/${config["js"][i]}`);
                     }
                 }
-    
+
                 if (config.css) {
-                    for (let i=0; i<config.css.length; i++){
+                    for (let i = 0; i < config.css.length; i++) {
                         this.loadCSSFile(`${importPath}/${config["css"][i]}`);
                     }
                 }
             }
 
             setTimeout(() => {
-            this.loadJSFile(scpt);
-            this.loadCSSFile(stle);
+                this.loadJSFile(scpt);
+                this.loadCSSFile(stle);
             }, 50);
         }
     }
@@ -225,8 +279,8 @@ class WindowLogic {
         for (let i = 0; i < titlebars.length; i++) {
             titlebars[i].style.opacity = "0.5";
 
-            let isTitlebar = !!(e.path.includes(titlebars[i]));
-            let isWindow = !!(e.path.includes(windows[i]));
+            let isTitlebar = e.path.includes(titlebars[i]);
+            let isWindow = e.path.includes(windows[i]);
 
             if (isTitlebar) {
                 titlebars[i].style.opacity = "1";
@@ -241,14 +295,18 @@ class WindowLogic {
     }, 10);*/
 
     closeAllWindows() {
-        for (let i = 0; i < document.getElementsByClassName("window").length; i++) {
+        for (
+            let i = 0;
+            i < document.getElementsByClassName("window").length;
+            i++
+        ) {
             closewindow(document.getElementsByClassName("window")[i]);
             activeapps = [];
         }
     }
 
     maximizeWindow(win) {
-        ConsoleNotifier.notifyStartService("maximizeWindow: " + win.id)
+        ConsoleNotifier.notifyStartService("maximizeWindow: " + win.id);
         setTimeout(() => {
             this.bringToFront(win);
         }, 100);
@@ -268,16 +326,21 @@ class WindowLogic {
         setTimeout(() => {
             win.style.transition = "top 1000000000s, left 1000000000s";
         }, 50);
-        localStorage.setItem(win.id + "_windowData", `{"width":"${currentWidth}","height":"${currentHeight}","posX":"${currentX}","posY":"${currentY}"}`)
+        localStorage.setItem(
+            win.id + "_windowData",
+            `{"width":"${currentWidth}","height":"${currentHeight}","posX":"${currentX}","posY":"${currentY}"}`
+        );
     }
 
     unMaximizeWindow(win) {
-        ConsoleNotifier.notifyStartService("unMaximizeWindow: " + win.id)
+        ConsoleNotifier.notifyStartService("unMaximizeWindow: " + win.id);
         setTimeout(() => {
             this.bringToFront(win);
         }, 100);
         if (localStorage.getItem(win.id + "_windowData") != null) {
-            let windowData = JSON.parse(localStorage.getItem(win.id + "_windowData"));
+            let windowData = JSON.parse(
+                localStorage.getItem(win.id + "_windowData")
+            );
             win.style.minWidth = windowData.width;
             win.style.minHeight = windowData.height;
             win.style.top = windowData.posY;
@@ -289,7 +352,7 @@ class WindowLogic {
             win.style.resize = "";
             win.style.transform = "";
             win.classList.remove("maximized");
-            localStorage.removeItem(win.id + "_windowData")
+            localStorage.removeItem(win.id + "_windowData");
         }
     }
 
@@ -297,7 +360,7 @@ class WindowLogic {
         if (localStorage.getItem(win.id + "_windowData") != null) {
             this.unMaximizeWindow(win);
         } else {
-            this.maximizeWindow(win)
+            this.maximizeWindow(win);
         }
         this.bringToFront(win);
     }
@@ -306,21 +369,20 @@ class WindowLogic {
         for (let i = 0; i < localStorage.length; i++) {
             if (localStorage.key(i).includes("_windowData")) {
                 console.log(localStorage.key(i));
-                console.log(localStorage.getItem(localStorage.key(i)))
+                console.log(localStorage.getItem(localStorage.key(i)));
                 localStorage.removeItem(localStorage.key(i));
             }
         }
     }
 
     loadJSFile(file) {
-        if (file && fs.existsSync(path.join(__dirname,file))) {
+        if (file && fs.existsSync(path.join(__dirname, file))) {
             let x = document.createElement("script");
             x.async = true;
             x.src = file;
-    
+
             document.body.append(x);
         }
-        
     }
 }
 
