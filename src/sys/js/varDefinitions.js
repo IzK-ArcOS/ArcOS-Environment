@@ -66,7 +66,7 @@ let args = new URLSearchParams(window.location.search),
     appManagerProgramListTemp = [],
     questionTitles = [],
     oldProfilePicture = "",
-    version = "r18",
+    version = "r19",
     loadedApps = [],
     globalVolume,
     notificationList = [],
@@ -76,4 +76,5 @@ let args = new URLSearchParams(window.location.search),
     ArcTermOnly = false,
     ArcTermOutputDiv = null;
 
-globalVolume = JSON.parse(localStorage.getItem(args.get("username"))).globalVolume || 0;
+if (location.href.includes("arcos.html"))
+    globalVolume = JSON.parse(localStorage.getItem(args.get("username"))).globalVolume || 0;

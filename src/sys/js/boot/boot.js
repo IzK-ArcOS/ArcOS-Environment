@@ -1,44 +1,64 @@
 onload = function () {
-    ConsoleNotifier.notifyStartService("ArcOS.Boot")
-    document.body.style.opacity = "1"
-    if (localStorage.getItem("WebOSVersion") && localStorage.getItem("FTSFinished") && localStorage.length) {
-        ConsoleNotifier.notifyStartService("ArcOS.Boot: configuring boot flags for FTS")
-        localStorage.setItem("FTSFinished", "true");
-    }
-    if (localStorage.getItem("WebOSVersion") !== version && localStorage.getItem("safeMode") !== "1") {
-        document.getElementById("statusText").innerHTML = localStorage.length ? ("Updating to " + version) : ("Preparing ArcOS");
-        localStorage.setItem("WebOSVersion", version);
-    }
-    setTimeout(() => {
-        ConsoleNotifier.notifyStartService("ArcOS.Boot: loading done, preparing for redirect")
-        document.body.style.opacity = "0"
-        setTimeout(() => {
-            ConsoleNotifier.notifyStartService("ArcOS.Boot: redirect started")
-            document.body.innerHTML = "";
-            setTimeout(() => {
-                ConsoleNotifier.notifyStartService("ArcOS.Boot: redirecting to login")
-                window.location.href = "login.html";
-            }, 1000);
-        }, 2000);
-    }, 8000);
+    const body = document.body;
+    const CN = ConsoleNotifier;
+    const statusText = document.getElementById('statusText');
+    const LS = this.localStorage;
 
+    const nameSpace = "ArcOS.Boot";
+
+    CN.notifyStartService(nameSpace);
+
+    body.style.opacity = "1"
+
+    function loadDoneTimeout() {
+        CN.notifyStartService(`${nameSpace}: loading done, preparing for redirect`);
+
+        body.style.opacity = "0"
+    }
+
+    function redirectStartTimeout() {
+        CN.notifyStartService(`${nameSpace}: redirect started`)
+
+        body.innerText = "";
+    }
+
+    function redirectTimeout() {
+        CN.notifyStartService(`${nameSpace}: redirecting to login`)
+
+        location.href = "login.html";
+    }
+
+    setTimeout(loadDoneTimeout, 8000);
+    setTimeout(redirectStartTimeout, 10000);
+    setTimeout(redirectTimeout, 11000);
+
+    // Event Listener for SafeMode, ArcTerm and Reset
     document.addEventListener("keydown", (e) => {
-        if (e.key.toLocaleLowerCase() == "f8") {
-            ConsoleNotifier.notifyStartService("ArcOS.Boot: F8 pressed, entering Safe Mode")
-            document.getElementById("statusText").innerHTML = "Please Wait";
-            localStorage.setItem("safeMode", "1");
+        const key = e.key.toLowerCase();
+        const shift = e.shiftKey;
+        const ctrl = e.ctrlKey;
+
+        // SafeMode
+        if (key == "f8") {
+            CN.notifyStartService(`${nameSpace}: F8 pressed, entering Safe Mode`);
+
+            statusText.innerText = "Please Wait";
+
+            LS.setItem("safeMode", "1");
+        }
+
+        // Reset
+        if (ctrl && shift && key == 'e') {
+            CN.notifyStartService(`${nameSpace}: Ctrl+Shift+E pressed, clearing LocalStorage`);
+
+            LS.clear();
+
+            statusText.innerText = "Resetting ArcOS"
+        }
+
+        // ArcTerm
+        if (ctrl && shift && key == 'a') {
+            location.href = "arcterm.html";
         }
     })
-
-    window.addEventListener("keydown", (e) => {
-        if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'e') {
-            ConsoleNotifier.notifyStartService("ArcOS.Boot: Ctrl+Shift+E pressed, clearing LocalStorage")
-            localStorage.clear();
-            document.getElementById("statusText").innerHTML = "Resetting ArcOS"
-        }
-
-        if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'a') {
-            window.location.href = "arcterm.html";
-        }
-    });
 }
