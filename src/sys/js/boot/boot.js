@@ -1,3 +1,12 @@
+/**
+ * ~= ArcOS June 2022 mass rewrite =~
+ * 
+ * This file had pass 1 of rewriting on June 24th 2022,
+ * and was finished at 2:58PM that day.
+ * 
+ * - Izaak Kuipers @ ArcOS
+*/
+
 onload = function () {
     const body = document.body;
     const CN = ConsoleNotifier;

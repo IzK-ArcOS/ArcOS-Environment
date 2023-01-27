@@ -1,4 +1,4 @@
-ConsoleNotifier.startModule("ArcOS.System.onloadLogic");
+ConsoleNotifier.registerMod("ArcOS.System.onloadLogic");
 
 
 

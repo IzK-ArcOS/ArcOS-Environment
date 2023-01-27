@@ -5,7 +5,7 @@ async function switchControlPanelPage(pageFile) {
             errorLogic.sendError(
                 `Unable to open settings applet`,
                 `The settings applet specified is invalid. Please check the path to the applet and try again.<br><br>Details: ` +
-                    error
+                error
             );
         } else {
             controlPanelContent.classList.add("slide-out-right");
@@ -55,7 +55,7 @@ async function openSettingsPane(name, buttonNode) {
     ) {
         document
             .getElementsByClassName(`controlPanelSidebar`)
-            [i].classList.remove(`active`);
+        [i].classList.remove(`active`);
     }
     switch (name) {
         case `home`:

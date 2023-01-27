@@ -2,7 +2,7 @@ const mergedirs = require("merge-dirs");
 const extract = require("extract-zip");
 const { app } = require("electron").remote;
 const exec = require("child_process").exec;
-ConsoleNotifier.startModule("ArcOS.System.updateLogic");
+ConsoleNotifier.registerMod("ArcOS.System.updateLogic");
 
 class UpdateLogic {
     async checkForUpdates() {

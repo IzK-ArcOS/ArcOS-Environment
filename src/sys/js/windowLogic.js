@@ -1,4 +1,4 @@
-ConsoleNotifier.startModule("ArcOS.System.windowLogic");
+ConsoleNotifier.registerMod("ArcOS.System.windowLogic");
 class WindowLogic {
     closewindow(window) {
         ConsoleNotifier.notifyStartService("closewindow: closing " + window.id);

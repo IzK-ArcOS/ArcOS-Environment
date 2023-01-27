@@ -1,4 +1,4 @@
-ConsoleNotifier.startModule("ArcOS.System.toolbarLogic");
+ConsoleNotifier.registerMod("ArcOS.System.toolbarLogic");
 
 function setToolbarTrigger() {
     document.getElementById("toolbarHoverTrigger").addEventListener("mouseover", () => {

@@ -1,12 +1,33 @@
-ConsoleNotifier.startModule("ArcOS.System.generalLogic");
+/**
+ * ~= ArcOS June 2022 mass rewrite =~
+ * 
+ * This file had pass 1 of rewriting on June 28th 2022,
+ * and was finished at 3:23PM that day.
+ * 
+ * This file had pass 2 of rewriting on June 30th 2022,
+ * and was finished at 3:39PM that day.
+ * 
+ * - Izaak Kuipers @ ArcOS
+*/
+
+ConsoleNotifier.registerMod("ArcOS.System.generalLogic");
 
 class GeneralLogic {
     addNewApp() {
         ConsoleNotifier.notifyStartService("GeneralLogic.addNewApp");
 
-        const open = document.getElementById("startAppAfterAddCheckBox").checked ? 1 : 0;
+        const startWAddChkBox = document.getElementById("startAppAfterAddCheckbox");
+        const addInpField = document.getElementById("addAppInputField");
 
-        windowLogic.loadWindow(document.getElementById("addAppInputField").value, open, open);
+        if (!startWAddChkBox || !addInpField) {
+            errorLogic.sendError("Cannot add new app", "Not all required modules are loaded.");
+
+            return;
+        }
+
+        const open = startWAddChkBox.checked ? 1 : 0;
+
+        windowLogic.loadWindow(addInpField.value, open, open);
     }
 
     replaceAllCharsInStr(s, from, to) {
@@ -17,8 +38,10 @@ class GeneralLogic {
         for (let i = 0; i < s.length; i++) {
             if (s.charAt(i) === from) {
                 out += to;
+
                 continue;
             }
+
             out += s.charAt(i);
         }
 
@@ -33,9 +56,9 @@ class GeneralLogic {
 
         if (subString.length <= 0) return (string.length + 1);
 
-        let n = 0,
-            pos = 0,
-            step = allowOverlapping ? 1 : subString.length;
+        let n = 0;
+        let pos = 0;
+        let step = allowOverlapping ? 1 : subString.length;
 
         for (; ;) {
             pos = string.indexOf(subString, pos);
@@ -48,16 +71,10 @@ class GeneralLogic {
         return n;
     }
 
-    disableExit() {
-        ConsoleNotifier.notifyStartService("GeneralLogic.disableExit");
+    setExit(allowed = false) {
+        ConsoleNotifier.notifyStartService("GeneralLogic.setExit");
 
-        allowExit = false;
-    }
-
-    enableExit() {
-        ConsoleNotifier.notifyStartService("GeneralLogic.enableExit");
-
-        allowExit = true;
+        allowExit = allowed;
     }
 
     reloadShell() {
@@ -70,7 +87,9 @@ class GeneralLogic {
 
             if (link.rel == "stylesheet") {
                 const href = link.href;
+
                 link.href = "";
+
                 setTimeout(() => {
                     link.href = href;
                 }, 350);
@@ -87,8 +106,8 @@ class GeneralLogic {
     reloadApplications() {
         ConsoleNotifier.notifyStartService("GeneralLogic.reloadApplications")
 
-        let tempList = activeapps;
-        let tempFocusedWindow = focusedWindow;
+        const tempList = activeapps;
+        const tempFocusedWindow = focusedWindow;
 
         loadedApps = [];
         applications = [];
@@ -97,19 +116,23 @@ class GeneralLogic {
 
         document.getElementById("windowStore").innerHTML = "";
 
-        setTimeout(() => {
+        function loadDefaultAppsTimeout() {
             onloadLogic.loadDefaultApps();
+        }
 
-            setTimeout(() => {
-                for (let i = 0; i < tempList.length; i++) {
-                    windowLogic.openWindow(tempList[i]);
-                }
+        function reOpenWindowsTimeout() {
+            for (let i = 0; i < tempList.length; i++) {
+                windowLogic.openWindow(tempList[i]);
+            }
+        }
 
-                setTimeout(() => {
-                    windowLogic.bringToFront(document.getElementById(tempFocusedWindow));
-                }, 1000);
-            }, 1000);
-        }, 100);
+        function bringToFrontTimeout() {
+            windowLogic.bringToFront(document.getElementById(tempFocusedWindow));
+        }
+
+        setTimeout(loadDefaultAppsTimeout, 100);
+        setTimeout(reOpenWindowsTimeout, 1100);
+        setTimeout(bringToFrontTimeout, 2100);
     }
 }
 
@@ -119,12 +142,13 @@ window.addEventListener("click", e => {
     if (!lockScreenActive) {
         windowLogic.updateTitlebar(e);
 
-        let userData = getCurrentUserData();
-
+        const userData = getCurrentUserData();
         const systemVolumeSlider = document.getElementById("systemVolumeSlider");
         const volumeControlEnableSoundSwitch = document.getElementById("volumeControlEnableSoundSwitch");
 
-        if (systemVolumeSlider) systemVolumeSlider.value = userData.globalVolume * 10;
-        if (volumeControlEnableSoundSwitch) volumeControlEnableSoundSwitch.checked = userData.muted == 1;
+        if (!systemVolumeSlider || !volumeControlEnableSoundSwitch) { return; }
+
+        systemVolumeSlider.value = userData.globalVolume * 10;
+        volumeControlEnableSoundSwitch.checked = userData.muted == 1;
     }
 });

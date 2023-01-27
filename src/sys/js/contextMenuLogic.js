@@ -1,10 +1,17 @@
-ConsoleNotifier.startModule("ArcOS.System.contextMenuLogic");
+/**
+ * ~= ArcOS June 2022 mass rewrite =~
+ * 
+ * This file had pass 1 of rewriting on June 28th 2022,
+ * and was finished at 3:20PM that day.
+ * 
+ * - Izaak Kuipers @ ArcOS
+*/
 
+ConsoleNotifier.registerMod("ArcOS.System.contextMenuLogic");
 class ContextMenuLogic {
-
     hideMenu() {
         if (!lockScreenActive) {
-            let contextMenu = document.getElementById("contextMenu");
+            const contextMenu = document.getElementById("contextMenu");
 
             contextMenu.style.display = 'none';
             contextMenu.style.opacity = "0";
@@ -14,13 +21,11 @@ class ContextMenuLogic {
 
     rightClick(e) {
         if (!lockScreenActive) {
-            let contextMenu = document.getElementById("contextMenu"),
-                username = args.get("username"),
-                desktopIcons = document.getElementById("desktopIcons"),
-                wallpaper = document.getElementsByClassName("wallpaper")[0],
-                body = document.body,
-                windowStore = document.getElementById("windowStore"),
-                desktopIconButtons = document.querySelectorAll("button.icon");
+            const contextMenu = document.getElementById("contextMenu");
+            const desktopIcons = document.getElementById("desktopIcons");
+            const wallpaper = document.getElementsByClassName("wallpaper")[0];
+            const body = document.body;
+
             if (
                 e.path.includes(desktopIcons) ||
                 e.path.includes(wallpaper) ||
@@ -43,7 +48,8 @@ class ContextMenuLogic {
     }
 
     showContextMenu(x, y) {
-        let contextMenu = document.getElementById("contextMenu");
+        const contextMenu = document.getElementById("contextMenu");
+
         contextMenu.style.display = 'block';
         contextMenu.style.opacity = '1';
         contextMenu.style.visibility = "visible";
@@ -53,63 +59,53 @@ class ContextMenuLogic {
     }
 
     overrideRightClick(e) {
-        let rightClickTargets = e.path;
-        let contextMenu = document.getElementById("contextMenu");
-        let rightClickValid = false;
-        let rightClickType = "";
-        let rightClickSource = [];
-        let rightClickWindowId = "";
+        const rightClickTargets = e.path;
+        const contextMenu = document.getElementById("contextMenu");
+
+        let valid = false;
+        let source = [];
+        let windowId = "";
 
         for (let i = 0; i < rightClickTargets.length; i++) {
-            if (rightClickTargets[i].className == "windowTitle") {
-                rightClickValid = true;
-                rightClickType = "titlebar";
-                rightClickWindowId = rightClickTargets[i].parentNode.id;
-                rightClickSource = titlebarContextMenuJson;
-            }
-            else if (rightClickTargets[i].className == "desktopicons") {
-                rightClickValid = true;
-                rightClickType = "desktop";
-                rightClickSource = desktopContextMenuJson;
-                break;
-            } else if (rightClickTargets[i].className == "taskbarButton") {
-                rightClickValid = true;
-                rightClickType = "tbbutton";
-                rightClickWindowId = rightClickTargets[i].id;
-                rightClickSource = tbButtonContextMenuJSON;
+            const target = rightClickTargets[i];
+
+            if (!target) continue;
+
+            const clName = target.className;
+
+            if (ContextMenuStore.has(clName)) {
+                valid = true;
+                windowId = target.parentNode.id;
+                source = ContextMenuStore.get(clName);
+
                 break;
             }
         }
 
-        if (rightClickValid) {
-            contextMenu.innerHTML = "";
+        if (valid) {
+            contextMenu.innerText = "";
 
-            let ul = document.createElement("ul");
+            const ul = document.createElement("ul");
 
-            for (let i = 0; i < rightClickSource.length; i++) {
-                let item = rightClickSource[i];
+            for (let i = 0; i < source.length; i++) {
+                const item = source[i];
 
                 if (item.type == "action") {
-
-                    let title = item.title.replace("{WINDOW_ID}", rightClickWindowId);
-                    let onclick = item.action.replace("{WINDOW_NODE}", `document.getElementById('${rightClickWindowId}')`).replace("{WINDOW_ID}", rightClickWindowId);
-                    let li = document.createElement("li");
+                    const title = item.title.replace("{WINDOW_ID}", windowId);
+                    const onclick = item.action.replace("{WINDOW_NODE}", `document.getElementById('${windowId}')`).replace("{WINDOW_ID}", windowId);
+                    const li = document.createElement("li");
 
                     li.innerText = title;
                     li.setAttribute("onclick", onclick);
 
                     ul.append(li);
-
                 } else if (item.type == "separator") {
-
-                    let hr = document.createElement("hr");
+                    const hr = document.createElement("hr");
 
                     ul.append(hr);
-
                 } else if (item.type == "disabled_text") {
-
-                    let title = item.title.replace("{WINDOW_ID}", rightClickWindowId);
-                    let li = document.createElement("li");
+                    const title = item.title.replace("{WINDOW_ID}", windowId);
+                    const li = document.createElement("li");
 
                     li.innerText = title;
                     li.style.opacity = "0.5";
@@ -124,108 +120,108 @@ class ContextMenuLogic {
     }
 }
 
-let titlebarContextMenuJson = [
-    {
-        title: "{WINDOW_ID}",
-        type: "disabled_text"
-    },
-    {
-        type: "separator"
-    },
-    {
-        title: "Minimize",
-        action: "windowLogic.minimizeWindow('{WINDOW_ID}');",
-        type: "action"
-    },
-    {
-        title: "Maximize",
-        action: "windowLogic.toggleMaximizedState({WINDOW_NODE})",
-        type: "action"
-    },
-    {
-        type: "separator"
-    },
-    {
-        title: "Close Window",
-        action: "windowLogic.closewindow({WINDOW_NODE})",
-        type: "action"
-    }
-]
-
-let desktopContextMenuJson = [
-    {
-        title: "Shut Down",
-        action: "powerLogic.shutdown()",
-        type: "action"
-    },
-    {
-        type: "separator"
-    },
-    {
-        title: "ArcTerm",
-        action: "windowLogic.openWindow('ArcTerm');",
-        type: "action"
-    },
-    {
-        type: "separator"
-    },
-    {
-        title: "Settings",
-        action: "openSettingsPane('home',document.getElementsByClassName('controlPanelSidebar')[0]);windowLogic.openWindow('Settings');",
-        type: "action"
-    },
-    {
-        type: "separator"
-    },
-    {
-        title: "Personalization",
-        action: "openSettingsPane('personalize',document.getElementsByClassName('controlPanelSidebar')[1]);windowLogic.openWindow('Settings');",
-        type: "action"
-    },
-    {
-        title: "Import App",
-        action: "openSettingsPane('addapp',document.getElementsByClassName('controlPanelSidebar')[2]);windowLogic.openWindow('Settings');",
-        type: "action"
-    },
-    {
-        title: "User Settings",
-        action: "openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);windowLogic.openWindow('Settings');",
-        type: "action"
-    },
-    {
-        title: "About",
-        action: "openSettingsPane('about',document.getElementsByClassName('controlPanelSidebar')[4]);windowLogic.openWindow('Settings');",
-        type: "action"
-    }
-];
-
-let tbButtonContextMenuJSON = [
-    {
-        title: "{WINDOW_ID}",
-        type: "disabled_text"
-    },
-    {
-        type: "separator"
-    },
-    {
-        title: "Minimize",
-        action: "windowLogic.minimizeWindow('{WINDOW_ID}');",
-        type: "action"
-    },
-    {
-        title: "Maximize",
-        action: "windowLogic.toggleMaximizedState({WINDOW_NODE})",
-        type: "action"
-    },
-    {
-        type: "separator"
-    },
-    {
-        title: "Close Window",
-        action: "windowLogic.closewindow({WINDOW_NODE})",
-        type: "action"
-    }
-];
+const ContextMenuStore = new Map([
+    ["windowTitle", [
+        {
+            title: "{WINDOW_ID}",
+            type: "disabled_text"
+        },
+        {
+            type: "separator"
+        },
+        {
+            title: "Minimize",
+            action: "windowLogic.minimizeWindow('{WINDOW_ID}');",
+            type: "action"
+        },
+        {
+            title: "Maximize",
+            action: "windowLogic.toggleMaximizedState({WINDOW_NODE})",
+            type: "action"
+        },
+        {
+            type: "separator"
+        },
+        {
+            title: "Close Window",
+            action: "windowLogic.closewindow({WINDOW_NODE})",
+            type: "action"
+        }
+    ]],
+    ["desktopicons", [
+        {
+            title: "Shut Down",
+            action: "powerLogic.shutdown()",
+            type: "action"
+        },
+        {
+            type: "separator"
+        },
+        {
+            title: "ArcTerm",
+            action: "windowLogic.openWindow('ArcTerm');",
+            type: "action"
+        },
+        {
+            type: "separator"
+        },
+        {
+            title: "Settings",
+            action: "openSettingsPane('home',document.getElementsByClassName('controlPanelSidebar')[0]);windowLogic.openWindow('Settings');",
+            type: "action"
+        },
+        {
+            type: "separator"
+        },
+        {
+            title: "Personalization",
+            action: "openSettingsPane('personalize',document.getElementsByClassName('controlPanelSidebar')[1]);windowLogic.openWindow('Settings');",
+            type: "action"
+        },
+        {
+            title: "Import App",
+            action: "openSettingsPane('addapp',document.getElementsByClassName('controlPanelSidebar')[2]);windowLogic.openWindow('Settings');",
+            type: "action"
+        },
+        {
+            title: "User Settings",
+            action: "openSettingsPane('user',document.getElementsByClassName('controlPanelSidebar')[3]);windowLogic.openWindow('Settings');",
+            type: "action"
+        },
+        {
+            title: "About",
+            action: "openSettingsPane('about',document.getElementsByClassName('controlPanelSidebar')[4]);windowLogic.openWindow('Settings');",
+            type: "action"
+        }
+    ]],
+    ["taskbarButton", [
+        {
+            title: "{WINDOW_ID}",
+            type: "disabled_text"
+        },
+        {
+            type: "separator"
+        },
+        {
+            title: "Minimize",
+            action: "windowLogic.minimizeWindow('{WINDOW_ID}');",
+            type: "action"
+        },
+        {
+            title: "Maximize",
+            action: "windowLogic.toggleMaximizedState({WINDOW_NODE})",
+            type: "action"
+        },
+        {
+            type: "separator"
+        },
+        {
+            title: "Close Window",
+            action: "windowLogic.closewindow({WINDOW_NODE})",
+            type: "action"
+        }
+    ]]
+])
 
 let contextMenuLogic = new ContextMenuLogic();
 

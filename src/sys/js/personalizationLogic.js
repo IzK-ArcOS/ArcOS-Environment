@@ -1,4 +1,4 @@
-ConsoleNotifier.startModule("ArcOS.System.personalizationLogic");
+ConsoleNotifier.registerMod("ArcOS.System.personalizationLogic");
 
 class PersonalizationLogic {
     applyTheme() {

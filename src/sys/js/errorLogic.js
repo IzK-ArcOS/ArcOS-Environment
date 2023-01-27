@@ -1,4 +1,13 @@
-ConsoleNotifier.startModule("ArcOS.System.errorLogic");
+/**
+ * ~= ArcOS June 2022 mass rewrite =~
+ * 
+ * This file had pass 1 of rewriting on June 28th 2022,
+ * and was finished at 2:59PM that day.
+ * 
+ * - Izaak Kuipers @ ArcOS
+*/
+
+ConsoleNotifier.registerMod("ArcOS.System.errorLogic");
 
 class ErrorLogic {
     bsod(title, message) {
@@ -8,21 +17,27 @@ class ErrorLogic {
             localStorage.setItem("BSODTitle", title);
             localStorage.setItem("BSODMessage", message);
 
-            window.location.href = "bsod.html";
+            location.href = "bsod.html";
             return;
         }
+
         this.sendError(title || "undefined", message || "undefined");
     }
 
-    sendError(title, message, safemodeOverride = 0) {
+    sendError(title, message, safemodeOverride = false) {
         ConsoleNotifier.notifyStartService("ErrorLogic.sendError")
 
         this.createNewError(title, message, safemodeOverride);
     }
 
     createNewError(title, message, safemodeOverride = 0) {
-        if (localStorage.getItem("safeMode") != 1 || safemodeOverride == 1) {
-            document.getElementById("windowStore").insertAdjacentHTML('beforeend', document.getElementById("errorMessageTemplate").innerHTML);
+        if (localStorage.getItem("safeMode") != 1 || safemodeOverride) {
+            const windowStore = document.getElementById("windowStore");
+            const errMsgTempl = document.getElementById("errorMessageTemplate");
+
+            if (!windowStore || !errMsgTempl) return;
+
+            windowStore.insertAdjacentHTML('beforeend', errMsgTempl.innerHTML);
 
             const ErrID = Math.floor(Math.random() * 3276700);
             const windowId = `${title} (${ErrID})`;
@@ -30,53 +45,32 @@ class ErrorLogic {
             const titleBarId = `${ErrID}errorMessageBoxWindowTitle ${title}`
             const messageId = `${ErrID} ${title} errorMessageMsg`;
 
-            document.getElementById("errorMessageBox").id = windowId;
-            document.getElementById("errorMessageBoxTitle").id = titleTextId
-            document.getElementById(titleTextId).innerHTML = title;
-            document.getElementById("errorMessageBoxWindowTitle").id = titleBarId;
-            document.getElementById("errorMessageMsg").id = messageId;
-            document.getElementById(messageId).innerHTML = message;
+            const msgBox = document.getElementById("errorMessageBox");
+            const msgBoxTitle = document.getElementById("errorMessageBoxTitle");
 
-            dragLogic.dragElement(document.getElementById(windowId), document.getElementById(titleBarId));
+            const windowTitle = document.getElementById("errorMessageBoxWindowTitle");
+            const errMsgMsg = document.getElementById("errorMessageMsg");
+
+            if (!msgBox || !msgBoxTitle || !windowTitle || !errMsgMsg) return;
+
+            msgBox.id = windowId;
+            msgBoxTitle.id = titleTextId
+            msgBoxTitle.innerHTML = title;
+            windowTitle.id = titleBarId;
+            errMsgMsg.id = messageId;
+            errMsgMsg.innerHTML = message;
+
+            const window = document.getElementById(windowId);
+
+            dragLogic.dragElement(window, windowTitle);
             windowLogic.openWindow(windowId);
 
             playSystemSound("../audio/error.mp3");
 
-            setTimeout(() => windowLogic.bringToFront(document.getElementById(windowId)), 50);
+            setTimeout(() => windowLogic.bringToFront(window), 50);
         } else {
             notificationLogic.notificationService(title, message);
         }
-    }
-
-    createNewConfirmation(title, message, action) {
-        document.getElementById("windowStore").insertAdjacentHTML('beforeend', document.getElementById("confirmationTemplate").innerHTML);
-
-        setTimeout(() => {
-            const confirmationId = Math.floor(Math.random() * 3276700);
-            const windowId = `${title} (${confirmationId})`;
-            const titleTextId = `${confirmationId}confirmationTitle ${title}`;
-            const titleBarId = `${confirmationId}confirmationWindowTitle ${title}`;
-            const messageId = `${confirmationId} ${title} confirmationMessageMsg`;
-            const buttonId = `${confirmationId} ${title} confirmationMessageButton`
-
-            document.getElementById("confirmationMessageBox").id = windowId;
-            document.getElementById("confirmationMessageBoxTitle").id = titleTextId;
-            document.getElementById(titleTextId).innerHTML = title;
-            document.getElementById("confirmationMessageBoxWindowTitle").id = titleBarId;
-            document.getElementById("confirmationMessageMsg").id = messageId;
-            document.getElementById(messageId).innerHTML = message;
-            document.getElementById("confirmationMessageButton").id = buttonId;
-            document.getElementById(buttonId).setAttribute("onclick", action.toString() + `;windowLogic.closewindow(document.getElementById("${windowId}"))`);
-
-            dragLogic.dragElement(document.getElementById(windowId), document.getElementById(titleBarId));
-            windowLogic.openWindow(windowId);
-
-            playSystemSound("../audio/error.mp3");
-
-            setTimeout(() => {
-                windowLogic.bringToFront(document.getElementById(windowId));
-            }, 50);
-        }, 100);
     }
 }
 

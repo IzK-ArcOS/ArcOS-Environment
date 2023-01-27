@@ -1,4 +1,4 @@
-ConsoleNotifier.startModule("ArcOS.System.powerLogic");
+ConsoleNotifier.registerMod("ArcOS.System.powerLogic");
 
 class PowerLogic {
     shutdown() {

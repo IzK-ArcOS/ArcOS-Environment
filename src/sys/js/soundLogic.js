@@ -1,4 +1,4 @@
-ConsoleNotifier.startModule("ArcOS.System.soundLogic");
+ConsoleNotifier.registerMod("ArcOS.System.soundLogic");
 
 function playSystemSound(sound) {
     ConsoleNotifier.notifyStartService("playSystemSound");

@@ -1,6 +1,6 @@
 const argon2 = require("argon2");
 
-ConsoleNotifier.startModule("ArcOS.System.userLogic");
+ConsoleNotifier.registerMod("ArcOS.System.userLogic");
 
 function createUserData(user, override = false, notify = false) {
     ConsoleNotifier.notifyStartService("createUserData");
